@@ -29,6 +29,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -44,6 +45,7 @@ import TargetManagementPage from './pages/TargetManagementPage';
 import MultiEntityPage from './pages/MultiEntityPage';
 import Phase4Page from './pages/Phase4Page';
 import AdminPanel from './pages/AdminPanel';
+import DocumentationPage from './pages/DocumentationPage';
 import LicenseKeyDialog from './components/LicenseKeyDialog';
 
 const drawerWidth = 280;
@@ -75,7 +77,8 @@ type PageType =
   | 'multi-entity'
   | 'phase4'
   | 'admin'
-  | 'settings';
+  | 'settings'
+  | 'documentation';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('dashboard');
@@ -145,6 +148,8 @@ const App: React.FC = () => {
         return <Phase4Page />;
       case 'admin':
         return <AdminPanel />;
+      case 'documentation':
+        return <DocumentationPage />;
       case 'settings':
         return <Box p={3}><Typography variant="h4">Settings (Coming Soon)</Typography></Box>;
       default:
@@ -306,6 +311,14 @@ const App: React.FC = () => {
 
             <Divider />
             <List>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'documentation'} onClick={() => setCurrentPage('documentation')}>
+                  <ListItemIcon>
+                    <MenuBookIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Documentation" />
+                </ListItemButton>
+              </ListItem>
               <ListItem disablePadding>
                 <ListItemButton selected={currentPage === 'admin'} onClick={() => setCurrentPage('admin')}>
                   <ListItemIcon>
