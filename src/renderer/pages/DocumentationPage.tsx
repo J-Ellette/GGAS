@@ -38,6 +38,7 @@ import {
   MenuBook as MenuBookIcon,
   School as TutorialIcon,
   Language as LanguageIcon,
+  Security as SecurityIcon,
 } from '@mui/icons-material';
 
 interface DocSection {
@@ -757,6 +758,114 @@ const documentationSections: DocSection[] = [
       {
         title: 'Getting Started with Phase 8',
         content: 'To begin using Phase 8 autonomous data collection features: Navigate to the Autonomous Collection page from the main menu. Start with Document Processing: upload a few sample documents to test OCR accuracy. Review and approve extracted data. Configure Email Monitoring: add an email monitor for a dedicated carbon data mailbox. Set up filtering and categorization rules. Install Browser Extension: install from Chrome Web Store or Firefox Add-ons. Enable auto-capture for travel bookings. Configure Third-Party Integrations: set up Maximo integration if you use Maximo. Enable Microsoft SSO in Admin Panel if desired. Monitor and refine: review processing accuracy and adjust settings. Train templates on your specific documents. Refine categorization rules based on actual data. The system will continuously improve as it processes more data.',
+      },
+    ],
+  },
+  {
+    id: 'phase9',
+    title: 'Phase 9: Blockchain Carbon Ledger',
+    icon: <SecurityIcon />,
+    content: 'Phase 9 introduces blockchain technology to provide immutable emission records, transparent carbon credit management, supply chain traceability, and enterprise-grade distributed ledger capabilities. The Blockchain Carbon Ledger ensures data integrity, prevents tampering, and enables trusted collaboration across organizational boundaries.',
+    subsections: [
+      {
+        title: 'Overview of Blockchain Carbon Ledger',
+        content: 'The Blockchain Carbon Ledger leverages distributed ledger technology to create an immutable, transparent, and auditable record of all carbon-related activities. This system ensures that emission data cannot be altered retroactively, provides cryptographic proof of data authenticity, enables multi-party verification, and establishes trust networks for carbon data sharing. By combining blockchain with traditional carbon accounting, organizations achieve unprecedented levels of data integrity and stakeholder confidence.',
+      },
+      {
+        title: 'Distributed Ledger Architecture',
+        content: 'GGAS implements a private blockchain network specifically designed for emission data integrity. The distributed ledger architecture consists of multiple nodes distributed across your organization or trusted partners, with each node maintaining a complete copy of the ledger. Consensus is achieved through multi-party validation before data is committed to the blockchain. The architecture supports both permissioned (private) networks for internal use and hybrid models that connect to public blockchains for external verification. All emission records, calculations, and audit events are recorded as immutable transactions on the blockchain.',
+      },
+      {
+        title: 'Tamper-Proof Audit Trails',
+        content: 'Every emission record is cryptographically hashed and linked to previous records, creating an unbreakable chain of custody. Once data is committed to the blockchain, it cannot be altered or deleted without detection. Any attempt to modify historical records would break the cryptographic chain and be immediately visible to all network participants. The tamper-proof audit trail includes: emission data entries with timestamps and responsible parties, calculation methodologies and emission factors used, verification and approval workflows, data quality scores and validation results, and corrections or adjustments with full justification. This creates complete transparency and accountability for all carbon accounting activities.',
+      },
+      {
+        title: 'Consensus Mechanisms',
+        content: 'GGAS uses enterprise-grade consensus mechanisms to validate emission data entries before they are permanently recorded on the blockchain. Multi-party validation ensures that emission data is reviewed and approved by multiple stakeholders before commitment. Configurable approval thresholds allow organizations to set the number of validators required based on data sensitivity (e.g., high-value reductions require more approvers). Smart contract logic automatically enforces data quality requirements, calculation standards, and business rules. Consensus participants can include internal teams (operations, sustainability, finance) and external parties (auditors, regulators, supply chain partners). Rejected transactions are logged but not committed, maintaining a complete record of all validation attempts.',
+      },
+      {
+        title: 'Smart Contracts for Data Validation',
+        content: 'Smart contracts are self-executing programs deployed on the blockchain that automatically enforce data validation rules and quality requirements. When emission data is submitted to the blockchain, smart contracts automatically verify: data completeness (all required fields present), range validation (values within acceptable limits), calculation accuracy (emission factors correctly applied), consistency with historical patterns, and compliance with organizational policies. Smart contracts can trigger automated workflows such as requesting additional documentation for unusual data, routing high-value reductions for executive approval, and initiating third-party audits for material emissions. All smart contract execution is recorded on the blockchain, providing complete transparency into validation logic.',
+      },
+      {
+        title: 'Automated Carbon Credit Trading',
+        content: 'Smart contracts enable automated purchasing of carbon credits based on predefined criteria and organizational carbon management strategies. Configure trading rules including: maximum price per credit, preferred project types (renewable energy, forestry, direct air capture), geographic preferences, vintage year requirements, and certification standards (VCS, Gold Standard, CDM). When your organization\'s emission reduction targets are not met through operational improvements, the system automatically identifies and purchases high-quality carbon credits from verified registries. All purchases are recorded on the blockchain with full traceability to the specific emission event being offset. Automated trading reduces administrative overhead while ensuring timely compliance with carbon neutrality commitments.',
+      },
+      {
+        title: 'Carbon Credit Retirement Tracking',
+        content: 'The blockchain ledger provides immutable records of carbon credit retirement, preventing double counting and ensuring credits are only used once. When credits are retired to offset specific emissions, the transaction is permanently recorded with: unique credit serial numbers, project details and certification, emission event being offset, retirement date and timestamp, and responsible party information. The system integrates with major carbon credit registries (VCS, CDM, Gold Standard, ACR) to verify credit authenticity before purchase and automatically notify registries when credits are retired. A public-facing blockchain explorer allows stakeholders to verify your carbon credit retirements and confirm authenticity of carbon neutrality claims.',
+      },
+      {
+        title: 'Offset Project Verification',
+        content: 'Blockchain-based verification ensures that carbon offset projects are authentic, additional, and deliver real emission reductions. The system tracks: project registration and certification documentation, independent third-party verification reports, monitoring data from IoT sensors and satellite imagery, credit issuance records from authoritative registries, and project developer track record and reputation. Smart contracts automatically verify that offset projects meet minimum quality standards including additionality (reductions would not have occurred without the project), permanence (reductions are long-lasting), and verification (independent third-party confirmation). Projects failing to meet standards are flagged and excluded from automated purchasing.',
+      },
+      {
+        title: 'Carbon Credit Registry Integration',
+        content: 'GGAS integrates with major carbon credit registries to streamline credit procurement, retirement, and verification. Supported registries include: Verra (Verified Carbon Standard - VCS), UN Clean Development Mechanism (CDM), Gold Standard, American Carbon Registry (ACR), Climate Action Reserve (CAR), and regional registries worldwide. The integration provides: real-time credit availability and pricing, automated credit purchase and retirement, serial number tracking and verification, project details and documentation, and retirement certificate generation. All registry interactions are recorded on the blockchain, creating a complete audit trail from credit purchase through final retirement.',
+      },
+      {
+        title: 'Product Carbon Provenance',
+        content: 'Track the carbon footprint of products through their entire lifecycle from raw material extraction to end-of-life disposal. The blockchain ledger records: raw material sourcing and associated emissions, manufacturing processes and energy consumption, transportation and logistics footprint, product use phase emissions (for energy-consuming products), and end-of-life disposal or recycling impacts. Each product receives a unique blockchain-based carbon passport containing its complete emission history. Customers can scan QR codes or access web portals to view the verified carbon footprint of products they purchase. This transparency enables informed purchasing decisions and rewards low-carbon products.',
+      },
+      {
+        title: 'Supplier Verification and Engagement',
+        content: 'The blockchain network enables secure sharing and verification of supplier emission data, eliminating the need for manual data collection and validation. Suppliers submit their carbon footprint data directly to the blockchain where it is verified through: third-party auditor confirmation, comparison with industry benchmarks, consistency checks against historical data, and multi-party validation by other supply chain participants. Once verified, supplier data is available to all authorized supply chain partners, reducing duplicate data requests and survey fatigue. Supplier performance is tracked over time, with blockchain records providing indisputable evidence of emission reductions and sustainability improvements.',
+      },
+      {
+        title: 'End-to-End Supply Chain Traceability',
+        content: 'Blockchain technology enables complete traceability of carbon impacts from raw materials to finished products across complex, multi-tier supply chains. Each step in the supply chain is recorded on the blockchain including: material sourcing and extraction, processing and manufacturing, transportation between tiers, assembly and finishing, and distribution to customers. Smart contracts automatically aggregate emissions across supply chain tiers, providing real-time visibility into Scope 3 emissions. When sustainability issues are identified, the blockchain enables rapid root cause analysis by tracing back through the supply chain to identify the specific supplier or process responsible. This capability is essential for managing Scope 3 Category 1 (Purchased Goods and Services) emissions.',
+      },
+      {
+        title: 'Trust Networks and Partnerships',
+        content: 'Establish trusted networks of verified suppliers and partners through blockchain-based reputation systems. Network participants are verified through: identity verification (KYC/KYB processes), sustainability certification (ISO 14001, CDP disclosure), audit history and performance, and peer endorsements from other network members. Trusted suppliers gain preferential treatment in procurement decisions, access to sustainability programs and incentives, and visibility to a broader customer base through the marketplace. Trust scores are calculated based on blockchain-recorded performance metrics including: data quality and completeness, emission reduction achievements, transparency and disclosure, and collaboration with partners. The trust network creates positive incentives for sustainability leadership and data integrity.',
+      },
+      {
+        title: 'Permissioned Network Architecture',
+        content: 'GGAS implements permissioned blockchain networks that provide enterprise control and privacy while maintaining the benefits of distributed ledger technology. Network administrators control: who can join the network, which data is visible to which participants, who can validate transactions (consensus participation), and who can deploy smart contracts. Role-based access controls ensure that sensitive business data is only shared with authorized parties while emission-related data can be more broadly accessible. The permissioned architecture meets enterprise security requirements including: SOC 2 Type II compliance, ISO 27001 certification, GDPR data privacy regulations, and industry-specific standards (e.g., HIPAA for healthcare). Private networks can be deployed entirely on-premises or in private cloud environments for maximum control.',
+      },
+      {
+        title: 'Interoperability with Public Blockchains',
+        content: 'While your primary carbon data resides on a private blockchain, GGAS supports interoperability with public blockchain networks for external verification and transparency. Key capabilities include: anchoring private blockchain hashes to public chains (Ethereum, Bitcoin) for tamper-evident proof, cross-chain bridges for transferring verified credentials, integration with public carbon credit tokenization platforms, and support for decentralized identifiers (DIDs) and verifiable credentials. Organizations can choose to publish summary emissions data, carbon neutrality claims, or sustainability achievements to public blockchains for stakeholder verification while keeping detailed operational data private. This hybrid approach balances transparency with commercial confidentiality.',
+      },
+      {
+        title: 'Layer 2 Scalability Solutions',
+        content: 'To support high-volume transaction processing required by large enterprises, GGAS implements Layer 2 scaling solutions that increase throughput while maintaining security. Layer 2 technologies include: state channels for high-frequency data updates, sidechains for parallel transaction processing, rollups for batch transaction settlement, and off-chain computation with on-chain verification. These solutions enable GGAS to handle: thousands of emission data entries per second, real-time IoT sensor data streams, high-frequency trading of carbon credits, and massive supply chain data volumes. Layer 2 implementations significantly reduce transaction costs (gas fees) while maintaining the security guarantees of the underlying blockchain. Periodic settlement to the main chain (Layer 1) provides final immutability.',
+      },
+      {
+        title: 'Regulatory Compliance Framework',
+        content: 'The blockchain implementation is designed to meet financial and environmental regulations across global jurisdictions. Compliance features include: IFRS and US GAAP accounting standards support, SEC emissions disclosure requirements (proposed climate rules), EU Corporate Sustainability Reporting Directive (CSRD), Task Force on Climate-related Financial Disclosures (TCFD), and Greenhouse Gas Protocol standards. The immutable audit trail and cryptographic verification simplify regulatory audits by providing indisputable evidence of emission calculations, data provenance, and internal controls. Regulators can be granted read-only access to blockchain data to verify compliance without compromising sensitive business information. All blockchain configurations are documented and maintained to demonstrate compliance with evolving regulations.',
+      },
+      {
+        title: 'Blockchain Node Configuration',
+        content: 'To participate in the blockchain carbon ledger, organizations deploy one or more blockchain nodes. Node configuration includes: selecting node type (validator, observer, archive), allocating hardware resources (CPU, memory, storage), configuring network connectivity and firewall rules, setting up cryptographic key management, and establishing backup and disaster recovery procedures. GGAS provides containerized node deployments for easy installation on-premises or in cloud environments. Monitoring tools track node health including: synchronization status with the network, transaction processing throughput, consensus participation metrics, and storage utilization. Multi-node deployments provide high availability and fault tolerance.',
+      },
+      {
+        title: 'Smart Contract Development and Deployment',
+        content: 'Organizations can develop custom smart contracts to encode specific carbon management policies and business rules. The smart contract development environment includes: a visual contract designer for non-programmers, a code editor with syntax highlighting and debugging, a testing framework with automated test generation, and security scanning tools to identify vulnerabilities. Contracts are written in industry-standard languages (Solidity for Ethereum-compatible chains) and undergo automated security audits before deployment. A governance process ensures that contract updates are reviewed and approved by stakeholders before deployment to production. All smart contract code is stored on the blockchain for transparency and auditability.',
+      },
+      {
+        title: 'Blockchain Explorer and Transparency Portal',
+        content: 'The blockchain explorer provides a user-friendly interface for viewing and verifying blockchain data. Features include: transaction search by hash, block number, or date, block details including timestamp, validator, and transaction list, address lookup for participants in the network, smart contract interaction and event logs, and graphical visualizations of network activity. Public-facing portals allow stakeholders (customers, investors, regulators) to verify carbon neutrality claims, view carbon credit retirements, and audit emission reduction progress. Organizations control what data is publicly accessible while maintaining full transparency for internal stakeholders and authorized partners.',
+      },
+      {
+        title: 'Data Migration to Blockchain',
+        content: 'Migrate existing emission data to the blockchain with tools that maintain historical accuracy and traceability. The migration process includes: extracting data from legacy systems (databases, spreadsheets, ERPs), validating data quality and completeness, transforming data to blockchain-compatible formats, cryptographically hashing historical records, and committing data to the blockchain with original timestamps. Migrated data is clearly marked with its source system and migration date to distinguish it from natively blockchain-recorded data. The migration creates an immutable archive of historical emissions while enabling forward-looking blockchain benefits. Incremental migration allows organizations to phase in blockchain technology without disrupting ongoing operations.',
+      },
+      {
+        title: 'Blockchain Security Best Practices',
+        content: 'Ensure the security of your blockchain carbon ledger through comprehensive security controls including: private key management using hardware security modules (HSMs) or multi-signature wallets, network encryption (TLS) for all node communications, regular security audits and penetration testing, access control and authentication for all blockchain operations, and incident response procedures for security events. Keys used for signing transactions should be distributed across multiple parties (multi-sig) to prevent single points of failure or unauthorized transactions. Regular backups of blockchain data and configuration ensure recoverability in disaster scenarios. Security training ensures that all blockchain participants understand their responsibilities for protecting the network.',
+      },
+      {
+        title: 'Performance Optimization',
+        content: 'Optimize blockchain performance for enterprise-scale carbon accounting through configuration tuning and architectural best practices. Optimization strategies include: adjusting block size and block time for throughput vs. latency tradeoffs, implementing transaction batching to reduce overhead, using efficient consensus algorithms (PBFT, RAFT for permissioned networks), partitioning data across multiple chains (sharding) for parallel processing, and archiving old data to reduce active chain size. Performance monitoring tracks key metrics including transactions per second (TPS), block confirmation time, network latency, and storage growth rate. Capacity planning ensures the network can handle projected growth in data volume and transaction frequency.',
+      },
+      {
+        title: 'Integration with Existing Systems',
+        content: 'The blockchain carbon ledger integrates seamlessly with existing GGAS features and external enterprise systems. Integration points include: automatic blockchain recording of emission calculations, blockchain verification for audit workflows, supply chain data sharing with blockchain-verified suppliers, carbon credit trading connected to blockchain registries, and API endpoints for external system integration. Smart contracts can trigger actions in external systems such as: generating work orders when emissions exceed thresholds, updating financial systems with carbon credit purchases, and notifying stakeholders of significant events. The integration layer handles data transformation, error handling, and retry logic to ensure reliable operation.',
+      },
+      {
+        title: 'Getting Started with Blockchain Carbon Ledger',
+        content: 'To begin using Phase 9 blockchain features: Navigate to Blockchain Carbon Ledger in the Innovation menu. Complete the blockchain network setup wizard: select network type (private, hybrid, public), configure node settings and resources, set up consensus participants and validators, and define smart contract rules and policies. Migrate existing emission data to blockchain for historical continuity. Configure carbon credit trading rules and registry connections. Set up supply chain participants and establish trust networks. Deploy smart contracts for automated validation and workflows. Test the blockchain integration in a sandbox environment. Enable blockchain recording for new emission data. Monitor blockchain health and performance through the dashboard. Train team members on blockchain concepts and workflows. The system provides guided tutorials and documentation to simplify blockchain adoption.',
       },
     ],
   },
