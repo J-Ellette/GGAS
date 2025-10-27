@@ -138,7 +138,7 @@ const Phase13Page: React.FC = () => {
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
-        Phase 13: Carbon-Financial Integration Suite
+        Carbon-Financial Integration Suite
       </Typography>
       <Typography variant="body1" color="text.secondary" paragraph>
         Comprehensive integration of carbon accounting with financial systems, carbon pricing, green finance, and enterprise resource planning.

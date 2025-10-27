@@ -324,7 +324,7 @@ const Phase5Page: React.FC = () => {
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
-        Phase 5: Predictive Carbon Intelligence
+        Predictive Carbon Intelligence
       </Typography>
       <Typography variant="body2" color="text.secondary" paragraph>
         Advanced forecasting, carbon budget management, early warning systems, scenario planning, and enterprise features

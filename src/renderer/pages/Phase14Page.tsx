@@ -153,7 +153,7 @@ const Phase14Page: React.FC = () => {
       <Box sx={{ mb: 3 }}>
         <Typography variant="h4" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <StrategyIcon color="primary" fontSize="large" />
-          Phase 14: ESG Strategy Orchestrator
+          ESG Strategy Orchestrator
         </Typography>
         <Typography variant="body1" color="text.secondary">
           Integrated ESG Dashboard, Stakeholder Impact Analysis, Rating Optimization, and Strategic Communication

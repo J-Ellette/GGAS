@@ -208,7 +208,7 @@ const Phase8Page: React.FC = () => {
       <Box sx={{ mb: 3 }}>
         <Typography variant="h4" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <AutoModeIcon color="primary" fontSize="large" />
-          Phase 8: Autonomous Data Collection
+          Autonomous Data Collection
         </Typography>
         <Typography variant="body1" color="text.secondary">
           Intelligent document processing, email intelligence, browser extension, and enterprise integrations

@@ -235,7 +235,7 @@ const Phase4Page: React.FC = () => {
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
-        Phase 4: Innovation & Optimization
+        Innovation & Optimization
       </Typography>
       <Typography variant="body2" color="text.secondary" paragraph>
         Advanced AI features, enhanced data verification, IoT connectivity, immersive experiences, and platform optimization
