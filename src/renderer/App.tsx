@@ -33,6 +33,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MessageIcon from '@mui/icons-material/Message';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -51,6 +52,7 @@ import Phase5Page from './pages/Phase5Page';
 import Phase6Page from './pages/Phase6Page';
 import Phase8Page from './pages/Phase8Page';
 import Phase11Page from './pages/Phase11Page';
+import Phase13Page from './pages/Phase13Page';
 import AdminPanel from './pages/AdminPanel';
 import DocumentationPage from './pages/DocumentationPage';
 import CarbonCopilotPage from './pages/CarbonCopilotPage';
@@ -80,6 +82,7 @@ type PageType =
   | 'phase6'
   | 'phase8'
   | 'phase11'
+  | 'phase13'
   | 'admin'
   | 'settings'
   | 'documentation'
@@ -171,6 +174,8 @@ const App: React.FC = () => {
         return <Phase8Page />;
       case 'phase11':
         return <Phase11Page />;
+      case 'phase13':
+        return <Phase13Page />;
       case 'admin':
         return <AdminPanel />;
       case 'documentation':
@@ -378,6 +383,14 @@ const App: React.FC = () => {
                     <AccountTreeIcon />
                   </ListItemIcon>
                   <ListItemText primary="Supply Chain X-Ray" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'phase13'} onClick={() => setCurrentPage('phase13')}>
+                  <ListItemIcon>
+                    <AttachMoneyIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Carbon-Financial Suite" />
                 </ListItemButton>
               </ListItem>
             </List>
