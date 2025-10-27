@@ -23,6 +23,10 @@ import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstruct
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PeopleIcon from '@mui/icons-material/People';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import LanguageIcon from '@mui/icons-material/Language';
+import ExtensionIcon from '@mui/icons-material/Extension';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -33,8 +37,11 @@ import IntegrationsPage from './pages/IntegrationsPage';
 import AnalyticsDashboardPage from './pages/AnalyticsDashboardPage';
 import ComplianceReportingPage from './pages/ComplianceReportingPage';
 import UserManagementPage from './pages/UserManagementPage';
+import AIMLPage from './pages/AIMLPage';
+import TargetManagementPage from './pages/TargetManagementPage';
+import MultiEntityPage from './pages/MultiEntityPage';
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 
 const theme = createTheme({
   palette: {
@@ -58,6 +65,9 @@ type PageType =
   | 'analytics'
   | 'compliance'
   | 'users'
+  | 'ai-ml'
+  | 'targets'
+  | 'multi-entity'
   | 'settings';
 
 const App: React.FC = () => {
@@ -83,6 +93,12 @@ const App: React.FC = () => {
         return <ComplianceReportingPage />;
       case 'users':
         return <UserManagementPage />;
+      case 'ai-ml':
+        return <AIMLPage />;
+      case 'targets':
+        return <TargetManagementPage />;
+      case 'multi-entity':
+        return <MultiEntityPage />;
       case 'settings':
         return <Box p={3}><Typography variant="h4">Settings (Coming Soon)</Typography></Box>;
       default:
@@ -101,7 +117,7 @@ const App: React.FC = () => {
               GGAS - Greenhouse Gas Accounting Software
             </Typography>
             <Typography variant="caption" sx={{ ml: 2, opacity: 0.7 }}>
-              Phase 2
+              Phase 3
             </Typography>
           </Toolbar>
         </AppBar>
@@ -200,6 +216,37 @@ const App: React.FC = () => {
                     <PeopleIcon />
                   </ListItemIcon>
                   <ListItemText primary="Users" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+
+            <Divider />
+            <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
+              Phase 3 Features
+            </Typography>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'ai-ml'} onClick={() => setCurrentPage('ai-ml')}>
+                  <ListItemIcon>
+                    <PsychologyIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="AI/ML Analytics" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'targets'} onClick={() => setCurrentPage('targets')}>
+                  <ListItemIcon>
+                    <EmojiEventsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Target Management" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'multi-entity'} onClick={() => setCurrentPage('multi-entity')}>
+                  <ListItemIcon>
+                    <LanguageIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Multi-Entity" />
                 </ListItemButton>
               </ListItem>
             </List>
