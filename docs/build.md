@@ -172,11 +172,13 @@ SASB Standards: For environmental, social, and governance (ESG) reporting, compa
 
 Add documentation in the Documentation panel
 
-6. Real-Time Carbon Operations Center
+6. Real-Time Carbon Operations Center and Theming
+
+Create: Light Theme, Dark Theme, and System Default (which will match the host computers theme)
+
 Live Monitoring Dashboard:
 
 Real-time Data Streaming:
-
 WebSocket connections for sub-second data updates
 Integration with SCADA systems, IoT sensors, and smart meters
 Live calculation engine processing incoming data streams
@@ -184,7 +186,6 @@ Real-time aggregation across organizational hierarchies
 
 
 Visual Command Center:
-
 Large-screen displays optimized for operations centers
 Customizable layouts for different operational roles
 Geographic heat maps showing emission intensity across facilities
@@ -192,35 +193,26 @@ Drill-down capabilities from enterprise level to individual assets
 
 
 Carbon Traffic Light System:
-
 Green/Yellow/Red indicators for emission performance across all operational levels
 Configurable thresholds based on targets, budgets, and historical performance
 Trending indicators showing performance direction
 Integration with existing operational dashboards
 
-
-
 Operational Intelligence:
 
 Smart Process Monitoring:
-
 Real-time calculation of emission factors based on current operational conditions
 Process optimization recommendations based on carbon efficiency
 Integration with maintenance management systems for carbon-optimized maintenance scheduling
 Energy optimization suggestions based on carbon intensity forecasts
 
-
 Automated Response Systems:
-
 Trigger predefined actions when emission thresholds are exceeded
 Integration with building management systems for automatic efficiency adjustments
 Alert dispatching to mobile devices for immediate response
 Integration with work order systems for corrective actions
 
-
-
 Enterprise Operations Integration:
-
 24/7 Operations Center Support: Integration with existing enterprise operations centers
 Global Time Zone Management: Coordinated monitoring across international operations
 Incident Management Integration: Carbon events integrated with enterprise incident response
