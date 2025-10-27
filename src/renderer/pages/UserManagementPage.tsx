@@ -49,6 +49,15 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
+const DEFAULT_PERMISSIONS = {
+  canManageUsers: false,
+  canManageData: false,
+  canViewReports: false,
+  canExportData: false,
+  canManageIntegrations: false,
+  canManageCompliance: false,
+};
+
 const UserManagementPage: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [users, setUsers] = useState<User[]>([]);
@@ -64,14 +73,7 @@ const UserManagementPage: React.FC = () => {
   const [newRole, setNewRole] = useState<Partial<UserRole>>({
     roleName: '',
     description: '',
-    permissions: JSON.stringify({
-      canManageUsers: false,
-      canManageData: false,
-      canViewReports: false,
-      canExportData: false,
-      canManageIntegrations: false,
-      canManageCompliance: false,
-    }, null, 2),
+    permissions: JSON.stringify(DEFAULT_PERMISSIONS, null, 2),
   });
 
   useEffect(() => {
@@ -118,14 +120,7 @@ const UserManagementPage: React.FC = () => {
       setNewRole({
         roleName: '',
         description: '',
-        permissions: JSON.stringify({
-          canManageUsers: false,
-          canManageData: false,
-          canViewReports: false,
-          canExportData: false,
-          canManageIntegrations: false,
-          canManageCompliance: false,
-        }, null, 2),
+        permissions: JSON.stringify(DEFAULT_PERMISSIONS, null, 2),
       });
       loadData();
     } catch (error) {

@@ -801,7 +801,7 @@ export class DatabaseService {
     const fields: string[] = [];
     const values: any[] = [];
     Object.keys(data).forEach(key => {
-      if (key !== 'id' && key !== 'createdAt') {
+      if (key !== 'id' && key !== 'createdAt' && key !== 'updatedAt') {
         fields.push(`${key} = ?`);
         values.push((data as any)[key]);
       }
@@ -848,7 +848,7 @@ export class DatabaseService {
     const fields: string[] = [];
     const values: any[] = [];
     Object.keys(data).forEach(key => {
-      if (key !== 'id' && key !== 'createdAt') {
+      if (key !== 'id' && key !== 'createdAt' && key !== 'updatedAt') {
         fields.push(`${key} = ?`);
         values.push((data as any)[key]);
       }
@@ -896,7 +896,7 @@ export class DatabaseService {
     const fields: string[] = [];
     const values: any[] = [];
     Object.keys(data).forEach(key => {
-      if (key !== 'id' && key !== 'createdAt') {
+      if (key !== 'id' && key !== 'createdAt' && key !== 'updatedAt') {
         fields.push(`${key} = ?`);
         values.push((data as any)[key]);
       }
@@ -950,7 +950,7 @@ export class DatabaseService {
     const fields: string[] = [];
     const values: any[] = [];
     Object.keys(data).forEach(key => {
-      if (key !== 'id' && key !== 'createdAt') {
+      if (key !== 'id' && key !== 'createdAt' && key !== 'updatedAt') {
         fields.push(`${key} = ?`);
         values.push((data as any)[key]);
       }
@@ -995,7 +995,7 @@ export class DatabaseService {
     const fields: string[] = [];
     const values: any[] = [];
     Object.keys(data).forEach(key => {
-      if (key !== 'id' && key !== 'createdAt') {
+      if (key !== 'id' && key !== 'createdAt' && key !== 'updatedAt') {
         fields.push(`${key} = ?`);
         values.push((data as any)[key]);
       }
@@ -1046,7 +1046,7 @@ export class DatabaseService {
     const fields: string[] = [];
     const values: any[] = [];
     Object.keys(data).forEach(key => {
-      if (key !== 'id' && key !== 'createdAt') {
+      if (key !== 'id' && key !== 'createdAt' && key !== 'updatedAt') {
         if (key === 'isActive') {
           fields.push(`${key} = ?`);
           values.push(data[key] ? 1 : 0);
