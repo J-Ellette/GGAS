@@ -544,6 +544,106 @@ const documentationSections: DocSection[] = [
       },
     ],
   },
+  {
+    id: 'phase7',
+    title: 'Phase 7: Universal Carbon Connector',
+    icon: <DataIcon />,
+    content: 'The Universal Carbon Connector provides comprehensive pre-built integrations, smart data mapping, and a no-code integration builder to seamlessly connect GGAS with your enterprise systems, utility providers, travel platforms, facilities management, supply chain, and financial systems.',
+    subsections: [
+      {
+        title: 'Pre-built Integration Library - Enterprise Systems',
+        content: 'GGAS includes pre-configured connectors for major enterprise systems including SAP (ERP, S/4HANA, SuccessFactors), Oracle (EBS, Cloud ERP, NetSuite), Microsoft Dynamics (365, Finance & Operations, Business Central), Workday (HCM, Financial Management), and Salesforce (Sales Cloud, Service Cloud, Platform). These integrations automatically extract relevant operational data, financial transactions, and resource consumption metrics to streamline your carbon accounting process and eliminate manual data entry.',
+      },
+      {
+        title: 'Pre-built Integration Library - Utility Providers',
+        content: 'Connect to major utility companies with automated meter reading (AMR) capabilities and Green Button data standards. The system supports integration with electric, gas, water, and steam utilities across North America, Europe, and Asia-Pacific regions. Automated data retrieval occurs on configurable schedules (hourly, daily, monthly) with automatic unit conversion, tariff structure recognition, and billing period alignment. Green Button Connect My Data (CMD) protocol enables secure, standardized utility data access.',
+      },
+      {
+        title: 'Pre-built Integration Library - Travel & Transportation',
+        content: 'Integrate with corporate travel management systems including Concur (SAP), Egencia (Expedia), TripActions, and Navan. Fleet management system connectors support Geotab, Verizon Connect, Samsara, and Fleet Complete for vehicle telematics data. Fuel card provider integrations include WEX, Shell Fleet, BP Fuel Cards, and ExxonMobil Business Line. Automatically capture business travel bookings (flights, hotels, rental cars), employee commuting patterns, and fleet fuel consumption with distance-based and fuel-based emission calculations.',
+      },
+      {
+        title: 'Pre-built Integration Library - Facilities Management',
+        content: 'Connect to building management systems (BMS) and building automation systems (BAS) from leading manufacturers including Honeywell (Enterprise Buildings Integrator), Johnson Controls (Metasys), Siemens (Desigo CC), Schneider Electric (EcoStruxure), and Trane (Tracer). Extract real-time HVAC performance data, lighting control metrics, energy consumption by zone, occupancy patterns, and environmental conditions. Integration supports BACnet, Modbus, and proprietary protocols with automatic equipment discovery and commissioning.',
+      },
+      {
+        title: 'Pre-built Integration Library - Supply Chain',
+        content: 'Streamline procurement and supply chain data collection with connectors for SAP Ariba (procurement, sourcing, supplier management), Coupa (business spend management, procurement), Oracle Procurement Cloud, Jaggaer, and EDI (Electronic Data Interchange) systems. Automatically import supplier information, purchase orders, goods receipts, invoice data, shipping documentation, and logistics tracking. Map spend categories to emission factors using AI-powered classification for accurate Scope 3 calculations.',
+      },
+      {
+        title: 'Pre-built Integration Library - Financial Systems',
+        content: 'Integrate with accounting and financial platforms for spend-based emission calculations including QuickBooks (Online, Desktop, Enterprise), Xero, FreshBooks, NetSuite ERP, and Sage Intacct. Banking API integrations support Plaid, Yodlee, and Open Banking standards for automatic transaction categorization. Extract general ledger transactions, expense reports, credit card statements, and vendor payments. The system automatically classifies expenses using machine learning and maps them to appropriate emission factors for Scope 1, 2, and 3 calculations.',
+      },
+      {
+        title: 'Smart Data Mapping Engine - AI-Powered Field Recognition',
+        content: 'The AI-powered field recognition system automatically identifies and maps data fields from source systems to GGAS data models. Using natural language processing (NLP) and machine learning algorithms, the engine analyzes field names, data types, sample values, and contextual relationships to suggest optimal mappings. The system recognizes common patterns across different ERP systems (e.g., "Amount", "Total", "Quantity") and intelligently maps them to appropriate GGAS fields (e.g., consumption value, cost, activity amount). Confidence scoring indicates mapping reliability with suggestions for user review.',
+      },
+      {
+        title: 'Smart Data Mapping Engine - Learning Algorithms',
+        content: 'The mapping engine continuously improves accuracy through reinforcement learning based on user feedback and corrections. When users accept, modify, or reject automated mappings, the system updates its models to improve future suggestions. Pattern recognition identifies similar data structures across different data sources and applies learned mappings to new integrations. The collaborative learning feature enables organizations to share anonymized mapping patterns within industry verticals, accelerating setup for similar companies.',
+      },
+      {
+        title: 'Smart Data Mapping Engine - Data Transformation Rules',
+        content: 'Configure sophisticated data transformation rules to handle unit conversions (metric to imperial, kWh to MWh, liters to gallons), data format standardization (date formats, number formats, text encoding), currency conversion using real-time or historical exchange rates, and custom calculation formulas. The transformation engine supports conditional logic, lookup tables, regular expressions, and mathematical operations. Templates for common transformations (e.g., electricity bill to kWh, fuel volume to GHG emissions) are included out-of-the-box.',
+      },
+      {
+        title: 'Smart Data Mapping Engine - Validation Frameworks',
+        content: 'Comprehensive data quality checking ensures incoming data meets required standards before processing. Validation rules include range checks (acceptable min/max values), format validation (date, numeric, text patterns), referential integrity (foreign key validation), completeness checks (required fields, null values), and consistency validation (cross-field logic). The system automatically flags errors and warnings with detailed diagnostic messages, suggested corrections, and the ability to quarantine invalid records for review. Configurable error thresholds determine whether integrations should halt or continue with warnings.',
+      },
+      {
+        title: 'Integration Marketplace - Community Connectors',
+        content: 'Access a curated marketplace of user-contributed integrations with rating and review systems. Community developers can publish custom connectors for niche systems, regional utilities, industry-specific platforms, and proprietary internal systems. Each connector includes detailed documentation, installation instructions, configuration guides, and support channels. Users can rate connectors (1-5 stars), write reviews, report issues, and request enhancements. Popular connectors are highlighted and trending integrations are featured on the marketplace homepage.',
+      },
+      {
+        title: 'Integration Marketplace - Certification Program',
+        content: 'Verified connectors meeting enterprise security and reliability standards receive official certification badges. The certification process includes security review (code scanning, vulnerability assessment, penetration testing), reliability testing (load testing, failover scenarios, data accuracy validation), documentation quality assessment, and compliance verification (SOC 2, ISO 27001, GDPR). Certified connectors receive priority support, are eligible for enterprise licensing, and appear first in marketplace search results. Annual re-certification ensures ongoing quality.',
+      },
+      {
+        title: 'Integration Marketplace - Revenue Sharing',
+        content: 'Connector developers can monetize their integrations through a transparent revenue-sharing model. Developers set pricing tiers (free, freemium, paid subscriptions, usage-based), receive 70% of revenue (30% platform fee), and access real-time sales dashboards and analytics. Payment processing, licensing enforcement, and customer support infrastructure are handled by the platform. Developers maintain intellectual property rights while granting GGAS licensing rights. Top-earning developers receive featured placement and promotional support.',
+      },
+      {
+        title: 'Integration Marketplace - Analytics',
+        content: 'Comprehensive usage statistics and performance metrics help users select the best connectors and developers optimize their offerings. Analytics include installation counts, active users, data volume processed, error rates, response times, user satisfaction scores, and feature adoption rates. Comparison tools allow side-by-side evaluation of similar connectors. Developers access detailed dashboards showing user engagement, common error patterns, support ticket trends, and revenue analytics. Marketplace administrators monitor platform health and identify opportunities for improvement.',
+      },
+      {
+        title: 'No-Code Integration Builder - Visual Workflow Designer',
+        content: 'Create custom integrations without writing code using an intuitive drag-and-drop interface. The visual designer includes pre-built nodes for common operations: data sources (API, database, file, webhook), transformations (map, filter, aggregate, join), logic (conditional, loop, switch), and destinations (GGAS entities, external systems, file export). Connect nodes with visual links to define data flow, configure node properties through forms and wizards, and preview data at each step. Real-time validation ensures workflows are logically sound before deployment.',
+      },
+      {
+        title: 'No-Code Integration Builder - Template Library',
+        content: 'Accelerate integration development with pre-built templates for common integration patterns including scheduled data import (daily utility meter reads, weekly procurement data), event-driven workflows (new invoice triggers emission calculation, threshold breach sends alert), API polling (check for new data every N minutes), batch processing (process thousands of records efficiently), and error handling patterns (retry logic, dead letter queues, notifications). Templates are fully customizable and serve as starting points for specific requirements. Industry-specific templates cover energy & utilities, manufacturing, retail, financial services, and healthcare.',
+      },
+      {
+        title: 'No-Code Integration Builder - Testing Sandbox',
+        content: 'Safely test integrations before production deployment in an isolated sandbox environment. The sandbox provides mock data sources matching production schemas, test execution with detailed logging and debugging, data validation and quality checks, performance profiling (throughput, latency, resource usage), and rollback capabilities. Run integration tests with various scenarios (normal operation, edge cases, error conditions) and compare sandbox results with expected outcomes. Once validated, promote integrations to production with a single click while maintaining version history.',
+      },
+      {
+        title: 'No-Code Integration Builder - Version Control',
+        content: 'Manage integration versions and rollback capabilities through built-in version control. Every change is automatically versioned with metadata (who, when, what changed). Compare versions side-by-side to understand changes, restore previous versions instantly if issues arise, and branch integrations to test modifications without affecting production. Deployment history tracks all production releases with timestamps, change logs, and deployer information. Rollback is instantaneous with automatic validation to prevent data inconsistencies. Integration export/import enables sharing across environments (dev, test, prod) and organizations.',
+      },
+      {
+        title: 'Enterprise Features - Security Compliance',
+        content: 'All integrations comply with SOC 2 Type II and ISO 27001 standards ensuring enterprise-grade security. Features include end-to-end encryption (data in transit via TLS 1.3, data at rest via AES-256), comprehensive audit logging (all data access, modifications, and integration execution), role-based access control (granular permissions for integration management), secrets management (secure storage of API keys, passwords, certificates), and regular security assessments. Compliance reports are available for audit purposes, and the system supports GDPR, CCPA, and HIPAA requirements for regulated industries.',
+      },
+      {
+        title: 'Enterprise Features - Scalability',
+        content: 'The integration platform handles high-volume data processing for large enterprises with distributed architecture. Features include horizontal scaling (add processing nodes as volume increases), load balancing (distribute work across available resources), queue management (process millions of records without memory constraints), parallel processing (concurrent execution of independent tasks), and incremental loading (process only changed data). Performance monitoring tracks throughput, latency, and resource utilization. Auto-scaling automatically adjusts capacity based on load patterns, and batch optimization groups related operations for efficiency.',
+      },
+      {
+        title: 'Enterprise Features - Monitoring & Alerting',
+        content: 'Real-time monitoring of integration health and performance ensures reliability and quick issue resolution. The monitoring dashboard displays integration status (running, stopped, error), data flow metrics (records processed, throughput rate), error rates and types, and execution duration trends. Configurable alerts trigger notifications via email, SMS, Slack, or Microsoft Teams when thresholds are exceeded (error rate, processing lag, data quality issues). Detailed logs with correlation IDs enable troubleshooting, and integration health scores provide at-a-glance status. Historical analytics identify trends and optimization opportunities.',
+      },
+      {
+        title: 'Enterprise Features - Professional Services',
+        content: 'Expert implementation and customization services are available for complex integrations requiring specialized expertise. Services include integration architecture design (scalable, maintainable patterns), custom connector development (proprietary systems, legacy platforms), data migration (historical data import, format conversion), training and knowledge transfer (admin training, developer workshops), and ongoing support (dedicated support team, SLA-backed response times). Engagement models range from fixed-price projects to time-and-materials consulting and managed services. Professional services accelerate time-to-value and ensure best practices.',
+      },
+      {
+        title: 'Getting Started with Integrations',
+        content: 'To begin using the Universal Carbon Connector: Navigate to Data Integrations in the main menu. Browse the Integration Marketplace to find pre-built connectors for your systems. Click "Install" on desired connectors and follow the configuration wizard (provide credentials, select data sources, configure schedules). For custom integrations, use the No-Code Integration Builder to create workflows using the visual designer. Test integrations in the sandbox environment before deploying to production. Monitor integration health in the Integration Dashboard and review data quality reports. Access integration analytics to optimize performance and troubleshoot issues.',
+      },
+    ],
+  },
 ];
 
 const DocumentationPage: React.FC = () => {
