@@ -11,19 +11,30 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloudIcon from '@mui/icons-material/Cloud';
+import CategoryIcon from '@mui/icons-material/Category';
+import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
+import DescriptionIcon from '@mui/icons-material/Description';
+import PeopleIcon from '@mui/icons-material/People';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
 import EmissionFactorsPage from './pages/EmissionFactorsPage';
 import CalculationsPage from './pages/CalculationsPage';
+import Scope3Page from './pages/Scope3Page';
+import IntegrationsPage from './pages/IntegrationsPage';
+import AnalyticsDashboardPage from './pages/AnalyticsDashboardPage';
+import ComplianceReportingPage from './pages/ComplianceReportingPage';
+import UserManagementPage from './pages/UserManagementPage';
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const theme = createTheme({
   palette: {
@@ -37,7 +48,17 @@ const theme = createTheme({
   },
 });
 
-type PageType = 'dashboard' | 'activity-data' | 'emission-factors' | 'calculations' | 'reports' | 'settings';
+type PageType = 
+  | 'dashboard' 
+  | 'activity-data' 
+  | 'emission-factors' 
+  | 'calculations' 
+  | 'scope3'
+  | 'integrations'
+  | 'analytics'
+  | 'compliance'
+  | 'users'
+  | 'settings';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('dashboard');
@@ -52,8 +73,16 @@ const App: React.FC = () => {
         return <EmissionFactorsPage />;
       case 'calculations':
         return <CalculationsPage />;
-      case 'reports':
-        return <Box p={3}><Typography variant="h4">Reports (Coming Soon)</Typography></Box>;
+      case 'scope3':
+        return <Scope3Page />;
+      case 'integrations':
+        return <IntegrationsPage />;
+      case 'analytics':
+        return <AnalyticsDashboardPage />;
+      case 'compliance':
+        return <ComplianceReportingPage />;
+      case 'users':
+        return <UserManagementPage />;
       case 'settings':
         return <Box p={3}><Typography variant="h4">Settings (Coming Soon)</Typography></Box>;
       default:
@@ -70,6 +99,9 @@ const App: React.FC = () => {
             <CloudIcon sx={{ mr: 2 }} />
             <Typography variant="h6" noWrap component="div">
               GGAS - Greenhouse Gas Accounting Software
+            </Typography>
+            <Typography variant="caption" sx={{ ml: 2, opacity: 0.7 }}>
+              Phase 2
             </Typography>
           </Toolbar>
         </AppBar>
@@ -92,6 +124,13 @@ const App: React.FC = () => {
                   <ListItemText primary="Dashboard" />
                 </ListItemButton>
               </ListItem>
+            </List>
+            
+            <Divider />
+            <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
+              Data Management
+            </Typography>
+            <List>
               <ListItem disablePadding>
                 <ListItemButton selected={currentPage === 'activity-data'} onClick={() => setCurrentPage('activity-data')}>
                   <ListItemIcon>
@@ -116,14 +155,57 @@ const App: React.FC = () => {
                   <ListItemText primary="Calculations" />
                 </ListItemButton>
               </ListItem>
+            </List>
+
+            <Divider />
+            <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
+              Phase 2 Features
+            </Typography>
+            <List>
               <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'reports'} onClick={() => setCurrentPage('reports')}>
+                <ListItemButton selected={currentPage === 'scope3'} onClick={() => setCurrentPage('scope3')}>
                   <ListItemIcon>
-                    <AssessmentIcon />
+                    <CategoryIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Reports" />
+                  <ListItemText primary="Scope 3" />
                 </ListItemButton>
               </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'integrations'} onClick={() => setCurrentPage('integrations')}>
+                  <ListItemIcon>
+                    <IntegrationInstructionsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Integrations" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'analytics'} onClick={() => setCurrentPage('analytics')}>
+                  <ListItemIcon>
+                    <AnalyticsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Analytics" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'compliance'} onClick={() => setCurrentPage('compliance')}>
+                  <ListItemIcon>
+                    <DescriptionIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Compliance" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'users'} onClick={() => setCurrentPage('users')}>
+                  <ListItemIcon>
+                    <PeopleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Users" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+
+            <Divider />
+            <List>
               <ListItem disablePadding>
                 <ListItemButton selected={currentPage === 'settings'} onClick={() => setCurrentPage('settings')}>
                   <ListItemIcon>
