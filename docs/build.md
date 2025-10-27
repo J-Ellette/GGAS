@@ -139,7 +139,7 @@ Economies where oil revenue is a large share of GDP: In 2012, World Bank data sh
 Top oil-producing countries: The United States has been the world's largest oil producer since 2018, and its production volume requires extensive accounting. Other major producers include Saudi Arabia, Russia, and Canada.
 Countries with large energy exports: Kuwait relies heavily on oil and gas exports for its economic stability, with these resources making up a large portion of its energy system and requiring robust accounting practices.
 
-Phase 5.7. Specific accounting standards:
+Phase 5.7. Specific accounting standards (COMPLETE):
 
 First fix:
 Error
