@@ -268,8 +268,7 @@ const UsersPage: React.FC = () => {
                 const sender = getUserById(message.fromUserId);
                 return (
                   <React.Fragment key={message.id}>
-                    <ListItem
-                      button
+                    <ListItemButton
                       onClick={() => handleViewMessage(message)}
                       sx={{
                         bgcolor: message.read ? 'transparent' : 'action.hover',
@@ -310,7 +309,7 @@ const UsersPage: React.FC = () => {
                           </>
                         }
                       />
-                    </ListItem>
+                    </ListItemButton>
                     <Divider variant="inset" component="li" />
                   </React.Fragment>
                 );
@@ -333,7 +332,7 @@ const UsersPage: React.FC = () => {
                 const recipient = getUserById(message.toUserId);
                 return (
                   <React.Fragment key={message.id}>
-                    <ListItem button onClick={() => handleViewMessage(message)}>
+                    <ListItemButton onClick={() => handleViewMessage(message)}>
                       <ListItemAvatar>
                         <Avatar>
                           {recipient ? `${recipient.firstName[0]}${recipient.lastName[0]}` : '?'}
@@ -353,7 +352,7 @@ const UsersPage: React.FC = () => {
                           </>
                         }
                       />
-                    </ListItem>
+                    </ListItemButton>
                     <Divider variant="inset" component="li" />
                   </React.Fragment>
                 );

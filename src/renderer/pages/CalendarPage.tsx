@@ -447,7 +447,7 @@ const CalendarPage: React.FC = () => {
                 <Select
                   value={newEvent.type}
                   label="Type"
-                  onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value as any })}
+                  onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value as CalendarEvent['type'] })}
                 >
                   <MenuItem value="deadline">Deadline</MenuItem>
                   <MenuItem value="meeting">Meeting</MenuItem>
@@ -462,7 +462,7 @@ const CalendarPage: React.FC = () => {
                 <Select
                   value={newEvent.priority}
                   label="Priority"
-                  onChange={(e) => setNewEvent({ ...newEvent, priority: e.target.value as any })}
+                  onChange={(e) => setNewEvent({ ...newEvent, priority: e.target.value as CalendarEvent['priority'] })}
                 >
                   <MenuItem value="low">Low</MenuItem>
                   <MenuItem value="medium">Medium</MenuItem>
