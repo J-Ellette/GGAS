@@ -340,6 +340,341 @@ export interface AutomationWorkflow {
   updatedAt?: string;
 }
 
+// Phase 4.1: Next-Gen Analytics
+export interface DeepLearningModel {
+  id?: number;
+  modelName: string;
+  modelType: string; // 'emissions_forecast', 'recommendation', 'optimization'
+  description: string;
+  architecture?: string; // JSON of model architecture
+  trainingData?: string;
+  accuracy?: number;
+  insights?: string; // JSON of model insights/explanations
+  isActive: boolean;
+  lastTrained?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface StrategyRecommendation {
+  id?: number;
+  recommendationType: string; // 'reduction', 'efficiency', 'procurement'
+  title: string;
+  description: string;
+  potentialImpact: number; // CO2e reduction
+  estimatedCost: number;
+  implementationTime: number; // months
+  confidenceScore: number; // 0-1
+  prerequisites?: string; // JSON array
+  status: string; // 'suggested', 'under_review', 'accepted', 'implemented', 'rejected'
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface AutomatedInsight {
+  id?: number;
+  insightType: string; // 'trend', 'anomaly', 'opportunity', 'risk'
+  title: string;
+  narrative: string; // Natural language explanation
+  dataSource?: string;
+  relatedEntities?: string; // JSON array of related entity IDs
+  severity: string; // 'info', 'warning', 'critical'
+  actionable: boolean;
+  suggestedActions?: string; // JSON array
+  createdAt?: string;
+}
+
+export interface DigitalTwin {
+  id?: number;
+  facilityId: number;
+  facilityName: string;
+  location?: string;
+  modelData?: string; // JSON of 3D model data
+  realTimeData?: string; // JSON of current sensor data
+  emissionsData?: string; // JSON of emissions by source
+  visualizationConfig?: string; // JSON of 3D view configuration
+  isActive: boolean;
+  lastUpdated?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+// Phase 4.2: Enhanced Verification & Trust
+export interface VerificationWorkflow {
+  id?: number;
+  workflowName: string;
+  workflowType: string; // 'internal', 'external', 'multi_party'
+  dataScope?: string; // JSON of what data is being verified
+  verifiers?: string; // JSON array of verifier info
+  status: string; // 'initiated', 'in_progress', 'completed', 'failed'
+  currentStep: number;
+  totalSteps: number;
+  startDate?: string;
+  completionDate?: string;
+  verificationEvidence?: string; // JSON of supporting documents
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface AuditTrail {
+  id?: number;
+  entityType: string; // 'activity_data', 'calculation', 'report'
+  entityId: number;
+  action: string; // 'created', 'updated', 'verified', 'deleted'
+  userId: number;
+  timestamp: string;
+  previousValue?: string; // JSON
+  newValue?: string; // JSON
+  verificationHash?: string; // Blockchain-like hash
+  parentHash?: string; // Previous audit entry hash
+  isImmutable: boolean;
+  metadata?: string;
+  createdAt?: string;
+}
+
+export interface ThirdPartyVerifier {
+  id?: number;
+  verifierName: string;
+  verifierType: string; // 'auditor', 'certification_body', 'consultant'
+  contactInfo?: string;
+  certifications?: string; // JSON array
+  specializations?: string; // JSON array
+  rating?: number; // 0-5
+  isApproved: boolean;
+  integrationEndpoint?: string;
+  apiKey?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface DataProvenance {
+  id?: number;
+  dataType: string;
+  dataId: number;
+  originSource: string;
+  collectionMethod: string;
+  collectionDate: string;
+  transformations?: string; // JSON array of transformation steps
+  lineage?: string; // JSON of data lineage tree
+  qualityMetrics?: string; // JSON
+  createdAt?: string;
+}
+
+// Phase 4.3: IoT & Real-Time Monitoring
+export interface IoTDevice {
+  id?: number;
+  deviceName: string;
+  deviceType: string; // 'energy_meter', 'emissions_sensor', 'flow_meter'
+  manufacturer?: string;
+  model?: string;
+  serialNumber?: string;
+  location?: string;
+  facilityId?: number;
+  status: string; // 'online', 'offline', 'error'
+  connectionType: string; // 'mqtt', 'http', 'modbus'
+  connectionConfig?: string; // JSON
+  lastDataReceived?: string;
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface RealtimeMonitor {
+  id?: number;
+  monitorName: string;
+  monitorType: string; // 'emissions', 'energy', 'resource_consumption'
+  deviceIds?: string; // JSON array of IoT device IDs
+  thresholds?: string; // JSON of alert thresholds
+  currentValue?: number;
+  currentUnit?: string;
+  status: string; // 'normal', 'warning', 'critical'
+  dashboardConfig?: string; // JSON for dashboard layout
+  isActive: boolean;
+  lastUpdated?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface SensorData {
+  id?: number;
+  deviceId: number;
+  timestamp: string;
+  dataType: string;
+  value: number;
+  unit: string;
+  quality: number; // 0-1 data quality score
+  isProcessed: boolean;
+  anomalyDetected: boolean;
+  metadata?: string;
+  createdAt?: string;
+}
+
+export interface AlertRule {
+  id?: number;
+  ruleName: string;
+  ruleType: string; // 'threshold', 'trend', 'anomaly'
+  monitorId?: number;
+  condition?: string; // JSON of alert condition
+  severity: string; // 'low', 'medium', 'high', 'critical'
+  notificationChannels?: string; // JSON array: 'email', 'sms', 'dashboard'
+  recipients?: string; // JSON array
+  isActive: boolean;
+  lastTriggered?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+// Phase 4.4: Advanced Visualization & Immersive Experience
+export interface Facility3DModel {
+  id?: number;
+  facilityId: number;
+  facilityName: string;
+  modelType: string; // 'building', 'industrial_plant', 'campus'
+  modelData?: string; // JSON of 3D geometry
+  textureData?: string; // JSON of textures/materials
+  equipmentLocations?: string; // JSON of equipment placement
+  emissionSources?: string; // JSON mapping emission sources to 3D locations
+  viewConfig?: string; // JSON of camera angles, lighting
+  interactionConfig?: string; // JSON of interactive elements
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ARDataCollection {
+  id?: number;
+  collectionType: string; // 'inspection', 'audit', 'training'
+  facilityId?: number;
+  userId: number;
+  sessionDate: string;
+  duration: number; // minutes
+  dataCollected?: string; // JSON of collected data
+  photos?: string; // JSON array of photo paths
+  annotations?: string; // JSON of AR annotations
+  gpsCoordinates?: string; // JSON
+  status: string; // 'in_progress', 'completed', 'reviewed'
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface TrainingModule {
+  id?: number;
+  moduleName: string;
+  moduleType: string; // 'interactive', 'immersive_vr', 'ar_guided'
+  topic: string; // 'carbon_accounting', 'data_collection', 'compliance'
+  difficulty: string; // 'beginner', 'intermediate', 'advanced'
+  content?: string; // JSON of module content
+  quizzes?: string; // JSON array of quiz questions
+  completionCriteria?: string; // JSON
+  estimatedTime: number; // minutes
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface TrainingProgress {
+  id?: number;
+  userId: number;
+  moduleId: number;
+  status: string; // 'not_started', 'in_progress', 'completed', 'certified'
+  progressPercentage: number;
+  quizScore?: number;
+  startDate?: string;
+  completionDate?: string;
+  certificateIssued: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface DataStory {
+  id?: number;
+  storyTitle: string;
+  storyType: string; // 'performance_report', 'trend_analysis', 'impact_assessment'
+  narrative?: string; // Auto-generated natural language narrative
+  visualizations?: string; // JSON array of chart configs
+  keyMetrics?: string; // JSON of highlighted metrics
+  dataPoints?: string; // JSON of underlying data
+  targetAudience: string; // 'executive', 'technical', 'public'
+  publishDate?: string;
+  isPublic: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+// Phase 4.5: Platform Optimization & Future-Proofing
+export interface CacheConfig {
+  id?: number;
+  cacheKey: string;
+  cacheType: string; // 'query_result', 'calculation', 'report'
+  dataSize: number; // bytes
+  ttl: number; // time to live in seconds
+  hitCount: number;
+  lastAccessed?: string;
+  createdAt?: string;
+  expiresAt?: string;
+}
+
+export interface DistributedJob {
+  id?: number;
+  jobName: string;
+  jobType: string; // 'calculation', 'report_generation', 'data_processing'
+  priority: number; // 1-10
+  status: string; // 'queued', 'running', 'completed', 'failed'
+  progress: number; // 0-100
+  inputData?: string; // JSON
+  resultData?: string; // JSON
+  startTime?: string;
+  endTime?: string;
+  workerNode?: string;
+  estimatedDuration?: number; // seconds
+  actualDuration?: number; // seconds
+  errorMessage?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ResourceMetrics {
+  id?: number;
+  metricType: string; // 'cpu', 'memory', 'disk', 'network'
+  metricValue: number;
+  unit: string;
+  timestamp: string;
+  nodeId?: string;
+  isOptimized: boolean;
+  optimizationSuggestion?: string;
+  createdAt?: string;
+}
+
+export interface SecurityConfig {
+  id?: number;
+  configType: string; // 'zero_trust', 'encryption', 'access_control'
+  configName: string;
+  description: string;
+  isEnabled: boolean;
+  configData?: string; // JSON
+  complianceStandards?: string; // JSON array: 'SOC2', 'ISO27001'
+  lastAuditDate?: string;
+  nextAuditDate?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface EncryptionKey {
+  id?: number;
+  keyName: string;
+  keyType: string; // 'AES-256', 'RSA-4096', 'quantum_resistant'
+  algorithm: string;
+  keySize: number; // bits
+  purpose: string; // 'data_at_rest', 'data_in_transit', 'backup'
+  publicKey?: string; // For asymmetric keys
+  keyDerivationFunction?: string;
+  rotationPolicy: string; // 'monthly', 'quarterly', 'annually'
+  lastRotated?: string;
+  nextRotation?: string;
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface ElectronAPI {
   // Phase 1 APIs
   createActivityData: (data: ActivityData) => Promise<ActivityData>;
@@ -466,6 +801,105 @@ export interface ElectronAPI {
   updateAutomationWorkflow: (id: number, data: Partial<AutomationWorkflow>) => Promise<AutomationWorkflow>;
   deleteAutomationWorkflow: (id: number) => Promise<boolean>;
   executeAutomationWorkflow: (id: number) => Promise<{ success: boolean; output: any }>;
+
+  // Phase 4.1: Next-Gen Analytics APIs
+  createDeepLearningModel: (data: DeepLearningModel) => Promise<DeepLearningModel>;
+  listDeepLearningModels: (filters?: any) => Promise<DeepLearningModel[]>;
+  updateDeepLearningModel: (id: number, data: Partial<DeepLearningModel>) => Promise<DeepLearningModel>;
+  deleteDeepLearningModel: (id: number) => Promise<boolean>;
+  trainDeepLearningModel: (id: number) => Promise<{ success: boolean; accuracy: number; insights: string }>;
+  getModelInsights: (id: number) => Promise<any>;
+  createStrategyRecommendation: (data: StrategyRecommendation) => Promise<StrategyRecommendation>;
+  listStrategyRecommendations: (filters?: any) => Promise<StrategyRecommendation[]>;
+  updateStrategyRecommendation: (id: number, data: Partial<StrategyRecommendation>) => Promise<StrategyRecommendation>;
+  deleteStrategyRecommendation: (id: number) => Promise<boolean>;
+  generateRecommendations: (context?: any) => Promise<StrategyRecommendation[]>;
+  listAutomatedInsights: (filters?: any) => Promise<AutomatedInsight[]>;
+  generateInsightsReport: (filters?: any) => Promise<{ insights: AutomatedInsight[]; narrative: string }>;
+  createDigitalTwin: (data: DigitalTwin) => Promise<DigitalTwin>;
+  listDigitalTwins: (filters?: any) => Promise<DigitalTwin[]>;
+  updateDigitalTwin: (id: number, data: Partial<DigitalTwin>) => Promise<DigitalTwin>;
+  deleteDigitalTwin: (id: number) => Promise<boolean>;
+  syncDigitalTwinData: (id: number) => Promise<{ success: boolean; lastUpdated: string }>;
+
+  // Phase 4.2: Enhanced Verification & Trust APIs
+  createVerificationWorkflow: (data: VerificationWorkflow) => Promise<VerificationWorkflow>;
+  listVerificationWorkflows: (filters?: any) => Promise<VerificationWorkflow[]>;
+  updateVerificationWorkflow: (id: number, data: Partial<VerificationWorkflow>) => Promise<VerificationWorkflow>;
+  deleteVerificationWorkflow: (id: number) => Promise<boolean>;
+  advanceWorkflowStep: (id: number) => Promise<{ success: boolean; currentStep: number }>;
+  getAuditTrail: (entityType: string, entityId: number) => Promise<AuditTrail[]>;
+  verifyAuditTrailIntegrity: (entityType: string, entityId: number) => Promise<{ valid: boolean; message: string }>;
+  createThirdPartyVerifier: (data: ThirdPartyVerifier) => Promise<ThirdPartyVerifier>;
+  listThirdPartyVerifiers: (filters?: any) => Promise<ThirdPartyVerifier[]>;
+  updateThirdPartyVerifier: (id: number, data: Partial<ThirdPartyVerifier>) => Promise<ThirdPartyVerifier>;
+  deleteThirdPartyVerifier: (id: number) => Promise<boolean>;
+  requestVerification: (verifierId: number, dataScope: any) => Promise<{ success: boolean; workflowId: number }>;
+  getDataProvenance: (dataType: string, dataId: number) => Promise<DataProvenance>;
+  traceDataLineage: (dataType: string, dataId: number) => Promise<any>;
+  validateDataCompliance: (dataType: string, dataId: number) => Promise<{ compliant: boolean; issues: string[] }>;
+
+  // Phase 4.3: IoT & Real-Time Monitoring APIs
+  createIoTDevice: (data: IoTDevice) => Promise<IoTDevice>;
+  listIoTDevices: (filters?: any) => Promise<IoTDevice[]>;
+  updateIoTDevice: (id: number, data: Partial<IoTDevice>) => Promise<IoTDevice>;
+  deleteIoTDevice: (id: number) => Promise<boolean>;
+  discoverIoTDevices: (networkConfig?: any) => Promise<IoTDevice[]>;
+  testDeviceConnection: (id: number) => Promise<{ success: boolean; message: string }>;
+  createRealtimeMonitor: (data: RealtimeMonitor) => Promise<RealtimeMonitor>;
+  listRealtimeMonitors: (filters?: any) => Promise<RealtimeMonitor[]>;
+  updateRealtimeMonitor: (id: number, data: Partial<RealtimeMonitor>) => Promise<RealtimeMonitor>;
+  deleteRealtimeMonitor: (id: number) => Promise<boolean>;
+  getRealtimeData: (monitorId: number) => Promise<any>;
+  listSensorData: (deviceId: number, filters?: any) => Promise<SensorData[]>;
+  processSensorData: (deviceId: number, startTime: string, endTime: string) => Promise<{ success: boolean; processed: number }>;
+  createAlertRule: (data: AlertRule) => Promise<AlertRule>;
+  listAlertRules: (filters?: any) => Promise<AlertRule[]>;
+  updateAlertRule: (id: number, data: Partial<AlertRule>) => Promise<AlertRule>;
+  deleteAlertRule: (id: number) => Promise<boolean>;
+  testAlertRule: (id: number) => Promise<{ triggered: boolean; message: string }>;
+  getActiveAlerts: (filters?: any) => Promise<any[]>;
+
+  // Phase 4.4: Advanced Visualization & Immersive Experience APIs
+  createFacility3DModel: (data: Facility3DModel) => Promise<Facility3DModel>;
+  listFacility3DModels: (filters?: any) => Promise<Facility3DModel[]>;
+  updateFacility3DModel: (id: number, data: Partial<Facility3DModel>) => Promise<Facility3DModel>;
+  deleteFacility3DModel: (id: number) => Promise<boolean>;
+  exportFacility3DModel: (id: number, format: string) => Promise<string>;
+  createARDataCollection: (data: ARDataCollection) => Promise<ARDataCollection>;
+  listARDataCollections: (filters?: any) => Promise<ARDataCollection[]>;
+  updateARDataCollection: (id: number, data: Partial<ARDataCollection>) => Promise<ARDataCollection>;
+  deleteARDataCollection: (id: number) => Promise<boolean>;
+  createTrainingModule: (data: TrainingModule) => Promise<TrainingModule>;
+  listTrainingModules: (filters?: any) => Promise<TrainingModule[]>;
+  updateTrainingModule: (id: number, data: Partial<TrainingModule>) => Promise<TrainingModule>;
+  deleteTrainingModule: (id: number) => Promise<boolean>;
+  getTrainingProgress: (userId: number, moduleId?: number) => Promise<TrainingProgress[]>;
+  updateTrainingProgress: (id: number, data: Partial<TrainingProgress>) => Promise<TrainingProgress>;
+  issueTrainingCertificate: (userId: number, moduleId: number) => Promise<{ success: boolean; certificateId: string }>;
+  createDataStory: (data: DataStory) => Promise<DataStory>;
+  listDataStories: (filters?: any) => Promise<DataStory[]>;
+  updateDataStory: (id: number, data: Partial<DataStory>) => Promise<DataStory>;
+  deleteDataStory: (id: number) => Promise<boolean>;
+  generateDataStoryNarrative: (storyId: number) => Promise<{ narrative: string; visualizations: any[] }>;
+
+  // Phase 4.5: Platform Optimization & Future-Proofing APIs
+  getCacheStats: () => Promise<any>;
+  clearCache: (cacheType?: string) => Promise<{ success: boolean; clearedItems: number }>;
+  optimizeCache: () => Promise<{ success: boolean; message: string }>;
+  createDistributedJob: (data: DistributedJob) => Promise<DistributedJob>;
+  listDistributedJobs: (filters?: any) => Promise<DistributedJob[]>;
+  getJobProgress: (id: number) => Promise<{ progress: number; status: string; estimatedTimeRemaining: number }>;
+  cancelDistributedJob: (id: number) => Promise<boolean>;
+  getResourceMetrics: (timeRange?: any) => Promise<ResourceMetrics[]>;
+  optimizeResources: () => Promise<{ success: boolean; optimizations: string[] }>;
+  getSecurityConfigs: () => Promise<SecurityConfig[]>;
+  updateSecurityConfig: (id: number, data: Partial<SecurityConfig>) => Promise<SecurityConfig>;
+  auditSecurity: () => Promise<{ passed: boolean; issues: string[]; recommendations: string[] }>;
+  listEncryptionKeys: () => Promise<EncryptionKey[]>;
+  createEncryptionKey: (data: EncryptionKey) => Promise<EncryptionKey>;
+  rotateEncryptionKey: (id: number) => Promise<{ success: boolean; newKeyId: number }>;
+  testQuantumResistance: (keyId: number) => Promise<{ resistant: boolean; algorithm: string; recommendation: string }>;
 }
 
 declare global {

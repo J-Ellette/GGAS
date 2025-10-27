@@ -484,6 +484,405 @@ export class DatabaseService {
       )
     `);
 
+    // Phase 4.1: Next-Gen Analytics - Deep Learning Models
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS deep_learning_models (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        modelName TEXT NOT NULL,
+        modelType TEXT NOT NULL,
+        description TEXT NOT NULL,
+        architecture TEXT,
+        trainingData TEXT,
+        accuracy REAL,
+        insights TEXT,
+        isActive INTEGER DEFAULT 1,
+        lastTrained DATETIME,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.1: Strategy Recommendations
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS strategy_recommendations (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        recommendationType TEXT NOT NULL,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL,
+        potentialImpact REAL NOT NULL,
+        estimatedCost REAL NOT NULL,
+        implementationTime INTEGER NOT NULL,
+        confidenceScore REAL NOT NULL,
+        prerequisites TEXT,
+        status TEXT DEFAULT 'suggested',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.1: Automated Insights
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS automated_insights (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        insightType TEXT NOT NULL,
+        title TEXT NOT NULL,
+        narrative TEXT NOT NULL,
+        dataSource TEXT,
+        relatedEntities TEXT,
+        severity TEXT DEFAULT 'info',
+        actionable INTEGER DEFAULT 0,
+        suggestedActions TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.1: Digital Twins
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS digital_twins (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        facilityId INTEGER NOT NULL,
+        facilityName TEXT NOT NULL,
+        location TEXT,
+        modelData TEXT,
+        realTimeData TEXT,
+        emissionsData TEXT,
+        visualizationConfig TEXT,
+        isActive INTEGER DEFAULT 1,
+        lastUpdated DATETIME,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.2: Verification Workflows
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS verification_workflows (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        workflowName TEXT NOT NULL,
+        workflowType TEXT NOT NULL,
+        dataScope TEXT,
+        verifiers TEXT,
+        status TEXT DEFAULT 'initiated',
+        currentStep INTEGER DEFAULT 1,
+        totalSteps INTEGER NOT NULL,
+        startDate DATETIME,
+        completionDate DATETIME,
+        verificationEvidence TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.2: Audit Trails
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS audit_trails (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        entityType TEXT NOT NULL,
+        entityId INTEGER NOT NULL,
+        action TEXT NOT NULL,
+        userId INTEGER NOT NULL,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+        previousValue TEXT,
+        newValue TEXT,
+        verificationHash TEXT,
+        parentHash TEXT,
+        isImmutable INTEGER DEFAULT 1,
+        metadata TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.2: Third Party Verifiers
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS third_party_verifiers (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        verifierName TEXT NOT NULL,
+        verifierType TEXT NOT NULL,
+        contactInfo TEXT,
+        certifications TEXT,
+        specializations TEXT,
+        rating REAL DEFAULT 0,
+        isApproved INTEGER DEFAULT 0,
+        integrationEndpoint TEXT,
+        apiKey TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.2: Data Provenance
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS data_provenance (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        dataType TEXT NOT NULL,
+        dataId INTEGER NOT NULL,
+        originSource TEXT NOT NULL,
+        collectionMethod TEXT NOT NULL,
+        collectionDate DATETIME NOT NULL,
+        transformations TEXT,
+        lineage TEXT,
+        qualityMetrics TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.3: IoT Devices
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS iot_devices (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        deviceName TEXT NOT NULL,
+        deviceType TEXT NOT NULL,
+        manufacturer TEXT,
+        model TEXT,
+        serialNumber TEXT,
+        location TEXT,
+        facilityId INTEGER,
+        status TEXT DEFAULT 'offline',
+        connectionType TEXT NOT NULL,
+        connectionConfig TEXT,
+        lastDataReceived DATETIME,
+        isActive INTEGER DEFAULT 1,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.3: Realtime Monitors
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS realtime_monitors (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        monitorName TEXT NOT NULL,
+        monitorType TEXT NOT NULL,
+        deviceIds TEXT,
+        thresholds TEXT,
+        currentValue REAL,
+        currentUnit TEXT,
+        status TEXT DEFAULT 'normal',
+        dashboardConfig TEXT,
+        isActive INTEGER DEFAULT 1,
+        lastUpdated DATETIME,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.3: Sensor Data
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS sensor_data (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        deviceId INTEGER NOT NULL,
+        timestamp DATETIME NOT NULL,
+        dataType TEXT NOT NULL,
+        value REAL NOT NULL,
+        unit TEXT NOT NULL,
+        quality REAL DEFAULT 1,
+        isProcessed INTEGER DEFAULT 0,
+        anomalyDetected INTEGER DEFAULT 0,
+        metadata TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (deviceId) REFERENCES iot_devices(id)
+      )
+    `);
+
+    // Phase 4.3: Alert Rules
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS alert_rules (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        ruleName TEXT NOT NULL,
+        ruleType TEXT NOT NULL,
+        monitorId INTEGER,
+        condition TEXT,
+        severity TEXT DEFAULT 'medium',
+        notificationChannels TEXT,
+        recipients TEXT,
+        isActive INTEGER DEFAULT 1,
+        lastTriggered DATETIME,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.4: 3D Facility Models
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS facility_3d_models (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        facilityId INTEGER NOT NULL,
+        facilityName TEXT NOT NULL,
+        modelType TEXT NOT NULL,
+        modelData TEXT,
+        textureData TEXT,
+        equipmentLocations TEXT,
+        emissionSources TEXT,
+        viewConfig TEXT,
+        interactionConfig TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.4: AR Data Collections
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS ar_data_collections (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        collectionType TEXT NOT NULL,
+        facilityId INTEGER,
+        userId INTEGER NOT NULL,
+        sessionDate DATETIME NOT NULL,
+        duration INTEGER DEFAULT 0,
+        dataCollected TEXT,
+        photos TEXT,
+        annotations TEXT,
+        gpsCoordinates TEXT,
+        status TEXT DEFAULT 'in_progress',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.4: Training Modules
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS training_modules (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        moduleName TEXT NOT NULL,
+        moduleType TEXT NOT NULL,
+        topic TEXT NOT NULL,
+        difficulty TEXT DEFAULT 'beginner',
+        content TEXT,
+        quizzes TEXT,
+        completionCriteria TEXT,
+        estimatedTime INTEGER DEFAULT 0,
+        isActive INTEGER DEFAULT 1,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.4: Training Progress
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS training_progress (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        userId INTEGER NOT NULL,
+        moduleId INTEGER NOT NULL,
+        status TEXT DEFAULT 'not_started',
+        progressPercentage INTEGER DEFAULT 0,
+        quizScore REAL,
+        startDate DATETIME,
+        completionDate DATETIME,
+        certificateIssued INTEGER DEFAULT 0,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (userId) REFERENCES users(id),
+        FOREIGN KEY (moduleId) REFERENCES training_modules(id)
+      )
+    `);
+
+    // Phase 4.4: Data Stories
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS data_stories (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        storyTitle TEXT NOT NULL,
+        storyType TEXT NOT NULL,
+        narrative TEXT,
+        visualizations TEXT,
+        keyMetrics TEXT,
+        dataPoints TEXT,
+        targetAudience TEXT DEFAULT 'technical',
+        publishDate DATETIME,
+        isPublic INTEGER DEFAULT 0,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.5: Cache Configurations
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS cache_configs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        cacheKey TEXT NOT NULL UNIQUE,
+        cacheType TEXT NOT NULL,
+        dataSize INTEGER DEFAULT 0,
+        ttl INTEGER DEFAULT 3600,
+        hitCount INTEGER DEFAULT 0,
+        lastAccessed DATETIME,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        expiresAt DATETIME
+      )
+    `);
+
+    // Phase 4.5: Distributed Jobs
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS distributed_jobs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        jobName TEXT NOT NULL,
+        jobType TEXT NOT NULL,
+        priority INTEGER DEFAULT 5,
+        status TEXT DEFAULT 'queued',
+        progress INTEGER DEFAULT 0,
+        inputData TEXT,
+        resultData TEXT,
+        startTime DATETIME,
+        endTime DATETIME,
+        workerNode TEXT,
+        estimatedDuration INTEGER,
+        actualDuration INTEGER,
+        errorMessage TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.5: Resource Metrics
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS resource_metrics (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        metricType TEXT NOT NULL,
+        metricValue REAL NOT NULL,
+        unit TEXT NOT NULL,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+        nodeId TEXT,
+        isOptimized INTEGER DEFAULT 0,
+        optimizationSuggestion TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.5: Security Configurations
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS security_configs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        configType TEXT NOT NULL,
+        configName TEXT NOT NULL,
+        description TEXT NOT NULL,
+        isEnabled INTEGER DEFAULT 1,
+        configData TEXT,
+        complianceStandards TEXT,
+        lastAuditDate DATETIME,
+        nextAuditDate DATETIME,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Phase 4.5: Encryption Keys
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS encryption_keys (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        keyName TEXT NOT NULL,
+        keyType TEXT NOT NULL,
+        algorithm TEXT NOT NULL,
+        keySize INTEGER NOT NULL,
+        purpose TEXT NOT NULL,
+        publicKey TEXT,
+        keyDerivationFunction TEXT,
+        rotationPolicy TEXT DEFAULT 'annually',
+        lastRotated DATETIME,
+        nextRotation DATETIME,
+        isActive INTEGER DEFAULT 1,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
     // Create indexes for better performance
     this.db.exec(`
       CREATE INDEX IF NOT EXISTS idx_activity_data_org_unit ON activity_data(organizationUnit);
@@ -505,6 +904,28 @@ export class DatabaseService {
       CREATE INDEX IF NOT EXISTS idx_regional_compliance_region ON regional_compliance(region);
       CREATE INDEX IF NOT EXISTS idx_integration_plugins_type ON integration_plugins(pluginType);
       CREATE INDEX IF NOT EXISTS idx_automation_workflows_trigger ON automation_workflows(triggerType);
+      CREATE INDEX IF NOT EXISTS idx_deep_learning_models_type ON deep_learning_models(modelType);
+      CREATE INDEX IF NOT EXISTS idx_strategy_recommendations_status ON strategy_recommendations(status);
+      CREATE INDEX IF NOT EXISTS idx_automated_insights_type ON automated_insights(insightType);
+      CREATE INDEX IF NOT EXISTS idx_digital_twins_facility ON digital_twins(facilityId);
+      CREATE INDEX IF NOT EXISTS idx_verification_workflows_status ON verification_workflows(status);
+      CREATE INDEX IF NOT EXISTS idx_audit_trails_entity ON audit_trails(entityType, entityId);
+      CREATE INDEX IF NOT EXISTS idx_data_provenance_data ON data_provenance(dataType, dataId);
+      CREATE INDEX IF NOT EXISTS idx_iot_devices_facility ON iot_devices(facilityId);
+      CREATE INDEX IF NOT EXISTS idx_iot_devices_status ON iot_devices(status);
+      CREATE INDEX IF NOT EXISTS idx_realtime_monitors_type ON realtime_monitors(monitorType);
+      CREATE INDEX IF NOT EXISTS idx_sensor_data_device ON sensor_data(deviceId);
+      CREATE INDEX IF NOT EXISTS idx_sensor_data_timestamp ON sensor_data(timestamp);
+      CREATE INDEX IF NOT EXISTS idx_alert_rules_monitor ON alert_rules(monitorId);
+      CREATE INDEX IF NOT EXISTS idx_facility_3d_models_facility ON facility_3d_models(facilityId);
+      CREATE INDEX IF NOT EXISTS idx_ar_data_collections_facility ON ar_data_collections(facilityId);
+      CREATE INDEX IF NOT EXISTS idx_ar_data_collections_user ON ar_data_collections(userId);
+      CREATE INDEX IF NOT EXISTS idx_training_progress_user ON training_progress(userId);
+      CREATE INDEX IF NOT EXISTS idx_training_progress_module ON training_progress(moduleId);
+      CREATE INDEX IF NOT EXISTS idx_data_stories_type ON data_stories(storyType);
+      CREATE INDEX IF NOT EXISTS idx_distributed_jobs_status ON distributed_jobs(status);
+      CREATE INDEX IF NOT EXISTS idx_resource_metrics_type ON resource_metrics(metricType);
+      CREATE INDEX IF NOT EXISTS idx_resource_metrics_timestamp ON resource_metrics(timestamp);
     `);
 
     // Seed Scope 3 categories
