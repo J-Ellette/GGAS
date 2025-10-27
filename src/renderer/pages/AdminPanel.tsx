@@ -106,6 +106,9 @@ const AdminPanel: React.FC = () => {
     theme: 'light',
   });
 
+  // Microsoft SSO Settings
+  const [microsoftSSOEnabled, setMicrosoftSSOEnabled] = useState(false);
+
   useEffect(() => {
     if (isAuthenticated) {
       loadLicenseKeys();
@@ -523,14 +526,14 @@ const AdminPanel: React.FC = () => {
             <FormControlLabel
               control={
                 <Switch
-                  checked={adminSettings.llmEnabled}
-                  onChange={(e) => setAdminSettings({ ...adminSettings, llmEnabled: e.target.checked })}
+                  checked={microsoftSSOEnabled}
+                  onChange={(e) => setMicrosoftSSOEnabled(e.target.checked)}
                 />
               }
               label="Enable Microsoft SSO Integration"
             />
 
-            {adminSettings.llmEnabled && (
+            {microsoftSSOEnabled && (
               <Box sx={{ mt: 3 }}>
                 <Alert severity="info" sx={{ mb: 3 }}>
                   <Typography variant="body2">

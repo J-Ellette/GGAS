@@ -28,6 +28,7 @@ import {
   LinearProgress,
   IconButton,
   Divider,
+  Snackbar,
 } from '@mui/material';
 import {
   UploadFile as UploadIcon,
@@ -48,6 +49,7 @@ import {
   Approval as ApprovalIcon,
   IntegrationInstructions as IntegrationIcon,
 } from '@mui/icons-material';
+import { DocumentProcessing, EmailMonitor, BrowserCapture } from '../../common/types';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -68,48 +70,57 @@ const Phase8Page: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   
   // Document Processing State
-  const [documents, setDocuments] = useState<any[]>([
+  const [documents, setDocuments] = useState<DocumentProcessing[]>([
     {
       id: 1,
-      name: 'Utility_Bill_Jan_2024.pdf',
-      type: 'utility_bill',
-      status: 'completed',
-      accuracy: 98.5,
+      documentName: 'Utility_Bill_Jan_2024.pdf',
+      documentType: 'utility_bill',
+      fileFormat: 'pdf',
+      fileSize: 2048000,
       uploadDate: '2024-01-15',
+      processingStatus: 'completed',
+      ocrAccuracy: 98.5,
+      validationStatus: 'validated',
     },
     {
       id: 2,
-      name: 'Travel_Receipt_Flight.jpg',
-      type: 'travel_receipt',
-      status: 'processing',
-      accuracy: null,
+      documentName: 'Travel_Receipt_Flight.jpg',
+      documentType: 'travel_receipt',
+      fileFormat: 'image',
+      fileSize: 1024000,
       uploadDate: '2024-01-16',
+      processingStatus: 'processing',
+      validationStatus: 'pending',
     },
   ]);
   const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
 
   // Email Monitoring State
-  const [emailMonitors, setEmailMonitors] = useState<any[]>([
+  const [emailMonitors, setEmailMonitors] = useState<EmailMonitor[]>([
     {
       id: 1,
-      name: 'Carbon Data Inbox',
-      email: 'carbon-data@company.com',
-      status: 'active',
+      accountName: 'Carbon Data Inbox',
+      emailAddress: 'carbon-data@company.com',
+      protocol: 'imap',
       messagesProcessed: 127,
       lastChecked: '2024-01-16T14:30:00',
+      isActive: true,
     },
   ]);
   const [emailDialogOpen, setEmailDialogOpen] = useState(false);
 
   // Browser Extension State
-  const [browserCaptures, setBrowserCaptures] = useState<any[]>([
+  const [browserCaptures, setBrowserCaptures] = useState<BrowserCapture[]>([
     {
       id: 1,
-      type: 'travel_booking',
-      source: 'expedia.com',
+      captureType: 'travel_booking',
+      sourceUrl: 'https://www.expedia.com',
+      websiteName: 'expedia.com',
       captureDate: '2024-01-15',
-      status: 'imported',
-      category: 'Business Travel',
+      userId: 1,
+      processingStatus: 'imported',
+      validationStatus: 'validated',
+      dataCategory: 'Business Travel',
     },
   ]);
 
@@ -121,6 +132,21 @@ const Phase8Page: React.FC = () => {
     auditLogging: true,
     dataEncryption: true,
   });
+
+  // Notification State
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success' as 'success' | 'error' | 'info' | 'warning',
+  });
+
+  const showNotification = (message: string, severity: 'success' | 'error' | 'info' | 'warning' = 'success') => {
+    setSnackbar({ open: true, message, severity });
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false });
+  };
 
   // Maximo Integration State
   const [maximoConfig, setMaximoConfig] = useState({
@@ -158,23 +184,23 @@ const Phase8Page: React.FC = () => {
   const handleUploadDocument = () => {
     // Simulate document upload
     setUploadDialogOpen(false);
-    alert('Document upload initiated. Processing will begin shortly.');
+    showNotification('Document upload initiated. Processing will begin shortly.', 'info');
   };
 
   const handleTestEmailConnection = (id: number) => {
-    alert('Email connection test successful!');
+    showNotification('Email connection test successful!', 'success');
   };
 
   const handleTestMaximoConnection = () => {
-    alert('Maximo connection test successful! Connected to Maximo v7.6.1.2');
+    showNotification('Maximo connection test successful! Connected to Maximo v7.6.1.2', 'success');
   };
 
   const handleSyncMaximo = () => {
-    alert('Maximo asset sync initiated. This may take several minutes...');
+    showNotification('Maximo asset sync initiated. This may take several minutes...', 'info');
   };
 
   const handleTestMicrosoftSSO = () => {
-    alert('Microsoft SSO configuration test successful!');
+    showNotification('Microsoft SSO configuration test successful!', 'success');
   };
 
   return (
@@ -340,22 +366,22 @@ const Phase8Page: React.FC = () => {
                       <TableCell>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           <DocumentIcon />
-                          {doc.name}
+                          {doc.documentName}
                         </Box>
                       </TableCell>
                       <TableCell>
-                        <Chip label={doc.type} size="small" />
+                        <Chip label={doc.documentType} size="small" />
                       </TableCell>
                       <TableCell>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          {getStatusIcon(doc.status)}
+                          {getStatusIcon(doc.processingStatus)}
                           <Chip
-                            label={doc.status}
+                            label={doc.processingStatus}
                             size="small"
                             color={
-                              doc.status === 'completed'
+                              doc.processingStatus === 'completed'
                                 ? 'success'
-                                : doc.status === 'processing'
+                                : doc.processingStatus === 'processing'
                                 ? 'warning'
                                 : 'default'
                             }
@@ -363,12 +389,12 @@ const Phase8Page: React.FC = () => {
                         </Box>
                       </TableCell>
                       <TableCell>
-                        {doc.accuracy ? (
+                        {doc.ocrAccuracy ? (
                           <Box>
-                            <Typography variant="body2">{doc.accuracy}%</Typography>
+                            <Typography variant="body2">{doc.ocrAccuracy}%</Typography>
                             <LinearProgress
                               variant="determinate"
-                              value={doc.accuracy}
+                              value={doc.ocrAccuracy}
                               sx={{ height: 6, borderRadius: 1 }}
                             />
                           </Box>
@@ -507,22 +533,22 @@ const Phase8Page: React.FC = () => {
               <TableBody>
                 {emailMonitors.map((monitor) => (
                   <TableRow key={monitor.id}>
-                    <TableCell>{monitor.name}</TableCell>
-                    <TableCell>{monitor.email}</TableCell>
+                    <TableCell>{monitor.accountName}</TableCell>
+                    <TableCell>{monitor.emailAddress}</TableCell>
                     <TableCell>
                       <Chip
-                        label={monitor.status}
-                        color={monitor.status === 'active' ? 'success' : 'default'}
+                        label={monitor.isActive ? 'active' : 'inactive'}
+                        color={monitor.isActive ? 'success' : 'default'}
                         size="small"
                       />
                     </TableCell>
                     <TableCell>{monitor.messagesProcessed}</TableCell>
-                    <TableCell>{new Date(monitor.lastChecked).toLocaleString()}</TableCell>
+                    <TableCell>{monitor.lastChecked ? new Date(monitor.lastChecked).toLocaleString() : 'Never'}</TableCell>
                     <TableCell>
                       <IconButton
                         size="small"
                         color="primary"
-                        onClick={() => handleTestEmailConnection(monitor.id)}
+                        onClick={() => handleTestEmailConnection(monitor.id!)}
                       >
                         <PlayArrowIcon />
                       </IconButton>
@@ -669,14 +695,14 @@ const Phase8Page: React.FC = () => {
                 {browserCaptures.map((capture) => (
                   <TableRow key={capture.id}>
                     <TableCell>
-                      <Chip label={capture.type} size="small" />
+                      <Chip label={capture.captureType} size="small" />
                     </TableCell>
-                    <TableCell>{capture.source}</TableCell>
-                    <TableCell>{capture.category}</TableCell>
+                    <TableCell>{capture.websiteName}</TableCell>
+                    <TableCell>{capture.dataCategory}</TableCell>
                     <TableCell>
                       <Chip
-                        label={capture.status}
-                        color={capture.status === 'imported' ? 'success' : 'warning'}
+                        label={capture.processingStatus}
+                        color={capture.processingStatus === 'imported' ? 'success' : 'warning'}
                         size="small"
                       />
                     </TableCell>
@@ -1137,7 +1163,7 @@ const Phase8Page: React.FC = () => {
           <Button
             onClick={() => {
               setEmailDialogOpen(false);
-              alert('Email monitor added successfully!');
+              showNotification('Email monitor added successfully!', 'success');
             }}
             variant="contained"
           >
@@ -1145,6 +1171,18 @@ const Phase8Page: React.FC = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Snackbar for Notifications */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: '100%' }}>
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
