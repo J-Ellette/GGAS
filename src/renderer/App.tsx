@@ -48,6 +48,7 @@ import Phase4Page from './pages/Phase4Page';
 import AdminPanel from './pages/AdminPanel';
 import DocumentationPage from './pages/DocumentationPage';
 import CarbonCopilotPage from './pages/CarbonCopilotPage';
+import SettingsPage from './pages/SettingsPage';
 import LicenseKeyDialog from './components/LicenseKeyDialog';
 
 const drawerWidth = 280;
@@ -156,7 +157,7 @@ const App: React.FC = () => {
       case 'carbon-copilot':
         return <CarbonCopilotPage />;
       case 'settings':
-        return <Box p={3}><Typography variant="h4">Settings (Coming Soon)</Typography></Box>;
+        return <SettingsPage />;
       default:
         return <Dashboard />;
     }
