@@ -32,6 +32,8 @@ import {
   ListItemIcon,
   Rating,
   Tooltip,
+  Snackbar,
+  ChipPropsColorOverrides,
 } from '@mui/material';
 import {
   TrendingUp as TrendingUpIcon,
@@ -285,25 +287,32 @@ const Phase11Page: React.FC = () => {
   const [selectedSupplier, setSelectedSupplier] = useState<SupplierCarbonScore | null>(null);
   const [addProgramDialogOpen, setAddProgramDialogOpen] = useState(false);
   const [cdpSyncInProgress, setCdpSyncInProgress] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const handleViewSupplierDetails = (supplier: SupplierCarbonScore) => {
     setSelectedSupplier(supplier);
     setScoreDialogOpen(true);
   };
 
+  const showMessage = (message: string) => {
+    setSnackbarMessage(message);
+    setSnackbarOpen(true);
+  };
+
   const handleRefreshScores = () => {
-    alert('Refreshing supplier carbon scores from CDP and internal data sources...');
+    showMessage('Refreshing supplier carbon scores from CDP and internal data sources...');
   };
 
   const handleSyncCDP = () => {
     setCdpSyncInProgress(true);
     setTimeout(() => {
       setCdpSyncInProgress(false);
-      alert('CDP data synchronized successfully. 15 supplier records updated.');
+      showMessage('CDP data synchronized successfully. 15 supplier records updated.');
     }, 2000);
   };
 
-  const getRiskChipColor = (riskLevel: string) => {
+  const getRiskChipColor = (riskLevel: string): 'success' | 'warning' | 'error' | 'default' => {
     switch (riskLevel) {
       case 'low': return 'success';
       case 'medium': return 'warning';
@@ -317,6 +326,16 @@ const Phase11Page: React.FC = () => {
     if (score >= 80) return 'success.main';
     if (score >= 60) return 'warning.main';
     return 'error.main';
+  };
+
+  const parseCertifications = (certStr: string | undefined): string[] => {
+    if (!certStr) return [];
+    try {
+      return JSON.parse(certStr);
+    } catch (e) {
+      console.error('Failed to parse certifications:', e);
+      return [];
+    }
   };
 
   return (
@@ -510,7 +529,7 @@ const Phase11Page: React.FC = () => {
                             </Typography>
                             {supplier.hasCertifications && (
                               <Box sx={{ mt: 0.5 }}>
-                                {JSON.parse(supplier.hasCertifications).slice(0, 2).map((cert: string, idx: number) => (
+                                {parseCertifications(supplier.hasCertifications).slice(0, 2).map((cert: string, idx: number) => (
                                   <Chip key={idx} label={cert} size="small" sx={{ mr: 0.5, mb: 0.5 }} />
                                 ))}
                               </Box>
@@ -781,12 +800,21 @@ const Phase11Page: React.FC = () => {
           <Button onClick={() => setAddProgramDialogOpen(false)}>Cancel</Button>
           <Button variant="contained" onClick={() => {
             setAddProgramDialogOpen(false);
-            alert('Program created successfully!');
+            showMessage('Program created successfully!');
           }}>
             Create Program
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Snackbar for notifications */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={4000}
+        onClose={() => setSnackbarOpen(false)}
+        message={snackbarMessage}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      />
     </Box>
   );
 };
