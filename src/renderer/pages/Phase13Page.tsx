@@ -42,13 +42,9 @@ import {
   Security as SecurityIcon,
   Handshake as HandshakeIcon,
   Description as DocumentIcon,
-} from '@mui/icons-material';
-import {
   TrendingUp as TrendingUpIcon,
   TrendingDown as TrendingDownIcon,
   AttachMoney as MoneyIcon,
-} from '@mui/icons-material';
-import {
   Refresh as RefreshIcon,
   Download as DownloadIcon,
   Update as UpdateIcon,
@@ -85,6 +81,13 @@ const Phase13Page: React.FC = () => {
   // Utility function for currency formatting
   const formatMillions = (amount: number): string => {
     return (amount / 1000000).toFixed(1) + 'M';
+  };
+
+  // Utility function for budget color determination
+  const getBudgetColor = (usage: number): 'error' | 'warning' | 'success' => {
+    if (usage > BUDGET_CRITICAL_THRESHOLD) return 'error';
+    if (usage > BUDGET_WARNING_THRESHOLD) return 'warning';
+    return 'success';
   };
 
   // Mock data for Carbon Accounting
@@ -222,9 +225,9 @@ const Phase13Page: React.FC = () => {
                     variant="determinate" 
                     value={CURRENT_BUDGET_USAGE} 
                     sx={{ mt: 1, mb: 1, height: 10, borderRadius: 5 }}
-                    color={CURRENT_BUDGET_USAGE > BUDGET_CRITICAL_THRESHOLD ? 'error' : CURRENT_BUDGET_USAGE > BUDGET_WARNING_THRESHOLD ? 'warning' : 'success'}
+                    color={getBudgetColor(CURRENT_BUDGET_USAGE)}
                   />
-                  <Typography variant="body2" color={CURRENT_BUDGET_USAGE > BUDGET_CRITICAL_THRESHOLD ? 'error' : CURRENT_BUDGET_USAGE > BUDGET_WARNING_THRESHOLD ? 'warning' : 'success.main'}>
+                  <Typography variant="body2" color={getBudgetColor(CURRENT_BUDGET_USAGE) === 'success' ? 'success.main' : getBudgetColor(CURRENT_BUDGET_USAGE)}>
                     {CURRENT_BUDGET_USAGE}% of budget used (Q1 complete)
                   </Typography>
                 </Box>
