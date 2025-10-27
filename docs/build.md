@@ -220,7 +220,7 @@ Performance Management: Real-time KPI tracking integrated with operational excel
 
 Add documentation in the Documentation panel
 
-7. Universal Carbon Connector
+7. Universal Carbon Connector (COMPLETE)
 Pre-built Integration Library:
 
 Enterprise Systems: SAP, Oracle, Microsoft Dynamics, Workday, Salesforce, NetSuite
