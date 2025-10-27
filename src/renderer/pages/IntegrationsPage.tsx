@@ -297,6 +297,7 @@ const IntegrationsPage: React.FC = () => {
               <MenuItem value="ERP">ERP System</MenuItem>
               <MenuItem value="Utility">Utility Provider</MenuItem>
               <MenuItem value="RealTime">Real-Time Data Stream</MenuItem>
+              <MenuItem value="Maximo">IBM Maximo</MenuItem>
               <MenuItem value="Other">Other</MenuItem>
             </TextField>
             <TextField

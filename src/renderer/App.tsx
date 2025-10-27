@@ -48,6 +48,7 @@ import MultiEntityPage from './pages/MultiEntityPage';
 import Phase4Page from './pages/Phase4Page';
 import Phase5Page from './pages/Phase5Page';
 import Phase6Page from './pages/Phase6Page';
+import Phase8Page from './pages/Phase8Page';
 import AdminPanel from './pages/AdminPanel';
 import DocumentationPage from './pages/DocumentationPage';
 import CarbonCopilotPage from './pages/CarbonCopilotPage';
@@ -75,6 +76,7 @@ type PageType =
   | 'phase4'
   | 'phase5'
   | 'phase6'
+  | 'phase8'
   | 'admin'
   | 'settings'
   | 'documentation'
@@ -162,6 +164,8 @@ const App: React.FC = () => {
         return <Phase5Page />;
       case 'phase6':
         return <Phase6Page />;
+      case 'phase8':
+        return <Phase8Page />;
       case 'admin':
         return <AdminPanel />;
       case 'documentation':
@@ -353,6 +357,14 @@ const App: React.FC = () => {
                     <DashboardIcon />
                   </ListItemIcon>
                   <ListItemText primary="Operations Center" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'phase8'} onClick={() => setCurrentPage('phase8')}>
+                  <ListItemIcon>
+                    <CloudIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Autonomous Collection" />
                 </ListItemButton>
               </ListItem>
             </List>

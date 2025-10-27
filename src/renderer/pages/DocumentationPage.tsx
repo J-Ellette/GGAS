@@ -644,6 +644,122 @@ const documentationSections: DocSection[] = [
       },
     ],
   },
+  {
+    id: 'phase8',
+    title: 'Phase 8: Autonomous Data Collection',
+    icon: <DataIcon />,
+    content: 'Phase 8 introduces autonomous data collection capabilities with intelligent document processing, email intelligence, browser extension intelligence, and enterprise security features. These advanced automation features dramatically reduce manual data entry while maintaining high accuracy and compliance.',
+    subsections: [
+      {
+        title: 'Intelligent Document Processing Overview',
+        content: 'GGAS automatically processes documents from multiple sources with AI-powered OCR, template learning, and smart field identification. The system supports PDF, Excel, Word, images, scanned documents, and emails. Advanced OCR engines achieve 99%+ accuracy for printed text and include handwriting recognition capabilities. The AI learns to recognize utility bills, invoices, reports, and other documents through repeated exposure, automatically improving accuracy over time.',
+      },
+      {
+        title: 'Multi-Format Support',
+        content: 'Upload documents in various formats including PDF, Microsoft Excel (.xlsx, .xls), Microsoft Word (.docx, .doc), images (JPEG, PNG, TIFF), scanned documents, and email attachments. The system automatically detects document type and applies appropriate processing rules. Large documents are processed in batches with queue management to handle high volumes efficiently.',
+      },
+      {
+        title: 'Template Learning & Recognition',
+        content: 'The AI-powered template learning system recognizes document layouts and structures from repeated exposure. When processing a new utility bill or invoice, the system compares it to previously learned templates and applies the appropriate extraction rules. Templates continuously improve with usage, adapting to variations in document formats. Manual corrections feed back into the learning system to improve future recognition.',
+      },
+      {
+        title: 'Data Extraction Engine',
+        content: 'The extraction engine uses multiple techniques: OCR for text extraction with 99%+ accuracy, table extraction for complex formatted documents, handwriting recognition for field data collection, and smart field identification that understands context (dates, amounts, units). Extracted data is automatically validated against expected patterns and historical data. The system flags unusual or suspicious data points for review before importing into activity data.',
+      },
+      {
+        title: 'Context Understanding',
+        content: 'GGAS understands document context including document types (utility bill, invoice, report, receipt), billing periods and date ranges, currency and units of measurement, and emission categories. The system cross-references extracted data with historical patterns to identify anomalies and applies appropriate validation rules based on document type. Recognized data is automatically categorized by emission scope and category.',
+      },
+      {
+        title: 'Email Intelligence System',
+        content: 'Configure secure monitoring of designated email accounts for carbon-related communications. The system connects via IMAP, POP3, or Exchange protocols to automatically check for new messages. Email attachments (PDFs, spreadsheets, images) are automatically extracted and processed through the document processing pipeline. Smart categorization classifies emails by emission category, urgency, and data type using natural language processing.',
+      },
+      {
+        title: 'Email Monitoring Configuration',
+        content: 'To set up email monitoring: Navigate to Autonomous Collection → Email Intelligence tab. Click "Add Email Monitor" and provide account credentials. Configure filtering rules to focus on carbon-relevant emails (keywords, sender domains, subject patterns). Set up categorization rules for automatic emission category assignment. Define approval workflows for extracted data requiring review. Monitor processing statistics and adjust rules as needed.',
+      },
+      {
+        title: 'Attachment Processing',
+        content: 'Email attachments are automatically downloaded, scanned for security, and queued for processing. Supported attachment types include PDF documents, Excel spreadsheets, Word documents, images (JPEG, PNG), and ZIP archives containing multiple documents. Each attachment is processed through OCR and data extraction, linked to the originating email for audit purposes, and routed through approval workflows if required. Processing results are logged and available for review.',
+      },
+      {
+        title: 'Smart Categorization & Approval',
+        content: 'The AI categorization engine analyzes email content and attachments to determine emission category (Scope 1, 2, or 3), urgency level (low, normal, high, critical), and data type (utility bill, invoice, travel receipt, etc.). Confidence scores indicate categorization certainty. Low-confidence items are flagged for manual review. Approval workflows route extracted data to appropriate approvers based on category, amount, and data quality. Approvers can accept, reject, or modify extracted data before it enters the activity database.',
+      },
+      {
+        title: 'Browser Extension Intelligence',
+        content: 'The GGAS Browser Extension enables automatic capture of carbon-relevant data while browsing. Install the extension from the Chrome Web Store or Firefox Add-ons. The extension detects and captures data during travel bookings, supplier website visits, research activities, and e-commerce transactions. Captured data is securely transmitted to GGAS and queued for processing and validation.',
+      },
+      {
+        title: 'Auto-Capture Features',
+        content: 'Enable auto-capture to automatically detect and save carbon-relevant information while browsing. The extension recognizes: travel booking confirmations (flights, trains, hotels, car rentals) with distance and emission data; supplier carbon footprint information displayed on product pages; carbon offset offerings and purchases; energy efficiency specifications for equipment purchases; and shipping and logistics information. Users can manually capture additional data using the extension toolbar.',
+      },
+      {
+        title: 'Travel Booking Integration',
+        content: 'When booking travel through platforms like Expedia, Booking.com, or corporate travel systems, the browser extension automatically captures: origin and destination locations, travel dates and times, mode of transportation (flight, train, car), distance traveled, and carrier-provided emission estimates. This data is automatically categorized under Scope 3 Category 6 (Business Travel) and can be imported directly into activity data with one click.',
+      },
+      {
+        title: 'Supplier Website Mining',
+        content: 'The extension captures carbon-related information from supplier websites including: product carbon footprints (if disclosed), environmental certifications and labels, renewable energy claims, packaging materials and recycling information, and sustainability reports. Captured data helps populate Scope 3 Category 1 (Purchased Goods & Services) with supplier-specific emission factors.',
+      },
+      {
+        title: 'Research Assistant Mode',
+        content: 'Enable Research Assistant mode to help find and capture carbon data during web research. The extension highlights carbon-relevant information on web pages, suggests data capture when relevant content is detected, maintains a capture history for review and import, and provides quick access to GGAS emission categories and factors. Use the extension to quickly save emission factors, industry benchmarks, regulatory information, and best practices found during research.',
+      },
+      {
+        title: 'Enterprise Security & Compliance',
+        content: 'All autonomous data collection features comply with GDPR, CCPA, and other data privacy regulations. Security features include: end-to-end encryption for data in transit and at rest, user consent management for data collection, role-based access controls for automated systems, complete audit trails of all automated activities, and options for on-premises processing of sensitive documents. Regular security audits ensure ongoing compliance.',
+      },
+      {
+        title: 'Data Privacy Controls',
+        content: 'Configure data privacy settings in Autonomous Collection → Security & Compliance tab. Enable GDPR compliance mode for EU operations, CCPA compliance for California users, or both. Set data retention periods for processed documents (30, 60, 90 days, or custom). Configure anonymization rules for personal information found in documents. Enable geographic restrictions to ensure data stays within required regions. All settings are logged and auditable.',
+      },
+      {
+        title: 'Secure Processing Options',
+        content: 'For sensitive documents, enable on-premises processing to ensure data never leaves your infrastructure. This option requires installation of the GGAS Document Processing Server within your network. Documents are processed locally and only metadata is transmitted to the cloud (if using cloud-hosted GGAS). On-premises processing supports all document formats and OCR engines. Contact your administrator to set up on-premises processing.',
+      },
+      {
+        title: 'Audit Trails & Compliance',
+        content: 'Every automated data collection activity is logged in the audit trail including: document uploads and processing results, email monitoring activities and message access, browser extension captures and data transfers, OCR job execution and accuracy metrics, approval workflow actions and decisions, and data validation events and error corrections. Export audit logs for compliance reporting, security reviews, and process improvement. Logs include timestamps, user IDs, IP addresses, and detailed event information.',
+      },
+      {
+        title: 'Access Controls & Permissions',
+        content: 'Configure role-based permissions for autonomous data collection features. Permissions include: upload documents (who can upload), configure email monitors (who can add email accounts), approve extracted data (who can approve imports), access audit logs (who can view logs), configure security settings (who can modify compliance settings), and manage browser extensions (who can enable/disable capture). Set up approval chains where multiple approvers are required for high-value or high-risk data.',
+      },
+      {
+        title: 'Maximo Integration',
+        content: 'IBM Maximo Enterprise Asset Management integration enables synchronization of asset data with carbon emissions tracking. Configure the integration in Phase 8 → Third-Party Integrations tab. Provide your Maximo server URL, API credentials, and authentication method. Map Maximo asset categories to GGAS emission sources. Schedule automatic synchronization (hourly, daily, weekly) or trigger manual sync. Assets are imported with: asset number and description, location and facility assignment, manufacturer and model information, operating hours and maintenance records, and energy consumption data.',
+      },
+      {
+        title: 'Maximo Configuration',
+        content: 'To configure Maximo integration: Enable the Maximo integration toggle. Enter your Maximo server URL (e.g., https://maximo.company.com). Provide API key or configure OAuth authentication. Test the connection to verify credentials. Configure field mapping (Maximo fields to GGAS fields). Select asset categories to synchronize (vehicles, HVAC equipment, generators, etc.). Set synchronization schedule. Review and approve the initial sync. The system will automatically sync assets on the configured schedule and flag any synchronization errors for review.',
+      },
+      {
+        title: 'Maximo Asset Tracking',
+        content: 'Synchronized Maximo assets appear in a dedicated Assets view with: asset identification (number, description, location), emission source linkage (connect assets to emission sources), operating metrics (hours, fuel consumption, efficiency), maintenance history (last maintenance, next scheduled), and emission calculations based on asset operation. Link assets to activity data for automated emission calculations. When assets are retired or moved in Maximo, changes are reflected in GGAS automatically.',
+      },
+      {
+        title: 'Microsoft Single Sign-On',
+        content: 'Enable Microsoft Single Sign-On (SSO) to allow users to authenticate using their Microsoft work accounts (Azure Active Directory). Users benefit from: seamless login without separate GGAS passwords, centralized identity management through Azure AD, multi-factor authentication (MFA) from Microsoft, automatic user provisioning on first login, and consistent security policies across applications. Administrators manage user access through Azure AD groups.',
+      },
+      {
+        title: 'Microsoft SSO Configuration',
+        content: 'To enable Microsoft SSO: Navigate to Admin Panel → Microsoft SSO tab. Toggle "Enable Microsoft SSO Integration". Enter your Azure Tenant ID (found in Azure Portal → Azure Active Directory → Properties). Enter Application (Client) ID from your Azure AD app registration. Provide Client Secret (created in Azure AD app registration → Certificates & secrets). Configure Redirect URI (must match Azure AD app registration). Enable auto-provisioning to create user accounts on first login. Set default role for new users. Specify allowed email domains (optional). Test the SSO configuration. Save settings.',
+      },
+      {
+        title: 'Microsoft SSO User Experience',
+        content: 'When SSO is enabled, users see a "Sign in with Microsoft" button on the login page. Clicking this redirects to Microsoft login where users enter their work email and password. After Microsoft authentication, users are redirected back to GGAS and automatically logged in. First-time users are automatically provisioned with the default role (if auto-provisioning is enabled). Existing users can link their GGAS account to their Microsoft account. Users can still use traditional username/password login if SSO is configured as optional rather than required.',
+      },
+      {
+        title: 'SSO Security Best Practices',
+        content: 'Security recommendations for Microsoft SSO: Enable MFA in Azure AD for all users accessing GGAS. Regularly review Azure AD app permissions and access logs. Set up conditional access policies in Azure AD (require MFA, restrict by location/device). Configure session timeouts appropriately for your security requirements. Monitor SSO login attempts and failures in the audit logs. Implement emergency access procedures in case of Azure AD outage. Document your SSO configuration for disaster recovery. Test SSO regularly to ensure it remains functional after Azure AD or GGAS updates.',
+      },
+      {
+        title: 'Getting Started with Phase 8',
+        content: 'To begin using Phase 8 autonomous data collection features: Navigate to the Autonomous Collection page from the main menu. Start with Document Processing: upload a few sample documents to test OCR accuracy. Review and approve extracted data. Configure Email Monitoring: add an email monitor for a dedicated carbon data mailbox. Set up filtering and categorization rules. Install Browser Extension: install from Chrome Web Store or Firefox Add-ons. Enable auto-capture for travel bookings. Configure Third-Party Integrations: set up Maximo integration if you use Maximo. Enable Microsoft SSO in Admin Panel if desired. Monitor and refine: review processing accuracy and adjust settings. Train templates on your specific documents. Refine categorization rules based on actual data. The system will continuously improve as it processes more data.',
+      },
+    ],
+  },
 ];
 
 const DocumentationPage: React.FC = () => {

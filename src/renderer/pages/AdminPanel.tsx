@@ -321,6 +321,7 @@ const AdminPanel: React.FC = () => {
           <Tab label="User Management" icon={<PeopleIcon />} iconPosition="start" />
           <Tab label="Deep Learning" icon={<PsychologyIcon />} iconPosition="start" />
           <Tab label="LLM Integration" icon={<PsychologyIcon />} iconPosition="start" />
+          <Tab label="Microsoft SSO" icon={<SecurityIcon />} iconPosition="start" />
           <Tab label="Themes" icon={<PaletteIcon />} iconPosition="start" />
         </Tabs>
       </Box>
@@ -513,8 +514,117 @@ const AdminPanel: React.FC = () => {
         </Card>
       </TabPanel>
 
-      {/* Themes Tab */}
+      {/* Microsoft SSO Tab */}
       <TabPanel value={tabValue} index={4}>
+        <Typography variant="h6" gutterBottom>Microsoft Single Sign-On Settings</Typography>
+        
+        <Card sx={{ mt: 2 }}>
+          <CardContent>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={adminSettings.llmEnabled}
+                  onChange={(e) => setAdminSettings({ ...adminSettings, llmEnabled: e.target.checked })}
+                />
+              }
+              label="Enable Microsoft SSO Integration"
+            />
+
+            {adminSettings.llmEnabled && (
+              <Box sx={{ mt: 3 }}>
+                <Alert severity="info" sx={{ mb: 3 }}>
+                  <Typography variant="body2">
+                    Configure Azure AD authentication to enable seamless single sign-on for your organization.
+                    Users will be able to sign in using their Microsoft work accounts.
+                  </Typography>
+                </Alert>
+
+                <TextField
+                  fullWidth
+                  label="Azure Tenant ID"
+                  placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                  margin="normal"
+                  helperText="Your Azure Active Directory tenant ID"
+                />
+
+                <TextField
+                  fullWidth
+                  label="Application (Client) ID"
+                  placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                  margin="normal"
+                  helperText="The Application ID from your Azure AD app registration"
+                />
+
+                <TextField
+                  fullWidth
+                  label="Client Secret"
+                  type="password"
+                  margin="normal"
+                  helperText="The client secret value (will be stored securely)"
+                />
+
+                <TextField
+                  fullWidth
+                  label="Redirect URI"
+                  defaultValue="http://localhost:3000/auth/callback"
+                  margin="normal"
+                  helperText="Callback URL configured in Azure AD"
+                />
+
+                <Divider sx={{ my: 3 }} />
+
+                <Typography variant="subtitle2" gutterBottom>
+                  User Provisioning
+                </Typography>
+
+                <FormControlLabel
+                  control={<Switch defaultChecked />}
+                  label="Auto-provision new users on first login"
+                />
+
+                <TextField
+                  select
+                  fullWidth
+                  label="Default Role for New Users"
+                  defaultValue="viewer"
+                  margin="normal"
+                >
+                  <MenuItem value="admin">Admin</MenuItem>
+                  <MenuItem value="manager">Manager</MenuItem>
+                  <MenuItem value="analyst">Analyst</MenuItem>
+                  <MenuItem value="viewer">Viewer</MenuItem>
+                </TextField>
+
+                <TextField
+                  fullWidth
+                  label="Allowed Email Domains (comma-separated)"
+                  placeholder="company.com, subsidiary.com"
+                  margin="normal"
+                  helperText="Leave empty to allow all domains from your Azure AD"
+                />
+
+                <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
+                  <Button variant="contained">Test SSO Configuration</Button>
+                  <Button variant="contained" color="secondary">
+                    Save SSO Settings
+                  </Button>
+                  <Button variant="outlined">View SSO Logs</Button>
+                </Box>
+
+                <Alert severity="warning" sx={{ mt: 2 }}>
+                  <Typography variant="body2">
+                    <strong>Important:</strong> Ensure that the Redirect URI is correctly configured in your
+                    Azure AD app registration. Test the configuration before enabling SSO for all users.
+                  </Typography>
+                </Alert>
+              </Box>
+            )}
+          </CardContent>
+        </Card>
+      </TabPanel>
+
+      {/* Themes Tab */}
+      <TabPanel value={tabValue} index={5}>
         <Typography variant="h6" gutterBottom>Theme Settings</Typography>
         
         <Grid container spacing={2} sx={{ mt: 2 }}>
