@@ -508,6 +508,42 @@ const documentationSections: DocSection[] = [
       },
     ],
   },
+  {
+    id: 'phase6',
+    title: 'Phase 6: Real-Time Carbon Operations Center',
+    icon: <DashboardIcon />,
+    content: 'The Real-Time Carbon Operations Center provides comprehensive live monitoring, command center capabilities, and operational intelligence for managing carbon emissions across your organization.',
+    subsections: [
+      {
+        title: 'Live Monitoring Dashboard',
+        content: 'Real-time data streaming with sub-second updates provides continuous visibility into emissions performance. The dashboard integrates with SCADA systems, IoT sensors, and smart meters to capture live operational data. A real-time calculation engine processes incoming data streams to compute emissions on-the-fly, with automatic aggregation across organizational hierarchies from individual assets up to enterprise level.',
+      },
+      {
+        title: 'Visual Command Center',
+        content: 'Large-screen displays optimized for operations centers provide at-a-glance visibility. Customize layouts for different operational roles including plant managers, sustainability teams, and executives. Geographic heat maps show emission intensity across facilities, with drill-down capabilities from enterprise level to regional, facility, and individual asset levels. Interactive visualizations allow operators to quickly identify issues and opportunities.',
+      },
+      {
+        title: 'Carbon Traffic Light System',
+        content: 'Green/Yellow/Red indicators provide instant status visibility for emission performance across all operational levels. Configure thresholds based on targets, budgets, and historical performance to match your organization\'s goals. Trending indicators show performance direction (improving, stable, or declining). The system integrates with existing operational dashboards for seamless adoption.',
+      },
+      {
+        title: 'Smart Process Monitoring',
+        content: 'Real-time calculation of emission factors adapts to current operational conditions such as temperature, pressure, and equipment efficiency. The system provides process optimization recommendations based on carbon efficiency analysis. Integration with maintenance management systems enables carbon-optimized maintenance scheduling. Energy optimization suggestions are based on carbon intensity forecasts from grid operators.',
+      },
+      {
+        title: 'Automated Response Systems',
+        content: 'Trigger predefined actions automatically when emission thresholds are exceeded, reducing response time. Integration with building management systems enables automatic efficiency adjustments like HVAC optimization and lighting control. Alert dispatching to mobile devices ensures immediate response from responsible personnel. Work order system integration creates corrective action tasks automatically.',
+      },
+      {
+        title: '24/7 Operations Center Support',
+        content: 'The system supports continuous monitoring and incident response for enterprise operations centers. Global time zone management coordinates monitoring across international operations. Carbon events integrate with enterprise incident response systems for unified incident management. Real-time KPI tracking integrates with operational excellence programs to ensure carbon performance aligns with overall operational goals.',
+      },
+      {
+        title: 'Theme Customization',
+        content: 'GGAS supports three theme modes for optimal viewing in different environments: Light Theme for standard office environments, Dark Theme for operations centers and low-light conditions, and System Default which automatically matches your computer\'s theme preference. Change your theme in Settings → Appearance. The theme preference is saved and persists across sessions.',
+      },
+    ],
+  },
 ];
 
 const DocumentationPage: React.FC = () => {

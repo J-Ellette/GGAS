@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -49,6 +47,7 @@ import TargetManagementPage from './pages/TargetManagementPage';
 import MultiEntityPage from './pages/MultiEntityPage';
 import Phase4Page from './pages/Phase4Page';
 import Phase5Page from './pages/Phase5Page';
+import Phase6Page from './pages/Phase6Page';
 import AdminPanel from './pages/AdminPanel';
 import DocumentationPage from './pages/DocumentationPage';
 import CarbonCopilotPage from './pages/CarbonCopilotPage';
@@ -59,18 +58,6 @@ import LicenseKeyDialog from './components/LicenseKeyDialog';
 import SystemNotificationBanner, { SystemNotification } from './components/SystemNotificationBanner';
 
 const drawerWidth = 280;
-
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#2e7d32',
-    },
-    secondary: {
-      main: '#1976d2',
-    },
-  },
-});
 
 type PageType = 
   | 'dashboard' 
@@ -87,6 +74,7 @@ type PageType =
   | 'multi-entity'
   | 'phase4'
   | 'phase5'
+  | 'phase6'
   | 'admin'
   | 'settings'
   | 'documentation'
@@ -135,13 +123,10 @@ const App: React.FC = () => {
 
   if (showLicenseDialog && !licenseValidated) {
     return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <LicenseKeyDialog 
-          onLicenseValid={handleLicenseValid}
-          onAdminAccess={handleAdminAccess}
-        />
-      </ThemeProvider>
+      <LicenseKeyDialog 
+        onLicenseValid={handleLicenseValid}
+        onAdminAccess={handleAdminAccess}
+      />
     );
   }
 
@@ -175,6 +160,8 @@ const App: React.FC = () => {
         return <Phase4Page />;
       case 'phase5':
         return <Phase5Page />;
+      case 'phase6':
+        return <Phase6Page />;
       case 'admin':
         return <AdminPanel />;
       case 'documentation':
@@ -193,8 +180,6 @@ const App: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
       <Box sx={{ display: 'flex' }}>
         <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
           <SystemNotificationBanner 
@@ -362,6 +347,14 @@ const App: React.FC = () => {
                   <ListItemText primary="Predictive Intelligence" />
                 </ListItemButton>
               </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'phase6'} onClick={() => setCurrentPage('phase6')}>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Operations Center" />
+                </ListItemButton>
+              </ListItem>
             </List>
 
             <Divider />
@@ -414,7 +407,6 @@ const App: React.FC = () => {
           {renderPage()}
         </Box>
       </Box>
-    </ThemeProvider>
   );
 };
 

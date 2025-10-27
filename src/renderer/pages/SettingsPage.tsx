@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme as useAppTheme } from '../contexts/ThemeContext';
 import {
   Box,
   Typography,
@@ -110,6 +111,7 @@ interface ActiveSession {
 }
 
 const SettingsPage: React.FC = () => {
+  const { themeMode, setThemeMode } = useAppTheme();
   const [tabValue, setTabValue] = useState(0);
   const [saveSuccess, setSaveSuccess] = useState(false);
   
@@ -166,8 +168,7 @@ const SettingsPage: React.FC = () => {
   const [chartType, setChartType] = useState('line');
   const [widgetDensity, setWidgetDensity] = useState(2);
 
-  // Theme and Layout
-  const [theme, setTheme] = useState('light');
+  // Theme and Layout (fontSize, layout options)
   const [fontSize, setFontSize] = useState(14);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [compactMode, setCompactMode] = useState(false);
@@ -624,12 +625,15 @@ const SettingsPage: React.FC = () => {
             <Grid item xs={12} md={6}>
               <Typography variant="h6" gutterBottom>Theme</Typography>
               <FormControl component="fieldset">
-                <RadioGroup value={theme} onChange={(e) => setTheme(e.target.value)}>
+                <RadioGroup value={themeMode} onChange={(e) => setThemeMode(e.target.value as 'light' | 'dark' | 'system')}>
                   <FormControlLabel value="light" control={<Radio />} label="Light Mode" />
                   <FormControlLabel value="dark" control={<Radio />} label="Dark Mode" />
-                  <FormControlLabel value="auto" control={<Radio />} label="Auto (System Default)" />
+                  <FormControlLabel value="system" control={<Radio />} label="System Default (Auto)" />
                 </RadioGroup>
               </FormControl>
+              <Alert severity="info" sx={{ mt: 2 }}>
+                System Default will automatically match your operating system's theme preference (light or dark mode).
+              </Alert>
 
               <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>Font Size</Typography>
               <Slider
