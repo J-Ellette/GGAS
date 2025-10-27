@@ -675,6 +675,231 @@ export interface EncryptionKey {
   updatedAt?: string;
 }
 
+// ===============================================
+// Phase 8: Autonomous Data Collection
+// ===============================================
+
+// Document Processing
+export interface DocumentTemplate {
+  id?: number;
+  templateName: string;
+  documentType: string; // 'utility_bill', 'invoice', 'report', 'travel_receipt'
+  recognitionRules?: string; // JSON of AI recognition rules
+  fieldMappings?: string; // JSON mapping document fields to system fields
+  confidence: number; // 0-1 learning confidence
+  usageCount: number;
+  lastUsed?: string;
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface DocumentProcessing {
+  id?: number;
+  documentName: string;
+  documentType: string;
+  fileFormat: string; // 'pdf', 'excel', 'word', 'image', 'email'
+  fileSize: number; // bytes
+  uploadDate: string;
+  processingStatus: string; // 'pending', 'processing', 'completed', 'error'
+  ocrAccuracy?: number; // 0-100
+  extractedData?: string; // JSON of extracted fields
+  validationStatus: string; // 'pending', 'validated', 'flagged'
+  flaggedReason?: string;
+  templateId?: number;
+  metadata?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface OCRJob {
+  id?: number;
+  documentId: number;
+  ocrEngine: string; // 'tesseract', 'google_vision', 'azure_cognitive'
+  language: string;
+  accuracy: number; // 0-100
+  processingTime: number; // milliseconds
+  textContent?: string;
+  structuredData?: string; // JSON of extracted structured data
+  confidence: number; // 0-1
+  status: string; // 'queued', 'processing', 'completed', 'failed'
+  errorMessage?: string;
+  createdAt?: string;
+  completedAt?: string;
+}
+
+// Email Intelligence
+export interface EmailMonitor {
+  id?: number;
+  accountName: string;
+  emailAddress: string;
+  protocol: string; // 'imap', 'pop3', 'exchange'
+  serverConfig?: string; // JSON of connection config
+  monitoringRules?: string; // JSON of filtering rules
+  categoryFilters?: string; // JSON array of emission categories
+  isActive: boolean;
+  lastChecked?: string;
+  messagesProcessed: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface EmailAttachment {
+  id?: number;
+  emailId: number;
+  fileName: string;
+  fileType: string;
+  fileSize: number;
+  processingStatus: string; // 'pending', 'processing', 'completed', 'error'
+  documentId?: number; // Link to DocumentProcessing
+  extractedData?: string;
+  createdAt?: string;
+}
+
+export interface EmailCategorization {
+  id?: number;
+  emailId: number;
+  category: string; // emission category
+  urgency: string; // 'low', 'medium', 'high', 'critical'
+  confidence: number; // 0-1
+  keywords?: string; // JSON array of matched keywords
+  requiresApproval: boolean;
+  approvalStatus?: string; // 'pending', 'approved', 'rejected'
+  assignedTo?: number; // user ID
+  createdAt?: string;
+}
+
+// Browser Extension
+export interface BrowserCapture {
+  id?: number;
+  captureType: string; // 'travel_booking', 'supplier_data', 'manual_capture'
+  sourceUrl: string;
+  websiteName: string;
+  capturedData?: string; // JSON of captured data
+  dataCategory: string; // emission category
+  captureDate: string;
+  userId: number;
+  processingStatus: string; // 'captured', 'processing', 'imported'
+  validationStatus: string;
+  metadata?: string;
+  createdAt?: string;
+}
+
+export interface TravelBooking {
+  id?: number;
+  bookingReference: string;
+  travelType: string; // 'flight', 'train', 'hotel', 'car_rental'
+  origin?: string;
+  destination?: string;
+  travelDate: string;
+  distance?: number;
+  emissionEstimate?: number;
+  capturedData?: string; // JSON of full booking details
+  importedToActivity: boolean;
+  activityDataId?: number;
+  createdAt?: string;
+}
+
+// Security & Compliance
+export interface DataPrivacyConfig {
+  id?: number;
+  configName: string;
+  complianceFramework: string; // 'GDPR', 'CCPA', 'HIPAA'
+  consentRequired: boolean;
+  dataRetentionDays: number;
+  anonymizationRules?: string; // JSON
+  encryptionRequired: boolean;
+  geographicRestrictions?: string; // JSON of allowed regions
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface AuditLog {
+  id?: number;
+  eventType: string; // 'data_access', 'document_processed', 'email_monitored'
+  userId?: number;
+  resourceType: string;
+  resourceId: number;
+  action: string;
+  ipAddress?: string;
+  userAgent?: string;
+  result: string; // 'success', 'failure', 'blocked'
+  details?: string; // JSON
+  timestamp: string;
+  createdAt?: string;
+}
+
+export interface ApprovalWorkflow {
+  id?: number;
+  workflowName: string;
+  workflowType: string; // 'document_approval', 'email_data', 'browser_capture'
+  approvalSteps?: string; // JSON array of approval stages
+  currentStep: number;
+  status: string; // 'pending', 'in_progress', 'approved', 'rejected'
+  requesterId: number;
+  approverId?: number;
+  dataReference?: string; // JSON with type and ID
+  priority: string; // 'low', 'normal', 'high'
+  dueDate?: string;
+  comments?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+// Maximo Integration
+export interface MaximoConfig {
+  id?: number;
+  instanceName: string;
+  serverUrl: string;
+  apiKey?: string;
+  authenticationType: string; // 'basic', 'oauth', 'api_key'
+  syncSchedule?: string; // cron expression
+  assetCategories?: string; // JSON array of asset types to sync
+  mappingRules?: string; // JSON of field mappings
+  isActive: boolean;
+  lastSyncTime?: string;
+  lastSyncStatus?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface MaximoAsset {
+  id?: number;
+  assetNumber: string;
+  assetDescription: string;
+  assetType: string;
+  location?: string;
+  manufacturer?: string;
+  model?: string;
+  serialNumber?: string;
+  emissionSource?: string;
+  emissionFactor?: number;
+  operatingHours?: number;
+  fuelConsumption?: number;
+  lastMaintenanceDate?: string;
+  syncedAt: string;
+  maximoData?: string; // JSON of full Maximo record
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+// Microsoft SSO
+export interface MicrosoftSSOConfig {
+  id?: number;
+  tenantId: string;
+  clientId: string;
+  clientSecret?: string;
+  redirectUri: string;
+  isEnabled: boolean;
+  autoProvisionUsers: boolean;
+  defaultRoleId?: number;
+  allowedDomains?: string; // JSON array of allowed email domains
+  lastConfigUpdate?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface ElectronAPI {
   // Phase 1 APIs
   createActivityData: (data: ActivityData) => Promise<ActivityData>;
@@ -953,6 +1178,94 @@ export interface ElectronAPI {
   createMLTrainingDataset: (data: any) => Promise<any>;
   listMLTrainingDatasets: (filters?: any) => Promise<any[]>;
   getModelPerformanceMetrics: (modelId?: number) => Promise<any[]>;
+
+  // ===============================================
+  // Phase 8: Autonomous Data Collection APIs
+  // ===============================================
+
+  // Document Processing APIs
+  createDocumentTemplate: (data: DocumentTemplate) => Promise<DocumentTemplate>;
+  listDocumentTemplates: (filters?: any) => Promise<DocumentTemplate[]>;
+  updateDocumentTemplate: (id: number, data: Partial<DocumentTemplate>) => Promise<DocumentTemplate>;
+  deleteDocumentTemplate: (id: number) => Promise<boolean>;
+  trainTemplateRecognition: (templateId: number, samples: any[]) => Promise<{ success: boolean; confidence: number }>;
+  
+  uploadDocument: (file: any, metadata?: any) => Promise<DocumentProcessing>;
+  listDocuments: (filters?: any) => Promise<DocumentProcessing[]>;
+  getDocument: (id: number) => Promise<DocumentProcessing>;
+  processDocument: (id: number, options?: any) => Promise<{ success: boolean; extractedData: any }>;
+  validateDocumentData: (id: number) => Promise<{ valid: boolean; issues: string[] }>;
+  flagDocument: (id: number, reason: string) => Promise<boolean>;
+  approveDocument: (id: number) => Promise<boolean>;
+
+  createOCRJob: (documentId: number, options?: any) => Promise<OCRJob>;
+  listOCRJobs: (filters?: any) => Promise<OCRJob[]>;
+  getOCRJobStatus: (id: number) => Promise<OCRJob>;
+  cancelOCRJob: (id: number) => Promise<boolean>;
+  batchProcessOCR: (documentIds: number[], options?: any) => Promise<{ jobIds: number[]; queuedCount: number }>;
+
+  // Email Intelligence APIs
+  createEmailMonitor: (data: EmailMonitor) => Promise<EmailMonitor>;
+  listEmailMonitors: (filters?: any) => Promise<EmailMonitor[]>;
+  updateEmailMonitor: (id: number, data: Partial<EmailMonitor>) => Promise<EmailMonitor>;
+  deleteEmailMonitor: (id: number) => Promise<boolean>;
+  testEmailConnection: (id: number) => Promise<{ success: boolean; message: string }>;
+  checkEmailMonitor: (id: number) => Promise<{ newMessages: number; processed: number }>;
+
+  listEmailAttachments: (emailId?: number, filters?: any) => Promise<EmailAttachment[]>;
+  processEmailAttachment: (id: number) => Promise<{ success: boolean; documentId: number }>;
+
+  categorizeEmail: (emailId: number) => Promise<EmailCategorization>;
+  listEmailCategorizations: (filters?: any) => Promise<EmailCategorization[]>;
+  updateEmailCategorization: (id: number, data: Partial<EmailCategorization>) => Promise<EmailCategorization>;
+
+  // Browser Extension APIs
+  createBrowserCapture: (data: BrowserCapture) => Promise<BrowserCapture>;
+  listBrowserCaptures: (filters?: any) => Promise<BrowserCapture[]>;
+  processBrowserCapture: (id: number) => Promise<{ success: boolean; activityDataId?: number }>;
+  deleteBrowserCapture: (id: number) => Promise<boolean>;
+
+  createTravelBooking: (data: TravelBooking) => Promise<TravelBooking>;
+  listTravelBookings: (filters?: any) => Promise<TravelBooking[]>;
+  importTravelBooking: (id: number) => Promise<{ success: boolean; activityDataId: number }>;
+  calculateTravelEmissions: (id: number) => Promise<{ emissions: number; unit: string }>;
+
+  // Security & Compliance APIs
+  createDataPrivacyConfig: (data: DataPrivacyConfig) => Promise<DataPrivacyConfig>;
+  listDataPrivacyConfigs: () => Promise<DataPrivacyConfig[]>;
+  updateDataPrivacyConfig: (id: number, data: Partial<DataPrivacyConfig>) => Promise<DataPrivacyConfig>;
+  deleteDataPrivacyConfig: (id: number) => Promise<boolean>;
+  checkComplianceStatus: (framework: string) => Promise<{ compliant: boolean; issues: string[] }>;
+
+  listAuditLogs: (filters?: any) => Promise<AuditLog[]>;
+  exportAuditLogs: (filters?: any, format?: string) => Promise<string>;
+  getAuditLogStats: (timeRange?: any) => Promise<any>;
+
+  createApprovalWorkflow: (data: ApprovalWorkflow) => Promise<ApprovalWorkflow>;
+  listApprovalWorkflows: (filters?: any) => Promise<ApprovalWorkflow[]>;
+  updateApprovalWorkflow: (id: number, data: Partial<ApprovalWorkflow>) => Promise<ApprovalWorkflow>;
+  approveWorkflow: (id: number, comments?: string) => Promise<boolean>;
+  rejectWorkflow: (id: number, comments: string) => Promise<boolean>;
+
+  // Maximo Integration APIs
+  createMaximoConfig: (data: MaximoConfig) => Promise<MaximoConfig>;
+  getMaximoConfig: () => Promise<MaximoConfig | null>;
+  updateMaximoConfig: (id: number, data: Partial<MaximoConfig>) => Promise<MaximoConfig>;
+  deleteMaximoConfig: (id: number) => Promise<boolean>;
+  testMaximoConnection: (id: number) => Promise<{ success: boolean; message: string; version?: string }>;
+  syncMaximoAssets: (configId: number) => Promise<{ success: boolean; assetsImported: number }>;
+
+  listMaximoAssets: (filters?: any) => Promise<MaximoAsset[]>;
+  getMaximoAsset: (id: number) => Promise<MaximoAsset>;
+  linkAssetToEmissionSource: (assetId: number, emissionSourceId: number) => Promise<boolean>;
+
+  // Microsoft SSO APIs
+  createMicrosoftSSOConfig: (data: MicrosoftSSOConfig) => Promise<MicrosoftSSOConfig>;
+  getMicrosoftSSOConfig: () => Promise<MicrosoftSSOConfig | null>;
+  updateMicrosoftSSOConfig: (id: number, data: Partial<MicrosoftSSOConfig>) => Promise<MicrosoftSSOConfig>;
+  deleteMicrosoftSSOConfig: (id: number) => Promise<boolean>;
+  testMicrosoftSSOConnection: (id: number) => Promise<{ success: boolean; message: string }>;
+  enableMicrosoftSSO: (id: number, enabled: boolean) => Promise<boolean>;
 }
 
 declare global {
