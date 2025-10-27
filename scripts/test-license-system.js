@@ -4,11 +4,13 @@
  * Test License System
  * 
  * Tests the license key generation and validation system
+ * Note: This is a standalone Node.js test script with duplicated logic
+ * from LicenseKeyGenerator.ts to avoid TypeScript compilation requirements.
  */
 
 const crypto = require('crypto');
 
-// Import the generator logic (simplified copy for testing)
+// Duplicated LicenseKeyGenerator logic for testing without TypeScript compilation
 class LicenseKeyGenerator {
   static PRODUCT_CODE = 'GG';
   static VERSION_CODE = '01';

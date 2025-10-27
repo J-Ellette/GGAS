@@ -96,7 +96,8 @@ npm run test-license-system
 ## Integration Example
 
 ```typescript
-import { LicenseManager, FeatureGate } from './src/common/license';
+// In renderer process (React components)
+import { LicenseManager, FeatureGate } from '../../common/license';
 
 // Create manager
 const manager = new LicenseManager();
