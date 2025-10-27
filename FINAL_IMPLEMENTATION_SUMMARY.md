@@ -231,6 +231,15 @@ Successfully implemented comprehensive rebranding and admin panel system for the
 
 ## Demo Credentials Reference
 
+> 🚨 **CRITICAL SECURITY WARNING**  
+> **These credentials are PUBLIC and for DEMO/TESTING ONLY!**  
+> 
+> - These credentials are published in public documentation
+> - They MUST NOT be used in any production environment
+> - They MUST be changed immediately after first deployment
+> - Failure to change these credentials is a CRITICAL SECURITY RISK
+> - See SECURITY.md for production deployment requirements
+
 ### License Key
 ```
 GCGGAS-2024-DEMO-KEY1
@@ -242,7 +251,9 @@ Username: OKE03955
 Password: 8675309Jenny!
 ```
 
-> ⚠️ **IMPORTANT**: These are demo credentials for testing only. Production deployments MUST change these credentials immediately.
+**Purpose:** These credentials are intentionally simple for demo and testing purposes only. They allow developers and testers to quickly access the application features without complex setup.
+
+**Production Action Required:** Before any production deployment, these credentials MUST be replaced with secure, unique credentials following the guidelines in SECURITY.md.
 
 ---
 

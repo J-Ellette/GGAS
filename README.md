@@ -1,5 +1,7 @@
 # Green Country: Greenhouse Gas Accounting Software
 
+> 🔐 **SECURITY NOTICE**: This repository contains demo credentials in documentation for testing purposes. These credentials are PUBLIC and must NEVER be used in production. See [SECURITY.md](SECURITY.md) for production deployment requirements.
+
 A comprehensive desktop application for measuring, monitoring, managing, and reporting greenhouse gas emissions across all operational scopes.
 
 ## Overview
