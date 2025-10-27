@@ -65,12 +65,52 @@ Live monitoring, command center capabilities, carbon traffic light system, autom
 ### Note: Phase 7 & 8
 Phase 7 (Universal Carbon Connector) and Phase 8 (Autonomous Data Collection) features are documented in the Documentation panel but their completion summaries are not yet available in separate files.
 
-### ✅ Phase 9: Blockchain Carbon Ledger (COMPLETE - LATEST)
+### ✅ Phase 9: Blockchain Carbon Ledger (COMPLETE)
 Immutable emission records, carbon credit & offset management, supply chain transparency, and enterprise blockchain implementation.
+
+### Note: Phase 10 & 11
+Phase 10 (Carbon Intelligence Engine) and Phase 11 (Supply Chain Carbon X-Ray) features are documented in the Documentation panel with complete implementation summaries available.
+
+### ✅ Phase 12: Product Carbon Lifecycle Engine (COMPLETE - LATEST)
+Automated LCA calculations, carbon labeling system, design optimization, circular economy integration, and enterprise product carbon management.
 
 ---
 
-## Phase 9 Features (Latest)
+## Phase 12 Features (Latest)
+
+### 12.1 Automated LCA Calculations ✅
+- **Cradle-to-Grave Analysis**: Complete lifecycle assessment from raw materials to end-of-life
+- **Database Integration**: Integration with major LCA databases (ecoinvent, GaBi, IDEMAT)
+- **Rapid Assessment Tools**: Quick carbon footprint estimation for product development
+- **Industry-specific Methodologies**: Specialized LCA approaches for different product categories
+
+### 12.2 Carbon Labeling System ✅
+- **Automated Label Generation**: Create standardized carbon labels for products
+- **EPD Generation**: Environmental Product Declaration creation and management
+- **Regulatory Compliance**: Ensure labels meet regional requirements (EU Carbon Border Adjustment, etc.)
+- **Consumer Communication**: Consumer-friendly carbon impact communication tools
+
+### 12.3 Design Optimization ✅
+- **Material Selection**: Recommend lower-carbon materials and components
+- **Design for Disassembly**: Optimize product design for end-of-life carbon impact
+- **Manufacturing Process Optimization**: Suggest process improvements for carbon reduction
+- **Packaging Optimization**: Minimize packaging carbon footprint
+
+### 12.4 Circular Economy Integration ✅
+- **Circularity Metrics**: Track and optimize for circular economy indicators
+- **Take-back Program Management**: Manage product take-back and recycling programs
+- **Material Flow Analysis**: Track material flows through circular business models
+- **Secondary Market Integration**: Connect products with secondary markets and reuse opportunities
+
+### 12.5 Enterprise Implementation ✅
+- **Portfolio Management**: Manage carbon footprints across entire product portfolios
+- **R&D Integration**: Integrate with product development and innovation processes
+- **Marketing Integration**: Support marketing teams with carbon impact data
+- **Regulatory Tracking**: Monitor evolving product carbon regulations globally
+
+---
+
+## Phase 9 Features
 
 ### 9.1 Immutable Emission Records ✅
 - **Distributed Ledger Architecture**: Private blockchain network for emission data integrity
@@ -469,6 +509,18 @@ All data is stored locally in SQLite database at:
 6. **Enterprise Setup**: Review permissioned networks, interoperability, and compliance frameworks
 7. **Implementation**: Follow the getting started guide for blockchain deployment
 
+## Phase 12 Usage
+
+### Product Carbon Lifecycle Engine
+1. Navigate to "Documentation" in the main menu
+2. Select "Phase 12: Product Carbon Lifecycle Engine" from the documentation list
+3. **LCA Calculations**: Learn about automated cradle-to-grave analysis and database integration (ecoinvent, GaBi, IDEMAT)
+4. **Carbon Labeling**: Create standardized carbon labels, EPDs, and ensure regulatory compliance
+5. **Design Optimization**: Optimize material selection, design for disassembly, manufacturing processes, and packaging
+6. **Circular Economy**: Implement circularity metrics, take-back programs, material flow analysis, and secondary market integration
+7. **Enterprise Features**: Manage product portfolios, integrate with R&D, support marketing, and track regulations
+8. **Getting Started**: Follow the comprehensive setup guide for product carbon lifecycle management
+
 ## Future Enhancements
 
 ### Potential Future Features
@@ -493,7 +545,9 @@ All data is stored locally in SQLite database at:
 - **PHASE4_COMPLETE.md**: Phase 4 implementation details
 - **PHASE5_COMPLETE.md**: Phase 5 implementation details
 - **PHASE6_COMPLETE.md**: Phase 6 implementation details
-- **PHASE9_COMPLETE.md**: Phase 9 implementation details (latest)
+- **PHASE9_COMPLETE.md**: Phase 9 implementation details
+- **PHASE10_COMPLETE.md**: Phase 10 implementation details
+- **PHASE12_COMPLETE.md**: Phase 12 implementation details (latest)
 - **buildsheet.md**: Complete system specification
 - **docs/USER_GUIDE.md**: Detailed user guide
 - **docs/TECHNICAL.md**: Technical architecture
