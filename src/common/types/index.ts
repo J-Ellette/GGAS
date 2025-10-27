@@ -900,6 +900,59 @@ export interface ElectronAPI {
   createEncryptionKey: (data: EncryptionKey) => Promise<EncryptionKey>;
   rotateEncryptionKey: (id: number) => Promise<{ success: boolean; newKeyId: number }>;
   testQuantumResistance: (keyId: number) => Promise<{ resistant: boolean; algorithm: string; recommendation: string }>;
+
+  // ===============================================
+  // Phase 5: Predictive Carbon Intelligence APIs
+  // ===============================================
+
+  // Phase 5.1: Advanced Forecasting Engine
+  createEmissionForecast: (data: any) => Promise<any>;
+  listEmissionForecasts: (filters?: any) => Promise<any[]>;
+  getEmissionForecast: (id: number) => Promise<any>;
+  updateEmissionForecast: (id: number, data: any) => Promise<any>;
+  createForecastingFactor: (data: any) => Promise<any>;
+  listForecastingFactors: (filters?: any) => Promise<any[]>;
+  runMultiFactorForecast: (params: any) => Promise<any>;
+  trainLSTMModel: (params: any) => Promise<any>;
+
+  // Phase 5.2: Carbon Budget Management
+  createCarbonBudget: (data: any) => Promise<any>;
+  listCarbonBudgets: (filters?: any) => Promise<any[]>;
+  getCarbonBudget: (id: number) => Promise<any>;
+  updateCarbonBudgetConsumption: (id: number, amount: number) => Promise<any>;
+  allocateBudget: (data: any) => Promise<any>;
+  listBudgetAllocations: (budgetId?: number) => Promise<any[]>;
+  optimizeBudgetAllocation: (budgetId: number) => Promise<any>;
+  createBudgetVariance: (data: any) => Promise<any>;
+  listBudgetVariances: (budgetId?: number) => Promise<any[]>;
+
+  // Phase 5.3: Early Warning System
+  createPredictiveAlert: (data: any) => Promise<any>;
+  listPredictiveAlerts: (filters?: any) => Promise<any[]>;
+  acknowledgeAlert: (id: number) => Promise<any>;
+  resolveAlert: (id: number) => Promise<any>;
+  createEarlyWarningTrigger: (data: any) => Promise<any>;
+  listEarlyWarningTriggers: (activeOnly?: boolean) => Promise<any[]>;
+  evaluateWarningTriggers: () => Promise<any>;
+  createActionPlan: (data: any) => Promise<any>;
+  listActionPlans: (filters?: any) => Promise<any[]>;
+  activateActionPlan: (id: number) => Promise<any>;
+
+  // Phase 5.4: Scenario Planning Suite
+  createScenarioSimulation: (data: any) => Promise<any>;
+  listScenarioSimulations: (filters?: any) => Promise<any[]>;
+  runMonteCarloSimulation: (params: any) => Promise<any>;
+  runSensitivityAnalysis: (params: any) => Promise<any>;
+  listSensitivityAnalyses: () => Promise<any[]>;
+
+  // Phase 5.5: Enterprise Features
+  createEnterpriseForecast: (data: any) => Promise<any>;
+  listEnterpriseForecasts: (filters?: any) => Promise<any[]>;
+  publishEnterpriseForecast: (id: number) => Promise<any>;
+  generateExecutiveDashboard: (params?: any) => Promise<any>;
+  createMLTrainingDataset: (data: any) => Promise<any>;
+  listMLTrainingDatasets: (filters?: any) => Promise<any[]>;
+  getModelPerformanceMetrics: (modelId?: number) => Promise<any[]>;
 }
 
 declare global {

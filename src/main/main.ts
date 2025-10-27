@@ -857,4 +857,169 @@ function setupIpcHandlers() {
   ipcMain.handle('encryption-keys:test-quantum-resistance', async (event, keyId) => {
     return databaseService?.testQuantumResistance(keyId);
   });
+
+  // ===============================================
+  // Phase 5: Predictive Carbon Intelligence IPC Handlers
+  // ===============================================
+
+  // Phase 5.1: Advanced Forecasting Engine
+  ipcMain.handle('forecasts:create', async (event, data) => {
+    return databaseService?.createEmissionForecast(data);
+  });
+
+  ipcMain.handle('forecasts:list', async (event, filters) => {
+    return databaseService?.listEmissionForecasts(filters);
+  });
+
+  ipcMain.handle('forecasts:get', async (event, id) => {
+    return databaseService?.getEmissionForecast(id);
+  });
+
+  ipcMain.handle('forecasts:update', async (event, id, data) => {
+    return databaseService?.updateEmissionForecast(id, data);
+  });
+
+  ipcMain.handle('forecasting-factors:create', async (event, data) => {
+    return databaseService?.createForecastingFactor(data);
+  });
+
+  ipcMain.handle('forecasting-factors:list', async (event, filters) => {
+    return databaseService?.listForecastingFactors(filters);
+  });
+
+  ipcMain.handle('forecasts:run-multi-factor', async (event, params) => {
+    return databaseService?.runMultiFactorForecast(params);
+  });
+
+  ipcMain.handle('ml:train-lstm', async (event, params) => {
+    return databaseService?.trainLSTMModel(params);
+  });
+
+  // Phase 5.2: Carbon Budget Management
+  ipcMain.handle('carbon-budgets:create', async (event, data) => {
+    return databaseService?.createCarbonBudget(data);
+  });
+
+  ipcMain.handle('carbon-budgets:list', async (event, filters) => {
+    return databaseService?.listCarbonBudgets(filters);
+  });
+
+  ipcMain.handle('carbon-budgets:get', async (event, id) => {
+    return databaseService?.getCarbonBudget(id);
+  });
+
+  ipcMain.handle('carbon-budgets:update-consumption', async (event, id, amount) => {
+    return databaseService?.updateCarbonBudgetConsumption(id, amount);
+  });
+
+  ipcMain.handle('budget-allocations:create', async (event, data) => {
+    return databaseService?.allocateBudget(data);
+  });
+
+  ipcMain.handle('budget-allocations:list', async (event, budgetId) => {
+    return databaseService?.listBudgetAllocations(budgetId);
+  });
+
+  ipcMain.handle('budget-allocations:optimize', async (event, budgetId) => {
+    return databaseService?.optimizeBudgetAllocation(budgetId);
+  });
+
+  ipcMain.handle('budget-variances:create', async (event, data) => {
+    return databaseService?.createBudgetVariance(data);
+  });
+
+  ipcMain.handle('budget-variances:list', async (event, budgetId) => {
+    return databaseService?.listBudgetVariances(budgetId);
+  });
+
+  // Phase 5.3: Early Warning System
+  ipcMain.handle('predictive-alerts:create', async (event, data) => {
+    return databaseService?.createPredictiveAlert(data);
+  });
+
+  ipcMain.handle('predictive-alerts:list', async (event, filters) => {
+    return databaseService?.listPredictiveAlerts(filters);
+  });
+
+  ipcMain.handle('predictive-alerts:acknowledge', async (event, id) => {
+    return databaseService?.acknowledgeAlert(id);
+  });
+
+  ipcMain.handle('predictive-alerts:resolve', async (event, id) => {
+    return databaseService?.resolveAlert(id);
+  });
+
+  ipcMain.handle('early-warnings:create-trigger', async (event, data) => {
+    return databaseService?.createEarlyWarningTrigger(data);
+  });
+
+  ipcMain.handle('early-warnings:list-triggers', async (event, activeOnly) => {
+    return databaseService?.listEarlyWarningTriggers(activeOnly);
+  });
+
+  ipcMain.handle('early-warnings:evaluate', async () => {
+    return databaseService?.evaluateWarningTriggers();
+  });
+
+  ipcMain.handle('action-plans:create', async (event, data) => {
+    return databaseService?.createActionPlan(data);
+  });
+
+  ipcMain.handle('action-plans:list', async (event, filters) => {
+    return databaseService?.listActionPlans(filters);
+  });
+
+  ipcMain.handle('action-plans:activate', async (event, id) => {
+    return databaseService?.activateActionPlan(id);
+  });
+
+  // Phase 5.4: Scenario Planning Suite
+  ipcMain.handle('scenarios:create', async (event, data) => {
+    return databaseService?.createScenarioSimulation(data);
+  });
+
+  ipcMain.handle('scenarios:list', async (event, filters) => {
+    return databaseService?.listScenarioSimulations(filters);
+  });
+
+  ipcMain.handle('scenarios:run-monte-carlo', async (event, params) => {
+    return databaseService?.runMonteCarloSimulation(params);
+  });
+
+  ipcMain.handle('sensitivity-analysis:run', async (event, params) => {
+    return databaseService?.runSensitivityAnalysis(params);
+  });
+
+  ipcMain.handle('sensitivity-analysis:list', async () => {
+    return databaseService?.listSensitivityAnalyses();
+  });
+
+  // Phase 5.5: Enterprise Features
+  ipcMain.handle('enterprise-forecasts:create', async (event, data) => {
+    return databaseService?.createEnterpriseForecast(data);
+  });
+
+  ipcMain.handle('enterprise-forecasts:list', async (event, filters) => {
+    return databaseService?.listEnterpriseForecasts(filters);
+  });
+
+  ipcMain.handle('enterprise-forecasts:publish', async (event, id) => {
+    return databaseService?.publishEnterpriseForecast(id);
+  });
+
+  ipcMain.handle('executive-dashboard:generate', async (event, params) => {
+    return databaseService?.generateExecutiveDashboard(params);
+  });
+
+  ipcMain.handle('ml-training-data:create', async (event, data) => {
+    return databaseService?.createMLTrainingDataset(data);
+  });
+
+  ipcMain.handle('ml-training-data:list', async (event, filters) => {
+    return databaseService?.listMLTrainingDatasets(filters);
+  });
+
+  ipcMain.handle('model-performance:get', async (event, modelId) => {
+    return databaseService?.getModelPerformanceMetrics(modelId);
+  });
 }
