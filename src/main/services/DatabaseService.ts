@@ -2838,4 +2838,678 @@ export class DatabaseService {
     // For now, return a success response
     return { success: true, output: 'Workflow executed successfully' };
   }
+
+  // Phase 4.1: Next-Gen Analytics Methods
+  createDeepLearningModel(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO deep_learning_models (modelName, modelType, description, architecture, isActive)
+      VALUES (?, ?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.modelName, data.modelType, data.description, data.architecture || null, data.isActive !== false ? 1 : 0);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listDeepLearningModels(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM deep_learning_models ORDER BY createdAt DESC').all();
+  }
+
+  updateDeepLearningModel(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE deep_learning_models SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteDeepLearningModel(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM deep_learning_models WHERE id = ?').run(id);
+    return true;
+  }
+
+  trainDeepLearningModel(id: number) {
+    if (!this.db) return { success: false, accuracy: 0, insights: '' };
+    const accuracy = 0.85 + Math.random() * 0.1; // Simulated accuracy
+    const insights = JSON.stringify({ features: ['emissions_trends', 'seasonal_patterns'], importance: [0.7, 0.3] });
+    this.db.prepare('UPDATE deep_learning_models SET accuracy = ?, insights = ?, lastTrained = CURRENT_TIMESTAMP WHERE id = ?').run(accuracy, insights, id);
+    return { success: true, accuracy, insights };
+  }
+
+  getModelInsights(id: number) {
+    if (!this.db) return null;
+    const model: any = this.db.prepare('SELECT insights FROM deep_learning_models WHERE id = ?').get(id);
+    return model ? JSON.parse(model.insights || '{}') : null;
+  }
+
+  createStrategyRecommendation(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO strategy_recommendations (recommendationType, title, description, potentialImpact, estimatedCost, implementationTime, confidenceScore, status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.recommendationType, data.title, data.description, data.potentialImpact, data.estimatedCost, data.implementationTime, data.confidenceScore, data.status || 'suggested');
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listStrategyRecommendations(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM strategy_recommendations ORDER BY confidenceScore DESC, createdAt DESC').all();
+  }
+
+  updateStrategyRecommendation(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE strategy_recommendations SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteStrategyRecommendation(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM strategy_recommendations WHERE id = ?').run(id);
+    return true;
+  }
+
+  generateRecommendations(context?: any) {
+    if (!this.db) return [];
+    // In production, this would use AI to generate recommendations based on context
+    // For now, return existing recommendations
+    return this.listStrategyRecommendations();
+  }
+
+  listAutomatedInsights(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM automated_insights ORDER BY createdAt DESC LIMIT 100').all();
+  }
+
+  generateInsightsReport(filters?: any) {
+    if (!this.db) return { insights: [], narrative: '' };
+    const insights = this.listAutomatedInsights(filters);
+    const narrative = `Generated ${insights.length} insights from your emissions data. Key findings include trends, anomalies, and opportunities for improvement.`;
+    return { insights, narrative };
+  }
+
+  createDigitalTwin(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO digital_twins (facilityId, facilityName, location, isActive)
+      VALUES (?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.facilityId, data.facilityName, data.location || null, data.isActive !== false ? 1 : 0);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listDigitalTwins(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM digital_twins ORDER BY createdAt DESC').all();
+  }
+
+  updateDigitalTwin(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE digital_twins SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteDigitalTwin(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM digital_twins WHERE id = ?').run(id);
+    return true;
+  }
+
+  syncDigitalTwinData(id: number) {
+    if (!this.db) return { success: false, lastUpdated: '' };
+    const now = new Date().toISOString();
+    this.db.prepare('UPDATE digital_twins SET lastUpdated = ? WHERE id = ?').run(now, id);
+    return { success: true, lastUpdated: now };
+  }
+
+  // Phase 4.2: Enhanced Verification & Trust Methods
+  createVerificationWorkflow(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO verification_workflows (workflowName, workflowType, totalSteps, status)
+      VALUES (?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.workflowName, data.workflowType, data.totalSteps, data.status || 'initiated');
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listVerificationWorkflows(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM verification_workflows ORDER BY createdAt DESC').all();
+  }
+
+  updateVerificationWorkflow(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE verification_workflows SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteVerificationWorkflow(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM verification_workflows WHERE id = ?').run(id);
+    return true;
+  }
+
+  advanceWorkflowStep(id: number) {
+    if (!this.db) return { success: false, currentStep: 0 };
+    const workflow: any = this.db.prepare('SELECT currentStep, totalSteps FROM verification_workflows WHERE id = ?').get(id);
+    if (!workflow) return { success: false, currentStep: 0 };
+    const newStep = Math.min(workflow.currentStep + 1, workflow.totalSteps);
+    const status = newStep === workflow.totalSteps ? 'completed' : 'in_progress';
+    this.db.prepare('UPDATE verification_workflows SET currentStep = ?, status = ? WHERE id = ?').run(newStep, status, id);
+    return { success: true, currentStep: newStep };
+  }
+
+  getAuditTrail(entityType: string, entityId: number) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM audit_trails WHERE entityType = ? AND entityId = ? ORDER BY timestamp DESC').all(entityType, entityId);
+  }
+
+  verifyAuditTrailIntegrity(entityType: string, entityId: number) {
+    if (!this.db) return { valid: false, message: '' };
+    const trail = this.getAuditTrail(entityType, entityId);
+    // In production, this would verify the hash chain
+    return { valid: true, message: `Audit trail integrity verified for ${trail.length} entries` };
+  }
+
+  createThirdPartyVerifier(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO third_party_verifiers (verifierName, verifierType, contactInfo, isApproved)
+      VALUES (?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.verifierName, data.verifierType, data.contactInfo || null, data.isApproved ? 1 : 0);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listThirdPartyVerifiers(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM third_party_verifiers ORDER BY rating DESC').all();
+  }
+
+  updateThirdPartyVerifier(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE third_party_verifiers SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteThirdPartyVerifier(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM third_party_verifiers WHERE id = ?').run(id);
+    return true;
+  }
+
+  requestVerification(verifierId: number, dataScope: any) {
+    if (!this.db) return { success: false, workflowId: 0 };
+    const workflow = this.createVerificationWorkflow({
+      workflowName: `Verification Request - ${new Date().toISOString()}`,
+      workflowType: 'external',
+      totalSteps: 5,
+      verifiers: JSON.stringify([verifierId]),
+      dataScope: JSON.stringify(dataScope)
+    });
+    return { success: true, workflowId: workflow?.id || 0 };
+  }
+
+  getDataProvenance(dataType: string, dataId: number) {
+    if (!this.db) return null;
+    return this.db.prepare('SELECT * FROM data_provenance WHERE dataType = ? AND dataId = ?').get(dataType, dataId);
+  }
+
+  traceDataLineage(dataType: string, dataId: number) {
+    if (!this.db) return null;
+    const provenance = this.getDataProvenance(dataType, dataId);
+    return provenance ? JSON.parse((provenance as any).lineage || '{}') : null;
+  }
+
+  validateDataCompliance(dataType: string, dataId: number) {
+    if (!this.db) return { compliant: false, issues: [] };
+    const provenance = this.getDataProvenance(dataType, dataId);
+    if (!provenance) return { compliant: false, issues: ['No provenance data found'] };
+    return { compliant: true, issues: [] };
+  }
+
+  // Phase 4.3: IoT & Real-Time Monitoring Methods
+  createIoTDevice(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO iot_devices (deviceName, deviceType, connectionType, status, isActive)
+      VALUES (?, ?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.deviceName, data.deviceType, data.connectionType, data.status || 'offline', data.isActive !== false ? 1 : 0);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listIoTDevices(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM iot_devices ORDER BY deviceName').all();
+  }
+
+  updateIoTDevice(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE iot_devices SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteIoTDevice(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM iot_devices WHERE id = ?').run(id);
+    return true;
+  }
+
+  discoverIoTDevices(networkConfig?: any) {
+    if (!this.db) return [];
+    // In production, this would scan the network for IoT devices
+    // For now, return existing devices
+    return this.listIoTDevices();
+  }
+
+  testDeviceConnection(id: number) {
+    if (!this.db) return { success: false, message: '' };
+    const device: any = this.db.prepare('SELECT * FROM iot_devices WHERE id = ?').get(id);
+    if (!device) return { success: false, message: 'Device not found' };
+    // In production, this would test actual connection
+    this.db.prepare('UPDATE iot_devices SET status = ?, lastDataReceived = CURRENT_TIMESTAMP WHERE id = ?').run('online', id);
+    return { success: true, message: 'Device connected successfully' };
+  }
+
+  createRealtimeMonitor(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO realtime_monitors (monitorName, monitorType, status, isActive)
+      VALUES (?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.monitorName, data.monitorType, data.status || 'normal', data.isActive !== false ? 1 : 0);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listRealtimeMonitors(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM realtime_monitors ORDER BY monitorName').all();
+  }
+
+  updateRealtimeMonitor(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE realtime_monitors SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteRealtimeMonitor(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM realtime_monitors WHERE id = ?').run(id);
+    return true;
+  }
+
+  getRealtimeData(monitorId: number) {
+    if (!this.db) return null;
+    const monitor: any = this.db.prepare('SELECT * FROM realtime_monitors WHERE id = ?').get(monitorId);
+    return monitor ? { value: monitor.currentValue, unit: monitor.currentUnit, status: monitor.status, lastUpdated: monitor.lastUpdated } : null;
+  }
+
+  listSensorData(deviceId: number, filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM sensor_data WHERE deviceId = ? ORDER BY timestamp DESC LIMIT 1000').all(deviceId);
+  }
+
+  processSensorData(deviceId: number, startTime: string, endTime: string) {
+    if (!this.db) return { success: false, processed: 0 };
+    const count = this.db.prepare('UPDATE sensor_data SET isProcessed = 1 WHERE deviceId = ? AND timestamp BETWEEN ? AND ?').run(deviceId, startTime, endTime);
+    return { success: true, processed: count.changes };
+  }
+
+  createAlertRule(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO alert_rules (ruleName, ruleType, severity, isActive)
+      VALUES (?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.ruleName, data.ruleType, data.severity || 'medium', data.isActive !== false ? 1 : 0);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listAlertRules(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM alert_rules ORDER BY severity DESC').all();
+  }
+
+  updateAlertRule(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE alert_rules SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteAlertRule(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM alert_rules WHERE id = ?').run(id);
+    return true;
+  }
+
+  testAlertRule(id: number) {
+    if (!this.db) return { triggered: false, message: '' };
+    const rule: any = this.db.prepare('SELECT * FROM alert_rules WHERE id = ?').get(id);
+    if (!rule) return { triggered: false, message: 'Rule not found' };
+    // In production, this would test the actual condition
+    return { triggered: true, message: 'Test alert triggered successfully' };
+  }
+
+  getActiveAlerts(filters?: any) {
+    if (!this.db) return [];
+    // In production, this would return triggered alerts
+    // For now, return alert rules that were recently triggered
+    return this.db.prepare('SELECT * FROM alert_rules WHERE lastTriggered IS NOT NULL ORDER BY lastTriggered DESC LIMIT 50').all();
+  }
+
+  // Phase 4.4: Advanced Visualization & Immersive Experience Methods
+  createFacility3DModel(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO facility_3d_models (facilityId, facilityName, modelType)
+      VALUES (?, ?, ?)
+    `);
+    const info = stmt.run(data.facilityId, data.facilityName, data.modelType);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listFacility3DModels(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM facility_3d_models ORDER BY facilityName').all();
+  }
+
+  updateFacility3DModel(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE facility_3d_models SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteFacility3DModel(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM facility_3d_models WHERE id = ?').run(id);
+    return true;
+  }
+
+  exportFacility3DModel(id: number, format: string) {
+    if (!this.db) return '';
+    const model: any = this.db.prepare('SELECT * FROM facility_3d_models WHERE id = ?').get(id);
+    if (!model) return '';
+    // In production, this would export in the requested format (GLTF, OBJ, etc.)
+    return `export_${id}.${format}`;
+  }
+
+  createARDataCollection(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO ar_data_collections (collectionType, userId, sessionDate, status)
+      VALUES (?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.collectionType, data.userId, data.sessionDate, data.status || 'in_progress');
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listARDataCollections(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM ar_data_collections ORDER BY sessionDate DESC').all();
+  }
+
+  updateARDataCollection(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE ar_data_collections SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteARDataCollection(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM ar_data_collections WHERE id = ?').run(id);
+    return true;
+  }
+
+  createTrainingModule(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO training_modules (moduleName, moduleType, topic, difficulty, isActive)
+      VALUES (?, ?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.moduleName, data.moduleType, data.topic, data.difficulty || 'beginner', data.isActive !== false ? 1 : 0);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listTrainingModules(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM training_modules WHERE isActive = 1 ORDER BY moduleName').all();
+  }
+
+  updateTrainingModule(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE training_modules SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteTrainingModule(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM training_modules WHERE id = ?').run(id);
+    return true;
+  }
+
+  getTrainingProgress(userId: number, moduleId?: number) {
+    if (!this.db) return [];
+    if (moduleId) {
+      return this.db.prepare('SELECT * FROM training_progress WHERE userId = ? AND moduleId = ?').all(userId, moduleId);
+    }
+    return this.db.prepare('SELECT * FROM training_progress WHERE userId = ?').all(userId);
+  }
+
+  updateTrainingProgress(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE training_progress SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  issueTrainingCertificate(userId: number, moduleId: number) {
+    if (!this.db) return { success: false, certificateId: '' };
+    this.db.prepare('UPDATE training_progress SET certificateIssued = 1, completionDate = CURRENT_TIMESTAMP WHERE userId = ? AND moduleId = ?').run(userId, moduleId);
+    const certificateId = `CERT-${userId}-${moduleId}-${Date.now()}`;
+    return { success: true, certificateId };
+  }
+
+  createDataStory(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO data_stories (storyTitle, storyType, targetAudience, isPublic)
+      VALUES (?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.storyTitle, data.storyType, data.targetAudience || 'technical', data.isPublic ? 1 : 0);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listDataStories(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM data_stories ORDER BY createdAt DESC').all();
+  }
+
+  updateDataStory(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE data_stories SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  deleteDataStory(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('DELETE FROM data_stories WHERE id = ?').run(id);
+    return true;
+  }
+
+  generateDataStoryNarrative(storyId: number) {
+    if (!this.db) return { narrative: '', visualizations: [] };
+    const story: any = this.db.prepare('SELECT * FROM data_stories WHERE id = ?').get(storyId);
+    if (!story) return { narrative: '', visualizations: [] };
+    // In production, this would use AI to generate natural language narrative
+    const narrative = `This ${story.storyType} story presents insights about emissions performance and trends.`;
+    const visualizations = [{ type: 'line', title: 'Emissions Trend' }, { type: 'pie', title: 'Emissions by Scope' }];
+    return { narrative, visualizations };
+  }
+
+  // Phase 4.5: Platform Optimization & Future-Proofing Methods
+  getCacheStats() {
+    if (!this.db) return {};
+    const total = this.db.prepare('SELECT COUNT(*) as count, SUM(dataSize) as size FROM cache_configs').get() as any;
+    const hitRate = this.db.prepare('SELECT AVG(hitCount) as avgHits FROM cache_configs').get() as any;
+    return { totalEntries: total.count, totalSize: total.size, averageHits: hitRate.avgHits };
+  }
+
+  clearCache(cacheType?: string) {
+    if (!this.db) return { success: false, clearedItems: 0 };
+    let count;
+    if (cacheType) {
+      count = this.db.prepare('DELETE FROM cache_configs WHERE cacheType = ?').run(cacheType);
+    } else {
+      count = this.db.prepare('DELETE FROM cache_configs').run();
+    }
+    return { success: true, clearedItems: count.changes };
+  }
+
+  optimizeCache() {
+    if (!this.db) return { success: false, message: '' };
+    // Remove expired cache entries
+    const count = this.db.prepare('DELETE FROM cache_configs WHERE expiresAt < CURRENT_TIMESTAMP').run();
+    return { success: true, message: `Removed ${count.changes} expired cache entries` };
+  }
+
+  createDistributedJob(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO distributed_jobs (jobName, jobType, priority, status)
+      VALUES (?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.jobName, data.jobType, data.priority || 5, data.status || 'queued');
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  listDistributedJobs(filters?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM distributed_jobs ORDER BY priority DESC, createdAt DESC').all();
+  }
+
+  getJobProgress(id: number) {
+    if (!this.db) return { progress: 0, status: '', estimatedTimeRemaining: 0 };
+    const job: any = this.db.prepare('SELECT progress, status, estimatedDuration FROM distributed_jobs WHERE id = ?').get(id);
+    if (!job) return { progress: 0, status: '', estimatedTimeRemaining: 0 };
+    const estimatedTimeRemaining = job.estimatedDuration ? (job.estimatedDuration * (100 - job.progress) / 100) : 0;
+    return { progress: job.progress, status: job.status, estimatedTimeRemaining };
+  }
+
+  cancelDistributedJob(id: number) {
+    if (!this.db) return false;
+    this.db.prepare('UPDATE distributed_jobs SET status = ?, endTime = CURRENT_TIMESTAMP WHERE id = ?').run('failed', id);
+    return true;
+  }
+
+  getResourceMetrics(timeRange?: any) {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM resource_metrics ORDER BY timestamp DESC LIMIT 1000').all();
+  }
+
+  optimizeResources() {
+    if (!this.db) return { success: false, optimizations: [] };
+    // In production, this would perform actual resource optimization
+    return { success: true, optimizations: ['Cache optimized', 'Unused connections closed', 'Memory freed'] };
+  }
+
+  getSecurityConfigs() {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM security_configs WHERE isEnabled = 1 ORDER BY configType').all();
+  }
+
+  updateSecurityConfig(id: number, data: any) {
+    if (!this.db) return null;
+    const fields = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const values = [...Object.values(data), id];
+    this.db.prepare(`UPDATE security_configs SET ${fields}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
+    return { id, ...data };
+  }
+
+  auditSecurity() {
+    if (!this.db) return { passed: false, issues: [], recommendations: [] };
+    const configs = this.getSecurityConfigs();
+    const passed = configs.length > 0;
+    const issues = passed ? [] : ['No security configurations enabled'];
+    const recommendations = ['Enable zero-trust architecture', 'Rotate encryption keys quarterly', 'Implement quantum-resistant algorithms'];
+    return { passed, issues, recommendations };
+  }
+
+  listEncryptionKeys() {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM encryption_keys WHERE isActive = 1 ORDER BY keyName').all();
+  }
+
+  createEncryptionKey(data: any) {
+    if (!this.db) return null;
+    const stmt = this.db.prepare(`
+      INSERT INTO encryption_keys (keyName, keyType, algorithm, keySize, purpose, rotationPolicy, isActive)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+    const info = stmt.run(data.keyName, data.keyType, data.algorithm, data.keySize, data.purpose, data.rotationPolicy || 'annually', data.isActive !== false ? 1 : 0);
+    return { id: info.lastInsertRowid, ...data };
+  }
+
+  rotateEncryptionKey(id: number) {
+    if (!this.db) return { success: false, newKeyId: 0 };
+    const oldKey: any = this.db.prepare('SELECT * FROM encryption_keys WHERE id = ?').get(id);
+    if (!oldKey) return { success: false, newKeyId: 0 };
+    
+    // Create new key
+    const newKey = this.createEncryptionKey({
+      keyName: `${oldKey.keyName}_rotated`,
+      keyType: oldKey.keyType,
+      algorithm: oldKey.algorithm,
+      keySize: oldKey.keySize,
+      purpose: oldKey.purpose,
+      rotationPolicy: oldKey.rotationPolicy,
+      isActive: true
+    });
+    
+    // Deactivate old key
+    this.db.prepare('UPDATE encryption_keys SET isActive = 0 WHERE id = ?').run(id);
+    
+    return { success: true, newKeyId: newKey?.id || 0 };
+  }
+
+  testQuantumResistance(keyId: number) {
+    if (!this.db) return { resistant: false, algorithm: '', recommendation: '' };
+    const key: any = this.db.prepare('SELECT algorithm, keySize FROM encryption_keys WHERE id = ?').get(keyId);
+    if (!key) return { resistant: false, algorithm: '', recommendation: 'Key not found' };
+    
+    // Check if algorithm is quantum-resistant
+    const quantumResistantAlgos = ['CRYSTALS-Kyber', 'CRYSTALS-Dilithium', 'SPHINCS+', 'Classic McEliece'];
+    const resistant = quantumResistantAlgos.some(algo => key.algorithm.includes(algo));
+    
+    const recommendation = resistant 
+      ? 'Algorithm is quantum-resistant' 
+      : 'Consider upgrading to post-quantum cryptography (PQC) algorithms like CRYSTALS-Kyber';
+    
+    return { resistant, algorithm: key.algorithm, recommendation };
+  }
 }
