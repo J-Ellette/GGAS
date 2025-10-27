@@ -8,6 +8,25 @@ A comprehensive desktop application for measuring, monitoring, managing, and rep
 
 Green Country GGAS (Greenhouse Gas Accounting Software) is an enterprise-grade Electron-based desktop application designed to enable organizations of all sizes to accurately measure, monitor, manage, and report their greenhouse gas emissions. The platform provides a comprehensive suite of tools for carbon accounting, regulatory compliance, sustainability reporting, and strategic carbon management through intuitive user interfaces.
 
+## 🆕 AI-Optional Operation Framework
+
+**New Feature**: Complete control over AI usage with manual alternatives for every feature.
+
+- **5 Operation Modes**: Full AI, Selective AI, Manual Only, Assistant, Background
+- **14 AI Features**: Granular control across Data Processing, Analytics, UI, Integration, and Workflow
+- **Manual Alternatives**: Every AI feature has a fully functional traditional alternative
+- **Enterprise Controls**: Policy management, audit trails, and compliance tools
+- **Graceful Degradation**: Full functionality maintained when AI is disabled
+
+📖 [AI-Optional Framework Documentation](docs/AI_OPTIONAL_FRAMEWORK.md)
+
+### Quick Start: AI Settings
+
+1. Navigate to **AI & Strategic Planning** → **AI Settings**
+2. Choose your operation mode or toggle individual features
+3. Review audit trail for all changes
+4. Set organizational policies for AI usage
+
 ## License Key System
 
 On first launch, the application will prompt for a license key. Use the demo key for testing:

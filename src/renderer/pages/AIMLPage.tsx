@@ -34,6 +34,8 @@ import {
   Refresh as RefreshIcon,
   TrendingUp as TrendIcon,
 } from '@mui/icons-material';
+import AIFeatureWrapper, { useAIFeature } from '../components/AIFeatureWrapper';
+import ManualDataAnalysis from '../components/ManualDataAnalysis';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -253,74 +255,84 @@ export default function AIMLPage() {
 
       {/* Anomaly Detection Tab */}
       <TabPanel value={tabValue} index={0}>
-        <Alert severity="info" sx={{ mb: 2 }}>
-          Anomalies are automatically detected using statistical analysis and machine learning algorithms.
-          Review each anomaly and mark as resolved if valid.
-        </Alert>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Data Type</TableCell>
-                <TableCell>Data ID</TableCell>
-                <TableCell>Anomaly Type</TableCell>
-                <TableCell>Severity</TableCell>
-                <TableCell>Score</TableCell>
-                <TableCell>Recommendation</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {anomalies.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={8} align="center">
-                    <Typography variant="body2" color="text.secondary" sx={{ py: 3 }}>
-                      No anomalies detected. Run anomaly detection to find outliers in your data.
-                    </Typography>
-                  </TableCell>
-                </TableRow>
-              ) : (
-                anomalies.map((anomaly) => {
-                  const severity = getAnomalySeverity(anomaly.anomalyScore);
-                  return (
-                    <TableRow key={anomaly.id}>
-                      <TableCell>{anomaly.dataType}</TableCell>
-                      <TableCell>{anomaly.dataId}</TableCell>
-                      <TableCell>{anomaly.anomalyType}</TableCell>
-                      <TableCell>
-                        <Chip label={severity.label} color={severity.color} size="small" />
-                      </TableCell>
-                      <TableCell>{(anomaly.anomalyScore * 100).toFixed(1)}%</TableCell>
-                      <TableCell>
-                        <Typography variant="body2" sx={{ maxWidth: 300 }}>
-                          {anomaly.recommendation}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Chip
-                          label={anomaly.status}
-                          color={anomaly.status === 'pending' ? 'warning' : 'success'}
-                          size="small"
-                        />
-                      </TableCell>
-                      <TableCell>
-                        {anomaly.status === 'pending' && (
-                          <Button
-                            size="small"
-                            onClick={() => handleResolveAnomaly(anomaly.id)}
-                          >
-                            Resolve
-                          </Button>
-                        )}
-                      </TableCell>
+        <AIFeatureWrapper
+          featureKey="ai_anomaly_detection"
+          featureName="AI Anomaly Detection"
+          fallbackMessage="AI-powered anomaly detection is disabled. Using manual data analysis with threshold-based alerts."
+          aiContent={
+            <>
+              <Alert severity="info" sx={{ mb: 2 }}>
+                Anomalies are automatically detected using statistical analysis and machine learning algorithms.
+                Review each anomaly and mark as resolved if valid.
+              </Alert>
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Data Type</TableCell>
+                      <TableCell>Data ID</TableCell>
+                      <TableCell>Anomaly Type</TableCell>
+                      <TableCell>Severity</TableCell>
+                      <TableCell>Score</TableCell>
+                      <TableCell>Recommendation</TableCell>
+                      <TableCell>Status</TableCell>
+                      <TableCell>Actions</TableCell>
                     </TableRow>
-                  );
-                })
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                  </TableHead>
+                  <TableBody>
+                    {anomalies.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={8} align="center">
+                          <Typography variant="body2" color="text.secondary" sx={{ py: 3 }}>
+                            No anomalies detected. Run anomaly detection to find outliers in your data.
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      anomalies.map((anomaly) => {
+                        const severity = getAnomalySeverity(anomaly.anomalyScore);
+                        return (
+                          <TableRow key={anomaly.id}>
+                            <TableCell>{anomaly.dataType}</TableCell>
+                            <TableCell>{anomaly.dataId}</TableCell>
+                            <TableCell>{anomaly.anomalyType}</TableCell>
+                            <TableCell>
+                              <Chip label={severity.label} color={severity.color} size="small" />
+                            </TableCell>
+                            <TableCell>{(anomaly.anomalyScore * 100).toFixed(1)}%</TableCell>
+                            <TableCell>
+                              <Typography variant="body2" sx={{ maxWidth: 300 }}>
+                                {anomaly.recommendation}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              <Chip
+                                label={anomaly.status}
+                                color={anomaly.status === 'pending' ? 'warning' : 'success'}
+                                size="small"
+                              />
+                            </TableCell>
+                            <TableCell>
+                              {anomaly.status === 'pending' && (
+                                <Button
+                                  size="small"
+                                  onClick={() => handleResolveAnomaly(anomaly.id)}
+                                >
+                                  Resolve
+                                </Button>
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </>
+          }
+          manualContent={<ManualDataAnalysis />}
+        />
       </TabPanel>
 
       {/* Predictive Models Tab */}
