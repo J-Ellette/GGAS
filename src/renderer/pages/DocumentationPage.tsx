@@ -39,6 +39,7 @@ import {
   School as TutorialIcon,
   Language as LanguageIcon,
   Security as SecurityIcon,
+  AccountTree as AccountTreeIcon,
 } from '@mui/icons-material';
 
 interface DocSection {
@@ -978,6 +979,38 @@ const documentationSections: DocSection[] = [
       {
         title: 'Best Practices for Carbon Intelligence',
         content: 'To maximize value from the Carbon Intelligence Engine: Data quality: ensure accurate and complete emissions data as foundation for analysis, validate data against multiple sources and methodologies, maintain audit trails and documentation, and continuously improve data collection processes. Regular updates: refresh benchmarking data on regular cadence (quarterly/annually), update financial assumptions as market conditions change, revisit materiality assessment as stakeholder priorities evolve, and maintain peer group relevance as business changes. Stakeholder engagement: share benchmarking results with relevant teams to motivate improvement, use financial analysis to build business cases for carbon investments, communicate material issues to stakeholders through appropriate channels, and engage board members with strategic intelligence and clear recommendations. Integration: link carbon intelligence to strategic planning processes, integrate carbon considerations into capital allocation decisions, connect carbon performance to compensation and incentives, and embed carbon metrics in business performance dashboards. Continuous improvement: track utilization of intelligence insights, measure impact of carbon intelligence on decisions, gather user feedback and adjust configurations, and stay current with emerging best practices and methodologies. The most successful organizations treat carbon intelligence as ongoing strategic capability rather than one-time analysis.',
+      },
+    ],
+  },
+  {
+    id: 'phase11',
+    title: 'Phase 11: Supply Chain Carbon X-Ray',
+    icon: <AccountTreeIcon />,
+    content: 'Phase 11 introduces comprehensive supply chain carbon management with multi-dimensional supplier scoring, carbon hotspot identification, AI-powered alternative supplier intelligence, and collaborative decarbonization planning. These enterprise-grade capabilities enable organizations to measure, manage, and reduce Scope 3 supply chain emissions systematically.',
+    subsections: [
+      {
+        title: 'Overview of Supply Chain Carbon X-Ray',
+        content: 'The Supply Chain Carbon X-Ray provides unprecedented visibility into supply chain carbon emissions through multi-dimensional supplier assessment, visual carbon hotspot mapping, AI-powered alternative supplier recommendations, collaborative decarbonization programs, and enterprise supply chain management. This comprehensive approach transforms supply chain sustainability from reactive compliance to proactive strategic advantage, enabling organizations to identify high-impact reduction opportunities, engage suppliers collaboratively, optimize procurement decisions, and manage carbon-related supply chain risks.',
+      },
+      {
+        title: 'Multi-Dimensional Supplier Carbon Scoring',
+        content: 'Assess suppliers across multiple carbon performance dimensions with sophisticated scoring algorithms that evaluate: Direct Emission Intensity (tCO2e per unit of product/service), Carbon Reduction Targets and Performance (target ambition, historical progress, trajectory to goals), Renewable Energy Usage (percentage renewable, growth rate, procurement strategy), Environmental Management Systems (ISO 14001, ISO 50001, other certifications), and Climate Risk Exposure and Adaptation (physical and transition risks, resilience planning). Each dimension receives a sub-score (0-100) based on industry benchmarks and best practices, with an overall supplier carbon score providing at-a-glance performance assessment. Scoring models are customizable by industry, product category, and strategic importance to reflect your organization\'s priorities.',
+      },
+      {
+        title: 'Data Integration and Supplier Intelligence',
+        content: 'Integrate data from CDP supply chain programs, direct supplier reporting portals, third-party ESG ratings (EcoVadis, MSCI, Sustainalytics), and financial performance systems. Automated data synchronization keeps supplier assessments current while machine learning algorithms identify correlations between carbon performance and financial metrics. Visual heat maps, spend-carbon correlation analysis, and risk assessments provide actionable intelligence for procurement optimization.',
+      },
+      {
+        title: 'AI-Powered Alternative Supplier Recommendations',
+        content: 'Machine learning algorithms analyze supplier performance, market data, and organizational requirements to recommend lower-carbon alternatives. The AI considers carbon performance, quality, reliability, pricing, capacity, geographic proximity, and innovation capability. Each recommendation includes carbon reduction potential, cost impact analysis, risk evaluation, and implementation roadmap with confidence scores indicating algorithm certainty.',
+      },
+      {
+        title: 'Decarbonization Planning and Supplier Engagement',
+        content: 'Design collaborative programs to help suppliers reduce carbon footprints through capacity building, joint innovation, incentive programs, and co-investment in renewable energy or efficiency upgrades. Track supplier improvement with baseline assessments, progress metrics, and ROI calculations. Integrate carbon performance requirements directly into supplier contracts with template clauses, KPIs, and governance mechanisms.',
+      },
+      {
+        title: 'Enterprise Supply Chain Management',
+        content: 'Handle complex international supply chains with multi-regulatory framework support (CSRD, SEC Climate Rules, TCFD), currency and unit conversion, language localization, and cross-border data governance. Specialized category management tools provide tailored approaches for raw materials, logistics, capital goods, services, and energy procurement. Integration with enterprise risk management systems ensures carbon risks receive appropriate governance attention.',
       },
     ],
   },
