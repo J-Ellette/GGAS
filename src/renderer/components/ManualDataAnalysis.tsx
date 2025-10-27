@@ -28,19 +28,29 @@ import {
   TrendingUp as TrendIcon,
   Calculate as CalculateIcon,
 } from '@mui/icons-material';
+import { ActivityData } from '../../common/types';
+
+interface StatisticsSummary {
+  count: number;
+  sum: string;
+  average: string;
+  max: string;
+  min: string;
+  stdDev: string;
+}
 
 /**
  * Manual Data Analysis Component
  * Provides traditional statistical analysis without AI
  */
 export default function ManualDataAnalysis() {
-  const [activityData, setActivityData] = useState<any[]>([]);
+  const [activityData, setActivityData] = useState<ActivityData[]>([]);
   const [filters, setFilters] = useState({
     organizationUnit: '',
     timePeriod: '',
     emissionSource: '',
   });
-  const [statistics, setStatistics] = useState<any>(null);
+  const [statistics, setStatistics] = useState<StatisticsSummary | null>(null);
 
   useEffect(() => {
     loadData();
@@ -56,13 +66,20 @@ export default function ManualDataAnalysis() {
     }
   };
 
-  const calculateStatistics = (data: any[]) => {
+  const calculateStatistics = (data: ActivityData[]) => {
     if (data.length === 0) {
       setStatistics(null);
       return;
     }
 
-    const values = data.map(d => d.value);
+    // Filter out invalid entries and extract numeric values
+    const validData = data.filter(d => d.value != null && typeof d.value === 'number');
+    if (validData.length === 0) {
+      setStatistics(null);
+      return;
+    }
+
+    const values = validData.map(d => d.value);
     const sum = values.reduce((a, b) => a + b, 0);
     const avg = sum / values.length;
     const max = Math.max(...values);

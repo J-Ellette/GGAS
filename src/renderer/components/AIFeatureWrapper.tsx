@@ -23,7 +23,7 @@ export default function AIFeatureWrapper({
   fallbackMessage,
   children
 }: AIFeatureWrapperProps) {
-  const [isEnabled, setIsEnabled] = useState<boolean>(true);
+  const [isEnabled, setIsEnabled] = useState<boolean>(false); // Default to false to prevent flash
   const [loading, setLoading] = useState<boolean>(true);
   const [showManual, setShowManual] = useState<boolean>(false);
 
@@ -81,7 +81,7 @@ export function useAIFeature(featureKey: string): {
   loading: boolean;
   checkStatus: () => Promise<void>;
 } {
-  const [isEnabled, setIsEnabled] = useState<boolean>(true);
+  const [isEnabled, setIsEnabled] = useState<boolean>(false); // Default to false for consistency
   const [loading, setLoading] = useState<boolean>(true);
 
   const checkStatus = async () => {
