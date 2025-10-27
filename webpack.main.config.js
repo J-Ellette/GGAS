@@ -21,6 +21,9 @@ module.exports = [
     resolve: {
       extensions: ['.ts', '.js']
     },
+    externals: {
+      'better-sqlite3': 'commonjs better-sqlite3'
+    },
     node: {
       __dirname: false,
       __filename: false
