@@ -172,7 +172,7 @@ SASB Standards: For environmental, social, and governance (ESG) reporting, compa
 
 Add documentation in the Documentation panel
 
-6. Real-Time Carbon Operations Center and Theming
+6. Real-Time Carbon Operations Center and Theming Copilot (COMPLETE)
 
 Create: Light Theme, Dark Theme, and System Default (which will match the host computers theme)
 
