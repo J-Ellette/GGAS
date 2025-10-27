@@ -75,6 +75,14 @@ This documentation suite provides comprehensive information about Green Country'
   - Common calculation methodologies
   - Troubleshooting guide
 
+### 11. Regulatory Intelligence System
+- **[Regulatory Intelligence System](./11-Regulatory-Intelligence-System.md)** - Advanced AI-powered compliance intelligence
+  - AI-powered regulation tracking (global monitoring, NLP analysis, change detection)
+  - Compliance gap analysis (automated assessment, gap identification, remediation planning)
+  - Automated filing systems (direct submission, form generation, submission tracking)
+  - Legal risk assessment (risk scoring, trend analysis, scenario planning, expert network)
+  - Enterprise regulatory management (multi-jurisdiction compliance, subsidiary management, board reporting)
+
 ## System Capabilities
 
 The Unified Multi-Agency Reporting System provides:
@@ -88,10 +96,13 @@ The Unified Multi-Agency Reporting System provides:
 
 ### Automation & Intelligence
 - **Automated Data Collection**: From ERP, SCADA, LIMS, and other enterprise systems
-- **AI-Powered Analysis**: Regulation change detection and impact assessment
+- **AI-Powered Regulation Tracking**: Global monitoring with NLP analysis and change detection
+- **Compliance Gap Analysis**: Automated assessment, gap identification, and remediation planning
+- **Automated Filing Systems**: Direct submission to regulatory portals with form generation
+- **Legal Risk Assessment**: AI-powered risk scoring, trend analysis, and scenario planning
 - **Predictive Analytics**: Forecast compliance costs and resource requirements
 - **Real-time Monitoring**: Threshold tracking with predictive alerts
-- **Automated Submissions**: Direct agency portal integration
+- **Expert Network**: Access to regulatory experts and legal counsel
 
 ### Enterprise Features
 - **Multi-facility Management**: Consolidated reporting across operations
