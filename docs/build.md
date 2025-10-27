@@ -261,6 +261,10 @@ Professional Services: Implementation and customization services for complex int
 Add documentation in the Documentation panel
 
 8. Autonomous Data Collection
+
+Third-party integration with Maximo enterprise asset management software - in integration settings.
+Microsoft Single Sign-on integration swich in Admin panel.
+
 Intelligent Document Processing:
 
 Multi-format Support: PDF, Excel, Word, images, scanned documents, emails
@@ -279,8 +283,6 @@ Recognize document types and apply appropriate extraction rules
 Understand billing periods, currency, units of measurement
 Identify and flag unusual or suspicious data points
 Cross-reference extracted data with historical patterns
-
-
 
 Email Intelligence System:
 
