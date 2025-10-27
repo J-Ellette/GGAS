@@ -34,6 +34,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MessageIcon from '@mui/icons-material/Message';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -53,6 +54,7 @@ import Phase6Page from './pages/Phase6Page';
 import Phase8Page from './pages/Phase8Page';
 import Phase11Page from './pages/Phase11Page';
 import Phase13Page from './pages/Phase13Page';
+import Phase14Page from './pages/Phase14Page';
 import AdminPanel from './pages/AdminPanel';
 import DocumentationPage from './pages/DocumentationPage';
 import CarbonCopilotPage from './pages/CarbonCopilotPage';
@@ -83,6 +85,7 @@ type PageType =
   | 'phase8'
   | 'phase11'
   | 'phase13'
+  | 'phase14'
   | 'admin'
   | 'settings'
   | 'documentation'
@@ -176,6 +179,8 @@ const App: React.FC = () => {
         return <Phase11Page />;
       case 'phase13':
         return <Phase13Page />;
+      case 'phase14':
+        return <Phase14Page />;
       case 'admin':
         return <AdminPanel />;
       case 'documentation':
@@ -391,6 +396,14 @@ const App: React.FC = () => {
                     <AttachMoneyIcon />
                   </ListItemIcon>
                   <ListItemText primary="Carbon-Financial Suite" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'phase14'} onClick={() => setCurrentPage('phase14')}>
+                  <ListItemIcon>
+                    <BusinessCenterIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="ESG Strategy Orchestrator" />
                 </ListItemButton>
               </ListItem>
             </List>
