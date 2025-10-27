@@ -1,7 +1,7 @@
 {
-  "name": "ggas",
+  "name": "green-country-ggas",
   "version": "1.0.0",
-  "description": "Greenhouse Gas Accounting Software - A comprehensive desktop application for measuring, monitoring, and managing GHG emissions",
+  "description": "Green Country: Greenhouse Gas Accounting Software - A comprehensive desktop application for measuring, monitoring, and managing GHG emissions",
   "main": "dist/main.js",
   "scripts": {
     "build:main": "webpack --config webpack.main.config.js",
@@ -21,7 +21,7 @@
     "accounting",
     "sustainability"
   ],
-  "author": "GGAS Team",
+  "author": "Green Country",
   "license": "MIT",
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
