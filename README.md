@@ -1,10 +1,33 @@
-# GGAS - Greenhouse Gas Accounting Software
+# Green Country: Greenhouse Gas Accounting Software
 
 A comprehensive desktop application for measuring, monitoring, managing, and reporting greenhouse gas emissions across all operational scopes.
 
 ## Overview
 
-GGAS (Greenhouse Gas Accounting Software) is an enterprise-grade Electron-based desktop application designed to enable organizations of all sizes to accurately measure, monitor, manage, and report their greenhouse gas emissions. The platform provides a comprehensive suite of tools for carbon accounting, regulatory compliance, sustainability reporting, and strategic carbon management through intuitive user interfaces.
+Green Country GGAS (Greenhouse Gas Accounting Software) is an enterprise-grade Electron-based desktop application designed to enable organizations of all sizes to accurately measure, monitor, manage, and report their greenhouse gas emissions. The platform provides a comprehensive suite of tools for carbon accounting, regulatory compliance, sustainability reporting, and strategic carbon management through intuitive user interfaces.
+
+## License Key System
+
+On first launch, the application will prompt for a license key. Use the demo key for testing:
+
+**Demo License Key:** `GCGGAS-2024-DEMO-KEY1`
+
+Alternatively, you can click "Admin Panel Access" to bypass the license check and access the admin panel directly.
+
+## Admin Panel
+
+Access the admin panel through the license key screen or from the sidebar menu after logging in.
+
+### Admin Credentials
+- **Username:** OKE03955
+- **Password:** 8675309Jenny!
+
+### Admin Panel Features
+- **License Key Management**: Create and manage license keys for different users/organizations
+- **User Management**: Manage users and their roles
+- **LLM Integration**: Configure AI/LLM providers for enhanced analytics
+- **Theme Management**: Choose between Light, Dark, or Green Country branded themes
+- **Password Management**: Change admin password from within the panel
 
 ## Current Version: Phase 3 (v1.0)
 
@@ -165,10 +188,17 @@ npm start
 
 ### Build Commands
 - `npm run build:main` - Build main process
-- `npm run build:renderer` - Build renderer process
+- `npm run build:renderer` - Build renderer process  
 - `npm run build` - Build both processes
 - `npm start` - Build and run the application
 - `npm run package` - Package for distribution
+
+### Application Structure
+The application is organized into three main sections:
+- **Data Management**: Core emissions tracking and calculations
+- **Advanced Features**: Scope 3, integrations, analytics, and compliance
+- **AI & Strategic Planning**: AI/ML analytics, target management, and multi-entity support
+- **Innovation & Optimization**: Advanced analytics and cutting-edge features
 
 ### Development Workflow
 1. Make changes to source files in `src/`
@@ -317,6 +347,7 @@ All data is stored locally in SQLite database at:
 ## Documentation
 
 - **README.md**: This file - Quick start and overview
+- **docs/ADMIN_PANEL.md**: Admin panel documentation and usage guide
 - **PHASE1_COMPLETE.md**: Phase 1 implementation details
 - **PHASE2_COMPLETE.md**: Phase 2 implementation details
 - **PHASE3_COMPLETE.md**: Phase 3 implementation details (latest)
@@ -324,6 +355,30 @@ All data is stored locally in SQLite database at:
 - **docs/USER_GUIDE.md**: Detailed user guide
 - **docs/TECHNICAL.md**: Technical architecture
 - **docs/DEVELOPMENT.md**: Development guidelines
+
+## Known Issues
+
+### DevTools Console Warnings
+You may see the following warnings in the developer console:
+```
+"Request Autofill.enable failed" 
+"Request Autofill.setAddresses failed"
+```
+
+**Status:** These are harmless warnings from Electron's DevTools and do not affect application functionality. They occur because the Autofill API is not available in all Electron versions and can be safely ignored.
+
+## Troubleshooting
+
+### License Key Issues
+If you can't access the application:
+1. Use the demo license key: `GCGGAS-2024-DEMO-KEY1`
+2. Click "Admin Panel Access" to bypass license check
+3. Check that localStorage is enabled in your environment
+
+### Admin Panel Access
+If you can't log in to admin panel:
+- Username must be exactly: `OKE03955`
+- Password must be exactly: `8675309Jenny!` (case-sensitive)
 
 ## Statistics (Phase 3)
 
@@ -351,3 +406,8 @@ For issues, questions, or contributions, please open an issue on GitHub.
 - Emission factors sourced from EPA, IPCC, DEFRA, and IEA
 - Built with Electron, React, and Material-UI
 - Inspired by GHG Protocol standards
+- Admin panel design inspired by FUEL CMS and other professional CMS platforms
+
+---
+
+**© 2024 Green Country. All rights reserved.**
