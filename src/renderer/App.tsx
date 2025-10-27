@@ -32,6 +32,7 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MessageIcon from '@mui/icons-material/Message';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -49,6 +50,7 @@ import Phase4Page from './pages/Phase4Page';
 import Phase5Page from './pages/Phase5Page';
 import Phase6Page from './pages/Phase6Page';
 import Phase8Page from './pages/Phase8Page';
+import Phase11Page from './pages/Phase11Page';
 import AdminPanel from './pages/AdminPanel';
 import DocumentationPage from './pages/DocumentationPage';
 import CarbonCopilotPage from './pages/CarbonCopilotPage';
@@ -77,6 +79,7 @@ type PageType =
   | 'phase5'
   | 'phase6'
   | 'phase8'
+  | 'phase11'
   | 'admin'
   | 'settings'
   | 'documentation'
@@ -166,6 +169,8 @@ const App: React.FC = () => {
         return <Phase6Page />;
       case 'phase8':
         return <Phase8Page />;
+      case 'phase11':
+        return <Phase11Page />;
       case 'admin':
         return <AdminPanel />;
       case 'documentation':
@@ -365,6 +370,14 @@ const App: React.FC = () => {
                     <CloudIcon />
                   </ListItemIcon>
                   <ListItemText primary="Autonomous Collection" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'phase11'} onClick={() => setCurrentPage('phase11')}>
+                  <ListItemIcon>
+                    <AccountTreeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Supply Chain X-Ray" />
                 </ListItemButton>
               </ListItem>
             </List>

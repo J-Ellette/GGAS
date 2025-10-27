@@ -900,6 +900,303 @@ export interface MicrosoftSSOConfig {
   updatedAt?: string;
 }
 
+// ===============================================
+// Phase 11: Supply Chain Carbon X-Ray
+// ===============================================
+
+// Supplier Carbon Scoring
+export interface SupplierCarbonScore {
+  id?: number;
+  supplierId: number;
+  supplierName: string;
+  assessmentDate: string;
+  overallScore: number; // 0-100
+  directEmissionIntensity: number; // tCO2e per unit
+  emissionIntensityScore: number; // 0-100
+  reductionTargetScore: number; // 0-100
+  renewableEnergyScore: number; // 0-100
+  environmentalManagementScore: number; // 0-100
+  climateRiskScore: number; // 0-100
+  hasReductionTarget: boolean;
+  targetYear?: number;
+  targetReduction?: number; // percentage
+  renewableEnergyPercentage: number;
+  hasCertifications?: string; // JSON array of certifications (ISO 14001, etc.)
+  cdpScore?: string; // A, A-, B, etc.
+  riskLevel: string; // 'low', 'medium', 'high', 'critical'
+  dataQuality: number; // 0-1
+  lastUpdated?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+// CDP Integration
+export interface CDPIntegration {
+  id?: number;
+  integrationName: string;
+  apiKey?: string;
+  isActive: boolean;
+  lastSyncDate?: string;
+  suppliersSynced: number;
+  syncFrequency: string; // 'daily', 'weekly', 'monthly'
+  autoSync: boolean;
+  dataMapping?: string; // JSON of field mappings
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+// Carbon Hotspot Mapping
+export interface CarbonHotspot {
+  id?: number;
+  supplierId: number;
+  supplierName: string;
+  category: string;
+  region: string;
+  emissionIntensity: number; // tCO2e
+  spendAmount: number;
+  spendCurrency: string;
+  carbonPerDollar: number; // tCO2e per $ spent
+  riskLevel: string; // 'low', 'medium', 'high', 'critical'
+  reductionPotential: number; // estimated tCO2e reduction possible
+  priorityScore: number; // 0-100
+  coordinates?: string; // JSON {lat, lng}
+  visualizationData?: string; // JSON for heat map rendering
+  createdAt?: string;
+}
+
+export interface SpendCarbonAnalysis {
+  id?: number;
+  categoryId: number;
+  categoryName: string;
+  totalSpend: number;
+  totalEmissions: number;
+  carbonIntensity: number; // tCO2e per $
+  supplierCount: number;
+  topSuppliers?: string; // JSON array of top emitters
+  optimizationOpportunities?: string; // JSON array
+  potentialSavings: number; // tCO2e
+  createdAt?: string;
+}
+
+export interface SupplierRiskAssessment {
+  id?: number;
+  supplierId: number;
+  supplierName: string;
+  overallRisk: string; // 'low', 'medium', 'high', 'critical'
+  carbonRiskScore: number; // 0-100
+  regulatoryRisk: number; // 0-100
+  reputationRisk: number; // 0-100
+  financialRisk: number; // 0-100
+  geographicRisk: number; // 0-100
+  riskFactors?: string; // JSON array of identified risks
+  mitigationStrategies?: string; // JSON array
+  lastAssessed: string;
+  nextReviewDate: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+// Alternative Supplier Intelligence
+export interface AlternativeSupplier {
+  id?: number;
+  alternativeSupplierId: number;
+  alternativeSupplierName: string;
+  currentSupplierId: number;
+  currentSupplierName: string;
+  carbonReduction: number; // tCO2e savings
+  carbonReductionPercentage: number;
+  costImpact: number; // $ difference
+  costImpactPercentage: number;
+  qualityScore: number; // 0-100
+  reliabilityScore: number; // 0-100
+  sustainabilityScore: number; // 0-100
+  overallRecommendationScore: number; // 0-100
+  confidence: number; // 0-1 AI confidence
+  switchingCost: number;
+  switchingTimeframe: string; // 'immediate', 'short-term', 'long-term'
+  keyBenefits?: string; // JSON array
+  potentialRisks?: string; // JSON array
+  createdAt?: string;
+}
+
+export interface SupplierPerformancePrediction {
+  id?: number;
+  supplierId: number;
+  supplierName: string;
+  predictionDate: string;
+  predictionHorizon: string; // '1-year', '3-year', '5-year'
+  predictedEmissionTrend: string; // 'improving', 'stable', 'declining'
+  predictedEmissions: number; // tCO2e
+  predictedCarbonScore: number; // 0-100
+  confidenceLevel: number; // 0-1
+  keyPredictors?: string; // JSON array of factors
+  recommendations?: string; // JSON array
+  modelAccuracy: number; // historical accuracy %
+  createdAt?: string;
+}
+
+export interface SupplierSwitchRisk {
+  id?: number;
+  currentSupplierId: number;
+  alternativeSupplierId: number;
+  overallRiskLevel: string; // 'low', 'medium', 'high'
+  operationalRisk: number; // 0-100
+  financialRisk: number; // 0-100
+  qualityRisk: number; // 0-100
+  timelineRisk: number; // 0-100
+  relationshipRisk: number; // 0-100
+  mitigationPlan?: string; // JSON
+  estimatedTransitionTime: number; // days
+  recommendedApproach: string;
+  createdAt?: string;
+}
+
+export interface SustainableSupplierMatch {
+  id?: number;
+  supplierId: number;
+  supplierName: string;
+  matchScore: number; // 0-100
+  carbonScore: number; // 0-100
+  category: string;
+  location: string;
+  certifications?: string; // JSON array
+  productServices?: string; // JSON array
+  carbonIntensity: number;
+  pricingTier: string; // 'budget', 'mid-range', 'premium'
+  capacity: string;
+  leadTime: string;
+  contactInfo?: string;
+  createdAt?: string;
+}
+
+// Decarbonization Planning
+export interface SupplierEngagementProgram {
+  id?: number;
+  programName: string;
+  programType: string; // 'data_collection', 'reduction_collaboration', 'capacity_building'
+  description: string;
+  startDate: string;
+  endDate: string;
+  status: string; // 'planning', 'active', 'completed', 'paused'
+  targetSuppliers?: string; // JSON array of supplier IDs
+  enrolledSuppliers: number;
+  objectives?: string; // JSON array
+  milestones?: string; // JSON array
+  budget: number;
+  actualSpend: number;
+  emissionReductionTarget: number;
+  actualEmissionReduction: number;
+  engagementMetrics?: string; // JSON of engagement stats
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface SupplierImprovementMetrics {
+  id?: number;
+  supplierId: number;
+  supplierName: string;
+  programId?: number;
+  baselineEmissions: number;
+  currentEmissions: number;
+  emissionReduction: number;
+  reductionPercentage: number;
+  baselineDate: string;
+  measurementDate: string;
+  improvementAreas?: string; // JSON array
+  milestonesCompleted: number;
+  milestonesTotal: number;
+  investmentRequired: number;
+  investmentCommitted: number;
+  roi: number;
+  projectedFutureReductions: number;
+  createdAt?: string;
+}
+
+export interface ProcurementOptimization {
+  id?: number;
+  categoryId: number;
+  categoryName: string;
+  currentSupplier: string;
+  recommendedSupplier: string;
+  optimizationType: string; // 'carbon', 'cost', 'balanced'
+  currentEmissions: number;
+  projectedEmissions: number;
+  emissionSavings: number;
+  currentCost: number;
+  projectedCost: number;
+  costImpact: number;
+  implementationComplexity: string; // 'low', 'medium', 'high'
+  priorityScore: number; // 0-100
+  timeline: string;
+  actionItems?: string; // JSON array
+  createdAt?: string;
+}
+
+// Enterprise Capabilities
+export interface GlobalSupplyChainConfig {
+  id?: number;
+  configName: string;
+  regions?: string; // JSON array of regions
+  regulatoryFrameworks?: string; // JSON of region-specific regulations
+  reportingStandards?: string; // JSON
+  dataGovernanceRules?: string; // JSON
+  complianceRequirements?: string; // JSON
+  integrationSettings?: string; // JSON
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface CategoryEmissionMetrics {
+  id?: number;
+  categoryId: number;
+  categoryName: string;
+  totalEmissions: number;
+  emissionsBySupplier?: string; // JSON
+  emissionTrend: string; // 'increasing', 'stable', 'decreasing'
+  topEmitters?: string; // JSON array
+  reductionOpportunities?: string; // JSON array
+  targetEmissions?: number;
+  progressToTarget: number; // percentage
+  lastCalculated: string;
+  createdAt?: string;
+}
+
+export interface ProcurementCategory {
+  id?: number;
+  categoryName: string;
+  categoryCode: string;
+  description: string;
+  scope3Category: number; // 1-15
+  averageEmissionFactor: number;
+  totalSpend: number;
+  supplierCount: number;
+  emissionIntensity: number;
+  riskLevel: string;
+  managerId?: number;
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface SupplierComplianceStatus {
+  id?: number;
+  supplierId: number;
+  supplierName: string;
+  complianceFramework: string; // 'CDP', 'SBTi', 'ISO14001', etc.
+  complianceStatus: string; // 'compliant', 'non-compliant', 'pending', 'expired'
+  certificationDate?: string;
+  expirationDate?: string;
+  auditDate?: string;
+  auditResult?: string;
+  nonComplianceIssues?: string; // JSON array
+  correctionPlan?: string;
+  nextReviewDate: string;
+  documentationLink?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface ElectronAPI {
   // Phase 1 APIs
   createActivityData: (data: ActivityData) => Promise<ActivityData>;
@@ -1266,6 +1563,50 @@ export interface ElectronAPI {
   deleteMicrosoftSSOConfig: (id: number) => Promise<boolean>;
   testMicrosoftSSOConnection: (id: number) => Promise<{ success: boolean; message: string }>;
   enableMicrosoftSSO: (id: number, enabled: boolean) => Promise<boolean>;
+
+  // ===============================================
+  // Phase 11: Supply Chain Carbon X-Ray APIs
+  // ===============================================
+
+  // Supplier Carbon Scoring APIs
+  createSupplierCarbonScore: (data: SupplierCarbonScore) => Promise<SupplierCarbonScore>;
+  listSupplierCarbonScores: (filters?: any) => Promise<SupplierCarbonScore[]>;
+  updateSupplierCarbonScore: (id: number, data: Partial<SupplierCarbonScore>) => Promise<SupplierCarbonScore>;
+  deleteSupplierCarbonScore: (id: number) => Promise<boolean>;
+  calculateSupplierScore: (supplierId: number) => Promise<{ score: number; breakdown: any }>;
+
+  // CDP Integration APIs
+  integrateCDPSupplierData: (supplierId: number) => Promise<{ success: boolean; data: any }>;
+  listCDPIntegrations: () => Promise<CDPIntegration[]>;
+  syncCDPData: (integrationId: number) => Promise<{ success: boolean; suppliersUpdated: number }>;
+
+  // Carbon Hotspot Mapping APIs
+  generateSupplyChainHeatMap: (filters?: any) => Promise<CarbonHotspot[]>;
+  analyzeSpendCarbonCorrelation: (categoryId?: number) => Promise<SpendCarbonAnalysis[]>;
+  identifyHighRiskSuppliers: (threshold: number) => Promise<SupplierRiskAssessment[]>;
+  calculateReductionPotential: (supplierId: number) => Promise<{ potential: number; recommendations: string[] }>;
+
+  // Alternative Supplier Intelligence APIs
+  recommendAlternativeSuppliers: (currentSupplierId: number) => Promise<AlternativeSupplier[]>;
+  predictSupplierPerformance: (supplierId: number) => Promise<SupplierPerformancePrediction>;
+  assessSupplierSwitchRisk: (currentSupplierId: number, alternativeSupplierId: number) => Promise<SupplierSwitchRisk>;
+  searchSustainableSuppliers: (criteria: any) => Promise<SustainableSupplierMatch[]>;
+
+  // Decarbonization Planning APIs
+  createSupplierEngagementProgram: (data: SupplierEngagementProgram) => Promise<SupplierEngagementProgram>;
+  listSupplierEngagementPrograms: (filters?: any) => Promise<SupplierEngagementProgram[]>;
+  updateSupplierEngagementProgram: (id: number, data: Partial<SupplierEngagementProgram>) => Promise<SupplierEngagementProgram>;
+  trackSupplierImprovementProgram: (supplierId: number) => Promise<SupplierImprovementMetrics>;
+  optimizeProcurement: (filters?: any) => Promise<ProcurementOptimization[]>;
+  generateSupplierContract: (supplierId: number, requirements: any) => Promise<{ contractText: string; kpis: any[] }>;
+
+  // Enterprise Supply Chain APIs
+  configureGlobalSupplyChain: (data: GlobalSupplyChainConfig) => Promise<GlobalSupplyChainConfig>;
+  getGlobalSupplyChainConfig: () => Promise<GlobalSupplyChainConfig | null>;
+  manageCategoryEmissions: (categoryId: number) => Promise<CategoryEmissionMetrics>;
+  listProcurementCategories: () => Promise<ProcurementCategory[]>;
+  integrateRiskManagement: (supplierId: number) => Promise<{ riskScore: number; mitigations: string[] }>;
+  monitorSupplierCompliance: (filters?: any) => Promise<SupplierComplianceStatus[]>;
 }
 
 declare global {
