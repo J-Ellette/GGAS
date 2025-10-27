@@ -12,7 +12,8 @@
     "rebuild": "npx electron-rebuild",
     "postinstall": "npx electron-rebuild",
     "test": "echo \"No tests specified\" && exit 0",
-    "generate-licenses": "node scripts/generate-licenses.js"
+    "generate-licenses": "node scripts/generate-licenses.js",
+    "test-license-system": "node scripts/test-license-system.js"
   },
   "keywords": [
     "greenhouse",
