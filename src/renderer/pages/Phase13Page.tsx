@@ -34,19 +34,23 @@ import {
 } from '@mui/material';
 import {
   AccountBalance as AccountBalanceIcon,
-  TrendingUp as TrendingUpIcon,
-  TrendingDown as TrendingDownIcon,
-  AttachMoney as MoneyIcon,
   Assessment as AssessmentIcon,
   Business as BusinessIcon,
-  Refresh as RefreshIcon,
-  Download as DownloadIcon,
   Analytics as AnalyticsIcon,
   CompareArrows as CompareIcon,
   Gavel as TaxIcon,
   Security as SecurityIcon,
   Handshake as HandshakeIcon,
   Description as DocumentIcon,
+} from '@mui/icons-material';
+import {
+  TrendingUp as TrendingUpIcon,
+  TrendingDown as TrendingDownIcon,
+  AttachMoney as MoneyIcon,
+} from '@mui/icons-material';
+import {
+  Refresh as RefreshIcon,
+  Download as DownloadIcon,
   Update as UpdateIcon,
   CheckCircle as CheckCircleIcon,
   Warning as WarningIcon,
@@ -72,6 +76,16 @@ const Phase13Page: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [selectedAccount, setSelectedAccount] = useState('');
   const [selectedJurisdiction, setSelectedJurisdiction] = useState('US');
+
+  // Constants for budget thresholds
+  const BUDGET_WARNING_THRESHOLD = 75; // Yellow warning at 75%
+  const BUDGET_CRITICAL_THRESHOLD = 90; // Red alert at 90%
+  const CURRENT_BUDGET_USAGE = 85; // Current usage percentage
+
+  // Utility function for currency formatting
+  const formatMillions = (amount: number): string => {
+    return (amount / 1000000).toFixed(1) + 'M';
+  };
 
   // Mock data for Carbon Accounting
   const carbonAccounts = [
@@ -102,9 +116,9 @@ const Phase13Page: React.FC = () => {
 
   // Mock data for Carbon Tax
   const carbonTaxCalculations = [
-    { jurisdiction: 'Canada', rate: 65, emissions: 150000, tax: 9750000, status: 'Paid', dueDate: '2024-03-31' },
-    { jurisdiction: 'EU CBAM', rate: 85.50, emissions: 85000, tax: 7267500, status: 'Pending', dueDate: '2024-04-30' },
-    { jurisdiction: 'Singapore', rate: 25, emissions: 45000, tax: 1125000, status: 'Paid', dueDate: '2024-02-28' },
+    { jurisdiction: 'Canada', rate: 65, emissions: 150000, taxAmount: 9750000, status: 'Paid', dueDate: '2024-03-31' },
+    { jurisdiction: 'EU CBAM', rate: 85.50, emissions: 85000, taxAmount: 7267500, status: 'Pending', dueDate: '2024-04-30' },
+    { jurisdiction: 'Singapore', rate: 25, emissions: 45000, taxAmount: 1125000, status: 'Paid', dueDate: '2024-02-28' },
   ];
 
   // Mock data for ERP Integration
@@ -206,12 +220,12 @@ const Phase13Page: React.FC = () => {
                   </Typography>
                   <LinearProgress 
                     variant="determinate" 
-                    value={85} 
+                    value={CURRENT_BUDGET_USAGE} 
                     sx={{ mt: 1, mb: 1, height: 10, borderRadius: 5 }}
-                    color={85 > 90 ? 'error' : 85 > 75 ? 'warning' : 'success'}
+                    color={CURRENT_BUDGET_USAGE > BUDGET_CRITICAL_THRESHOLD ? 'error' : CURRENT_BUDGET_USAGE > BUDGET_WARNING_THRESHOLD ? 'warning' : 'success'}
                   />
-                  <Typography variant="body2" color={85 > 90 ? 'error' : 85 > 75 ? 'warning' : 'success.main'}>
-                    85% of budget used (Q1 complete)
+                  <Typography variant="body2" color={CURRENT_BUDGET_USAGE > BUDGET_CRITICAL_THRESHOLD ? 'error' : CURRENT_BUDGET_USAGE > BUDGET_WARNING_THRESHOLD ? 'warning' : 'success.main'}>
+                    {CURRENT_BUDGET_USAGE}% of budget used (Q1 complete)
                   </Typography>
                 </Box>
                 <Divider sx={{ my: 2 }} />
@@ -496,7 +510,7 @@ const Phase13Page: React.FC = () => {
                         <TableRow key={loan.id} hover>
                           <TableCell>{loan.id}</TableCell>
                           <TableCell>{loan.lender}</TableCell>
-                          <TableCell align="right">${(loan.amount / 1000000).toFixed(1)}M</TableCell>
+                          <TableCell align="right">${formatMillions(loan.amount)}</TableCell>
                           <TableCell align="right">{loan.rate.toFixed(2)}%</TableCell>
                           <TableCell>{loan.kpi}</TableCell>
                           <TableCell>
@@ -545,11 +559,11 @@ const Phase13Page: React.FC = () => {
                     <Grid container spacing={2}>
                       <Grid item xs={6}>
                         <Typography variant="body2" color="text.secondary">Total Amount</Typography>
-                        <Typography variant="body1">${(bond.amount / 1000000).toFixed(0)}M</Typography>
+                        <Typography variant="body1">${formatMillions(bond.amount)}</Typography>
                       </Grid>
                       <Grid item xs={6}>
                         <Typography variant="body2" color="text.secondary">Allocated</Typography>
-                        <Typography variant="body1">${(bond.allocated / 1000000).toFixed(0)}M</Typography>
+                        <Typography variant="body1">${formatMillions(bond.allocated)}</Typography>
                       </Grid>
                       <Grid item xs={6}>
                         <Typography variant="body2" color="text.secondary">Coupon Rate</Typography>
@@ -703,7 +717,7 @@ const Phase13Page: React.FC = () => {
                           <TableCell align="right">{tax.emissions.toLocaleString()}</TableCell>
                           <TableCell align="right">
                             <Typography variant="body1" fontWeight="bold">
-                              ${tax.tax.toLocaleString()}
+                              ${tax.taxAmount.toLocaleString()}
                             </Typography>
                           </TableCell>
                           <TableCell>
@@ -720,7 +734,7 @@ const Phase13Page: React.FC = () => {
                         <TableCell colSpan={3}><strong>Total Tax Liability</strong></TableCell>
                         <TableCell align="right">
                           <Typography variant="h6" color="primary">
-                            ${carbonTaxCalculations.reduce((sum, tax) => sum + tax.tax, 0).toLocaleString()}
+                            ${carbonTaxCalculations.reduce((sum, tax) => sum + tax.taxAmount, 0).toLocaleString()}
                           </Typography>
                         </TableCell>
                         <TableCell colSpan={2}></TableCell>
