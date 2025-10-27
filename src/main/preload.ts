@@ -233,4 +233,57 @@ contextBridge.exposeInMainWorld('electronAPI', {
   createEncryptionKey: (data: any) => ipcRenderer.invoke('encryption-keys:create', data),
   rotateEncryptionKey: (id: number) => ipcRenderer.invoke('encryption-keys:rotate', id),
   testQuantumResistance: (keyId: number) => ipcRenderer.invoke('encryption-keys:test-quantum-resistance', keyId),
+
+  // ===============================================
+  // Phase 5: Predictive Carbon Intelligence API
+  // ===============================================
+
+  // Phase 5.1: Advanced Forecasting Engine
+  createEmissionForecast: (data: any) => ipcRenderer.invoke('forecasts:create', data),
+  listEmissionForecasts: (filters?: any) => ipcRenderer.invoke('forecasts:list', filters),
+  getEmissionForecast: (id: number) => ipcRenderer.invoke('forecasts:get', id),
+  updateEmissionForecast: (id: number, data: any) => ipcRenderer.invoke('forecasts:update', id, data),
+  createForecastingFactor: (data: any) => ipcRenderer.invoke('forecasting-factors:create', data),
+  listForecastingFactors: (filters?: any) => ipcRenderer.invoke('forecasting-factors:list', filters),
+  runMultiFactorForecast: (params: any) => ipcRenderer.invoke('forecasts:run-multi-factor', params),
+  trainLSTMModel: (params: any) => ipcRenderer.invoke('ml:train-lstm', params),
+
+  // Phase 5.2: Carbon Budget Management
+  createCarbonBudget: (data: any) => ipcRenderer.invoke('carbon-budgets:create', data),
+  listCarbonBudgets: (filters?: any) => ipcRenderer.invoke('carbon-budgets:list', filters),
+  getCarbonBudget: (id: number) => ipcRenderer.invoke('carbon-budgets:get', id),
+  updateCarbonBudgetConsumption: (id: number, amount: number) => ipcRenderer.invoke('carbon-budgets:update-consumption', id, amount),
+  allocateBudget: (data: any) => ipcRenderer.invoke('budget-allocations:create', data),
+  listBudgetAllocations: (budgetId?: number) => ipcRenderer.invoke('budget-allocations:list', budgetId),
+  optimizeBudgetAllocation: (budgetId: number) => ipcRenderer.invoke('budget-allocations:optimize', budgetId),
+  createBudgetVariance: (data: any) => ipcRenderer.invoke('budget-variances:create', data),
+  listBudgetVariances: (budgetId?: number) => ipcRenderer.invoke('budget-variances:list', budgetId),
+
+  // Phase 5.3: Early Warning System
+  createPredictiveAlert: (data: any) => ipcRenderer.invoke('predictive-alerts:create', data),
+  listPredictiveAlerts: (filters?: any) => ipcRenderer.invoke('predictive-alerts:list', filters),
+  acknowledgeAlert: (id: number) => ipcRenderer.invoke('predictive-alerts:acknowledge', id),
+  resolveAlert: (id: number) => ipcRenderer.invoke('predictive-alerts:resolve', id),
+  createEarlyWarningTrigger: (data: any) => ipcRenderer.invoke('early-warnings:create-trigger', data),
+  listEarlyWarningTriggers: (activeOnly?: boolean) => ipcRenderer.invoke('early-warnings:list-triggers', activeOnly),
+  evaluateWarningTriggers: () => ipcRenderer.invoke('early-warnings:evaluate'),
+  createActionPlan: (data: any) => ipcRenderer.invoke('action-plans:create', data),
+  listActionPlans: (filters?: any) => ipcRenderer.invoke('action-plans:list', filters),
+  activateActionPlan: (id: number) => ipcRenderer.invoke('action-plans:activate', id),
+
+  // Phase 5.4: Scenario Planning Suite
+  createScenarioSimulation: (data: any) => ipcRenderer.invoke('scenarios:create', data),
+  listScenarioSimulations: (filters?: any) => ipcRenderer.invoke('scenarios:list', filters),
+  runMonteCarloSimulation: (params: any) => ipcRenderer.invoke('scenarios:run-monte-carlo', params),
+  runSensitivityAnalysis: (params: any) => ipcRenderer.invoke('sensitivity-analysis:run', params),
+  listSensitivityAnalyses: () => ipcRenderer.invoke('sensitivity-analysis:list'),
+
+  // Phase 5.5: Enterprise Features
+  createEnterpriseForecast: (data: any) => ipcRenderer.invoke('enterprise-forecasts:create', data),
+  listEnterpriseForecasts: (filters?: any) => ipcRenderer.invoke('enterprise-forecasts:list', filters),
+  publishEnterpriseForecast: (id: number) => ipcRenderer.invoke('enterprise-forecasts:publish', id),
+  generateExecutiveDashboard: (params?: any) => ipcRenderer.invoke('executive-dashboard:generate', params),
+  createMLTrainingDataset: (data: any) => ipcRenderer.invoke('ml-training-data:create', data),
+  listMLTrainingDatasets: (filters?: any) => ipcRenderer.invoke('ml-training-data:list', filters),
+  getModelPerformanceMetrics: (modelId?: number) => ipcRenderer.invoke('model-performance:get', modelId),
 });

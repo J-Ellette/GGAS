@@ -31,6 +31,7 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MessageIcon from '@mui/icons-material/Message';
 
@@ -47,6 +48,7 @@ import AIMLPage from './pages/AIMLPage';
 import TargetManagementPage from './pages/TargetManagementPage';
 import MultiEntityPage from './pages/MultiEntityPage';
 import Phase4Page from './pages/Phase4Page';
+import Phase5Page from './pages/Phase5Page';
 import AdminPanel from './pages/AdminPanel';
 import DocumentationPage from './pages/DocumentationPage';
 import CarbonCopilotPage from './pages/CarbonCopilotPage';
@@ -84,6 +86,7 @@ type PageType =
   | 'targets'
   | 'multi-entity'
   | 'phase4'
+  | 'phase5'
   | 'admin'
   | 'settings'
   | 'documentation'
@@ -170,6 +173,8 @@ const App: React.FC = () => {
         return <MultiEntityPage />;
       case 'phase4':
         return <Phase4Page />;
+      case 'phase5':
+        return <Phase5Page />;
       case 'admin':
         return <AdminPanel />;
       case 'documentation':
@@ -347,6 +352,14 @@ const App: React.FC = () => {
                     <RocketLaunchIcon />
                   </ListItemIcon>
                   <ListItemText primary="Advanced Analytics" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'phase5'} onClick={() => setCurrentPage('phase5')}>
+                  <ListItemIcon>
+                    <TrendingUpIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Predictive Intelligence" />
                 </ListItemButton>
               </ListItem>
             </List>
