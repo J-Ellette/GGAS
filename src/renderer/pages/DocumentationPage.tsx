@@ -452,6 +452,62 @@ const documentationSections: DocSection[] = [
       },
     ],
   },
+  {
+    id: 'oil-gas-accounting',
+    title: 'Oil & Gas Industry Accounting Standards',
+    icon: <ArticleIcon />,
+    content: 'Specific accounting standards for the oil and gas industry vary by jurisdiction and methodology. Understanding these standards is crucial for accurate financial reporting and emissions accounting in the energy sector.',
+    subsections: [
+      {
+        title: 'Overview',
+        content: 'The oil and gas industry has unique accounting requirements due to the high-risk, capital-intensive nature of exploration and production activities. The two primary methods for expensing exploration and development costs significantly impact reported earnings and asset values.',
+      },
+      {
+        title: 'Successful Efforts Method',
+        content: 'What it is: This method capitalizes only the costs associated with successful exploration efforts, such as productive wells. Costs for unsuccessful exploratory efforts, or "dry holes," are immediately expensed. Impact on financials: This approach typically results in lower asset values and more volatile earnings compared to the full cost method, especially for companies with significant exploration activity. Governing bodies: The Financial Accounting Standards Board (FASB) requires the use of the successful efforts method under U.S. GAAP.',
+      },
+      {
+        title: 'Full Cost Method',
+        content: 'What it is: This method capitalizes all exploration operating costs, regardless of whether they were successful or not. These costs are then amortized over time as the total reserves are produced. Impact on financials: This method can inflate reported net income by deferring the expense of unsuccessful ventures. It generally results in higher asset values and less volatile earnings than the successful efforts method. Governing bodies: The U.S. Securities and Exchange Commission (SEC) allows companies to use the full cost method and has specific regulations regarding its use.',
+      },
+      {
+        title: 'U.S. GAAP Standards (ASC 932)',
+        content: 'U.S. companies must follow Accounting Standards Codification (ASC) 932 under GAAP. This standard provides comprehensive guidance on: Capitalization of exploration and development costs; Depreciation, depletion, and amortization (DD&A) methodologies; Impairment testing of oil and gas properties; Required disclosures about reserve quantities and values; Segment reporting for different geographic areas or product types. Companies must choose either the successful efforts or full cost method and apply it consistently.',
+      },
+      {
+        title: 'IFRS Standards (IFRS 6)',
+        content: 'Countries using International Financial Reporting Standards follow IFRS 6 (Exploration for and Evaluation of Mineral Resources). Key aspects include: More principles-based approach compared to U.S. GAAP; Allows companies to either capitalize or expense exploration costs, provided the policy is applied consistently; Less prescriptive than ASC 932, giving companies more flexibility; Must be used in conjunction with other IFRS standards (IAS 16, IAS 36, IAS 37, IAS 38); Requires disclosure of accounting policies used for exploration and evaluation expenditures.',
+      },
+      {
+        title: 'Depreciation, Depletion, and Amortization (DD&A)',
+        content: 'After costs are capitalized under either method, companies use DD&A to expense those costs over time as reserves are extracted. The unit-of-production method is most common: Costs are allocated based on the ratio of production during the period to total estimated reserves. This ensures expenses match the revenue generated from resource extraction. Calculation: (Production during period / Estimated total reserves) × Capitalized costs. DD&A rates must be updated as reserve estimates change.',
+      },
+      {
+        title: 'Reserve Accounting',
+        content: 'Accurately estimating oil and gas reserves is critical for both financial reporting and asset valuation. Key concepts: Proved reserves: Quantities that geological and engineering data demonstrate with reasonable certainty to be recoverable under existing conditions. Probable reserves: Less certain than proved reserves but still likely to be recovered. Possible reserves: Less certain than probable reserves. SEC regulations: Mandate how reserve estimates are used to calculate impairment limitations under the full cost method. Require annual reporting of reserve quantities and changes. Companies must engage qualified petroleum engineers to certify reserves.',
+      },
+      {
+        title: 'Joint Ventures',
+        content: 'The oil and gas industry frequently uses joint ventures for large-scale projects, requiring complex accounting: Participants must account for their proportionate share of assets, liabilities, revenues, and expenses. Joint operating agreements (JOAs) define cost-sharing arrangements. The operator typically manages the venture and bills other participants. Non-operating partners must verify charges and maintain separate accounting records. Transfer pricing rules apply when joint venture partners transact with each other. Multi-national joint ventures must reconcile different accounting standards across jurisdictions.',
+      },
+      {
+        title: 'Lease Accounting (IFRS 16 & ASC 842)',
+        content: 'Modern standards require oil and gas companies to analyze service arrangements for embedded leases: IFRS 16 and ASC 842 require lessees to recognize right-of-use assets and lease liabilities on the balance sheet. Common lease arrangements: Drilling rig contracts, pipeline capacity agreements, storage facility rentals, office and accommodation facilities. Companies must assess whether arrangements contain leases and distinguish between operating and finance leases. This significantly impacts balance sheet presentation and financial ratios.',
+      },
+      {
+        title: 'Environmental & ESG Reporting (SASB Standards)',
+        content: 'For environmental, social, and governance (ESG) reporting, oil and gas companies must disclose greenhouse gas (GHG) emissions metrics using standards like those from the Sustainability Accounting Standards Board (SASB). Key requirements: Scope 1 emissions (direct from operations); Scope 2 emissions (purchased electricity); Scope 3 emissions (value chain, including downstream combustion of produced hydrocarbons); Methane emissions reporting; Flaring and venting data; Carbon intensity metrics; Climate risk disclosures under TCFD framework. GGAS integrates with these reporting requirements to ensure compliance.',
+      },
+      {
+        title: 'Impairment Testing',
+        content: 'Oil and gas assets must be tested for impairment regularly: Successful efforts method: Test individual properties or cost centers for impairment when events or circumstances indicate carrying value may not be recoverable. Full cost method: Perform ceiling test quarterly - total capitalized costs cannot exceed the present value of future net revenues from proved reserves plus the cost of unproved properties. Impairment indicators: Significant decline in commodity prices, downward reserve revisions, political or regulatory changes, technological obsolescence. Write-downs are recorded when carrying value exceeds recoverable amount.',
+      },
+      {
+        title: 'Configuring O&G Accounting in GGAS',
+        content: 'To configure oil and gas accounting standards in GGAS: Navigate to Settings → Accounting & Compliance. Select your primary accounting framework (U.S. GAAP/ASC 932 or IFRS 6). Choose your cost accounting method (Successful Efforts or Full Cost). Configure DD&A calculation parameters and reserve estimation methods. Set up joint venture accounting rules if applicable. Enable ESG/SASB reporting modules for emissions disclosure. Configure impairment testing schedules and triggers. The system will automatically apply the appropriate accounting rules for emissions calculations, financial reporting, and compliance.',
+      },
+    ],
+  },
 ];
 
 const DocumentationPage: React.FC = () => {

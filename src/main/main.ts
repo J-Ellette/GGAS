@@ -974,11 +974,11 @@ function setupIpcHandlers() {
   });
 
   // Phase 5.4: Scenario Planning Suite
-  ipcMain.handle('scenarios:create', async (event, data) => {
+  ipcMain.handle('scenario-simulations:create', async (event, data) => {
     return databaseService?.createScenarioSimulation(data);
   });
 
-  ipcMain.handle('scenarios:list', async (event, filters) => {
+  ipcMain.handle('scenario-simulations:list', async (event, filters) => {
     return databaseService?.listScenarioSimulations(filters);
   });
 

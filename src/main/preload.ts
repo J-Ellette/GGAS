@@ -272,8 +272,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   activateActionPlan: (id: number) => ipcRenderer.invoke('action-plans:activate', id),
 
   // Phase 5.4: Scenario Planning Suite
-  createScenarioSimulation: (data: any) => ipcRenderer.invoke('scenarios:create', data),
-  listScenarioSimulations: (filters?: any) => ipcRenderer.invoke('scenarios:list', filters),
+  createScenarioSimulation: (data: any) => ipcRenderer.invoke('scenario-simulations:create', data),
+  listScenarioSimulations: (filters?: any) => ipcRenderer.invoke('scenario-simulations:list', filters),
   runMonteCarloSimulation: (params: any) => ipcRenderer.invoke('scenarios:run-monte-carlo', params),
   runSensitivityAnalysis: (params: any) => ipcRenderer.invoke('sensitivity-analysis:run', params),
   listSensitivityAnalyses: () => ipcRenderer.invoke('sensitivity-analysis:list'),
