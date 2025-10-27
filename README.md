@@ -62,8 +62,8 @@ Advanced forecasting, carbon budget management, early warning systems, scenario 
 ### ✅ Phase 6: Real-Time Carbon Operations Center (COMPLETE)
 Live monitoring, command center capabilities, carbon traffic light system, automated response systems, and theme customization.
 
-### ✅ Phase 8: Autonomous Data Collection (COMPLETE)
-Intelligent document processing, email intelligence, browser extension, and enterprise security features.
+### Note: Phase 7 & 8
+Phase 7 (Universal Carbon Connector) and Phase 8 (Autonomous Data Collection) features are documented in the Documentation panel but their completion summaries are not yet available in separate files.
 
 ### ✅ Phase 9: Blockchain Carbon Ledger (COMPLETE - LATEST)
 Immutable emission records, carbon credit & offset management, supply chain transparency, and enterprise blockchain implementation.
@@ -493,7 +493,6 @@ All data is stored locally in SQLite database at:
 - **PHASE4_COMPLETE.md**: Phase 4 implementation details
 - **PHASE5_COMPLETE.md**: Phase 5 implementation details
 - **PHASE6_COMPLETE.md**: Phase 6 implementation details
-- **PHASE8_COMPLETE.md**: Phase 8 implementation details
 - **PHASE9_COMPLETE.md**: Phase 9 implementation details (latest)
 - **buildsheet.md**: Complete system specification
 - **docs/USER_GUIDE.md**: Detailed user guide

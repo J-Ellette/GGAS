@@ -477,10 +477,9 @@ The documentation follows enterprise-grade technical writing standards and provi
 - **PHASE4_COMPLETE.md**: Innovation & optimization
 - **PHASE5_COMPLETE.md**: Predictive carbon intelligence
 - **PHASE6_COMPLETE.md**: Real-time carbon operations center
-- **PHASE8_COMPLETE.md**: Autonomous data collection
 - **README.md**: Main project documentation
 - **buildsheet.md**: Complete system specification
 
 ---
 
-**© 2024-2025 Green Country. All rights reserved.**
+**© 2024 Green Country. All rights reserved.**
