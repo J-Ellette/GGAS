@@ -512,7 +512,7 @@ const documentationSections: DocSection[] = [
   },
   {
     id: 'phase6',
-    title: 'Phase 6: Real-Time Carbon Operations Center',
+    title: 'Real-Time Carbon Operations Center',
     icon: <DashboardIcon />,
     content: 'The Real-Time Carbon Operations Center provides comprehensive live monitoring, command center capabilities, and operational intelligence for managing carbon emissions across your organization.',
     subsections: [
@@ -548,7 +548,7 @@ const documentationSections: DocSection[] = [
   },
   {
     id: 'phase7',
-    title: 'Phase 7: Universal Carbon Connector',
+    title: 'Universal Carbon Connector',
     icon: <DataIcon />,
     content: 'The Universal Carbon Connector provides comprehensive pre-built integrations, smart data mapping, and a no-code integration builder to seamlessly connect GGAS with your enterprise systems, utility providers, travel platforms, facilities management, supply chain, and financial systems.',
     subsections: [
@@ -648,9 +648,9 @@ const documentationSections: DocSection[] = [
   },
   {
     id: 'phase8',
-    title: 'Phase 8: Autonomous Data Collection',
+    title: 'Autonomous Data Collection',
     icon: <DataIcon />,
-    content: 'Phase 8 introduces autonomous data collection capabilities with intelligent document processing, email intelligence, browser extension intelligence, and enterprise security features. These advanced automation features dramatically reduce manual data entry while maintaining high accuracy and compliance.',
+    content: 'The Autonomous Data Collection module introduces autonomous data collection capabilities with intelligent document processing, email intelligence, browser extension intelligence, and enterprise security features. These advanced automation features dramatically reduce manual data entry while maintaining high accuracy and compliance.',
     subsections: [
       {
         title: 'Intelligent Document Processing Overview',
@@ -730,7 +730,7 @@ const documentationSections: DocSection[] = [
       },
       {
         title: 'Maximo Integration',
-        content: 'IBM Maximo Enterprise Asset Management integration enables synchronization of asset data with carbon emissions tracking. Configure the integration in Phase 8 → Third-Party Integrations tab. Provide your Maximo server URL, API credentials, and authentication method. Map Maximo asset categories to GGAS emission sources. Schedule automatic synchronization (hourly, daily, weekly) or trigger manual sync. Assets are imported with: asset number and description, location and facility assignment, manufacturer and model information, operating hours and maintenance records, and energy consumption data.',
+        content: 'IBM Maximo Enterprise Asset Management integration enables synchronization of asset data with carbon emissions tracking. Configure the integration in Autonomous Data Collection → Third-Party Integrations tab. Provide your Maximo server URL, API credentials, and authentication method. Map Maximo asset categories to GGAS emission sources. Schedule automatic synchronization (hourly, daily, weekly) or trigger manual sync. Assets are imported with: asset number and description, location and facility assignment, manufacturer and model information, operating hours and maintenance records, and energy consumption data.',
       },
       {
         title: 'Maximo Configuration',
@@ -757,16 +757,16 @@ const documentationSections: DocSection[] = [
         content: 'Security recommendations for Microsoft SSO: Enable MFA in Azure AD for all users accessing GGAS. Regularly review Azure AD app permissions and access logs. Set up conditional access policies in Azure AD (require MFA, restrict by location/device). Configure session timeouts appropriately for your security requirements. Monitor SSO login attempts and failures in the audit logs. Implement emergency access procedures in case of Azure AD outage. Document your SSO configuration for disaster recovery. Test SSO regularly to ensure it remains functional after Azure AD or GGAS updates.',
       },
       {
-        title: 'Getting Started with Phase 8',
-        content: 'To begin using Phase 8 autonomous data collection features: Navigate to the Autonomous Collection page from the main menu. Start with Document Processing: upload a few sample documents to test OCR accuracy. Review and approve extracted data. Configure Email Monitoring: add an email monitor for a dedicated carbon data mailbox. Set up filtering and categorization rules. Install Browser Extension: install from Chrome Web Store or Firefox Add-ons. Enable auto-capture for travel bookings. Configure Third-Party Integrations: set up Maximo integration if you use Maximo. Enable Microsoft SSO in Admin Panel if desired. Monitor and refine: review processing accuracy and adjust settings. Train templates on your specific documents. Refine categorization rules based on actual data. The system will continuously improve as it processes more data.',
+        title: 'Getting Started',
+        content: 'To begin using autonomous data collection features: Navigate to the Autonomous Collection page from the main menu. Start with Document Processing: upload a few sample documents to test OCR accuracy. Review and approve extracted data. Configure Email Monitoring: add an email monitor for a dedicated carbon data mailbox. Set up filtering and categorization rules. Install Browser Extension: install from Chrome Web Store or Firefox Add-ons. Enable auto-capture for travel bookings. Configure Third-Party Integrations: set up Maximo integration if you use Maximo. Enable Microsoft SSO in Admin Panel if desired. Monitor and refine: review processing accuracy and adjust settings. Train templates on your specific documents. Refine categorization rules based on actual data. The system will continuously improve as it processes more data.',
       },
     ],
   },
   {
     id: 'phase9',
-    title: 'Phase 9: Blockchain Carbon Ledger',
+    title: 'Blockchain Carbon Ledger',
     icon: <SecurityIcon />,
-    content: 'Phase 9 introduces blockchain technology to provide immutable emission records, transparent carbon credit management, supply chain traceability, and enterprise-grade distributed ledger capabilities. The Blockchain Carbon Ledger ensures data integrity, prevents tampering, and enables trusted collaboration across organizational boundaries.',
+    content: 'The Blockchain Carbon Ledger introduces blockchain technology to provide immutable emission records, transparent carbon credit management, supply chain traceability, and enterprise-grade distributed ledger capabilities. The Blockchain Carbon Ledger ensures data integrity, prevents tampering, and enables trusted collaboration across organizational boundaries.',
     subsections: [
       {
         title: 'Overview of Blockchain Carbon Ledger',
@@ -866,15 +866,15 @@ const documentationSections: DocSection[] = [
       },
       {
         title: 'Getting Started with Blockchain Carbon Ledger',
-        content: 'To begin using Phase 9 blockchain features: Navigate to Blockchain Carbon Ledger in the Innovation menu. Complete the blockchain network setup wizard: select network type (private, hybrid, public), configure node settings and resources, set up consensus participants and validators, and define smart contract rules and policies. Migrate existing emission data to blockchain for historical continuity. Configure carbon credit trading rules and registry connections. Set up supply chain participants and establish trust networks. Deploy smart contracts for automated validation and workflows. Test the blockchain integration in a sandbox environment. Enable blockchain recording for new emission data. Monitor blockchain health and performance through the dashboard. Train team members on blockchain concepts and workflows. The system provides guided tutorials and documentation to simplify blockchain adoption.',
+        content: 'To begin using blockchain features: Navigate to Blockchain Carbon Ledger in the Innovation menu. Complete the blockchain network setup wizard: select network type (private, hybrid, public), configure node settings and resources, set up consensus participants and validators, and define smart contract rules and policies. Migrate existing emission data to blockchain for historical continuity. Configure carbon credit trading rules and registry connections. Set up supply chain participants and establish trust networks. Deploy smart contracts for automated validation and workflows. Test the blockchain integration in a sandbox environment. Enable blockchain recording for new emission data. Monitor blockchain health and performance through the dashboard. Train team members on blockchain concepts and workflows. The system provides guided tutorials and documentation to simplify blockchain adoption.',
       },
     ],
   },
   {
     id: 'phase10',
-    title: 'Phase 10: Carbon Intelligence Engine',
+    title: 'Carbon Intelligence Engine',
     icon: <AIIcon />,
-    content: 'Phase 10 introduces the Carbon Intelligence Engine, a comprehensive system for competitive benchmarking, financial impact analysis, materiality assessment automation, and enterprise-level strategic carbon intelligence. This advanced analytics platform enables data-driven decision-making, peer comparison, ROI optimization, and board-level reporting for strategic carbon management.',
+    content: 'The Carbon Intelligence Engine is a comprehensive system for competitive benchmarking, financial impact analysis, materiality assessment automation, and enterprise-level strategic carbon intelligence. This advanced analytics platform enables data-driven decision-making, peer comparison, ROI optimization, and board-level reporting for strategic carbon management.',
     subsections: [
       {
         title: 'Overview of Carbon Intelligence Engine',
@@ -958,7 +958,7 @@ const documentationSections: DocSection[] = [
       },
       {
         title: 'Configuring the Carbon Intelligence Engine',
-        content: 'To configure and begin using Phase 10 Carbon Intelligence Engine features: Navigate to Carbon Intelligence in the Strategic Planning menu. Complete the initial setup wizard: configure peer network participation (select industries, geographies, anonymity preferences), set up benchmarking parameters (peer selection criteria, metrics of interest), configure financial parameters (discount rates, carbon price assumptions, currency), define materiality assessment criteria (stakeholder groups, evaluation methodology), and establish reporting preferences (metrics, visualization styles, reporting frequency). Connect industry databases and peer networks: authenticate with third-party data providers, select relevant industry sectors and geographies, configure data refresh schedules, and set up automatic peer matching. Configure financial models: input current carbon prices and price trajectories, configure organizational cost of capital and discount rates, set up project evaluation criteria and thresholds, and define budget constraints and allocation rules. Set up risk assessment: map facilities and operations to climate risk exposures, configure risk evaluation criteria (likelihood, magnitude), identify risk mitigation strategies and costs, and establish risk reporting thresholds. Configure board reporting: select key performance indicators for executive dashboards, design report templates and visualizations, set up automated report generation schedules, and configure stakeholder distribution lists. The system provides guided configuration with sensible defaults based on your industry and organizational characteristics.',
+        content: 'To configure and begin using Carbon Intelligence Engine features: Navigate to Carbon Intelligence in the Strategic Planning menu. Complete the initial setup wizard: configure peer network participation (select industries, geographies, anonymity preferences), set up benchmarking parameters (peer selection criteria, metrics of interest), configure financial parameters (discount rates, carbon price assumptions, currency), define materiality assessment criteria (stakeholder groups, evaluation methodology), and establish reporting preferences (metrics, visualization styles, reporting frequency). Connect industry databases and peer networks: authenticate with third-party data providers, select relevant industry sectors and geographies, configure data refresh schedules, and set up automatic peer matching. Configure financial models: input current carbon prices and price trajectories, configure organizational cost of capital and discount rates, set up project evaluation criteria and thresholds, and define budget constraints and allocation rules. Set up risk assessment: map facilities and operations to climate risk exposures, configure risk evaluation criteria (likelihood, magnitude), identify risk mitigation strategies and costs, and establish risk reporting thresholds. Configure board reporting: select key performance indicators for executive dashboards, design report templates and visualizations, set up automated report generation schedules, and configure stakeholder distribution lists. The system provides guided configuration with sensible defaults based on your industry and organizational characteristics.',
       },
       {
         title: 'Using Competitive Benchmarking',
@@ -984,9 +984,9 @@ const documentationSections: DocSection[] = [
   },
   {
     id: 'phase11',
-    title: 'Phase 11: Supply Chain Carbon X-Ray',
+    title: 'Supply Chain Carbon X-Ray',
     icon: <AccountTreeIcon />,
-    content: 'Phase 11 introduces comprehensive supply chain carbon management with multi-dimensional supplier scoring, carbon hotspot identification, AI-powered alternative supplier intelligence, and collaborative decarbonization planning. These enterprise-grade capabilities enable organizations to measure, manage, and reduce Scope 3 supply chain emissions systematically.',
+    content: 'The Supply Chain Carbon X-Ray provides comprehensive supply chain carbon management with multi-dimensional supplier scoring, carbon hotspot identification, AI-powered alternative supplier intelligence, and collaborative decarbonization planning. These enterprise-grade capabilities enable organizations to measure, manage, and reduce Scope 3 supply chain emissions systematically.',
     subsections: [
       {
         title: 'Overview of Supply Chain Carbon X-Ray',
@@ -1016,9 +1016,9 @@ const documentationSections: DocSection[] = [
   },
   {
     id: 'phase-12',
-    title: 'Phase 12: Product Carbon Lifecycle Engine',
+    title: 'Product Carbon Lifecycle Engine',
     icon: <AccountTreeIcon />,
-    content: 'Phase 12 introduces the Product Carbon Lifecycle Engine, a comprehensive system for automated Life Cycle Assessment (LCA) calculations, carbon labeling, design optimization, circular economy integration, and enterprise product carbon management. This advanced platform enables organizations to measure, optimize, and communicate product carbon footprints throughout the entire product lifecycle from raw materials to end-of-life, supporting sustainable product development and circular economy business models.',
+    content: 'The Product Carbon Lifecycle Engine is a comprehensive system for automated Life Cycle Assessment (LCA) calculations, carbon labeling, design optimization, circular economy integration, and enterprise product carbon management. This advanced platform enables organizations to measure, optimize, and communicate product carbon footprints throughout the entire product lifecycle from raw materials to end-of-life, supporting sustainable product development and circular economy business models.',
     subsections: [
       {
         title: 'Overview of Product Carbon Lifecycle Engine',
@@ -1112,9 +1112,9 @@ const documentationSections: DocSection[] = [
   },
   {
     id: 'phase-13',
-    title: 'Phase 13: Carbon-Financial Integration Suite',
+    title: 'Carbon-Financial Integration Suite',
     icon: <AccountTreeIcon />,
-    content: 'Phase 13 introduces the Carbon-Financial Integration Suite, a comprehensive platform that integrates carbon accounting with financial systems, providing double-entry carbon accounting, carbon pricing integration, green finance optimization, carbon tax management, and deep enterprise financial system integration. This advanced suite enables organizations to manage carbon as a financial asset, optimize carbon-related financial decisions, access green financing, comply with carbon tax regulations, and integrate carbon performance throughout enterprise financial reporting and decision-making processes.',
+    content: 'The Carbon-Financial Integration Suite is a comprehensive platform that integrates carbon accounting with financial systems, providing double-entry carbon accounting, carbon pricing integration, green finance optimization, carbon tax management, and deep enterprise financial system integration. This advanced suite enables organizations to manage carbon as a financial asset, optimize carbon-related financial decisions, access green financing, comply with carbon tax regulations, and integrate carbon performance throughout enterprise financial reporting and decision-making processes.',
     subsections: [
       {
         title: 'Overview of Carbon-Financial Integration',
@@ -1208,9 +1208,9 @@ const documentationSections: DocSection[] = [
   },
   {
     id: 'phase-14',
-    title: 'Phase 14: ESG Strategy Orchestrator',
+    title: 'ESG Strategy Orchestrator',
     icon: <AccountTreeIcon />,
-    content: 'Phase 14 introduces the ESG Strategy Orchestrator, a comprehensive platform that provides integrated ESG dashboards, stakeholder impact analysis, ESG rating optimization, stakeholder communication tools, and enterprise strategy integration. This advanced suite enables organizations to holistically manage ESG performance, optimize ratings from major agencies, analyze stakeholder impacts, communicate effectively with diverse audiences, and integrate ESG strategy throughout the enterprise.',
+    content: 'The ESG Strategy Orchestrator is a comprehensive platform that provides integrated ESG dashboards, stakeholder impact analysis, ESG rating optimization, stakeholder communication tools, and enterprise strategy integration. This advanced suite enables organizations to holistically manage ESG performance, optimize ratings from major agencies, analyze stakeholder impacts, communicate effectively with diverse audiences, and integrate ESG strategy throughout the enterprise.',
     subsections: [
       {
         title: 'Overview of ESG Strategy Orchestrator',
@@ -1238,7 +1238,7 @@ const documentationSections: DocSection[] = [
       },
       {
         title: 'Getting Started with ESG Strategy Orchestrator',
-        content: 'To begin using the ESG Strategy Orchestrator: Navigate to Phase 14: ESG Strategy Orchestrator from the Innovation & Optimization section. Configure the Integrated ESG Dashboard by setting up data connections for environmental metrics (carbon, energy, water, waste), social metrics (safety, diversity, engagement, community), and governance metrics (board composition, ethics, compliance, risk management), establishing baseline scores and targets for each dimension, configuring materiality matrix parameters and stakeholder weighting, and enabling real-time ESG correlation analysis. Set up Stakeholder Impact Analysis by defining stakeholder groups and priority levels (Investors-High, Customers-High, Employees-High, Regulators-Medium, Community-Medium), establishing KPIs for each stakeholder (satisfaction, engagement, value creation), configuring impact measurement methodologies, and scheduling regular stakeholder surveys and feedback collection. Activate ESG Rating Optimization by registering with rating agency portals (MSCI, Sustainalytics, CDP, S&P Global), configuring automated data feeds to rating agencies, setting target ratings for each agency, enabling gap analysis and AI recommendation engine, and establishing rating improvement project tracking. Deploy Stakeholder Communication tools by creating report templates for each stakeholder type, configuring automated report generation schedules, setting up storytelling content creation workflows, integrating digital communication channels (website, investor portal, intranet, social media), and activating crisis communication response protocols. Enable Enterprise Strategy Integration by aligning ESG strategy with 5-year corporate plan, integrating ESG metrics into performance management and compensation systems, establishing board-level ESG oversight structures, incorporating ESG into enterprise risk management framework, and creating cross-functional ESG governance committees. Monitor and optimize ESG strategy by tracking integrated ESG dashboard daily, conducting quarterly stakeholder impact reviews, reviewing rating agency scores and implementing improvements, generating and distributing stakeholder communications, and reporting ESG performance to board and executives regularly.',
+        content: 'To begin using the ESG Strategy Orchestrator: Navigate to ESG Strategy Orchestrator from the Innovation & Optimization section. Configure the Integrated ESG Dashboard by setting up data connections for environmental metrics (carbon, energy, water, waste), social metrics (safety, diversity, engagement, community), and governance metrics (board composition, ethics, compliance, risk management), establishing baseline scores and targets for each dimension, configuring materiality matrix parameters and stakeholder weighting, and enabling real-time ESG correlation analysis. Set up Stakeholder Impact Analysis by defining stakeholder groups and priority levels (Investors-High, Customers-High, Employees-High, Regulators-Medium, Community-Medium), establishing KPIs for each stakeholder (satisfaction, engagement, value creation), configuring impact measurement methodologies, and scheduling regular stakeholder surveys and feedback collection. Activate ESG Rating Optimization by registering with rating agency portals (MSCI, Sustainalytics, CDP, S&P Global), configuring automated data feeds to rating agencies, setting target ratings for each agency, enabling gap analysis and AI recommendation engine, and establishing rating improvement project tracking. Deploy Stakeholder Communication tools by creating report templates for each stakeholder type, configuring automated report generation schedules, setting up storytelling content creation workflows, integrating digital communication channels (website, investor portal, intranet, social media), and activating crisis communication response protocols. Enable Enterprise Strategy Integration by aligning ESG strategy with 5-year corporate plan, integrating ESG metrics into performance management and compensation systems, establishing board-level ESG oversight structures, incorporating ESG into enterprise risk management framework, and creating cross-functional ESG governance committees. Monitor and optimize ESG strategy by tracking integrated ESG dashboard daily, conducting quarterly stakeholder impact reviews, reviewing rating agency scores and implementing improvements, generating and distributing stakeholder communications, and reporting ESG performance to board and executives regularly.',
       },
     ],
   },
