@@ -506,7 +506,7 @@ M&A Analysis: Carbon-financial due diligence for mergers and acquisitions
 
 Add documentation in the Documentation panel
 
-14. ESG Strategy Orchestrator
+14. ESG Strategy Orchestrator (COMPLETE) 
 Integrated ESG Dashboard:
 
 Holistic Performance View: Carbon data integrated with social and governance metrics
