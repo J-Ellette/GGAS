@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -28,6 +28,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import LanguageIcon from '@mui/icons-material/Language';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -42,6 +43,8 @@ import AIMLPage from './pages/AIMLPage';
 import TargetManagementPage from './pages/TargetManagementPage';
 import MultiEntityPage from './pages/MultiEntityPage';
 import Phase4Page from './pages/Phase4Page';
+import AdminPanel from './pages/AdminPanel';
+import LicenseKeyDialog from './components/LicenseKeyDialog';
 
 const drawerWidth = 280;
 
@@ -71,10 +74,46 @@ type PageType =
   | 'targets'
   | 'multi-entity'
   | 'phase4'
+  | 'admin'
   | 'settings';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('dashboard');
+  const [licenseValidated, setLicenseValidated] = useState(false);
+  const [showLicenseDialog, setShowLicenseDialog] = useState(false);
+
+  useEffect(() => {
+    // Check if license is already validated
+    const validated = localStorage.getItem('licenseValidated');
+    if (validated === 'true') {
+      setLicenseValidated(true);
+    } else {
+      setShowLicenseDialog(true);
+    }
+  }, []);
+
+  const handleLicenseValid = () => {
+    setLicenseValidated(true);
+    setShowLicenseDialog(false);
+  };
+
+  const handleAdminAccess = () => {
+    setLicenseValidated(true);
+    setShowLicenseDialog(false);
+    setCurrentPage('admin');
+  };
+
+  if (showLicenseDialog && !licenseValidated) {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <LicenseKeyDialog 
+          onLicenseValid={handleLicenseValid}
+          onAdminAccess={handleAdminAccess}
+        />
+      </ThemeProvider>
+    );
+  }
 
   const renderPage = () => {
     switch (currentPage) {
@@ -104,6 +143,8 @@ const App: React.FC = () => {
         return <MultiEntityPage />;
       case 'phase4':
         return <Phase4Page />;
+      case 'admin':
+        return <AdminPanel />;
       case 'settings':
         return <Box p={3}><Typography variant="h4">Settings (Coming Soon)</Typography></Box>;
       default:
@@ -119,10 +160,10 @@ const App: React.FC = () => {
           <Toolbar>
             <CloudIcon sx={{ mr: 2 }} />
             <Typography variant="h6" noWrap component="div">
-              GGAS - Greenhouse Gas Accounting Software
+              Green Country: Greenhouse Gas Accounting Software
             </Typography>
             <Typography variant="caption" sx={{ ml: 2, opacity: 0.7 }}>
-              Phase 4
+              v1.0
             </Typography>
           </Toolbar>
         </AppBar>
@@ -180,7 +221,7 @@ const App: React.FC = () => {
 
             <Divider />
             <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
-              Phase 2 Features
+              Advanced Features
             </Typography>
             <List>
               <ListItem disablePadding>
@@ -215,19 +256,11 @@ const App: React.FC = () => {
                   <ListItemText primary="Compliance" />
                 </ListItemButton>
               </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'users'} onClick={() => setCurrentPage('users')}>
-                  <ListItemIcon>
-                    <PeopleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Users" />
-                </ListItemButton>
-              </ListItem>
             </List>
 
             <Divider />
             <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
-              Phase 3 Features
+              AI & Strategic Planning
             </Typography>
             <List>
               <ListItem disablePadding>
@@ -258,7 +291,7 @@ const App: React.FC = () => {
 
             <Divider />
             <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
-              Phase 4 Features
+              Innovation & Optimization
             </Typography>
             <List>
               <ListItem disablePadding>
@@ -266,13 +299,21 @@ const App: React.FC = () => {
                   <ListItemIcon>
                     <RocketLaunchIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Innovation & Optimization" />
+                  <ListItemText primary="Advanced Analytics" />
                 </ListItemButton>
               </ListItem>
             </List>
 
             <Divider />
             <List>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'admin'} onClick={() => setCurrentPage('admin')}>
+                  <ListItemIcon>
+                    <AdminPanelSettingsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Admin Panel" />
+                </ListItemButton>
+              </ListItem>
               <ListItem disablePadding>
                 <ListItemButton selected={currentPage === 'settings'} onClick={() => setCurrentPage('settings')}>
                   <ListItemIcon>

@@ -16,7 +16,7 @@ function createWindow() {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
     },
-    title: 'GGAS - Greenhouse Gas Accounting Software'
+    title: 'Green Country: Greenhouse Gas Accounting Software'
   });
 
   // Load the index.html
