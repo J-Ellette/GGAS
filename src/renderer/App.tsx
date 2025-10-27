@@ -121,9 +121,14 @@ const App: React.FC = () => {
     setSystemNotification(null);
   };
 
-  const handleLicenseValid = () => {
+  const handleLicenseValid = (licenseManager?: any) => {
     setLicenseValidated(true);
     setShowLicenseDialog(false);
+    // Store license manager if needed for feature gates
+    if (licenseManager) {
+      // Could store in context or state if needed
+      console.log('License validated with manager:', licenseManager);
+    }
   };
 
   const handleAdminAccess = () => {
