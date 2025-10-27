@@ -139,7 +139,17 @@ Economies where oil revenue is a large share of GDP: In 2012, World Bank data sh
 Top oil-producing countries: The United States has been the world's largest oil producer since 2018, and its production volume requires extensive accounting. Other major producers include Saudi Arabia, Russia, and Canada.
 Countries with large energy exports: Kuwait relies heavily on oil and gas exports for its economic stability, with these resources making up a large portion of its energy system and requiring robust accounting practices.
 
-5.7. Specific accounting standards:
+Phase 5.7. Specific accounting standards:
+
+First fix:
+Error
+XA JavaScript error occurred in the main process
+Uncaught Exception:
+Error: Attempted to register a second handler for 'scenarios:create' at IpcMainImpl.handle (node:electron/js2c/browser_init:2:109431) setuplpcHandlers at App.eval (webpack://green-country-ggas/./src/main/main.ts?:70:5) at App.emit (node:events:519:28)
+at
+(webpack://green-country-ggas/./src/main/main.ts?:777:24)
+
+Then:
 Specific accounting standards for the oil and gas industry vary, but the two primary methods for expensing exploration and development costs are the "successful efforts" method and the "full cost" method. U.S. companies follow standards like ASC 932 under GAAP, while countries using IFRS adhere to IFRS 6. 
 Methods for expensing exploration and development costs
 The choice of accounting method significantly impacts a company's reported earnings and asset values, particularly regarding exploration costs. 
@@ -159,6 +169,8 @@ Reserve accounting: Accurately estimating oil and gas reserves is critical for r
 Joint ventures: The industry often uses joint ventures, which have complex accounting rules to manage transactions between multiple parties.
 Lease accounting: Newer standards like IFRS 16 and ASC 842 require oil and gas companies to analyze their service arrangements for embedded leases and record right-of-use assets on their balance sheets.
 SASB Standards: For environmental, social, and governance (ESG) reporting, companies must disclose greenhouse gas (GHG) emissions metrics using standards like those from the Sustainability Accounting Standards Board (SASB). 
+
+Add documentation in the Documentation panel
 
 6. Real-Time Carbon Operations Center
 Live Monitoring Dashboard:
