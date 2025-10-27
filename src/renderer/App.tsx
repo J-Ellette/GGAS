@@ -30,6 +30,7 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -46,6 +47,7 @@ import MultiEntityPage from './pages/MultiEntityPage';
 import Phase4Page from './pages/Phase4Page';
 import AdminPanel from './pages/AdminPanel';
 import DocumentationPage from './pages/DocumentationPage';
+import CarbonCopilotPage from './pages/CarbonCopilotPage';
 import LicenseKeyDialog from './components/LicenseKeyDialog';
 
 const drawerWidth = 280;
@@ -78,7 +80,8 @@ type PageType =
   | 'phase4'
   | 'admin'
   | 'settings'
-  | 'documentation';
+  | 'documentation'
+  | 'carbon-copilot';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('dashboard');
@@ -150,6 +153,8 @@ const App: React.FC = () => {
         return <AdminPanel />;
       case 'documentation':
         return <DocumentationPage />;
+      case 'carbon-copilot':
+        return <CarbonCopilotPage />;
       case 'settings':
         return <Box p={3}><Typography variant="h4">Settings (Coming Soon)</Typography></Box>;
       default:
@@ -268,6 +273,14 @@ const App: React.FC = () => {
               AI & Strategic Planning
             </Typography>
             <List>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'carbon-copilot'} onClick={() => setCurrentPage('carbon-copilot')}>
+                  <ListItemIcon>
+                    <SmartToyIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Carbon Copilot" />
+                </ListItemButton>
+              </ListItem>
               <ListItem disablePadding>
                 <ListItemButton selected={currentPage === 'ai-ml'} onClick={() => setCurrentPage('ai-ml')}>
                   <ListItemIcon>
