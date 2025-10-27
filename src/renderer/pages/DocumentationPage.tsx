@@ -37,6 +37,7 @@ import {
   Article as ArticleIcon,
   MenuBook as MenuBookIcon,
   School as TutorialIcon,
+  Language as LanguageIcon,
 } from '@mui/icons-material';
 
 interface DocSection {
@@ -408,6 +409,46 @@ const documentationSections: DocSection[] = [
       {
         title: 'Database Backup',
         content: 'Schedule and manage database backups to ensure data safety and business continuity.',
+      },
+    ],
+  },
+  {
+    id: 'internationalization',
+    title: 'Internationalization & Accounting Standards',
+    icon: <LanguageIcon />,
+    content: 'GGAS supports international operations with country-specific accounting standards and regulations for oil and gas industries. Configure your regional settings and accounting frameworks in the Settings panel.',
+    subsections: [
+      {
+        title: 'Overview of Oil & Gas Accounting',
+        content: 'Nearly all countries involved in oil and gas extraction, production, or significant consumption have specialized accounting needs. The specific rules are heavily influenced by a country\'s accounting standard—either U.S. Generally Accepted Accounting Principles (GAAP) or International Financial Reporting Standards (IFRS)—and its national tax and regulatory policies.',
+      },
+      {
+        title: 'Countries Using US GAAP',
+        content: 'U.S. GAAP has comprehensive and specific guidance for the oil and gas industry. Companies operating within the United States or those listed on U.S. stock exchanges must follow these rules. United States: All publicly traded oil and gas companies operating in the U.S. must adhere to GAAP, with special accounting for costs related to oil and gas exploration and extraction. Canada: Canadian companies can choose to use either Canadian GAAP or IFRS. Those operating in the U.S. or with U.S. investors must have a strong understanding of GAAP requirements.',
+      },
+      {
+        title: 'Countries Using IFRS',
+        content: 'More than 140 countries have adopted IFRS, though it offers less specific, more principles-based guidance for the extractive industries. Instead of a single standard, companies use IFRS 6 (Exploration for and Evaluation of Mineral Resources) in conjunction with other relevant IFRS standards. IFRS-adopting countries include the European Union, South America, and parts of Asia and Africa. Norway and the United Kingdom are significant oil and gas producers with specific national legislation regarding oil and gas activity. Indonesia has implemented specific tax and regulatory guidance influenced by IFRS adoption. Key oil and gas nations such as Brazil, Australia, Egypt, Malaysia, and Nigeria operate under IFRS with their own national variations.',
+      },
+      {
+        title: 'Countries with Unique or State-Controlled Accounting',
+        content: 'Some major oil and gas nations have unique requirements due to a state-controlled industry or distinct national laws. Saudi Arabia: State-owned Saudi Aramco dominates the industry with government control over financial operations. Russia: The state-controlled nature of Russia\'s oil and gas industry means that national regulations and state policies heavily influence accounting practices. Venezuela: Despite holding the world\'s largest oil reserves, the industry is managed through state-owned Petróleos de Venezuela (PDVSA) with national regulations that often diverge from international standards. China: As the second-largest oil consumer and a major producer, China has complex national regulations for state-owned oil companies with specific accounting requirements. Algeria, Iraq, Kuwait, and the UAE: Many OPEC member states have national oil companies that operate under national laws dictating specific accounting and reporting requirements.',
+      },
+      {
+        title: 'Accounting Complexities',
+        content: 'All oil and gas producing nations need specialized accounting for: Costly exploration - Rules must address how to capitalize or expense large, risky exploration costs. Reporting of reserves - The estimated quantity and value of proven, probable, and possible reserves must be disclosed. Depreciation and depletion - The industry requires specific methods like the "unit-of-production" method. International variations - Companies operating across multiple jurisdictions must manage a complex accounting framework that reconciles local tax and reporting requirements with the parent company\'s home country standards. Joint ventures - Multi-national projects require complex accounting to track and report costs and revenues for multiple partners.',
+      },
+      {
+        title: 'Economies with Significant O&G Accounting Needs',
+        content: 'Economies highly dependent on fuel exports include Algeria, Azerbaijan, Brunei, Iraq, Kuwait, Libya, Sudan, and Venezuela where fuel exports account for a large portion of total exports. Countries where oil revenue is a large share of GDP include Saudi Arabia, Kuwait, and Libya. Top oil-producing countries include the United States (world\'s largest since 2018), Saudi Arabia, Russia, and Canada. Countries with large energy exports like Kuwait rely heavily on oil and gas for economic stability, requiring robust accounting practices.',
+      },
+      {
+        title: 'Configuring Regional Settings',
+        content: 'To configure your accounting standards: Navigate to Settings → Language & Locale tab. Select your Country of Operation from the dropdown (US, Canada, Norway, UK, Saudi Arabia, Russia, Brazil, etc.). Choose your Accounting Standard (US GAAP, IFRS, IFRS 6, National/State-Controlled, or Hybrid). Configure language, currency, timezone, and number format for your region. Save your settings. The system will apply appropriate rules for emission calculations, reserves reporting, and compliance frameworks based on your selections.',
+      },
+      {
+        title: 'Multi-Jurisdiction Operations',
+        content: 'For companies operating across multiple countries: Use the Multi-Entity Management module to configure different accounting standards for each entity. Set up regional compliance requirements for each jurisdiction. Consolidate reports while maintaining jurisdiction-specific details. Track currency conversions and exchange rates. Manage data governance policies across regions. The system supports simultaneous operation under multiple accounting frameworks.',
       },
     ],
   },

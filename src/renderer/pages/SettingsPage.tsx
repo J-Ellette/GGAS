@@ -179,6 +179,8 @@ const SettingsPage: React.FC = () => {
   const [timezone, setTimezone] = useState('America/New_York');
   const [currency, setCurrency] = useState('USD');
   const [numberFormat, setNumberFormat] = useState('en-US');
+  const [countryOfOperation, setCountryOfOperation] = useState('US');
+  const [accountingStandard, setAccountingStandard] = useState('US-GAAP');
 
   // Security Settings
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
@@ -666,6 +668,98 @@ const SettingsPage: React.FC = () => {
         {/* Language & Locale Tab */}
         <TabPanel value={tabValue} index={5}>
           <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                Oil & Gas Accounting Standards
+              </Typography>
+              <Alert severity="info" sx={{ mb: 3 }}>
+                Select your country of operation and accounting standard for oil and gas accounting. This affects emission calculations, reporting requirements, and compliance frameworks.
+              </Alert>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel>Country of Operation</InputLabel>
+                <Select value={countryOfOperation} onChange={(e) => setCountryOfOperation(e.target.value)}>
+                  <MenuItem value="US">United States</MenuItem>
+                  <MenuItem value="CA">Canada</MenuItem>
+                  <MenuItem value="NO">Norway</MenuItem>
+                  <MenuItem value="GB">United Kingdom</MenuItem>
+                  <MenuItem value="SA">Saudi Arabia</MenuItem>
+                  <MenuItem value="RU">Russia</MenuItem>
+                  <MenuItem value="VE">Venezuela</MenuItem>
+                  <MenuItem value="CN">China</MenuItem>
+                  <MenuItem value="BR">Brazil</MenuItem>
+                  <MenuItem value="AU">Australia</MenuItem>
+                  <MenuItem value="EG">Egypt</MenuItem>
+                  <MenuItem value="MY">Malaysia</MenuItem>
+                  <MenuItem value="NG">Nigeria</MenuItem>
+                  <MenuItem value="ID">Indonesia</MenuItem>
+                  <MenuItem value="DZ">Algeria</MenuItem>
+                  <MenuItem value="IQ">Iraq</MenuItem>
+                  <MenuItem value="KW">Kuwait</MenuItem>
+                  <MenuItem value="AE">United Arab Emirates</MenuItem>
+                  <MenuItem value="AZ">Azerbaijan</MenuItem>
+                  <MenuItem value="BN">Brunei</MenuItem>
+                  <MenuItem value="LY">Libya</MenuItem>
+                  <MenuItem value="SD">Sudan</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel>Accounting Standard</InputLabel>
+                <Select value={accountingStandard} onChange={(e) => setAccountingStandard(e.target.value)}>
+                  <MenuItem value="US-GAAP">US GAAP (Generally Accepted Accounting Principles)</MenuItem>
+                  <MenuItem value="IFRS">IFRS (International Financial Reporting Standards)</MenuItem>
+                  <MenuItem value="IFRS-6">IFRS 6 (Exploration & Evaluation of Mineral Resources)</MenuItem>
+                  <MenuItem value="NATIONAL">National/State-Controlled Standards</MenuItem>
+                  <MenuItem value="HYBRID">Hybrid (GAAP + IFRS)</MenuItem>
+                </Select>
+              </FormControl>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                {accountingStandard === 'US-GAAP' && 'US GAAP provides comprehensive guidance for oil and gas accounting, including specific rules for exploration costs, reserves reporting, and asset depreciation.'}
+                {accountingStandard === 'IFRS' && 'IFRS offers principles-based guidance adopted by 140+ countries. Less prescriptive than US GAAP but with specific national variations.'}
+                {accountingStandard === 'IFRS-6' && 'IFRS 6 specifically addresses exploration and evaluation of mineral resources, used in conjunction with other IFRS standards.'}
+                {accountingStandard === 'NATIONAL' && 'State-controlled or unique national accounting standards apply, often for countries with dominant state-owned oil companies.'}
+                {accountingStandard === 'HYBRID' && 'Some jurisdictions allow choice between GAAP and IFRS, or require both for different reporting purposes.'}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 'bold' }}>
+                Accounting Framework Details
+              </Typography>
+              <Paper variant="outlined" sx={{ p: 2, mb: 2, bgcolor: 'background.default' }}>
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  <strong>Applicable for:</strong>
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                  {accountingStandard === 'US-GAAP' && '• Publicly traded companies in the US\n• Companies listed on US stock exchanges\n• US-based oil & gas operations'}
+                  {accountingStandard === 'IFRS' && '• European Union countries\n• South America, Asia, Africa regions\n• 140+ countries worldwide'}
+                  {accountingStandard === 'IFRS-6' && '• IFRS-adopting countries\n• Exploration & evaluation phase\n• Mineral resource companies'}
+                  {accountingStandard === 'NATIONAL' && '• State-owned enterprises\n• Countries with unique regulations\n• OPEC member states (varies)'}
+                  {accountingStandard === 'HYBRID' && '• Canada (GAAP or IFRS option)\n• Companies with US investors\n• Multi-jurisdiction operations'}
+                </Typography>
+                <Typography variant="body2" sx={{ mt: 2, mb: 1 }}>
+                  <strong>Key Requirements:</strong>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  • Exploration cost capitalization
+                  • Reserves disclosure (proven, probable, possible)
+                  • Unit-of-production depreciation
+                  • Joint venture accounting
+                  • Asset retirement obligations
+                </Typography>
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Divider sx={{ my: 2 }} />
+              <Typography variant="h6" gutterBottom>
+                Language & Regional Settings
+              </Typography>
+            </Grid>
+
             <Grid item xs={12} md={6}>
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Language</InputLabel>
@@ -676,6 +770,11 @@ const SettingsPage: React.FC = () => {
                   <MenuItem value="de">Deutsch</MenuItem>
                   <MenuItem value="zh">中文</MenuItem>
                   <MenuItem value="ja">日本語</MenuItem>
+                  <MenuItem value="ar">العربية (Arabic)</MenuItem>
+                  <MenuItem value="pt">Português</MenuItem>
+                  <MenuItem value="ru">Русский (Russian)</MenuItem>
+                  <MenuItem value="no">Norsk (Norwegian)</MenuItem>
+                  <MenuItem value="id">Bahasa Indonesia</MenuItem>
                 </Select>
               </FormControl>
 
@@ -707,7 +806,15 @@ const SettingsPage: React.FC = () => {
                   <MenuItem value="America/Los_Angeles">Pacific Time (PT)</MenuItem>
                   <MenuItem value="Europe/London">London (GMT)</MenuItem>
                   <MenuItem value="Europe/Paris">Paris (CET)</MenuItem>
+                  <MenuItem value="Europe/Oslo">Oslo (CET)</MenuItem>
                   <MenuItem value="Asia/Tokyo">Tokyo (JST)</MenuItem>
+                  <MenuItem value="Asia/Shanghai">Shanghai (CST)</MenuItem>
+                  <MenuItem value="Asia/Dubai">Dubai (GST)</MenuItem>
+                  <MenuItem value="Asia/Riyadh">Riyadh (AST)</MenuItem>
+                  <MenuItem value="America/Sao_Paulo">São Paulo (BRT)</MenuItem>
+                  <MenuItem value="Australia/Sydney">Sydney (AEDT)</MenuItem>
+                  <MenuItem value="Africa/Cairo">Cairo (EET)</MenuItem>
+                  <MenuItem value="Asia/Jakarta">Jakarta (WIB)</MenuItem>
                 </Select>
               </FormControl>
 
@@ -719,6 +826,15 @@ const SettingsPage: React.FC = () => {
                   <MenuItem value="GBP">British Pound (GBP)</MenuItem>
                   <MenuItem value="JPY">Japanese Yen (JPY)</MenuItem>
                   <MenuItem value="CNY">Chinese Yuan (CNY)</MenuItem>
+                  <MenuItem value="CAD">Canadian Dollar (CAD)</MenuItem>
+                  <MenuItem value="NOK">Norwegian Krone (NOK)</MenuItem>
+                  <MenuItem value="SAR">Saudi Riyal (SAR)</MenuItem>
+                  <MenuItem value="RUB">Russian Ruble (RUB)</MenuItem>
+                  <MenuItem value="BRL">Brazilian Real (BRL)</MenuItem>
+                  <MenuItem value="AUD">Australian Dollar (AUD)</MenuItem>
+                  <MenuItem value="AED">UAE Dirham (AED)</MenuItem>
+                  <MenuItem value="MYR">Malaysian Ringgit (MYR)</MenuItem>
+                  <MenuItem value="IDR">Indonesian Rupiah (IDR)</MenuItem>
                 </Select>
               </FormControl>
 
@@ -728,6 +844,8 @@ const SettingsPage: React.FC = () => {
                   <MenuItem value="en-US">1,234.56 (US)</MenuItem>
                   <MenuItem value="de-DE">1.234,56 (German)</MenuItem>
                   <MenuItem value="fr-FR">1 234,56 (French)</MenuItem>
+                  <MenuItem value="en-GB">1,234.56 (UK)</MenuItem>
+                  <MenuItem value="ar-SA">١٬٢٣٤٫٥٦ (Arabic)</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
