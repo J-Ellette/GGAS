@@ -147,6 +147,15 @@ const AdminPanel: React.FC = () => {
   };
 
   const handleLogin = () => {
+    // ⚠️ SECURITY WARNING: This is a DEMO authentication system only!
+    // For production use, implement:
+    // - Server-side authentication with secure session management
+    // - Password hashing (bcrypt/Argon2)
+    // - Rate limiting to prevent brute force attacks
+    // - Multi-factor authentication (MFA)
+    // - Audit logging of all login attempts
+    // DO NOT use these hard-coded credentials in production!
+    
     // Check credentials
     if (loginUsername === 'OKE03955' && loginPassword === '8675309Jenny!') {
       setIsAuthenticated(true);
@@ -182,6 +191,15 @@ const AdminPanel: React.FC = () => {
   };
 
   const handleChangePassword = () => {
+    // ⚠️ SECURITY WARNING: This is a DEMO password change system only!
+    // For production use, implement:
+    // - Server-side password validation
+    // - Password hashing with salt (bcrypt/Argon2)
+    // - Password complexity requirements enforcement
+    // - Password history to prevent reuse
+    // - Secure password storage in database
+    // - Email notification of password changes
+    
     if (currentPassword !== '8675309Jenny!') {
       setPasswordError('Current password is incorrect');
       return;
@@ -197,7 +215,7 @@ const AdminPanel: React.FC = () => {
       return;
     }
 
-    // In production, this would update the password in the database
+    // In production, this would update the password in the database with proper hashing
     alert('Password changed successfully! (Note: This is a demo - password not actually changed)');
     setPasswordDialogOpen(false);
     setCurrentPassword('');

@@ -18,9 +18,24 @@ The Green Country GGAS Admin Panel provides centralized management for license k
 
 ## Admin Credentials
 
-**Default Credentials:**
+> ⚠️ **CRITICAL SECURITY WARNING**  
+> The credentials documented below are **DEMO CREDENTIALS ONLY** for development and testing.  
+> These are default credentials that MUST NOT be used in production environments.
+>
+> **Production Security Requirements:**
+> - Change default credentials immediately after first deployment
+> - Implement strong password policies  
+> - Enable multi-factor authentication (when available)
+> - Use a secure credential management system
+> - Never commit real production credentials to version control
+> - Rotate passwords regularly
+> - Audit access logs frequently
+
+**Default Demo Credentials:**
 - Username: `OKE03955`
 - Password: `8675309Jenny!`
+
+> 💡 **Note**: These credentials are intentionally simple for demo purposes. Production systems should use enterprise-grade authentication systems.
 
 > ⚠️ **Security Note**: Change the default password immediately after first login through the "Change Password" feature.
 

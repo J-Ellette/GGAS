@@ -19,8 +19,19 @@ Alternatively, you can click "Admin Panel Access" to bypass the license check an
 Access the admin panel through the license key screen or from the sidebar menu after logging in.
 
 ### Admin Credentials
+> ⚠️ **IMPORTANT SECURITY NOTICE**: These are **demo credentials** for testing purposes only. 
+> In production environments, these credentials MUST be changed immediately after first login.
+> Never use default credentials in production systems.
+
+**Demo/Testing Credentials:**
 - **Username:** OKE03955
 - **Password:** 8675309Jenny!
+
+**For Production Use:**
+1. Change these credentials immediately after first login
+2. Use the "Change Password" feature in the admin panel
+3. Implement additional security measures (2FA, password policies, etc.)
+4. Store production credentials securely (not in code or documentation)
 
 ### Admin Panel Features
 - **License Key Management**: Create and manage license keys for different users/organizations
