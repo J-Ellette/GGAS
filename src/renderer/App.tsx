@@ -27,6 +27,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import LanguageIcon from '@mui/icons-material/Language';
 import ExtensionIcon from '@mui/icons-material/Extension';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -40,6 +41,7 @@ import UserManagementPage from './pages/UserManagementPage';
 import AIMLPage from './pages/AIMLPage';
 import TargetManagementPage from './pages/TargetManagementPage';
 import MultiEntityPage from './pages/MultiEntityPage';
+import Phase4Page from './pages/Phase4Page';
 
 const drawerWidth = 280;
 
@@ -68,6 +70,7 @@ type PageType =
   | 'ai-ml'
   | 'targets'
   | 'multi-entity'
+  | 'phase4'
   | 'settings';
 
 const App: React.FC = () => {
@@ -99,6 +102,8 @@ const App: React.FC = () => {
         return <TargetManagementPage />;
       case 'multi-entity':
         return <MultiEntityPage />;
+      case 'phase4':
+        return <Phase4Page />;
       case 'settings':
         return <Box p={3}><Typography variant="h4">Settings (Coming Soon)</Typography></Box>;
       default:
@@ -117,7 +122,7 @@ const App: React.FC = () => {
               GGAS - Greenhouse Gas Accounting Software
             </Typography>
             <Typography variant="caption" sx={{ ml: 2, opacity: 0.7 }}>
-              Phase 3
+              Phase 4
             </Typography>
           </Toolbar>
         </AppBar>
@@ -247,6 +252,21 @@ const App: React.FC = () => {
                     <LanguageIcon />
                   </ListItemIcon>
                   <ListItemText primary="Multi-Entity" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+
+            <Divider />
+            <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
+              Phase 4 Features
+            </Typography>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'phase4'} onClick={() => setCurrentPage('phase4')}>
+                  <ListItemIcon>
+                    <RocketLaunchIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Innovation & Optimization" />
                 </ListItemButton>
               </ListItem>
             </List>

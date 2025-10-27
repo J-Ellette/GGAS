@@ -496,4 +496,365 @@ function setupIpcHandlers() {
   ipcMain.handle('automation-workflows:execute', async (event, id) => {
     return databaseService?.executeAutomationWorkflow(id);
   });
+
+  // Phase 4.1: Next-Gen Analytics IPC Handlers
+  ipcMain.handle('deep-learning-models:create', async (event, data) => {
+    return databaseService?.createDeepLearningModel(data);
+  });
+
+  ipcMain.handle('deep-learning-models:list', async (event, filters) => {
+    return databaseService?.listDeepLearningModels(filters);
+  });
+
+  ipcMain.handle('deep-learning-models:update', async (event, id, data) => {
+    return databaseService?.updateDeepLearningModel(id, data);
+  });
+
+  ipcMain.handle('deep-learning-models:delete', async (event, id) => {
+    return databaseService?.deleteDeepLearningModel(id);
+  });
+
+  ipcMain.handle('deep-learning-models:train', async (event, id) => {
+    return databaseService?.trainDeepLearningModel(id);
+  });
+
+  ipcMain.handle('deep-learning-models:get-insights', async (event, id) => {
+    return databaseService?.getModelInsights(id);
+  });
+
+  ipcMain.handle('strategy-recommendations:create', async (event, data) => {
+    return databaseService?.createStrategyRecommendation(data);
+  });
+
+  ipcMain.handle('strategy-recommendations:list', async (event, filters) => {
+    return databaseService?.listStrategyRecommendations(filters);
+  });
+
+  ipcMain.handle('strategy-recommendations:update', async (event, id, data) => {
+    return databaseService?.updateStrategyRecommendation(id, data);
+  });
+
+  ipcMain.handle('strategy-recommendations:delete', async (event, id) => {
+    return databaseService?.deleteStrategyRecommendation(id);
+  });
+
+  ipcMain.handle('strategy-recommendations:generate', async (event, context) => {
+    return databaseService?.generateRecommendations(context);
+  });
+
+  ipcMain.handle('automated-insights:list', async (event, filters) => {
+    return databaseService?.listAutomatedInsights(filters);
+  });
+
+  ipcMain.handle('automated-insights:generate-report', async (event, filters) => {
+    return databaseService?.generateInsightsReport(filters);
+  });
+
+  ipcMain.handle('digital-twins:create', async (event, data) => {
+    return databaseService?.createDigitalTwin(data);
+  });
+
+  ipcMain.handle('digital-twins:list', async (event, filters) => {
+    return databaseService?.listDigitalTwins(filters);
+  });
+
+  ipcMain.handle('digital-twins:update', async (event, id, data) => {
+    return databaseService?.updateDigitalTwin(id, data);
+  });
+
+  ipcMain.handle('digital-twins:delete', async (event, id) => {
+    return databaseService?.deleteDigitalTwin(id);
+  });
+
+  ipcMain.handle('digital-twins:sync-data', async (event, id) => {
+    return databaseService?.syncDigitalTwinData(id);
+  });
+
+  // Phase 4.2: Enhanced Verification & Trust IPC Handlers
+  ipcMain.handle('verification-workflows:create', async (event, data) => {
+    return databaseService?.createVerificationWorkflow(data);
+  });
+
+  ipcMain.handle('verification-workflows:list', async (event, filters) => {
+    return databaseService?.listVerificationWorkflows(filters);
+  });
+
+  ipcMain.handle('verification-workflows:update', async (event, id, data) => {
+    return databaseService?.updateVerificationWorkflow(id, data);
+  });
+
+  ipcMain.handle('verification-workflows:delete', async (event, id) => {
+    return databaseService?.deleteVerificationWorkflow(id);
+  });
+
+  ipcMain.handle('verification-workflows:advance-step', async (event, id) => {
+    return databaseService?.advanceWorkflowStep(id);
+  });
+
+  ipcMain.handle('audit-trail:get', async (event, entityType, entityId) => {
+    return databaseService?.getAuditTrail(entityType, entityId);
+  });
+
+  ipcMain.handle('audit-trail:verify-integrity', async (event, entityType, entityId) => {
+    return databaseService?.verifyAuditTrailIntegrity(entityType, entityId);
+  });
+
+  ipcMain.handle('third-party-verifiers:create', async (event, data) => {
+    return databaseService?.createThirdPartyVerifier(data);
+  });
+
+  ipcMain.handle('third-party-verifiers:list', async (event, filters) => {
+    return databaseService?.listThirdPartyVerifiers(filters);
+  });
+
+  ipcMain.handle('third-party-verifiers:update', async (event, id, data) => {
+    return databaseService?.updateThirdPartyVerifier(id, data);
+  });
+
+  ipcMain.handle('third-party-verifiers:delete', async (event, id) => {
+    return databaseService?.deleteThirdPartyVerifier(id);
+  });
+
+  ipcMain.handle('third-party-verifiers:request-verification', async (event, verifierId, dataScope) => {
+    return databaseService?.requestVerification(verifierId, dataScope);
+  });
+
+  ipcMain.handle('data-provenance:get', async (event, dataType, dataId) => {
+    return databaseService?.getDataProvenance(dataType, dataId);
+  });
+
+  ipcMain.handle('data-provenance:trace-lineage', async (event, dataType, dataId) => {
+    return databaseService?.traceDataLineage(dataType, dataId);
+  });
+
+  ipcMain.handle('data-provenance:validate-compliance', async (event, dataType, dataId) => {
+    return databaseService?.validateDataCompliance(dataType, dataId);
+  });
+
+  // Phase 4.3: IoT & Real-Time Monitoring IPC Handlers
+  ipcMain.handle('iot-devices:create', async (event, data) => {
+    return databaseService?.createIoTDevice(data);
+  });
+
+  ipcMain.handle('iot-devices:list', async (event, filters) => {
+    return databaseService?.listIoTDevices(filters);
+  });
+
+  ipcMain.handle('iot-devices:update', async (event, id, data) => {
+    return databaseService?.updateIoTDevice(id, data);
+  });
+
+  ipcMain.handle('iot-devices:delete', async (event, id) => {
+    return databaseService?.deleteIoTDevice(id);
+  });
+
+  ipcMain.handle('iot-devices:discover', async (event, networkConfig) => {
+    return databaseService?.discoverIoTDevices(networkConfig);
+  });
+
+  ipcMain.handle('iot-devices:test-connection', async (event, id) => {
+    return databaseService?.testDeviceConnection(id);
+  });
+
+  ipcMain.handle('realtime-monitors:create', async (event, data) => {
+    return databaseService?.createRealtimeMonitor(data);
+  });
+
+  ipcMain.handle('realtime-monitors:list', async (event, filters) => {
+    return databaseService?.listRealtimeMonitors(filters);
+  });
+
+  ipcMain.handle('realtime-monitors:update', async (event, id, data) => {
+    return databaseService?.updateRealtimeMonitor(id, data);
+  });
+
+  ipcMain.handle('realtime-monitors:delete', async (event, id) => {
+    return databaseService?.deleteRealtimeMonitor(id);
+  });
+
+  ipcMain.handle('realtime-monitors:get-data', async (event, monitorId) => {
+    return databaseService?.getRealtimeData(monitorId);
+  });
+
+  ipcMain.handle('sensor-data:list', async (event, deviceId, filters) => {
+    return databaseService?.listSensorData(deviceId, filters);
+  });
+
+  ipcMain.handle('sensor-data:process', async (event, deviceId, startTime, endTime) => {
+    return databaseService?.processSensorData(deviceId, startTime, endTime);
+  });
+
+  ipcMain.handle('alert-rules:create', async (event, data) => {
+    return databaseService?.createAlertRule(data);
+  });
+
+  ipcMain.handle('alert-rules:list', async (event, filters) => {
+    return databaseService?.listAlertRules(filters);
+  });
+
+  ipcMain.handle('alert-rules:update', async (event, id, data) => {
+    return databaseService?.updateAlertRule(id, data);
+  });
+
+  ipcMain.handle('alert-rules:delete', async (event, id) => {
+    return databaseService?.deleteAlertRule(id);
+  });
+
+  ipcMain.handle('alert-rules:test', async (event, id) => {
+    return databaseService?.testAlertRule(id);
+  });
+
+  ipcMain.handle('alerts:get-active', async (event, filters) => {
+    return databaseService?.getActiveAlerts(filters);
+  });
+
+  // Phase 4.4: Advanced Visualization & Immersive Experience IPC Handlers
+  ipcMain.handle('facility-3d-models:create', async (event, data) => {
+    return databaseService?.createFacility3DModel(data);
+  });
+
+  ipcMain.handle('facility-3d-models:list', async (event, filters) => {
+    return databaseService?.listFacility3DModels(filters);
+  });
+
+  ipcMain.handle('facility-3d-models:update', async (event, id, data) => {
+    return databaseService?.updateFacility3DModel(id, data);
+  });
+
+  ipcMain.handle('facility-3d-models:delete', async (event, id) => {
+    return databaseService?.deleteFacility3DModel(id);
+  });
+
+  ipcMain.handle('facility-3d-models:export', async (event, id, format) => {
+    return databaseService?.exportFacility3DModel(id, format);
+  });
+
+  ipcMain.handle('ar-data-collections:create', async (event, data) => {
+    return databaseService?.createARDataCollection(data);
+  });
+
+  ipcMain.handle('ar-data-collections:list', async (event, filters) => {
+    return databaseService?.listARDataCollections(filters);
+  });
+
+  ipcMain.handle('ar-data-collections:update', async (event, id, data) => {
+    return databaseService?.updateARDataCollection(id, data);
+  });
+
+  ipcMain.handle('ar-data-collections:delete', async (event, id) => {
+    return databaseService?.deleteARDataCollection(id);
+  });
+
+  ipcMain.handle('training-modules:create', async (event, data) => {
+    return databaseService?.createTrainingModule(data);
+  });
+
+  ipcMain.handle('training-modules:list', async (event, filters) => {
+    return databaseService?.listTrainingModules(filters);
+  });
+
+  ipcMain.handle('training-modules:update', async (event, id, data) => {
+    return databaseService?.updateTrainingModule(id, data);
+  });
+
+  ipcMain.handle('training-modules:delete', async (event, id) => {
+    return databaseService?.deleteTrainingModule(id);
+  });
+
+  ipcMain.handle('training-progress:get', async (event, userId, moduleId) => {
+    return databaseService?.getTrainingProgress(userId, moduleId);
+  });
+
+  ipcMain.handle('training-progress:update', async (event, id, data) => {
+    return databaseService?.updateTrainingProgress(id, data);
+  });
+
+  ipcMain.handle('training-progress:issue-certificate', async (event, userId, moduleId) => {
+    return databaseService?.issueTrainingCertificate(userId, moduleId);
+  });
+
+  ipcMain.handle('data-stories:create', async (event, data) => {
+    return databaseService?.createDataStory(data);
+  });
+
+  ipcMain.handle('data-stories:list', async (event, filters) => {
+    return databaseService?.listDataStories(filters);
+  });
+
+  ipcMain.handle('data-stories:update', async (event, id, data) => {
+    return databaseService?.updateDataStory(id, data);
+  });
+
+  ipcMain.handle('data-stories:delete', async (event, id) => {
+    return databaseService?.deleteDataStory(id);
+  });
+
+  ipcMain.handle('data-stories:generate-narrative', async (event, storyId) => {
+    return databaseService?.generateDataStoryNarrative(storyId);
+  });
+
+  // Phase 4.5: Platform Optimization & Future-Proofing IPC Handlers
+  ipcMain.handle('cache:get-stats', async () => {
+    return databaseService?.getCacheStats();
+  });
+
+  ipcMain.handle('cache:clear', async (event, cacheType) => {
+    return databaseService?.clearCache(cacheType);
+  });
+
+  ipcMain.handle('cache:optimize', async () => {
+    return databaseService?.optimizeCache();
+  });
+
+  ipcMain.handle('distributed-jobs:create', async (event, data) => {
+    return databaseService?.createDistributedJob(data);
+  });
+
+  ipcMain.handle('distributed-jobs:list', async (event, filters) => {
+    return databaseService?.listDistributedJobs(filters);
+  });
+
+  ipcMain.handle('distributed-jobs:get-progress', async (event, id) => {
+    return databaseService?.getJobProgress(id);
+  });
+
+  ipcMain.handle('distributed-jobs:cancel', async (event, id) => {
+    return databaseService?.cancelDistributedJob(id);
+  });
+
+  ipcMain.handle('resource-metrics:get', async (event, timeRange) => {
+    return databaseService?.getResourceMetrics(timeRange);
+  });
+
+  ipcMain.handle('resource-metrics:optimize', async () => {
+    return databaseService?.optimizeResources();
+  });
+
+  ipcMain.handle('security-configs:get', async () => {
+    return databaseService?.getSecurityConfigs();
+  });
+
+  ipcMain.handle('security-configs:update', async (event, id, data) => {
+    return databaseService?.updateSecurityConfig(id, data);
+  });
+
+  ipcMain.handle('security:audit', async () => {
+    return databaseService?.auditSecurity();
+  });
+
+  ipcMain.handle('encryption-keys:list', async () => {
+    return databaseService?.listEncryptionKeys();
+  });
+
+  ipcMain.handle('encryption-keys:create', async (event, data) => {
+    return databaseService?.createEncryptionKey(data);
+  });
+
+  ipcMain.handle('encryption-keys:rotate', async (event, id) => {
+    return databaseService?.rotateEncryptionKey(id);
+  });
+
+  ipcMain.handle('encryption-keys:test-quantum-resistance', async (event, keyId) => {
+    return databaseService?.testQuantumResistance(keyId);
+  });
 }
