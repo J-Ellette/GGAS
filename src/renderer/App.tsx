@@ -29,6 +29,10 @@ import LanguageIcon from '@mui/icons-material/Language';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import MessageIcon from '@mui/icons-material/Message';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -44,7 +48,13 @@ import TargetManagementPage from './pages/TargetManagementPage';
 import MultiEntityPage from './pages/MultiEntityPage';
 import Phase4Page from './pages/Phase4Page';
 import AdminPanel from './pages/AdminPanel';
+import DocumentationPage from './pages/DocumentationPage';
+import CarbonCopilotPage from './pages/CarbonCopilotPage';
+import SettingsPage from './pages/SettingsPage';
+import UsersPage from './pages/UsersPage';
+import CalendarPage from './pages/CalendarPage';
 import LicenseKeyDialog from './components/LicenseKeyDialog';
+import SystemNotificationBanner, { SystemNotification } from './components/SystemNotificationBanner';
 
 const drawerWidth = 280;
 
@@ -75,12 +85,25 @@ type PageType =
   | 'multi-entity'
   | 'phase4'
   | 'admin'
-  | 'settings';
+  | 'settings'
+  | 'documentation'
+  | 'carbon-copilot'
+  | 'users-messaging'
+  | 'calendar';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('dashboard');
   const [licenseValidated, setLicenseValidated] = useState(false);
   const [showLicenseDialog, setShowLicenseDialog] = useState(false);
+  const [systemNotification, setSystemNotification] = useState<SystemNotification | null>({
+    id: 1,
+    title: 'System Maintenance',
+    message: 'Scheduled maintenance window: Saturday, January 27, 2024 from 2:00 AM - 4:00 AM EST. During this time, the system may be temporarily unavailable.',
+    type: 'info',
+    dismissible: true,
+    active: true,
+    createdAt: new Date().toISOString(),
+  });
 
   useEffect(() => {
     // Check if license is already validated
@@ -91,6 +114,10 @@ const App: React.FC = () => {
       setShowLicenseDialog(true);
     }
   }, []);
+
+  const handleDismissNotification = (id: number) => {
+    setSystemNotification(null);
+  };
 
   const handleLicenseValid = () => {
     setLicenseValidated(true);
@@ -145,8 +172,16 @@ const App: React.FC = () => {
         return <Phase4Page />;
       case 'admin':
         return <AdminPanel />;
+      case 'documentation':
+        return <DocumentationPage />;
+      case 'carbon-copilot':
+        return <CarbonCopilotPage />;
+      case 'users-messaging':
+        return <UsersPage />;
+      case 'calendar':
+        return <CalendarPage />;
       case 'settings':
-        return <Box p={3}><Typography variant="h4">Settings (Coming Soon)</Typography></Box>;
+        return <SettingsPage />;
       default:
         return <Dashboard />;
     }
@@ -157,6 +192,10 @@ const App: React.FC = () => {
       <CssBaseline />
       <Box sx={{ display: 'flex' }}>
         <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+          <SystemNotificationBanner 
+            notification={systemNotification} 
+            onDismiss={handleDismissNotification}
+          />
           <Toolbar>
             <CloudIcon sx={{ mr: 2 }} />
             <Typography variant="h6" noWrap component="div">
@@ -264,6 +303,14 @@ const App: React.FC = () => {
             </Typography>
             <List>
               <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'carbon-copilot'} onClick={() => setCurrentPage('carbon-copilot')}>
+                  <ListItemIcon>
+                    <SmartToyIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Carbon Copilot" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
                 <ListItemButton selected={currentPage === 'ai-ml'} onClick={() => setCurrentPage('ai-ml')}>
                   <ListItemIcon>
                     <PsychologyIcon />
@@ -306,6 +353,30 @@ const App: React.FC = () => {
 
             <Divider />
             <List>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'users-messaging'} onClick={() => setCurrentPage('users-messaging')}>
+                  <ListItemIcon>
+                    <MessageIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Users & Messaging" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'calendar'} onClick={() => setCurrentPage('calendar')}>
+                  <ListItemIcon>
+                    <CalendarMonthIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Calendar" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'documentation'} onClick={() => setCurrentPage('documentation')}>
+                  <ListItemIcon>
+                    <MenuBookIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Documentation" />
+                </ListItemButton>
+              </ListItem>
               <ListItem disablePadding>
                 <ListItemButton selected={currentPage === 'admin'} onClick={() => setCurrentPage('admin')}>
                   <ListItemIcon>
