@@ -1507,26 +1507,78 @@ const documentationSections: DocSection[] = [
     ],
   },
   {
-    id: 'arvr-digital-twin',
-    title: 'AR/VR & Digital Twin Integration',
+    id: 'arvr-interfaces',
+    title: 'AR/VR Interfaces for Carbon Management',
     icon: <VerifiedUserIcon />,
-    content: '3D visualization, virtual reality tours, augmented reality inspections, and real-time digital twins provide immersive carbon management capabilities and predictive optimization.',
+    content: 'Immersive technologies transform carbon management through virtual reality facility tours, augmented reality inspections, remote auditing, mixed reality training, VR collaboration spaces, and AR data overlays. These cutting-edge capabilities enable virtual facility assessment, remote auditing, and interactive carbon visualization without physical presence.',
     subsections: [
       {
-        title: '3D Carbon Flow Visualization',
-        content: 'Interactive Facility Models: 3D digital twins show carbon flows throughout facilities with real-time data visualization. Process Optimization: Visual identification of carbon inefficiencies in processes with quantified savings opportunities. Scenario Modeling: Visualizes impact of operational changes on carbon flows before implementation. Virtual Tours: Remote facility carbon assessment through virtual reality tours with interactive waypoints and carbon data overlays.',
+        title: 'Virtual Reality Facility Tours',
+        content: 'Experience comprehensive VR tours of facilities with immersive walkthroughs, carbon flow visualization, interactive data points, guided tour modes, and multi-user collaboration. Conduct remote facility assessments, training and education, planning and design reviews, all in photorealistic virtual environments with real-time carbon data overlays.',
+      },
+      {
+        title: 'Augmented Reality Inspections',
+        content: 'AR-guided inspections overlay digital information onto physical environments enabling smart guidance, equipment recognition, automated data capture, anomaly detection, and digital twin overlays. Support LDAR inspections, equipment performance assessments, safety compliance checks, and routine monitoring with step-by-step AR guidance for non-expert personnel.',
       },
       {
         title: 'Remote Carbon Auditing',
-        content: 'Virtual Audits: Conducts carbon audits remotely using AR/VR technology with comprehensive finding documentation. Guided Inspections: AR-guided inspections for non-expert personnel with step-by-step instructions and automated data capture. Documentation: Automatic documentation and evidence collection during virtual audits including photos, videos, and data extracts. Expert Consultation: Remote expert assistance during on-site activities via video conferencing with screen sharing and annotation tools.',
+        content: 'Conduct comprehensive carbon audits remotely using VR/AR technology including virtual site tours, electronic evidence collection, data validation, findings development, and reporting. Support limited assurance reviews, reasonable assurance verifications, pre-verification readiness assessments, and regulatory compliance audits with reduced travel emissions and costs.',
+      },
+      {
+        title: 'Mixed Reality Training',
+        content: 'Combine virtual and physical environments for immersive carbon management training including carbon fundamentals, equipment operation, data collection, calculation methodologies, and auditing. Practice procedures, troubleshoot issues, and develop expertise in safe, controlled settings with simulation scenarios and learning assessments.',
+      },
+      {
+        title: 'VR Collaboration Spaces',
+        content: 'Virtual meeting rooms and collaboration environments enable carbon teams to work together regardless of location with shared data visualization, collaborative problem-solving, expert consultation, and project reviews. Support strategic planning, operational reviews, incident response, and training delivery in immersive virtual spaces.',
+      },
+      {
+        title: 'AR Data Overlay & Hardware',
+        content: 'Overlay real-time carbon data, equipment information, and guidance onto physical environments through AR smart glasses or mobile devices. Display equipment cards, sensor data, guided procedures, maintenance information, and safety alerts with gaze control, hand gestures, voice commands, and touch controls. Hardware support includes VR headsets (Meta Quest, HTC Vive, Valve Index), AR smart glasses (HoloLens 2, Magic Leap 2, RealWear), and mobile AR devices.',
+      },
+      {
+        title: 'Complete AR/VR Documentation',
+        content: 'For comprehensive documentation on AR/VR interfaces including implementation guides, hardware requirements, use cases, and best practices, see the complete AR/VR Interfaces documentation in the Documents panel (Section 12: AR/VR Interfaces).',
+      },
+    ],
+  },
+  {
+    id: '3d-facility-visualization',
+    title: '3D Facility Visualization',
+    icon: <BusinessIcon />,
+    content: 'Interactive, real-time 3D visual representations of facilities with integrated carbon emission data provide intuitive understanding of carbon flows, identification of optimization opportunities, and effective stakeholder communication. Transform complex carbon data into actionable spatial intelligence.',
+    subsections: [
+      {
+        title: 'Interactive 3D Facility Models',
+        content: 'Photorealistic 3D models with accurate dimensions provide spatial context for carbon emissions. Features include high-fidelity representation, multi-level detail (campus to component level), interactive navigation, information overlays, time controls, and equipment database integration. Models created through laser scanning (LiDAR), photogrammetry, CAD/BIM import, or hybrid approaches.',
+      },
+      {
+        title: 'Real-Time Carbon Flow Visualization',
+        content: 'Animated visualization shows carbon movement from sources through processes to release points with particle systems, flow paths, volume indicators, and source classification. Interactive controls enable time scale adjustment, filtering options, and multiple view modes. Real-time data updates from CEMS, flow meters, SCADA systems, and production tracking with data quality indicators.',
       },
       {
         title: 'Digital Twin Integration',
-        content: 'Real-time Synchronization: Digital twins updated every 5 seconds with operational data from sensors and control systems. Predictive Modeling: Uses digital twins for carbon impact prediction with confidence intervals and scenario analysis. Virtual Testing: Tests carbon reduction strategies in virtual environment before physical implementation with detailed impact analysis. Asset Optimization: Optimizes asset performance for carbon efficiency using digital twin insights with specific setpoint recommendations.',
+        content: 'Real-time digital twins create virtual replicas synchronized with physical equipment every 5 seconds. Capabilities include equipment performance modeling, predictive analytics, virtual sensors, energy efficiency optimization, process optimization, predictive maintenance, and scenario testing. Implementation examples for boilers, chillers, and process units.',
       },
       {
-        title: 'Predictive Capabilities',
-        content: 'Performance Prediction: Predicts asset performance and emissions based on historical patterns, weather, and operational schedules. Maintenance Optimization: Predictive maintenance prevents efficiency degradation and maintains optimal carbon performance. Multi-Asset Coordination: Optimizes multiple assets together for system-wide efficiency improvements. Scenario Simulation: Tests multiple operational scenarios virtually to identify optimal carbon reduction strategies.',
+        title: 'Heat Maps and Analytics',
+        content: 'Spatial visualization of carbon intensity, equipment efficiency, and data quality using color-coded heat maps. Types include carbon intensity, efficiency, data quality, and cost heat maps. Analytics dashboards provide overview, equipment performance, emissions by category, optimization opportunities, and compliance tracking.',
+      },
+      {
+        title: 'Scenario Modeling and Simulation',
+        content: 'Test proposed changes digitally before physical implementation including equipment upgrades, process modifications, fuel switching, renewable energy integration, carbon capture, and operational efficiency. Simulation uses physics-based models, data-driven models, hybrid approaches, and uncertainty quantification with multi-dimensional evaluation and trade-off analysis.',
+      },
+      {
+        title: 'Multi-Facility Dashboards',
+        content: 'Enterprise-wide visibility for organizations with multiple facilities including portfolio summary, facility leaderboard, geographic visualization, and segment performance. Enable internal benchmarking, best practice sharing, knowledge transfer, enterprise initiatives, and consolidated sector reporting.',
+      },
+      {
+        title: 'Stakeholder Communication',
+        content: 'Transform carbon data into compelling visual stories for executives, operations teams, engineers, sustainability staff, investors, regulators, and community. Visualization formats include interactive web dashboards, embedded 3D viewers, video animations, VR experiences, and static visualizations with best practices for clarity, accuracy, engagement, and accessibility.',
+      },
+      {
+        title: 'Complete 3D Visualization Documentation',
+        content: 'For comprehensive documentation on 3D facility visualization including implementation phases, ROI analysis, technical specifications, and stakeholder communication strategies, see the complete 3D Facility Visualization documentation in the Documents panel (Section 13: 3D Facility Visualization).',
       },
     ],
   },
