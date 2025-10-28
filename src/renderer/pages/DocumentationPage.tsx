@@ -41,6 +41,7 @@ import {
   Security as SecurityIcon,
   AccountTree as AccountTreeIcon,
   VerifiedUser as VerifiedUserIcon,
+  TrendingUp as TrendingUpIcon,
 } from '@mui/icons-material';
 
 interface DocSection {
@@ -508,6 +509,66 @@ const documentationSections: DocSection[] = [
       {
         title: 'Configuring O&G Accounting in GGAS',
         content: 'To configure oil and gas accounting standards in GGAS: Navigate to Settings → Accounting & Compliance. Select your primary accounting framework (U.S. GAAP/ASC 932 or IFRS 6). Choose your cost accounting method (Successful Efforts or Full Cost). Configure DD&A calculation parameters and reserve estimation methods. Set up joint venture accounting rules if applicable. Enable ESG/SASB reporting modules for emissions disclosure. Configure impairment testing schedules and triggers. The system will automatically apply the appropriate accounting rules for emissions calculations, financial reporting, and compliance.',
+      },
+    ],
+  },
+  {
+    id: 'phase4',
+    title: 'Intelligent Carbon Copilot',
+    icon: <AIIcon />,
+    content: 'The Intelligent Carbon Copilot is an advanced AI-powered assistant that understands carbon accounting terminology, regulatory language, and business context. It provides natural language interaction, conversational analytics, AI-powered insights, smart report generation, and enterprise-grade security for carbon management.',
+    subsections: [
+      {
+        title: 'Natural Language Processing Engine',
+        content: 'Advanced NLP that understands carbon accounting terminology, regulatory language, and business context. Query examples include "What drove our 15% Scope 2 increase in Q3?", "Show me facilities exceeding our carbon budget", and "Compare our transport emissions to industry benchmarks". The system provides contextual understanding of organizational structure, time periods, and emission categories with multi-language support for global enterprise operations.',
+      },
+      {
+        title: 'Conversational Analytics Interface',
+        content: 'Interactive chat interface integrated into all application modules with voice-to-text capability for hands-free data queries during site visits. Smart follow-up questions like "Would you like me to drill down into the top 3 contributors?" help guide analysis. Export conversation insights to reports and presentations for easy sharing with stakeholders.',
+      },
+      {
+        title: 'AI-Powered Insights Engine',
+        content: 'Pattern recognition across multi-year datasets to identify trends not visible to human analysis. Anomaly detection with business context (e.g., "Emissions spike correlates with new production line startup"). Proactive recommendations such as "Based on historical patterns, consider scheduling maintenance for Boiler 3". Correlation analysis between operational metrics and emission performance helps identify improvement opportunities.',
+      },
+      {
+        title: 'Smart Report Generation',
+        content: 'Automated narrative creation for executive summaries with dynamic report writing that adapts tone for different audiences (board, regulators, public). Real-time fact-checking against organizational data ensures accuracy. Integration with corporate style guides and branding maintains consistency across all generated reports.',
+      },
+      {
+        title: 'Enterprise Implementation',
+        content: 'Role-based AI training provides different AI personalities for executives, analysts, and facility managers. Enterprise security with on-premises AI models for sensitive data and federated learning for insights. Integration APIs connect with existing enterprise chatbots and digital assistants. Complete audit trails log all AI-generated insights and recommendations for compliance and governance.',
+      },
+    ],
+  },
+  {
+    id: 'phase5',
+    title: 'Predictive Carbon Intelligence',
+    icon: <TrendingUpIcon />,
+    content: 'Predictive Carbon Intelligence provides advanced forecasting, scenario planning, carbon budget management, and early warning systems powered by machine learning. This comprehensive platform enables organizations to anticipate future emissions, optimize carbon budgets, and proactively manage carbon risks.',
+    subsections: [
+      {
+        title: 'Multi-factor Emission Modeling',
+        content: 'Advanced modeling incorporates weather impact algorithms (heating/cooling degree days, renewable energy generation forecasts), economic indicators (GDP growth, commodity prices, energy costs, carbon pricing trends), operational variables (production schedules, maintenance cycles, expansion plans), and supply chain disruptions (shipping delays, raw material availability, supplier performance). This comprehensive approach provides accurate forecasts considering all major emission drivers.',
+      },
+      {
+        title: 'Machine Learning Models',
+        content: 'Time series analysis with LSTM networks for seasonal pattern recognition. Ensemble modeling combining multiple prediction algorithms for robust forecasts. Uncertainty quantification with confidence intervals to understand prediction reliability. Continuous model retraining with new data ensures forecasts remain accurate as conditions evolve.',
+      },
+      {
+        title: 'Scenario Planning Suite',
+        content: 'Monte Carlo simulations for risk assessment enable probabilistic forecasting. Sensitivity analysis for key emission drivers identifies which factors have the greatest impact. Stress testing for extreme weather events and supply chain disruptions prepares organizations for various contingencies. Integration with enterprise risk management systems ensures carbon risks are managed holistically.',
+      },
+      {
+        title: 'Carbon Budget Management',
+        content: 'Dynamic Budget Allocation uses AI-optimized distribution of carbon budgets across business units, facilities, and projects. Real-time Budget Tracking provides continuous monitoring with predictive alerts when approaching limits. Budget Optimization recommends budget transfers between units based on performance and opportunities. Variance Analysis delivers detailed analysis of budget vs. actual with root cause identification.',
+      },
+      {
+        title: 'Early Warning System',
+        content: 'Predictive Alerts provide advance warning such as "Based on current trends, you will exceed annual target by 8% - recommend immediate action on top 5 initiatives" or "Weather forecast indicates 20% increase in heating needs next month - budget adjustment recommended". Escalation Protocols automatically notify appropriate stakeholders based on severity. Action Plan Triggers automatically activate predefined response plans when thresholds are reached.',
+      },
+      {
+        title: 'Enterprise Features',
+        content: 'Multi-entity Forecasting provides consolidated predictions across global operations with currency and regulatory considerations. Integration with ERP Systems pulls operational forecasts to enhance emission predictions. Board-level Reporting offers executive dashboards with forward-looking carbon performance metrics. Regulatory Compliance Forecasting predicts compliance status for upcoming reporting periods.',
       },
     ],
   },
