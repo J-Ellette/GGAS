@@ -10,6 +10,11 @@ export { default as AdvancedModelingService } from './AdvancedModelingService';
 export { default as UnifiedReportingService } from './UnifiedReportingService';
 export { default as ARVRDigitalTwinService } from './ARVRDigitalTwinService';
 
+// Advanced Integration Services
+export { default as WeatherAPIService } from './WeatherAPIService';
+export { default as ERPIntegrationService } from './ERPIntegrationService';
+export { default as MLFrameworkService } from './MLFrameworkService';
+
 // Sector-Specific Carbon Modules
 export { default as AgricultureCarbonService } from './AgricultureCarbonService';
 export { default as ConstructionEmbodiedCarbonService } from './ConstructionEmbodiedCarbonService';
@@ -102,3 +107,31 @@ export type {
   BestPractice,
   SectorReport
 } from './EnterpriseSectorIntegrationService';
+
+// Advanced Integration Service Types
+export type {
+  WeatherData,
+  WeatherForecast,
+  WeatherImpact,
+  HistoricalWeatherData
+} from './WeatherAPIService';
+
+export type {
+  ERPConnection,
+  ERPDataFeed,
+  ERPEnergyData,
+  ERPMaterialData,
+  ERPTransportationData,
+  ERPProductionData,
+  ERPSyncResult
+} from './ERPIntegrationService';
+
+export type {
+  MLModel,
+  TrainingConfig,
+  TrainingResult,
+  PredictionInput,
+  PredictionOutput,
+  ModelEvaluation,
+  FeatureImportance
+} from './MLFrameworkService';
