@@ -564,7 +564,7 @@ const documentationSections: DocSection[] = [
       },
       {
         title: 'Early Warning System',
-        content: 'Predictive Alerts provide advance warning such as "Based on current trends, you\'ll exceed annual target by 8% - recommend immediate action on top 5 initiatives" or "Weather forecast indicates 20% increase in heating needs next month - budget adjustment recommended". Escalation Protocols automatically notify appropriate stakeholders based on severity. Action Plan Triggers automatically activate predefined response plans when thresholds are reached.',
+        content: 'Predictive Alerts provide advance warning such as "Based on current trends, you will exceed annual target by 8% - recommend immediate action on top 5 initiatives" or "Weather forecast indicates 20% increase in heating needs next month - budget adjustment recommended". Escalation Protocols automatically notify appropriate stakeholders based on severity. Action Plan Triggers automatically activate predefined response plans when thresholds are reached.',
       },
       {
         title: 'Enterprise Features',
