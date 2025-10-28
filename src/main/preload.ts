@@ -286,4 +286,22 @@ contextBridge.exposeInMainWorld('electronAPI', {
   createMLTrainingDataset: (data: any) => ipcRenderer.invoke('ml-training-data:create', data),
   listMLTrainingDatasets: (filters?: any) => ipcRenderer.invoke('ml-training-data:list', filters),
   getModelPerformanceMetrics: (modelId?: number) => ipcRenderer.invoke('model-performance:get', modelId),
+
+  // AI-Optional Framework API
+  listAIFeatureToggles: (filters?: any) => ipcRenderer.invoke('ai-features:list', filters),
+  getAIFeatureToggle: (featureKey: string) => ipcRenderer.invoke('ai-features:get', featureKey),
+  updateAIFeatureToggle: (featureKey: string, isEnabled: boolean, updatedBy?: string) => 
+    ipcRenderer.invoke('ai-features:update', featureKey, isEnabled, updatedBy),
+  checkAIFeatureEnabled: (featureKey: string) => ipcRenderer.invoke('ai-features:check-enabled', featureKey),
+  listAIOperationModes: () => ipcRenderer.invoke('ai-operation-modes:list'),
+  getActiveOperationMode: () => ipcRenderer.invoke('ai-operation-modes:get-active'),
+  setActiveOperationMode: (modeName: string, configuredBy?: string) => 
+    ipcRenderer.invoke('ai-operation-modes:set-active', modeName, configuredBy),
+  listAIUsageAudit: (filters?: any) => ipcRenderer.invoke('ai-audit:list', filters),
+  createAIPolicy: (policy: any) => ipcRenderer.invoke('ai-policies:create', policy),
+  listAIPolicies: (filters?: any) => ipcRenderer.invoke('ai-policies:list', filters),
+  updateAIPolicy: (id: number, updates: any) => ipcRenderer.invoke('ai-policies:update', id, updates),
+  recordAIPerformanceMetric: (metric: any) => ipcRenderer.invoke('ai-performance:record', metric),
+  getAIPerformanceMetrics: (filters?: any) => ipcRenderer.invoke('ai-performance:get', filters),
+  getAIFeatureComparison: (featureKey: string) => ipcRenderer.invoke('ai-performance:compare', featureKey),
 });

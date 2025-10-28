@@ -1022,4 +1022,61 @@ function setupIpcHandlers() {
   ipcMain.handle('model-performance:get', async (event, modelId) => {
     return databaseService?.getModelPerformanceMetrics(modelId);
   });
+
+  // AI-Optional Framework handlers
+  ipcMain.handle('ai-features:list', async (event, filters) => {
+    return databaseService?.listAIFeatureToggles(filters);
+  });
+
+  ipcMain.handle('ai-features:get', async (event, featureKey) => {
+    return databaseService?.getAIFeatureToggle(featureKey);
+  });
+
+  ipcMain.handle('ai-features:update', async (event, featureKey, isEnabled, updatedBy) => {
+    return databaseService?.updateAIFeatureToggle(featureKey, isEnabled, updatedBy);
+  });
+
+  ipcMain.handle('ai-features:check-enabled', async (event, featureKey) => {
+    return databaseService?.checkAIFeatureEnabled(featureKey);
+  });
+
+  ipcMain.handle('ai-operation-modes:list', async () => {
+    return databaseService?.listAIOperationModes();
+  });
+
+  ipcMain.handle('ai-operation-modes:get-active', async () => {
+    return databaseService?.getActiveOperationMode();
+  });
+
+  ipcMain.handle('ai-operation-modes:set-active', async (event, modeName, configuredBy) => {
+    return databaseService?.setActiveOperationMode(modeName, configuredBy);
+  });
+
+  ipcMain.handle('ai-audit:list', async (event, filters) => {
+    return databaseService?.listAIUsageAudit(filters);
+  });
+
+  ipcMain.handle('ai-policies:create', async (event, policy) => {
+    return databaseService?.createAIPolicy(policy);
+  });
+
+  ipcMain.handle('ai-policies:list', async (event, filters) => {
+    return databaseService?.listAIPolicies(filters);
+  });
+
+  ipcMain.handle('ai-policies:update', async (event, id, updates) => {
+    return databaseService?.updateAIPolicy(id, updates);
+  });
+
+  ipcMain.handle('ai-performance:record', async (event, metric) => {
+    return databaseService?.recordAIPerformanceMetric(metric);
+  });
+
+  ipcMain.handle('ai-performance:get', async (event, filters) => {
+    return databaseService?.getAIPerformanceMetrics(filters);
+  });
+
+  ipcMain.handle('ai-performance:compare', async (event, featureKey) => {
+    return databaseService?.getAIFeatureComparison(featureKey);
+  });
 }
