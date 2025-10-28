@@ -281,4 +281,28 @@ contextBridge.exposeInMainWorld('electronAPI', {
   recordAIPerformanceMetric: (metric: any) => ipcRenderer.invoke('ai-performance:record', metric),
   getAIPerformanceMetrics: (filters?: any) => ipcRenderer.invoke('ai-performance:get', filters),
   getAIFeatureComparison: (featureKey: string) => ipcRenderer.invoke('ai-performance:compare', featureKey),
+
+  // Multi-Year Budget Planning API
+  createMultiYearBudget: (data: any) => ipcRenderer.invoke('multi-year-budgets:create', data),
+  listMultiYearBudgets: (filters?: any) => ipcRenderer.invoke('multi-year-budgets:list', filters),
+  getMultiYearBudget: (id: number) => ipcRenderer.invoke('multi-year-budgets:get', id),
+  updateMultiYearBudgetPeriod: (periodId: number, data: any) => ipcRenderer.invoke('multi-year-budgets:update-period', periodId, data),
+  getMultiYearBudgetSummary: (budgetId: number) => ipcRenderer.invoke('multi-year-budgets:get-summary', budgetId),
+
+  // Advanced Correlation Analysis API
+  createCorrelationAnalysis: (data: any) => ipcRenderer.invoke('correlation-analysis:create', data),
+  listCorrelationAnalyses: (filters?: any) => ipcRenderer.invoke('correlation-analysis:list', filters),
+  getCorrelationAnalysis: (id: number) => ipcRenderer.invoke('correlation-analysis:get', id),
+  runCorrelationAnalysis: (data: any) => ipcRenderer.invoke('correlation-analysis:run', data),
+
+  // Real-time Monitoring API
+  createRealtimeMonitoringStream: (data: any) => ipcRenderer.invoke('realtime-monitoring:create-stream', data),
+  listRealtimeMonitoringStreams: (filters?: any) => ipcRenderer.invoke('realtime-monitoring:list-streams', filters),
+  addRealtimeMonitoringData: (data: any) => ipcRenderer.invoke('realtime-monitoring:add-data', data),
+  getRealtimeMonitoringData: (streamId: number, limit?: number) => ipcRenderer.invoke('realtime-monitoring:get-data', streamId, limit),
+  getRealtimeMonitoringStats: (streamId: number, hours?: number) => ipcRenderer.invoke('realtime-monitoring:get-stats', streamId, hours),
+  createRealtimeAlert: (data: any) => ipcRenderer.invoke('realtime-monitoring:create-alert', data),
+  listRealtimeAlerts: (filters?: any) => ipcRenderer.invoke('realtime-monitoring:list-alerts', filters),
+  acknowledgeRealtimeAlert: (alertId: number, acknowledgedBy: string) => ipcRenderer.invoke('realtime-monitoring:acknowledge-alert', alertId, acknowledgedBy),
+  resolveRealtimeAlert: (alertId: number) => ipcRenderer.invoke('realtime-monitoring:resolve-alert', alertId),
 });

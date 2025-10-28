@@ -1582,6 +1582,30 @@ export interface ElectronAPI {
   recordAIPerformanceMetric: (metric: any) => Promise<void>;
   getAIPerformanceMetrics: (filters?: any) => Promise<any[]>;
   getAIFeatureComparison: (featureKey: string) => Promise<any>;
+
+  // Multi-Year Budget Planning APIs
+  createMultiYearBudget: (data: any) => Promise<any>;
+  listMultiYearBudgets: (filters?: any) => Promise<any[]>;
+  getMultiYearBudget: (id: number) => Promise<any>;
+  updateMultiYearBudgetPeriod: (periodId: number, data: any) => Promise<any>;
+  getMultiYearBudgetSummary: (budgetId: number) => Promise<any>;
+
+  // Advanced Correlation Analysis APIs
+  createCorrelationAnalysis: (data: any) => Promise<any>;
+  listCorrelationAnalyses: (filters?: any) => Promise<any[]>;
+  getCorrelationAnalysis: (id: number) => Promise<any>;
+  runCorrelationAnalysis: (data: any) => Promise<any>;
+
+  // Real-time Monitoring APIs
+  createRealtimeMonitoringStream: (data: any) => Promise<any>;
+  listRealtimeMonitoringStreams: (filters?: any) => Promise<any[]>;
+  addRealtimeMonitoringData: (data: any) => Promise<any>;
+  getRealtimeMonitoringData: (streamId: number, limit?: number) => Promise<any[]>;
+  getRealtimeMonitoringStats: (streamId: number, hours?: number) => Promise<any>;
+  createRealtimeAlert: (data: any) => Promise<any>;
+  listRealtimeAlerts: (filters?: any) => Promise<any[]>;
+  acknowledgeRealtimeAlert: (alertId: number, acknowledgedBy: string) => Promise<any>;
+  resolveRealtimeAlert: (alertId: number) => Promise<any>;
 }
 
 declare global {

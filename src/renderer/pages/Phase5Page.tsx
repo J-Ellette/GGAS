@@ -109,6 +109,19 @@ const Phase5Page: React.FC = () => {
   const [executiveDashboard, setExecutiveDashboard] = useState<any>(null);
   const [modelMetrics, setModelMetrics] = useState<any[]>([]);
 
+  // Multi-year Budget Planning State
+  const [multiYearBudgets, setMultiYearBudgets] = useState<any[]>([]);
+  const [selectedMultiYearBudget, setSelectedMultiYearBudget] = useState<any>(null);
+  const [multiYearBudgetDialog, setMultiYearBudgetDialog] = useState(false);
+  const [newMultiYearBudget, setNewMultiYearBudget] = useState({
+    budgetName: '',
+    startYear: new Date().getFullYear().toString(),
+    endYear: (new Date().getFullYear() + 4).toString(),
+    totalBudget: 50000,
+    budgetUnit: 'tCO2e',
+    allocationStrategy: 'linear'
+  });
+
   useEffect(() => {
     loadData();
   }, [tabValue]);
@@ -154,6 +167,10 @@ const Phase5Page: React.FC = () => {
           setExecutiveDashboard(dash || null);
           const metrics = await window.electronAPI.getModelPerformanceMetrics();
           setModelMetrics(metrics || []);
+          break;
+        case 5: // Multi-Year Budget Planning
+          const multiYearBuds = await window.electronAPI.listMultiYearBudgets({ status: 'active' });
+          setMultiYearBudgets(multiYearBuds || []);
           break;
       }
     } catch (error) {
@@ -282,11 +299,70 @@ const Phase5Page: React.FC = () => {
 
   const handleActivateActionPlan = async (id: number) => {
     try {
-      const result = await window.electronAPI.activateActionPlan(id);
-      alert(result.message);
+      await window.electronAPI.activateActionPlan(id);
+      alert('Action plan activated successfully!');
       loadData();
     } catch (error) {
       console.error('Error activating action plan:', error);
+    }
+  };
+
+  const handleCreateMultiYearBudget = async () => {
+    try {
+      const startYear = parseInt(newMultiYearBudget.startYear);
+      const endYear = parseInt(newMultiYearBudget.endYear);
+      const years = endYear - startYear + 1;
+      
+      // Generate yearly breakdown based on allocation strategy
+      const yearlyBreakdown = [];
+      for (let i = 0; i < years; i++) {
+        const fiscalYear = (startYear + i).toString();
+        let periodBudget = 0;
+        let growthRate = 0;
+        
+        if (newMultiYearBudget.allocationStrategy === 'linear') {
+          periodBudget = newMultiYearBudget.totalBudget / years;
+        } else if (newMultiYearBudget.allocationStrategy === 'declining') {
+          const weight = (years - i) / ((years * (years + 1)) / 2);
+          periodBudget = newMultiYearBudget.totalBudget * weight;
+          growthRate = i > 0 ? -10 : 0;
+        } else if (newMultiYearBudget.allocationStrategy === 'growing') {
+          const weight = (i + 1) / ((years * (years + 1)) / 2);
+          periodBudget = newMultiYearBudget.totalBudget * weight;
+          growthRate = i > 0 ? 10 : 0;
+        }
+        
+        yearlyBreakdown.push({ fiscalYear, periodBudget, growthRate });
+      }
+
+      await window.electronAPI.createMultiYearBudget({
+        ...newMultiYearBudget,
+        yearlyBreakdown
+      });
+
+      alert('Multi-year budget created successfully!');
+      setMultiYearBudgetDialog(false);
+      setNewMultiYearBudget({
+        budgetName: '',
+        startYear: new Date().getFullYear().toString(),
+        endYear: (new Date().getFullYear() + 4).toString(),
+        totalBudget: 50000,
+        budgetUnit: 'tCO2e',
+        allocationStrategy: 'linear'
+      });
+      loadData();
+    } catch (error) {
+      console.error('Error creating multi-year budget:', error);
+      alert('Failed to create multi-year budget');
+    }
+  };
+
+  const handleViewMultiYearBudget = async (id: number) => {
+    try {
+      const budget = await window.electronAPI.getMultiYearBudgetSummary(id);
+      setSelectedMultiYearBudget(budget);
+    } catch (error) {
+      console.error('Error loading multi-year budget:', error);
     }
   };
 
@@ -332,6 +408,7 @@ const Phase5Page: React.FC = () => {
           <Tab icon={<WarningIcon />} label="Early Warning" />
           <Tab icon={<ScienceIcon />} label="Scenario Planning" />
           <Tab icon={<BusinessIcon />} label="Enterprise" />
+          <Tab icon={<AccountBalanceIcon />} label="Multi-Year Budgets" />
         </Tabs>
       </Box>
 
@@ -1002,6 +1079,163 @@ const Phase5Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
+      <TabPanel value={tabValue} index={5}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+                <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+                  <Typography variant="h6">Multi-Year Budget Planning</Typography>
+                  <Button
+                    variant="contained"
+                    startIcon={<AddIcon />}
+                    onClick={() => setMultiYearBudgetDialog(true)}
+                  >
+                    Create Multi-Year Budget
+                  </Button>
+                </Box>
+
+                <Alert severity="info" sx={{ mb: 2 }}>
+                  Plan carbon budgets across multiple years with customizable allocation strategies
+                </Alert>
+
+                <TableContainer>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Budget Name</TableCell>
+                        <TableCell>Period</TableCell>
+                        <TableCell align="right">Total Budget</TableCell>
+                        <TableCell align="right">Utilized</TableCell>
+                        <TableCell align="center">Years</TableCell>
+                        <TableCell>Status</TableCell>
+                        <TableCell>Actions</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {multiYearBudgets.map((budget) => {
+                        const startYear = budget.startYear;
+                        const endYear = budget.endYear;
+                        const years = parseInt(endYear) - parseInt(startYear) + 1;
+                        
+                        return (
+                          <TableRow key={budget.id}>
+                            <TableCell>{budget.budgetName}</TableCell>
+                            <TableCell>{startYear} - {endYear}</TableCell>
+                            <TableCell align="right">{budget.totalBudget?.toFixed(2)} {budget.budgetUnit}</TableCell>
+                            <TableCell align="right">-</TableCell>
+                            <TableCell align="center">{years}</TableCell>
+                            <TableCell>
+                              <Chip 
+                                label={budget.status} 
+                                color={budget.status === 'active' ? 'success' : 'default'} 
+                                size="small" 
+                              />
+                            </TableCell>
+                            <TableCell>
+                              <Button 
+                                size="small" 
+                                variant="outlined"
+                                onClick={() => handleViewMultiYearBudget(budget.id)}
+                              >
+                                View Details
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                      {multiYearBudgets.length === 0 && (
+                        <TableRow>
+                          <TableCell colSpan={7} align="center">
+                            <Typography variant="body2" color="text.secondary">
+                              No multi-year budgets yet. Click "Create Multi-Year Budget" to get started.
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                      )}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {selectedMultiYearBudget && (
+            <Grid item xs={12}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h6" gutterBottom>
+                    {selectedMultiYearBudget.budgetName} - Yearly Breakdown
+                  </Typography>
+                  <Box sx={{ height: 300, mb: 2 }}>
+                    <ResponsiveContainer>
+                      <BarChart data={selectedMultiYearBudget.periods || []}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="fiscalYear" />
+                        <YAxis />
+                        <ChartTooltip />
+                        <Legend />
+                        <Bar dataKey="periodBudget" fill="#8884d8" name="Budget" />
+                        <Bar dataKey="consumedBudget" fill="#ff8042" name="Consumed" />
+                        <Bar dataKey="remainingBudget" fill="#00C49F" name="Remaining" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </Box>
+
+                  <TableContainer>
+                    <Table size="small">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Fiscal Year</TableCell>
+                          <TableCell align="right">Period Budget</TableCell>
+                          <TableCell align="right">Consumed</TableCell>
+                          <TableCell align="right">Remaining</TableCell>
+                          <TableCell align="right">Growth Rate</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {(selectedMultiYearBudget.periods || []).map((period: any) => (
+                          <TableRow key={period.id}>
+                            <TableCell>{period.fiscalYear}</TableCell>
+                            <TableCell align="right">{period.periodBudget?.toFixed(2)}</TableCell>
+                            <TableCell align="right">{period.consumedBudget?.toFixed(2)}</TableCell>
+                            <TableCell align="right">{period.remainingBudget?.toFixed(2)}</TableCell>
+                            <TableCell align="right">{period.growthRate ? `${period.growthRate}%` : '-'}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+
+                  {selectedMultiYearBudget.summary && (
+                    <Box sx={{ mt: 2, p: 2, bgcolor: 'background.default', borderRadius: 1 }}>
+                      <Grid container spacing={2}>
+                        <Grid item xs={3}>
+                          <Typography variant="caption" color="text.secondary">Total Budget</Typography>
+                          <Typography variant="h6">{selectedMultiYearBudget.totalBudget?.toFixed(2)}</Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                          <Typography variant="caption" color="text.secondary">Total Consumed</Typography>
+                          <Typography variant="h6">{selectedMultiYearBudget.summary.totalConsumed?.toFixed(2)}</Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                          <Typography variant="caption" color="text.secondary">Total Remaining</Typography>
+                          <Typography variant="h6">{selectedMultiYearBudget.summary.totalRemaining?.toFixed(2)}</Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                          <Typography variant="caption" color="text.secondary">Utilization</Typography>
+                          <Typography variant="h6">{selectedMultiYearBudget.summary.utilizationPercentage?.toFixed(1)}%</Typography>
+                        </Grid>
+                      </Grid>
+                    </Box>
+                  )}
+                </CardContent>
+              </Card>
+            </Grid>
+          )}
+        </Grid>
+      </TabPanel>
+
       <Dialog open={forecastDialog} onClose={() => setForecastDialog(false)} maxWidth="sm" fullWidth>
         <DialogTitle>Run Multi-Factor Forecast</DialogTitle>
         <DialogContent>
@@ -1146,6 +1380,83 @@ const Phase5Page: React.FC = () => {
         <DialogActions>
           <Button onClick={() => setScenarioDialog(false)}>Cancel</Button>
           <Button onClick={handleRunMonteCarlo} variant="contained">Run Simulation</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={multiYearBudgetDialog} onClose={() => setMultiYearBudgetDialog(false)} maxWidth="sm" fullWidth>
+        <DialogTitle>Create Multi-Year Budget</DialogTitle>
+        <DialogContent>
+          <Alert severity="info" sx={{ mb: 2, mt: 1 }}>
+            Plan your carbon budget across multiple fiscal years with automatic allocation
+          </Alert>
+          <TextField
+            label="Budget Name"
+            fullWidth
+            margin="normal"
+            value={newMultiYearBudget.budgetName}
+            onChange={(e) => setNewMultiYearBudget({ ...newMultiYearBudget, budgetName: e.target.value })}
+            helperText="e.g., '5-Year Net Zero Pathway Budget'"
+          />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <TextField
+                label="Start Year"
+                fullWidth
+                margin="normal"
+                type="number"
+                value={newMultiYearBudget.startYear}
+                onChange={(e) => setNewMultiYearBudget({ ...newMultiYearBudget, startYear: e.target.value })}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="End Year"
+                fullWidth
+                margin="normal"
+                type="number"
+                value={newMultiYearBudget.endYear}
+                onChange={(e) => setNewMultiYearBudget({ ...newMultiYearBudget, endYear: e.target.value })}
+              />
+            </Grid>
+          </Grid>
+          <TextField
+            label="Total Budget"
+            fullWidth
+            margin="normal"
+            type="number"
+            value={newMultiYearBudget.totalBudget}
+            onChange={(e) => setNewMultiYearBudget({ ...newMultiYearBudget, totalBudget: parseFloat(e.target.value) })}
+            helperText="Total emissions budget across all years"
+          />
+          <TextField
+            label="Budget Unit"
+            fullWidth
+            margin="normal"
+            select
+            value={newMultiYearBudget.budgetUnit}
+            onChange={(e) => setNewMultiYearBudget({ ...newMultiYearBudget, budgetUnit: e.target.value })}
+          >
+            <MenuItem value="tCO2e">tCO2e</MenuItem>
+            <MenuItem value="kgCO2e">kgCO2e</MenuItem>
+            <MenuItem value="MtCO2e">MtCO2e</MenuItem>
+          </TextField>
+          <TextField
+            label="Allocation Strategy"
+            fullWidth
+            margin="normal"
+            select
+            value={newMultiYearBudget.allocationStrategy}
+            onChange={(e) => setNewMultiYearBudget({ ...newMultiYearBudget, allocationStrategy: e.target.value })}
+            helperText="How to distribute budget across years"
+          >
+            <MenuItem value="linear">Linear (Equal amounts each year)</MenuItem>
+            <MenuItem value="declining">Declining (Higher in early years)</MenuItem>
+            <MenuItem value="growing">Growing (Lower in early years)</MenuItem>
+          </TextField>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setMultiYearBudgetDialog(false)}>Cancel</Button>
+          <Button onClick={handleCreateMultiYearBudget} variant="contained">Create</Button>
         </DialogActions>
       </Dialog>
     </Box>

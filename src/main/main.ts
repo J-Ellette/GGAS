@@ -1076,4 +1076,79 @@ function setupIpcHandlers() {
   ipcMain.handle('ai-performance:compare', async (event, featureKey) => {
     return databaseService?.getAIFeatureComparison(featureKey);
   });
+
+  // Multi-Year Budget Planning Handlers
+  ipcMain.handle('multi-year-budgets:create', async (event, data) => {
+    return databaseService?.createMultiYearBudget(data);
+  });
+
+  ipcMain.handle('multi-year-budgets:list', async (event, filters) => {
+    return databaseService?.listMultiYearBudgets(filters);
+  });
+
+  ipcMain.handle('multi-year-budgets:get', async (event, id) => {
+    return databaseService?.getMultiYearBudget(id);
+  });
+
+  ipcMain.handle('multi-year-budgets:update-period', async (event, periodId, data) => {
+    return databaseService?.updateMultiYearBudgetPeriod(periodId, data);
+  });
+
+  ipcMain.handle('multi-year-budgets:get-summary', async (event, budgetId) => {
+    return databaseService?.getMultiYearBudgetSummary(budgetId);
+  });
+
+  // Advanced Correlation Analysis Handlers
+  ipcMain.handle('correlation-analysis:create', async (event, data) => {
+    return databaseService?.createCorrelationAnalysis(data);
+  });
+
+  ipcMain.handle('correlation-analysis:list', async (event, filters) => {
+    return databaseService?.listCorrelationAnalyses(filters);
+  });
+
+  ipcMain.handle('correlation-analysis:get', async (event, id) => {
+    return databaseService?.getCorrelationAnalysis(id);
+  });
+
+  ipcMain.handle('correlation-analysis:run', async (event, data) => {
+    return databaseService?.runCorrelationAnalysis(data);
+  });
+
+  // Real-time Monitoring Handlers
+  ipcMain.handle('realtime-monitoring:create-stream', async (event, data) => {
+    return databaseService?.createRealtimeMonitoringStream(data);
+  });
+
+  ipcMain.handle('realtime-monitoring:list-streams', async (event, filters) => {
+    return databaseService?.listRealtimeMonitoringStreams(filters);
+  });
+
+  ipcMain.handle('realtime-monitoring:add-data', async (event, data) => {
+    return databaseService?.addRealtimeMonitoringData(data);
+  });
+
+  ipcMain.handle('realtime-monitoring:get-data', async (event, streamId, limit) => {
+    return databaseService?.getRealtimeMonitoringData(streamId, limit);
+  });
+
+  ipcMain.handle('realtime-monitoring:get-stats', async (event, streamId, hours) => {
+    return databaseService?.getRealtimeMonitoringStats(streamId, hours);
+  });
+
+  ipcMain.handle('realtime-monitoring:create-alert', async (event, data) => {
+    return databaseService?.createRealtimeAlert(data);
+  });
+
+  ipcMain.handle('realtime-monitoring:list-alerts', async (event, filters) => {
+    return databaseService?.listRealtimeAlerts(filters);
+  });
+
+  ipcMain.handle('realtime-monitoring:acknowledge-alert', async (event, alertId, acknowledgedBy) => {
+    return databaseService?.acknowledgeRealtimeAlert(alertId, acknowledgedBy);
+  });
+
+  ipcMain.handle('realtime-monitoring:resolve-alert', async (event, alertId) => {
+    return databaseService?.resolveRealtimeAlert(alertId);
+  });
 }
