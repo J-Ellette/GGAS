@@ -1155,6 +1155,110 @@ export class DatabaseService {
       )
     `);
 
+    // AI-Optional Framework: AI Feature Toggles
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS ai_feature_toggles (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        featureCategory TEXT NOT NULL,
+        featureName TEXT NOT NULL,
+        featureKey TEXT NOT NULL UNIQUE,
+        description TEXT NOT NULL,
+        isEnabled INTEGER DEFAULT 1,
+        enabledBy TEXT,
+        enabledAt DATETIME,
+        userLevel INTEGER DEFAULT 0,
+        organizationLevel INTEGER DEFAULT 1,
+        requiresApproval INTEGER DEFAULT 0,
+        fallbackMethod TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // AI-Optional Framework: Operation Mode Configuration
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS ai_operation_modes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        modeName TEXT NOT NULL UNIQUE,
+        displayName TEXT NOT NULL,
+        description TEXT NOT NULL,
+        isActive INTEGER DEFAULT 0,
+        aiDataProcessing INTEGER DEFAULT 1,
+        aiAnalytics INTEGER DEFAULT 1,
+        aiUserInterface INTEGER DEFAULT 1,
+        aiIntegration INTEGER DEFAULT 1,
+        aiWorkflow INTEGER DEFAULT 1,
+        configuredBy TEXT,
+        activatedAt DATETIME,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // AI-Optional Framework: AI Usage Audit Trail
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS ai_usage_audit (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        featureKey TEXT NOT NULL,
+        actionType TEXT NOT NULL,
+        performedBy TEXT NOT NULL,
+        previousState INTEGER,
+        newState INTEGER,
+        reason TEXT,
+        ipAddress TEXT,
+        userAgent TEXT,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // AI-Optional Framework: AI Policy Configuration
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS ai_policies (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        policyName TEXT NOT NULL,
+        policyType TEXT NOT NULL,
+        policyScope TEXT NOT NULL,
+        description TEXT NOT NULL,
+        restrictions TEXT,
+        requirements TEXT,
+        isActive INTEGER DEFAULT 1,
+        approvedBy TEXT,
+        approvalDate DATETIME,
+        reviewDate DATETIME,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // AI-Optional Framework: Manual Operation Preferences
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS manual_operation_preferences (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        userId TEXT,
+        entityId INTEGER,
+        preferenceType TEXT NOT NULL,
+        preferenceKey TEXT NOT NULL,
+        preferenceValue TEXT NOT NULL,
+        description TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // AI-Optional Framework: Feature Performance Metrics
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS ai_performance_metrics (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        featureKey TEXT NOT NULL,
+        operationMode TEXT NOT NULL,
+        metricType TEXT NOT NULL,
+        metricValue REAL NOT NULL,
+        measurementUnit TEXT,
+        measuredAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        metadata TEXT
+      )
+    `);
+
     // Create indexes for better performance
     this.db.exec(`
       CREATE INDEX IF NOT EXISTS idx_activity_data_org_unit ON activity_data(organizationUnit);
@@ -1212,12 +1316,24 @@ export class DatabaseService {
       CREATE INDEX IF NOT EXISTS idx_enterprise_forecasts_period ON enterprise_forecasts(forecastPeriod);
       CREATE INDEX IF NOT EXISTS idx_ml_training_data_type ON ml_training_data(dataType);
       CREATE INDEX IF NOT EXISTS idx_model_performance_model ON model_performance_metrics(modelId);
+      CREATE INDEX IF NOT EXISTS idx_ai_feature_toggles_key ON ai_feature_toggles(featureKey);
+      CREATE INDEX IF NOT EXISTS idx_ai_feature_toggles_category ON ai_feature_toggles(featureCategory);
+      CREATE INDEX IF NOT EXISTS idx_ai_operation_modes_active ON ai_operation_modes(isActive);
+      CREATE INDEX IF NOT EXISTS idx_ai_usage_audit_feature ON ai_usage_audit(featureKey);
+      CREATE INDEX IF NOT EXISTS idx_ai_usage_audit_timestamp ON ai_usage_audit(timestamp);
+      CREATE INDEX IF NOT EXISTS idx_ai_policies_active ON ai_policies(isActive);
+      CREATE INDEX IF NOT EXISTS idx_manual_operation_prefs_user ON manual_operation_preferences(userId);
+      CREATE INDEX IF NOT EXISTS idx_ai_performance_metrics_feature ON ai_performance_metrics(featureKey);
+      CREATE INDEX IF NOT EXISTS idx_ai_performance_metrics_mode ON ai_performance_metrics(operationMode);
     `);
 
     // Seed Scope 3 categories
     this.seedScope3Categories();
     // Seed default user roles
     this.seedUserRoles();
+    // Seed AI feature toggles and operation modes
+    this.seedAIFeatureToggles();
+    this.seedAIOperationModes();
   }
 
   private seedEmissionFactors() {
@@ -1478,6 +1594,246 @@ export class DatabaseService {
     });
 
     insert(roles);
+  }
+
+  private seedAIFeatureToggles() {
+    if (!this.db) return;
+
+    // Check if we already have AI feature toggles
+    const count = this.db.prepare('SELECT COUNT(*) as count FROM ai_feature_toggles').get() as { count: number };
+    if (count.count > 0) return;
+
+    const features = [
+      // Data Processing AI Features
+      {
+        category: 'Data Processing',
+        name: 'OCR Document Parsing',
+        key: 'ai_ocr_parsing',
+        description: 'Automated document parsing and data extraction using OCR technology',
+        fallback: 'Manual file upload and data entry',
+        enabled: 1
+      },
+      {
+        category: 'Data Processing',
+        name: 'Automated Data Extraction',
+        key: 'ai_data_extraction',
+        description: 'AI-powered extraction of emissions data from various document formats',
+        fallback: 'Guided data entry forms with validation',
+        enabled: 1
+      },
+      {
+        category: 'Data Processing',
+        name: 'Smart Data Validation',
+        key: 'ai_data_validation',
+        description: 'AI-based data quality checks and anomaly detection',
+        fallback: 'Rule-based validation and manual review',
+        enabled: 1
+      },
+      // Analytics AI Features
+      {
+        category: 'Analytics',
+        name: 'Predictive Modeling',
+        key: 'ai_predictive_models',
+        description: 'Machine learning models for emission forecasting and trend prediction',
+        fallback: 'Historical trend analysis and statistical methods',
+        enabled: 1
+      },
+      {
+        category: 'Analytics',
+        name: 'Anomaly Detection',
+        key: 'ai_anomaly_detection',
+        description: 'Automated detection of unusual patterns in emissions data',
+        fallback: 'Threshold-based alerts and manual data review',
+        enabled: 1
+      },
+      {
+        category: 'Analytics',
+        name: 'Trend Analysis',
+        key: 'ai_trend_analysis',
+        description: 'AI-powered identification of emission trends and patterns',
+        fallback: 'Standard statistical analysis and charting',
+        enabled: 1
+      },
+      // User Interface AI Features
+      {
+        category: 'User Interface',
+        name: 'Natural Language Queries',
+        key: 'ai_nlp_queries',
+        description: 'Natural language interface for data queries and reports',
+        fallback: 'Advanced search and filter interface',
+        enabled: 1
+      },
+      {
+        category: 'User Interface',
+        name: 'Intelligent Recommendations',
+        key: 'ai_recommendations',
+        description: 'AI-generated suggestions for emission reduction and best practices',
+        fallback: 'Rule-based guidance and knowledge base',
+        enabled: 1
+      },
+      {
+        category: 'User Interface',
+        name: 'Carbon Copilot Assistant',
+        key: 'ai_copilot',
+        description: 'AI-powered conversational assistant for carbon accounting guidance',
+        fallback: 'Interactive help system and documentation',
+        enabled: 1
+      },
+      // Integration AI Features
+      {
+        category: 'Integration',
+        name: 'Smart Data Mapping',
+        key: 'ai_data_mapping',
+        description: 'AI-assisted mapping of external data sources to internal schema',
+        fallback: 'Manual data mapping configuration',
+        enabled: 1
+      },
+      {
+        category: 'Integration',
+        name: 'Automated Connector Config',
+        key: 'ai_connector_config',
+        description: 'Automated configuration of data connectors and integrations',
+        fallback: 'Step-by-step integration wizard',
+        enabled: 1
+      },
+      // Workflow AI Features
+      {
+        category: 'Workflow',
+        name: 'Intelligent Routing',
+        key: 'ai_routing',
+        description: 'AI-based routing of workflows and approval processes',
+        fallback: 'Rule-based workflow configuration',
+        enabled: 1
+      },
+      {
+        category: 'Workflow',
+        name: 'Automated Decision Making',
+        key: 'ai_decisions',
+        description: 'AI-powered automated decisions for routine processes',
+        fallback: 'Manual approval workflows',
+        enabled: 1
+      },
+      {
+        category: 'Workflow',
+        name: 'Smart Scheduling',
+        key: 'ai_scheduling',
+        description: 'Intelligent scheduling of data collection and reporting tasks',
+        fallback: 'Time-based scheduled processes',
+        enabled: 1
+      }
+    ];
+
+    const stmt = this.db.prepare(`
+      INSERT INTO ai_feature_toggles 
+      (featureCategory, featureName, featureKey, description, fallbackMethod, isEnabled)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `);
+
+    const insert = this.db.transaction((features: any[]) => {
+      for (const feature of features) {
+        stmt.run(
+          feature.category,
+          feature.name,
+          feature.key,
+          feature.description,
+          feature.fallback,
+          feature.enabled
+        );
+      }
+    });
+
+    insert(features);
+  }
+
+  private seedAIOperationModes() {
+    if (!this.db) return;
+
+    // Check if we already have operation modes
+    const count = this.db.prepare('SELECT COUNT(*) as count FROM ai_operation_modes').get() as { count: number };
+    if (count.count > 0) return;
+
+    const modes = [
+      {
+        name: 'full_ai',
+        display: 'Full AI Mode',
+        description: 'All AI features enabled for maximum automation and intelligence',
+        isActive: 1, // Default mode
+        dataProcessing: 1,
+        analytics: 1,
+        userInterface: 1,
+        integration: 1,
+        workflow: 1
+      },
+      {
+        name: 'selective_ai',
+        display: 'Selective AI Mode',
+        description: 'Choose which AI features to enable based on your needs',
+        isActive: 0,
+        dataProcessing: 1,
+        analytics: 1,
+        userInterface: 0,
+        integration: 0,
+        workflow: 0
+      },
+      {
+        name: 'manual_only',
+        display: 'Manual Operation Only',
+        description: 'All AI features disabled, full manual control and traditional workflows',
+        isActive: 0,
+        dataProcessing: 0,
+        analytics: 0,
+        userInterface: 0,
+        integration: 0,
+        workflow: 0
+      },
+      {
+        name: 'assistant_mode',
+        display: 'AI Assistant Mode',
+        description: 'AI provides suggestions but all decisions require human approval',
+        isActive: 0,
+        dataProcessing: 1,
+        analytics: 1,
+        userInterface: 1,
+        integration: 0,
+        workflow: 0
+      },
+      {
+        name: 'background_mode',
+        display: 'Background AI Mode',
+        description: 'AI runs analysis in background without interfering with user workflows',
+        isActive: 0,
+        dataProcessing: 0,
+        analytics: 1,
+        userInterface: 0,
+        integration: 0,
+        workflow: 0
+      }
+    ];
+
+    const stmt = this.db.prepare(`
+      INSERT INTO ai_operation_modes 
+      (modeName, displayName, description, isActive, aiDataProcessing, aiAnalytics, 
+       aiUserInterface, aiIntegration, aiWorkflow)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const insert = this.db.transaction((modes: any[]) => {
+      for (const mode of modes) {
+        stmt.run(
+          mode.name,
+          mode.display,
+          mode.description,
+          mode.isActive,
+          mode.dataProcessing,
+          mode.analytics,
+          mode.userInterface,
+          mode.integration,
+          mode.workflow
+        );
+      }
+    });
+
+    insert(modes);
   }
 
   // Activity Data CRUD operations
@@ -4750,5 +5106,355 @@ export class DatabaseService {
       return this.db.prepare(query).all(modelId);
     }
     return this.db.prepare(query + ' ORDER BY evaluationDate DESC').all();
+  }
+
+  // ============================================================
+  // AI-Optional Framework: Feature Toggle Management
+  // ============================================================
+
+  listAIFeatureToggles(filters?: any) {
+    if (!this.db) return [];
+    let query = 'SELECT * FROM ai_feature_toggles';
+    const params: any[] = [];
+    const conditions: string[] = [];
+
+    if (filters?.featureCategory) {
+      conditions.push('featureCategory = ?');
+      params.push(filters.featureCategory);
+    }
+    if (filters?.isEnabled !== undefined) {
+      conditions.push('isEnabled = ?');
+      params.push(filters.isEnabled ? 1 : 0);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+    query += ' ORDER BY featureCategory, featureName';
+
+    return this.db.prepare(query).all(...params);
+  }
+
+  getAIFeatureToggle(featureKey: string) {
+    if (!this.db) return null;
+    return this.db.prepare('SELECT * FROM ai_feature_toggles WHERE featureKey = ?').get(featureKey);
+  }
+
+  updateAIFeatureToggle(featureKey: string, isEnabled: boolean, updatedBy?: string) {
+    if (!this.db) return null;
+    
+    const previousState = this.getAIFeatureToggle(featureKey) as any;
+    
+    this.db.prepare(`
+      UPDATE ai_feature_toggles 
+      SET isEnabled = ?, enabledBy = ?, enabledAt = CURRENT_TIMESTAMP, updatedAt = CURRENT_TIMESTAMP 
+      WHERE featureKey = ?
+    `).run(isEnabled ? 1 : 0, updatedBy || 'system', featureKey);
+
+    // Log audit trail
+    if (previousState) {
+      this.logAIUsageAudit({
+        featureKey,
+        actionType: 'toggle_update',
+        performedBy: updatedBy || 'system',
+        previousState: previousState.isEnabled,
+        newState: isEnabled ? 1 : 0,
+        reason: `Feature ${isEnabled ? 'enabled' : 'disabled'}`
+      });
+    }
+
+    return this.getAIFeatureToggle(featureKey);
+  }
+
+  checkAIFeatureEnabled(featureKey: string): boolean {
+    if (!this.db) return false;
+    const feature = this.getAIFeatureToggle(featureKey) as any;
+    return feature ? feature.isEnabled === 1 : false;
+  }
+
+  // ============================================================
+  // AI-Optional Framework: Operation Mode Management
+  // ============================================================
+
+  listAIOperationModes() {
+    if (!this.db) return [];
+    return this.db.prepare('SELECT * FROM ai_operation_modes ORDER BY modeName').all();
+  }
+
+  getActiveOperationMode() {
+    if (!this.db) return null;
+    return this.db.prepare('SELECT * FROM ai_operation_modes WHERE isActive = 1').get();
+  }
+
+  setActiveOperationMode(modeName: string, configuredBy?: string) {
+    if (!this.db) return null;
+
+    // Deactivate all modes first
+    this.db.prepare('UPDATE ai_operation_modes SET isActive = 0').run();
+
+    // Activate the selected mode
+    this.db.prepare(`
+      UPDATE ai_operation_modes 
+      SET isActive = 1, configuredBy = ?, activatedAt = CURRENT_TIMESTAMP, updatedAt = CURRENT_TIMESTAMP 
+      WHERE modeName = ?
+    `).run(configuredBy || 'system', modeName);
+
+    // Apply mode settings to feature toggles
+    const mode = this.db.prepare('SELECT * FROM ai_operation_modes WHERE modeName = ?').get(modeName) as any;
+    
+    if (mode) {
+      // Update feature toggles based on mode settings
+      this.applyOperationModeToFeatures(mode);
+
+      // Log audit trail
+      this.logAIUsageAudit({
+        featureKey: 'operation_mode',
+        actionType: 'mode_change',
+        performedBy: configuredBy || 'system',
+        previousState: 0,
+        newState: 1,
+        reason: `Switched to ${mode.displayName}`
+      });
+    }
+
+    return this.getActiveOperationMode();
+  }
+
+  private applyOperationModeToFeatures(mode: any) {
+    if (!this.db) return;
+
+    const categoryMapping: { [key: string]: string } = {
+      'Data Processing': mode.aiDataProcessing,
+      'Analytics': mode.aiAnalytics,
+      'User Interface': mode.aiUserInterface,
+      'Integration': mode.aiIntegration,
+      'Workflow': mode.aiWorkflow
+    };
+
+    for (const [category, enabled] of Object.entries(categoryMapping)) {
+      this.db.prepare(`
+        UPDATE ai_feature_toggles 
+        SET isEnabled = ?, updatedAt = CURRENT_TIMESTAMP 
+        WHERE featureCategory = ?
+      `).run(enabled, category);
+    }
+  }
+
+  // ============================================================
+  // AI-Optional Framework: Audit Trail
+  // ============================================================
+
+  logAIUsageAudit(audit: {
+    featureKey: string;
+    actionType: string;
+    performedBy: string;
+    previousState?: number;
+    newState?: number;
+    reason?: string;
+    ipAddress?: string;
+    userAgent?: string;
+  }) {
+    if (!this.db) return;
+
+    this.db.prepare(`
+      INSERT INTO ai_usage_audit 
+      (featureKey, actionType, performedBy, previousState, newState, reason, ipAddress, userAgent)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      audit.featureKey,
+      audit.actionType,
+      audit.performedBy,
+      audit.previousState || null,
+      audit.newState || null,
+      audit.reason || null,
+      audit.ipAddress || null,
+      audit.userAgent || null
+    );
+  }
+
+  listAIUsageAudit(filters?: any) {
+    if (!this.db) return [];
+    let query = 'SELECT * FROM ai_usage_audit';
+    const params: any[] = [];
+    const conditions: string[] = [];
+
+    if (filters?.featureKey) {
+      conditions.push('featureKey = ?');
+      params.push(filters.featureKey);
+    }
+    if (filters?.performedBy) {
+      conditions.push('performedBy = ?');
+      params.push(filters.performedBy);
+    }
+    if (filters?.startDate) {
+      conditions.push('timestamp >= ?');
+      params.push(filters.startDate);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+    query += ' ORDER BY timestamp DESC LIMIT 100';
+
+    return this.db.prepare(query).all(...params);
+  }
+
+  // ============================================================
+  // AI-Optional Framework: Policy Management
+  // ============================================================
+
+  createAIPolicy(policy: {
+    policyName: string;
+    policyType: string;
+    policyScope: string;
+    description: string;
+    restrictions?: string;
+    requirements?: string;
+    approvedBy?: string;
+  }) {
+    if (!this.db) return null;
+
+    const result = this.db.prepare(`
+      INSERT INTO ai_policies 
+      (policyName, policyType, policyScope, description, restrictions, requirements, approvedBy, approvalDate)
+      VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+    `).run(
+      policy.policyName,
+      policy.policyType,
+      policy.policyScope,
+      policy.description,
+      policy.restrictions || null,
+      policy.requirements || null,
+      policy.approvedBy || null
+    );
+
+    return this.db.prepare('SELECT * FROM ai_policies WHERE id = ?').get(result.lastInsertRowid);
+  }
+
+  listAIPolicies(filters?: any) {
+    if (!this.db) return [];
+    let query = 'SELECT * FROM ai_policies';
+    const params: any[] = [];
+    const conditions: string[] = [];
+
+    if (filters?.policyType) {
+      conditions.push('policyType = ?');
+      params.push(filters.policyType);
+    }
+    if (filters?.isActive !== undefined) {
+      conditions.push('isActive = ?');
+      params.push(filters.isActive ? 1 : 0);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+    query += ' ORDER BY createdAt DESC';
+
+    return this.db.prepare(query).all(...params);
+  }
+
+  updateAIPolicy(id: number, updates: any) {
+    if (!this.db) return null;
+
+    const fields = [];
+    const values = [];
+
+    if (updates.isActive !== undefined) {
+      fields.push('isActive = ?');
+      values.push(updates.isActive ? 1 : 0);
+    }
+    if (updates.restrictions) {
+      fields.push('restrictions = ?');
+      values.push(updates.restrictions);
+    }
+    if (updates.requirements) {
+      fields.push('requirements = ?');
+      values.push(updates.requirements);
+    }
+
+    if (fields.length === 0) return null;
+
+    fields.push('updatedAt = CURRENT_TIMESTAMP');
+    values.push(id);
+
+    this.db.prepare(`
+      UPDATE ai_policies SET ${fields.join(', ')} WHERE id = ?
+    `).run(...values);
+
+    return this.db.prepare('SELECT * FROM ai_policies WHERE id = ?').get(id);
+  }
+
+  // ============================================================
+  // AI-Optional Framework: Performance Metrics
+  // ============================================================
+
+  recordAIPerformanceMetric(metric: {
+    featureKey: string;
+    operationMode: string;
+    metricType: string;
+    metricValue: number;
+    measurementUnit?: string;
+    metadata?: string;
+  }) {
+    if (!this.db) return;
+
+    this.db.prepare(`
+      INSERT INTO ai_performance_metrics 
+      (featureKey, operationMode, metricType, metricValue, measurementUnit, metadata)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).run(
+      metric.featureKey,
+      metric.operationMode,
+      metric.metricType,
+      metric.metricValue,
+      metric.measurementUnit || null,
+      metric.metadata || null
+    );
+  }
+
+  getAIPerformanceMetrics(filters?: any) {
+    if (!this.db) return [];
+    let query = 'SELECT * FROM ai_performance_metrics';
+    const params: any[] = [];
+    const conditions: string[] = [];
+
+    if (filters?.featureKey) {
+      conditions.push('featureKey = ?');
+      params.push(filters.featureKey);
+    }
+    if (filters?.operationMode) {
+      conditions.push('operationMode = ?');
+      params.push(filters.operationMode);
+    }
+    if (filters?.metricType) {
+      conditions.push('metricType = ?');
+      params.push(filters.metricType);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+    query += ' ORDER BY measuredAt DESC LIMIT 1000';
+
+    return this.db.prepare(query).all(...params);
+  }
+
+  getAIFeatureComparison(featureKey: string) {
+    if (!this.db) return null;
+
+    // Compare performance between AI-enabled and manual modes
+    const aiMetrics = this.db.prepare(`
+      SELECT AVG(metricValue) as avgValue, metricType, operationMode
+      FROM ai_performance_metrics
+      WHERE featureKey = ?
+      GROUP BY metricType, operationMode
+    `).all(featureKey);
+
+    return {
+      featureKey,
+      metrics: aiMetrics,
+      generatedAt: new Date().toISOString()
+    };
   }
 }

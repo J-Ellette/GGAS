@@ -1607,6 +1607,22 @@ export interface ElectronAPI {
   listProcurementCategories: () => Promise<ProcurementCategory[]>;
   integrateRiskManagement: (supplierId: number) => Promise<{ riskScore: number; mitigations: string[] }>;
   monitorSupplierCompliance: (filters?: any) => Promise<SupplierComplianceStatus[]>;
+
+  // AI-Optional Framework APIs
+  listAIFeatureToggles: (filters?: any) => Promise<any[]>;
+  getAIFeatureToggle: (featureKey: string) => Promise<any>;
+  updateAIFeatureToggle: (featureKey: string, isEnabled: boolean, updatedBy?: string) => Promise<any>;
+  checkAIFeatureEnabled: (featureKey: string) => Promise<boolean>;
+  listAIOperationModes: () => Promise<any[]>;
+  getActiveOperationMode: () => Promise<any>;
+  setActiveOperationMode: (modeName: string, configuredBy?: string) => Promise<any>;
+  listAIUsageAudit: (filters?: any) => Promise<any[]>;
+  createAIPolicy: (policy: any) => Promise<any>;
+  listAIPolicies: (filters?: any) => Promise<any[]>;
+  updateAIPolicy: (id: number, updates: any) => Promise<any>;
+  recordAIPerformanceMetric: (metric: any) => Promise<void>;
+  getAIPerformanceMetrics: (filters?: any) => Promise<any[]>;
+  getAIFeatureComparison: (featureKey: string) => Promise<any>;
 }
 
 declare global {
