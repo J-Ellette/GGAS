@@ -1202,6 +1202,126 @@ export class DatabaseService {
       )
     `);
 
+    // Multi-year Budget Planning
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS multi_year_budgets (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        budgetName TEXT NOT NULL,
+        entityId INTEGER,
+        startYear TEXT NOT NULL,
+        endYear TEXT NOT NULL,
+        totalBudget REAL NOT NULL,
+        budgetUnit TEXT DEFAULT 'tCO2e',
+        allocationStrategy TEXT DEFAULT 'proportional',
+        status TEXT DEFAULT 'active',
+        description TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS multi_year_budget_periods (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        multiYearBudgetId INTEGER NOT NULL,
+        fiscalYear TEXT NOT NULL,
+        periodBudget REAL NOT NULL,
+        allocatedBudget REAL DEFAULT 0,
+        consumedBudget REAL DEFAULT 0,
+        remainingBudget REAL DEFAULT 0,
+        growthRate REAL DEFAULT 0,
+        adjustmentFactor REAL DEFAULT 1.0,
+        notes TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (multiYearBudgetId) REFERENCES multi_year_budgets(id)
+      )
+    `);
+
+    // Advanced Correlation Analysis
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS correlation_analyses (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        analysisName TEXT NOT NULL,
+        analysisType TEXT NOT NULL,
+        variable1 TEXT NOT NULL,
+        variable2 TEXT NOT NULL,
+        correlationCoefficient REAL NOT NULL,
+        pValue REAL,
+        sampleSize INTEGER,
+        timeRange TEXT,
+        significance TEXT,
+        interpretation TEXT,
+        chartData TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS correlation_datasets (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        correlationId INTEGER NOT NULL,
+        dataPoint INTEGER NOT NULL,
+        variable1Value REAL NOT NULL,
+        variable2Value REAL NOT NULL,
+        timestamp DATETIME,
+        metadata TEXT,
+        FOREIGN KEY (correlationId) REFERENCES correlation_analyses(id)
+      )
+    `);
+
+    // Real-time Monitoring
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS realtime_monitoring_streams (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        streamName TEXT NOT NULL,
+        streamType TEXT NOT NULL,
+        facilityId INTEGER,
+        dataSource TEXT NOT NULL,
+        refreshInterval INTEGER DEFAULT 60,
+        status TEXT DEFAULT 'active',
+        lastUpdate DATETIME,
+        configuration TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS realtime_monitoring_data (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        streamId INTEGER NOT NULL,
+        emissionValue REAL NOT NULL,
+        emissionUnit TEXT DEFAULT 'tCO2e',
+        scope INTEGER,
+        source TEXT,
+        quality REAL DEFAULT 1.0,
+        threshold REAL,
+        thresholdExceeded INTEGER DEFAULT 0,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+        metadata TEXT,
+        FOREIGN KEY (streamId) REFERENCES realtime_monitoring_streams(id)
+      )
+    `);
+
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS realtime_alerts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        streamId INTEGER NOT NULL,
+        alertType TEXT NOT NULL,
+        severity TEXT NOT NULL,
+        message TEXT NOT NULL,
+        value REAL,
+        threshold REAL,
+        acknowledged INTEGER DEFAULT 0,
+        acknowledgedBy TEXT,
+        acknowledgedAt DATETIME,
+        resolvedAt DATETIME,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (streamId) REFERENCES realtime_monitoring_streams(id)
+      )
+    `);
+
     // Create indexes for better performance
     this.db.exec(`
       CREATE INDEX IF NOT EXISTS idx_activity_data_org_unit ON activity_data(organizationUnit);
@@ -5376,5 +5496,557 @@ export class DatabaseService {
       metrics: aiMetrics,
       generatedAt: new Date().toISOString()
     };
+  }
+
+  // ==================== Multi-Year Budget Planning ====================
+
+  createMultiYearBudget(data: {
+    budgetName: string;
+    entityId?: number;
+    startYear: string;
+    endYear: string;
+    totalBudget: number;
+    budgetUnit?: string;
+    allocationStrategy?: string;
+    description?: string;
+    yearlyBreakdown?: Array<{ fiscalYear: string; periodBudget: number; growthRate?: number }>;
+  }) {
+    if (!this.db) return null;
+
+    const result = this.db.prepare(`
+      INSERT INTO multi_year_budgets (
+        budgetName, entityId, startYear, endYear, totalBudget,
+        budgetUnit, allocationStrategy, description, status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      data.budgetName,
+      data.entityId || null,
+      data.startYear,
+      data.endYear,
+      data.totalBudget,
+      data.budgetUnit || 'tCO2e',
+      data.allocationStrategy || 'proportional',
+      data.description || null,
+      'active'
+    );
+
+    const budgetId = result.lastInsertRowid;
+
+    // Create period budgets if provided
+    if (data.yearlyBreakdown && data.yearlyBreakdown.length > 0) {
+      const stmt = this.db.prepare(`
+        INSERT INTO multi_year_budget_periods (
+          multiYearBudgetId, fiscalYear, periodBudget, growthRate, remainingBudget
+        ) VALUES (?, ?, ?, ?, ?)
+      `);
+
+      for (const period of data.yearlyBreakdown) {
+        stmt.run(
+          budgetId,
+          period.fiscalYear,
+          period.periodBudget,
+          period.growthRate || 0,
+          period.periodBudget
+        );
+      }
+    }
+
+    return this.getMultiYearBudget(Number(budgetId));
+  }
+
+  listMultiYearBudgets(filters?: any) {
+    if (!this.db) return [];
+    let query = 'SELECT * FROM multi_year_budgets';
+    const params: any[] = [];
+    const conditions: string[] = [];
+
+    if (filters?.status) {
+      conditions.push('status = ?');
+      params.push(filters.status);
+    }
+
+    if (filters?.entityId) {
+      conditions.push('entityId = ?');
+      params.push(filters.entityId);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+
+    query += ' ORDER BY createdAt DESC';
+    return this.db.prepare(query).all(...params);
+  }
+
+  getMultiYearBudget(id: number) {
+    if (!this.db) return null;
+    const budget = this.db.prepare('SELECT * FROM multi_year_budgets WHERE id = ?').get(id);
+    if (!budget) return null;
+
+    const periods = this.db.prepare(`
+      SELECT * FROM multi_year_budget_periods 
+      WHERE multiYearBudgetId = ? 
+      ORDER BY fiscalYear
+    `).all(id);
+
+    return { ...budget, periods };
+  }
+
+  updateMultiYearBudgetPeriod(periodId: number, data: {
+    consumedBudget?: number;
+    allocatedBudget?: number;
+    notes?: string;
+  }) {
+    if (!this.db) return null;
+
+    const period: any = this.db.prepare('SELECT * FROM multi_year_budget_periods WHERE id = ?').get(periodId);
+    if (!period) return null;
+
+    const consumed = data.consumedBudget ?? period.consumedBudget;
+    const allocated = data.allocatedBudget ?? period.allocatedBudget;
+    const remaining = period.periodBudget - consumed - allocated;
+
+    this.db.prepare(`
+      UPDATE multi_year_budget_periods 
+      SET consumedBudget = ?, allocatedBudget = ?, remainingBudget = ?, notes = ?, updatedAt = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(consumed, allocated, remaining, data.notes || period.notes, periodId);
+
+    return this.db.prepare('SELECT * FROM multi_year_budget_periods WHERE id = ?').get(periodId);
+  }
+
+  getMultiYearBudgetSummary(budgetId: number) {
+    if (!this.db) return null;
+
+    const budget: any = this.getMultiYearBudget(budgetId);
+    if (!budget) return null;
+
+    const periods: any[] = budget.periods || [];
+    const totalConsumed = periods.reduce((sum: number, p: any) => sum + (p.consumedBudget || 0), 0);
+    const totalAllocated = periods.reduce((sum: number, p: any) => sum + (p.allocatedBudget || 0), 0);
+    const totalRemaining = periods.reduce((sum: number, p: any) => sum + (p.remainingBudget || 0), 0);
+
+    return {
+      ...budget,
+      summary: {
+        totalConsumed,
+        totalAllocated,
+        totalRemaining,
+        utilizationPercentage: (totalConsumed / budget.totalBudget) * 100,
+        periodCount: periods.length
+      }
+    };
+  }
+
+  // ==================== Advanced Correlation Analysis ====================
+
+  createCorrelationAnalysis(data: {
+    analysisName: string;
+    analysisType: string;
+    variable1: string;
+    variable2: string;
+    correlationCoefficient: number;
+    pValue?: number;
+    sampleSize?: number;
+    timeRange?: string;
+    interpretation?: string;
+    dataPoints?: Array<{ variable1Value: number; variable2Value: number; timestamp?: string }>;
+  }) {
+    if (!this.db) return null;
+
+    const significance = this.determineSignificance(data.correlationCoefficient, data.pValue);
+
+    const result = this.db.prepare(`
+      INSERT INTO correlation_analyses (
+        analysisName, analysisType, variable1, variable2, correlationCoefficient,
+        pValue, sampleSize, timeRange, significance, interpretation
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      data.analysisName,
+      data.analysisType,
+      data.variable1,
+      data.variable2,
+      data.correlationCoefficient,
+      data.pValue || null,
+      data.sampleSize || null,
+      data.timeRange || null,
+      significance,
+      data.interpretation || null
+    );
+
+    const analysisId = result.lastInsertRowid;
+
+    // Insert data points if provided
+    if (data.dataPoints && data.dataPoints.length > 0) {
+      const stmt = this.db.prepare(`
+        INSERT INTO correlation_datasets (
+          correlationId, dataPoint, variable1Value, variable2Value, timestamp
+        ) VALUES (?, ?, ?, ?, ?)
+      `);
+
+      data.dataPoints.forEach((point, index) => {
+        stmt.run(
+          analysisId,
+          index + 1,
+          point.variable1Value,
+          point.variable2Value,
+          point.timestamp || null
+        );
+      });
+    }
+
+    return this.getCorrelationAnalysis(Number(analysisId));
+  }
+
+  private determineSignificance(coefficient: number, pValue?: number): string {
+    const absCoef = Math.abs(coefficient);
+    
+    if (pValue !== undefined && pValue !== null) {
+      if (pValue < 0.001) return 'highly significant';
+      if (pValue < 0.01) return 'very significant';
+      if (pValue < 0.05) return 'significant';
+      return 'not significant';
+    }
+
+    // Based on coefficient strength
+    if (absCoef >= 0.7) return 'strong';
+    if (absCoef >= 0.5) return 'moderate';
+    if (absCoef >= 0.3) return 'weak';
+    return 'very weak';
+  }
+
+  listCorrelationAnalyses(filters?: any) {
+    if (!this.db) return [];
+    let query = 'SELECT * FROM correlation_analyses';
+    const params: any[] = [];
+    const conditions: string[] = [];
+
+    if (filters?.analysisType) {
+      conditions.push('analysisType = ?');
+      params.push(filters.analysisType);
+    }
+
+    if (filters?.variable1) {
+      conditions.push('variable1 = ?');
+      params.push(filters.variable1);
+    }
+
+    if (filters?.variable2) {
+      conditions.push('variable2 = ?');
+      params.push(filters.variable2);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+
+    query += ' ORDER BY createdAt DESC';
+    return this.db.prepare(query).all(...params);
+  }
+
+  getCorrelationAnalysis(id: number) {
+    if (!this.db) return null;
+    const analysis = this.db.prepare('SELECT * FROM correlation_analyses WHERE id = ?').get(id);
+    if (!analysis) return null;
+
+    const dataPoints = this.db.prepare(`
+      SELECT * FROM correlation_datasets 
+      WHERE correlationId = ? 
+      ORDER BY dataPoint
+    `).all(id);
+
+    return { ...analysis, dataPoints };
+  }
+
+  runCorrelationAnalysis(data: {
+    analysisName: string;
+    variable1Data: number[];
+    variable2Data: number[];
+    variable1Name: string;
+    variable2Name: string;
+    analysisType?: string;
+    timeRange?: string;
+  }) {
+    if (!this.db) return null;
+
+    const { variable1Data, variable2Data } = data;
+    if (variable1Data.length !== variable2Data.length || variable1Data.length === 0) {
+      throw new Error('Invalid data: arrays must have equal length and contain data');
+    }
+
+    // Calculate Pearson correlation coefficient
+    const n = variable1Data.length;
+    const mean1 = variable1Data.reduce((a, b) => a + b, 0) / n;
+    const mean2 = variable2Data.reduce((a, b) => a + b, 0) / n;
+
+    let numerator = 0;
+    let denom1 = 0;
+    let denom2 = 0;
+
+    for (let i = 0; i < n; i++) {
+      const diff1 = variable1Data[i] - mean1;
+      const diff2 = variable2Data[i] - mean2;
+      numerator += diff1 * diff2;
+      denom1 += diff1 * diff1;
+      denom2 += diff2 * diff2;
+    }
+
+    const coefficient = numerator / Math.sqrt(denom1 * denom2);
+
+    // Create data points array
+    const dataPoints = variable1Data.map((v1, i) => ({
+      variable1Value: v1,
+      variable2Value: variable2Data[i]
+    }));
+
+    // Generate interpretation
+    const interpretation = this.generateCorrelationInterpretation(
+      coefficient,
+      data.variable1Name,
+      data.variable2Name
+    );
+
+    return this.createCorrelationAnalysis({
+      analysisName: data.analysisName,
+      analysisType: data.analysisType || 'pearson',
+      variable1: data.variable1Name,
+      variable2: data.variable2Name,
+      correlationCoefficient: coefficient,
+      sampleSize: n,
+      timeRange: data.timeRange,
+      interpretation,
+      dataPoints
+    });
+  }
+
+  private generateCorrelationInterpretation(coefficient: number, var1: string, var2: string): string {
+    const absCoef = Math.abs(coefficient);
+    const direction = coefficient > 0 ? 'positive' : 'negative';
+    const strength = absCoef >= 0.7 ? 'strong' : absCoef >= 0.5 ? 'moderate' : absCoef >= 0.3 ? 'weak' : 'very weak';
+
+    return `There is a ${strength} ${direction} correlation (r = ${coefficient.toFixed(3)}) between ${var1} and ${var2}. ` +
+           `This suggests that as ${var1} ${coefficient > 0 ? 'increases' : 'decreases'}, ${var2} tends to ${coefficient > 0 ? 'increase' : 'decrease'}.`;
+  }
+
+  // ==================== Real-time Monitoring ====================
+
+  createRealtimeMonitoringStream(data: {
+    streamName: string;
+    streamType: string;
+    facilityId?: number;
+    dataSource: string;
+    refreshInterval?: number;
+    configuration?: any;
+  }) {
+    if (!this.db) return null;
+
+    const result = this.db.prepare(`
+      INSERT INTO realtime_monitoring_streams (
+        streamName, streamType, facilityId, dataSource, refreshInterval, configuration, status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      data.streamName,
+      data.streamType,
+      data.facilityId || null,
+      data.dataSource,
+      data.refreshInterval || 60,
+      data.configuration ? JSON.stringify(data.configuration) : null,
+      'active'
+    );
+
+    return this.db.prepare('SELECT * FROM realtime_monitoring_streams WHERE id = ?').get(result.lastInsertRowid);
+  }
+
+  listRealtimeMonitoringStreams(filters?: any) {
+    if (!this.db) return [];
+    let query = 'SELECT * FROM realtime_monitoring_streams';
+    const params: any[] = [];
+    const conditions: string[] = [];
+
+    if (filters?.status) {
+      conditions.push('status = ?');
+      params.push(filters.status);
+    }
+
+    if (filters?.streamType) {
+      conditions.push('streamType = ?');
+      params.push(filters.streamType);
+    }
+
+    if (filters?.facilityId) {
+      conditions.push('facilityId = ?');
+      params.push(filters.facilityId);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+
+    query += ' ORDER BY createdAt DESC';
+    return this.db.prepare(query).all(...params);
+  }
+
+  addRealtimeMonitoringData(data: {
+    streamId: number;
+    emissionValue: number;
+    emissionUnit?: string;
+    scope?: number;
+    source?: string;
+    quality?: number;
+    threshold?: number;
+    metadata?: any;
+  }) {
+    if (!this.db) return null;
+
+    const thresholdExceeded = data.threshold !== undefined && data.emissionValue > data.threshold ? 1 : 0;
+
+    const result = this.db.prepare(`
+      INSERT INTO realtime_monitoring_data (
+        streamId, emissionValue, emissionUnit, scope, source, quality, threshold, thresholdExceeded, metadata
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      data.streamId,
+      data.emissionValue,
+      data.emissionUnit || 'tCO2e',
+      data.scope || null,
+      data.source || null,
+      data.quality || 1.0,
+      data.threshold || null,
+      thresholdExceeded,
+      data.metadata ? JSON.stringify(data.metadata) : null
+    );
+
+    // Update stream last update time
+    this.db.prepare('UPDATE realtime_monitoring_streams SET lastUpdate = CURRENT_TIMESTAMP WHERE id = ?')
+      .run(data.streamId);
+
+    // Create alert if threshold exceeded
+    if (thresholdExceeded && data.threshold) {
+      this.createRealtimeAlert({
+        streamId: data.streamId,
+        alertType: 'threshold_exceeded',
+        severity: 'high',
+        message: `Emission value ${data.emissionValue} ${data.emissionUnit} exceeded threshold ${data.threshold}`,
+        value: data.emissionValue,
+        threshold: data.threshold
+      });
+    }
+
+    return this.db.prepare('SELECT * FROM realtime_monitoring_data WHERE id = ?').get(result.lastInsertRowid);
+  }
+
+  getRealtimeMonitoringData(streamId: number, limit?: number) {
+    if (!this.db) return [];
+    const query = `
+      SELECT * FROM realtime_monitoring_data 
+      WHERE streamId = ? 
+      ORDER BY timestamp DESC 
+      LIMIT ?
+    `;
+    return this.db.prepare(query).all(streamId, limit || 100);
+  }
+
+  getRealtimeMonitoringStats(streamId: number, hours?: number) {
+    if (!this.db) return null;
+
+    const hoursAgo = hours || 24;
+    const cutoffTime = new Date(Date.now() - hoursAgo * 60 * 60 * 1000).toISOString();
+
+    const stats: any = this.db.prepare(`
+      SELECT 
+        COUNT(*) as dataPoints,
+        AVG(emissionValue) as avgEmissions,
+        MAX(emissionValue) as maxEmissions,
+        MIN(emissionValue) as minEmissions,
+        SUM(CASE WHEN thresholdExceeded = 1 THEN 1 ELSE 0 END) as thresholdExceeds
+      FROM realtime_monitoring_data
+      WHERE streamId = ? AND timestamp >= ?
+    `).get(streamId, cutoffTime);
+
+    return {
+      streamId,
+      hours: hoursAgo,
+      ...stats
+    };
+  }
+
+  createRealtimeAlert(data: {
+    streamId: number;
+    alertType: string;
+    severity: string;
+    message: string;
+    value?: number;
+    threshold?: number;
+  }) {
+    if (!this.db) return null;
+
+    const result = this.db.prepare(`
+      INSERT INTO realtime_alerts (
+        streamId, alertType, severity, message, value, threshold
+      ) VALUES (?, ?, ?, ?, ?, ?)
+    `).run(
+      data.streamId,
+      data.alertType,
+      data.severity,
+      data.message,
+      data.value || null,
+      data.threshold || null
+    );
+
+    return this.db.prepare('SELECT * FROM realtime_alerts WHERE id = ?').get(result.lastInsertRowid);
+  }
+
+  listRealtimeAlerts(filters?: any) {
+    if (!this.db) return [];
+    let query = 'SELECT * FROM realtime_alerts';
+    const params: any[] = [];
+    const conditions: string[] = [];
+
+    if (filters?.streamId) {
+      conditions.push('streamId = ?');
+      params.push(filters.streamId);
+    }
+
+    if (filters?.severity) {
+      conditions.push('severity = ?');
+      params.push(filters.severity);
+    }
+
+    if (filters?.acknowledged === false) {
+      conditions.push('acknowledged = 0');
+    } else if (filters?.acknowledged === true) {
+      conditions.push('acknowledged = 1');
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+
+    query += ' ORDER BY createdAt DESC';
+    return this.db.prepare(query).all(...params);
+  }
+
+  acknowledgeRealtimeAlert(alertId: number, acknowledgedBy: string) {
+    if (!this.db) return null;
+
+    this.db.prepare(`
+      UPDATE realtime_alerts 
+      SET acknowledged = 1, acknowledgedBy = ?, acknowledgedAt = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(acknowledgedBy, alertId);
+
+    return this.db.prepare('SELECT * FROM realtime_alerts WHERE id = ?').get(alertId);
+  }
+
+  resolveRealtimeAlert(alertId: number) {
+    if (!this.db) return null;
+
+    this.db.prepare(`
+      UPDATE realtime_alerts 
+      SET resolvedAt = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(alertId);
+
+    return this.db.prepare('SELECT * FROM realtime_alerts WHERE id = ?').get(alertId);
   }
 }
