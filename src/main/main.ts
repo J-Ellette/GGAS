@@ -2,6 +2,18 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 import { DatabaseService } from './services/DatabaseService';
 
+// Suppress harmless DevTools Autofill API errors
+// These occur when DevTools tries to use Chrome DevTools Protocol features not available in Electron
+const originalConsoleError = console.error;
+console.error = (...args: any[]) => {
+  const message = args.join(' ');
+  // Filter out Autofill-related DevTools errors
+  if (message.includes('Autofill.enable') || message.includes('Autofill.setAddresses')) {
+    return; // Suppress these specific errors
+  }
+  originalConsoleError.apply(console, args);
+};
+
 let mainWindow: BrowserWindow | null = null;
 let databaseService: DatabaseService | null = null;
 let handlersInitialized = false;
