@@ -8,11 +8,61 @@ A comprehensive desktop application for measuring, monitoring, managing, and rep
 
 Green Country GGAS (Greenhouse Gas Accounting Software) is an enterprise-grade Electron-based desktop application designed to enable organizations of all sizes to accurately measure, monitor, manage, and report their greenhouse gas emissions. The platform provides a comprehensive suite of tools for carbon accounting, regulatory compliance, sustainability reporting, and strategic carbon management through intuitive user interfaces.
 
+## 🆕 AI-Optional Operation Framework
+
+**New Feature**: Complete control over AI usage with manual alternatives for every feature.
+
+- **5 Operation Modes**: Full AI, Selective AI, Manual Only, Assistant, Background
+- **14 AI Features**: Granular control across Data Processing, Analytics, UI, Integration, and Workflow
+- **Manual Alternatives**: Every AI feature has a fully functional traditional alternative
+- **Enterprise Controls**: Policy management, audit trails, and compliance tools
+- **Graceful Degradation**: Full functionality maintained when AI is disabled
+
+📖 [AI-Optional Framework Documentation](docs/AI_OPTIONAL_FRAMEWORK.md)
+
+### Quick Start: AI Settings
+
+1. Navigate to **AI & Strategic Planning** → **AI Settings**
+2. Choose your operation mode or toggle individual features
+3. Review audit trail for all changes
+4. Set organizational policies for AI usage
+
 ## License Key System
 
-On first launch, the application will prompt for a license key. Use the demo key for testing:
+On first launch, the application will prompt for a license key. The system supports multiple license types with different feature sets.
 
-**Demo License Key:** `GCGGAS-2024-DEMO-KEY1`
+### New License Key Format (Phase 23)
+
+The new license system uses the format: `XXXX-XXXX-XXXX-XXXX-XXXX-XXXX`
+
+**Generate Test License Keys:**
+```bash
+npm run generate-licenses
+```
+
+**Example Keys:**
+- **Development:** `GG01-EN98-FD00-3FFF-FFWH-LR55` (Full features, no expiration)
+- **Trial:** `GG01-TR42-1400-0124-F5B7-TW7C` (Basic features, 30 days)
+- **Standard:** `GG01-ST3A-F100-0F26-44N4-ZMCE` (Standard features, 1 year)
+- **Enterprise:** `GG01-EN55-2300-3F26-44CI-RWFB` (All features, 1 year)
+
+### Legacy Demo Keys (Still Supported)
+
+- **Demo License Key:** `GCGGAS-2024-DEMO-KEY1`
+- **Development Key:** `123456789abcDEF!4321`
+
+### Features by License Type
+
+| Feature | Trial | Standard | Enterprise |
+|---------|-------|----------|------------|
+| Basic Reporting | ✓ | ✓ | ✓ |
+| Advanced Analytics | ✗ | ✓ | ✓ |
+| API Access | ✗ | ✓ | ✓ |
+| Multi-User | ✗ | ✓ | ✓ |
+| Real-time Monitoring | ✗ | ✗ | ✓ |
+| AI Features | ✗ | ✗ | ✓ |
+
+**For detailed information**, see [License System Documentation](docs/LICENSE_SYSTEM.md).
 
 Alternatively, you can click "Admin Panel Access" to bypass the license check and access the admin panel directly.
 
