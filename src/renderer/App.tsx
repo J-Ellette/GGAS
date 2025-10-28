@@ -56,6 +56,7 @@ import Phase8Page from './pages/Phase8Page';
 import Phase11Page from './pages/Phase11Page';
 import Phase13Page from './pages/Phase13Page';
 import Phase14Page from './pages/Phase14Page';
+import Phase15Page from './pages/Phase15Page';
 import AdminPanel from './pages/AdminPanel';
 import DocumentationPage from './pages/DocumentationPage';
 import CarbonCopilotPage from './pages/CarbonCopilotPage';
@@ -88,6 +89,7 @@ type PageType =
   | 'phase11'
   | 'phase13'
   | 'phase14'
+  | 'phase15'
   | 'admin'
   | 'settings'
   | 'documentation'
@@ -191,6 +193,8 @@ const App: React.FC = () => {
         return <Phase13Page />;
       case 'phase14':
         return <Phase14Page />;
+      case 'phase15':
+        return <Phase15Page />;
       case 'admin':
         return <AdminPanel />;
       case 'documentation':
@@ -422,6 +426,14 @@ const App: React.FC = () => {
                     <BusinessCenterIcon />
                   </ListItemIcon>
                   <ListItemText primary="ESG Strategy Orchestrator" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'phase15'} onClick={() => setCurrentPage('phase15')}>
+                  <ListItemIcon>
+                    <GroupsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Collaborative Workspace" />
                 </ListItemButton>
               </ListItem>
             </List>
