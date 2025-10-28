@@ -17,10 +17,10 @@ import {
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { LicenseManager, LicenseKeyGenerator } from '../../common/license';
+import { RendererLicenseManager } from '../services/RendererLicenseManager';
 
 interface LicenseKeyDialogProps {
-  onLicenseValid: (licenseManager: LicenseManager) => void;
+  onLicenseValid: (licenseManager: RendererLicenseManager) => void;
   onAdminAccess: () => void;
 }
 
@@ -29,7 +29,7 @@ const LicenseKeyDialog: React.FC<LicenseKeyDialogProps> = ({ onLicenseValid, onA
   const [error, setError] = useState('');
   const [isValidating, setIsValidating] = useState(false);
   const [licenseInfo, setLicenseInfo] = useState<any>(null);
-  const [licenseManager] = useState(() => new LicenseManager({
+  const [licenseManager] = useState(() => new RendererLicenseManager({
     licenseServerUrl: 'http://localhost:3000/ggas-licensing'
   }));
 
@@ -47,15 +47,23 @@ const LicenseKeyDialog: React.FC<LicenseKeyDialogProps> = ({ onLicenseValid, onA
         localStorage.setItem('licenseKey', licenseKey);
         localStorage.setItem('licenseValidated', 'true');
         
-        // Get license info for display
-        const decoded = LicenseKeyGenerator.decodeLicense(licenseKey);
-        if (decoded) {
-          const features = LicenseKeyGenerator.decodeFeatures(decoded.featureFlags);
-          setLicenseInfo({
-            type: decoded.licenseType,
-            features: features
-          });
+        // Get license info for display from LicenseManager
+        const features = licenseManager.getFeatures();
+        
+        // Determine license type based on features (simplified approach)
+        let licenseType = 'trial';
+        if (features.advanced_analytics && features.api_access) {
+          if (features.real_time_monitoring) {
+            licenseType = 'enterprise';
+          } else {
+            licenseType = 'standard';
+          }
         }
+        
+        setLicenseInfo({
+          type: licenseType,
+          features: features
+        });
         
         setTimeout(() => {
           setIsValidating(false);

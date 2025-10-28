@@ -36,11 +36,13 @@ On first launch, the application will prompt for a license key. The system suppo
 The new license system uses the format: `XXXX-XXXX-XXXX-XXXX-XXXX-XXXX`
 
 **Generate Test License Keys:**
+
 ```bash
 npm run generate-licenses
 ```
 
 **Example Keys:**
+
 - **Development:** `GG01-EN98-FD00-3FFF-FFWH-LR55` (Full features, no expiration)
 - **Trial:** `GG01-TR42-1400-0124-F5B7-TW7C` (Basic features, 30 days)
 - **Standard:** `GG01-ST3A-F100-0F26-44N4-ZMCE` (Standard features, 1 year)
@@ -71,21 +73,25 @@ Alternatively, you can click "Admin Panel Access" to bypass the license check an
 Access the admin panel through the license key screen or from the sidebar menu after logging in.
 
 ### Admin Credentials
-> ⚠️ **IMPORTANT SECURITY NOTICE**: These are **demo credentials** for testing purposes only. 
+>
+> ⚠️ **IMPORTANT SECURITY NOTICE**: These are **demo credentials** for testing purposes only.
 > In production environments, these credentials MUST be changed immediately after first login.
 > Never use default credentials in production systems.
 
 **Demo/Testing Credentials:**
+
 - **Username:** OKE03955
 - **Password:** 8675309Jenny!
 
 **For Production Use:**
+
 1. Change these credentials immediately after first login
 2. Use the "Change Password" feature in the admin panel
 3. Implement additional security measures (2FA, password policies, etc.)
 4. Store production credentials securely (not in code or documentation)
 
 ### Admin Panel Features
+
 - **License Key Management**: Create and manage license keys for different users/organizations
 - **User Management**: Manage users and their roles
 - **LLM Integration**: Configure AI/LLM providers for enhanced analytics
@@ -95,39 +101,51 @@ Access the admin panel through the license key screen or from the sidebar menu a
 ## Current Version: Phase 5 (v1.0)
 
 ### ✅ Phase 1: Foundation & MVP (COMPLETE)
+
 Core emissions calculation and reporting for Scope 1 and 2 emissions.
 
 ### ✅ Phase 2: Enhanced Core Features (COMPLETE)
+
 Scope 3 calculations, advanced reporting, analytics, and user management.
 
 ### ✅ Phase 3: Advanced Features & Scale (COMPLETE)
+
 AI/ML capabilities, target management, supply chain features, multi-entity support, and integration ecosystem.
 
 ### ✅ Phase 4: Innovation & Optimization (COMPLETE)
+
 Deep learning analytics, verification workflows, IoT integration, immersive experiences, and platform optimization.
 
 ### ✅ Phase 5: Predictive Carbon Intelligence (COMPLETE)
+
 Advanced forecasting, carbon budget management, early warning systems, scenario planning, and enterprise features.
 
 ### ✅ Phase 6: Real-Time Carbon Operations Center (COMPLETE)
+
 Live monitoring, command center capabilities, carbon traffic light system, automated response systems, and theme customization.
 
 ### Note: Phase 7 & 8
+
 Phase 7 (Universal Carbon Connector) and Phase 8 (Autonomous Data Collection) features are documented in the Documentation panel but their completion summaries are not yet available in separate files.
 
 ### ✅ Phase 9: Blockchain Carbon Ledger (COMPLETE)
+
 Immutable emission records, carbon credit & offset management, supply chain transparency, and enterprise blockchain implementation.
 
 ### Note: Phase 10 & 11
+
 Phase 10 (Carbon Intelligence Engine) and Phase 11 (Supply Chain Carbon X-Ray) features are documented in the Documentation panel with complete implementation summaries available.
 
 ### ✅ Phase 12: Product Carbon Lifecycle Engine (COMPLETE)
+
 Automated LCA calculations, carbon labeling system, design optimization, circular economy integration, and enterprise product carbon management.
 
 ### Note: Phase 13 & 14
+
 Phase 13 (Regulatory Intelligence System) and Phase 14 (ESG Strategy Orchestrator) features are documented in the Documentation panel with complete implementation summaries available.
 
 ### ✅ Phase 15: Satellite, Drone & FLIR Integration (COMPLETE - LATEST)
+
 Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous drone surveys, FLIR thermal imaging, integrated monitoring platform with AI-powered analysis, and enterprise fleet management.
 
 ---
@@ -135,6 +153,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 ## Phase 15 Features (Latest)
 
 ### 15.1 Satellite Emission Monitoring ✅
+
 - **Methane Detection**: Integration with MethaneSAT, GHGSat, ESA Sentinel-5P/TROPOMI
 - **CO2 Monitoring**: NASA OCO-2/OCO-3, ESA Sentinel, JAXA GOSAT for facility-level verification
 - **Cross-reference Validation**: Compare reported emissions with satellite observations
@@ -142,6 +161,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 - **Trend Analysis**: Long-term trend analysis using historical satellite data
 
 ### 15.2 Drone-based Monitoring ✅
+
 - **Autonomous Surveys**: Pre-programmed flight missions with real-time data streaming
 - **Leak Detection**: Drone-mounted methane sensors with ppb-level sensitivity
 - **Infrastructure Monitoring**: Solar panels, wind turbines, carbon capture equipment
@@ -149,6 +169,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 - **Routine Inspections**: Automated inspection schedules with compliance documentation
 
 ### 15.3 FLIR Thermal Imaging ✅
+
 - **Heat Loss Detection**: Building envelope, HVAC systems, process equipment
 - **Equipment Monitoring**: Boilers, motors, compressors, heat exchangers
 - **Leak Visualization**: Optical gas imaging for methane, refrigerants, SF6
@@ -156,6 +177,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 - **Predictive Maintenance**: Thermal signature analysis for failure prediction
 
 ### 15.4 Integrated Monitoring Platform ✅
+
 - **Multi-source Data Fusion**: Combine satellite, drone, and FLIR data
 - **AI-powered Analysis**: Anomaly detection, leak prediction, emission forecasting
 - **Automated Reporting**: Generate reports combining multiple monitoring sources
@@ -163,6 +185,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 - **Real-time Alerts**: Immediate notifications for significant events
 
 ### 15.5 Enterprise Implementation ✅
+
 - **Fleet Management**: Manage drone fleets across multiple facilities
 - **Regulatory Compliance**: FAA Part 107, airspace authorization, safety protocols
 - **Data Security**: End-to-end encryption, role-based access, audit logging
@@ -170,6 +193,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 - **Scalability**: Support hundreds of facilities and thousands of emission sources
 
 ### 15.6 Advanced Analytics ✅
+
 - **Emission Source Attribution**: Identify specific sources from detected emissions
 - **Performance Benchmarking**: Compare facilities using standardized metrics
 - **Predictive Analytics**: Predict emission events and maintenance needs
@@ -181,30 +205,35 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 ## Phase 12 Features
 
 ### 12.1 Automated LCA Calculations ✅
+
 - **Cradle-to-Grave Analysis**: Complete lifecycle assessment from raw materials to end-of-life
 - **Database Integration**: Integration with major LCA databases (ecoinvent, GaBi, IDEMAT)
 - **Rapid Assessment Tools**: Quick carbon footprint estimation for product development
 - **Industry-specific Methodologies**: Specialized LCA approaches for different product categories
 
 ### 12.2 Carbon Labeling System ✅
+
 - **Automated Label Generation**: Create standardized carbon labels for products
 - **EPD Generation**: Environmental Product Declaration creation and management
 - **Regulatory Compliance**: Ensure labels meet regional requirements (EU Carbon Border Adjustment, etc.)
 - **Consumer Communication**: Consumer-friendly carbon impact communication tools
 
 ### 12.3 Design Optimization ✅
+
 - **Material Selection**: Recommend lower-carbon materials and components
 - **Design for Disassembly**: Optimize product design for end-of-life carbon impact
 - **Manufacturing Process Optimization**: Suggest process improvements for carbon reduction
 - **Packaging Optimization**: Minimize packaging carbon footprint
 
 ### 12.4 Circular Economy Integration ✅
+
 - **Circularity Metrics**: Track and optimize for circular economy indicators
 - **Take-back Program Management**: Manage product take-back and recycling programs
 - **Material Flow Analysis**: Track material flows through circular business models
 - **Secondary Market Integration**: Connect products with secondary markets and reuse opportunities
 
 ### 12.5 Enterprise Implementation ✅
+
 - **Portfolio Management**: Manage carbon footprints across entire product portfolios
 - **R&D Integration**: Integrate with product development and innovation processes
 - **Marketing Integration**: Support marketing teams with carbon impact data
@@ -215,24 +244,28 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 ## Phase 9 Features
 
 ### 9.1 Immutable Emission Records ✅
+
 - **Distributed Ledger Architecture**: Private blockchain network for emission data integrity
 - **Tamper-Proof Audit Trails**: Cryptographic hashing ensures data cannot be altered retroactively
 - **Consensus Mechanisms**: Multi-party validation of emission data entries
 - **Smart Contracts**: Automated validation rules and data quality requirements
 
 ### 9.2 Carbon Credit & Offset Management ✅
+
 - **Automated Trading**: Smart contracts for carbon credit purchasing based on predefined criteria
 - **Retirement Tracking**: Immutable records of carbon credit retirement to prevent double counting
 - **Offset Project Verification**: Blockchain-based verification of offset project authenticity
 - **Registry Integration**: Connection with major carbon credit registries (VCS, CDM, etc.)
 
 ### 9.3 Supply Chain Transparency ✅
+
 - **Product Carbon Provenance**: Track carbon footprint through entire supply chain
 - **Supplier Verification**: Blockchain-based verification of supplier emission data
 - **Traceability**: End-to-end tracking of carbon impacts from raw materials to end products
 - **Trust Networks**: Establish trusted networks of verified suppliers and partners
 
 ### 9.4 Enterprise Implementation ✅
+
 - **Permissioned Networks**: Private blockchain networks for enterprise control and privacy
 - **Interoperability**: Integration with public blockchain networks for external verification
 - **Scalability Solutions**: Layer 2 solutions for high-volume transaction processing
@@ -243,6 +276,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 ## Phase 5 Features
 
 ### 5.1 Advanced Forecasting Engine ✅
+
 - **Multi-Factor Emission Modeling**: Weather, economic, operational, and supply chain impacts
 - **Machine Learning Models**: LSTM networks for time series forecasting
 - **Ensemble Modeling**: Combining multiple prediction algorithms
@@ -250,24 +284,28 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 - **Continuous Retraining**: Adaptive models with new data
 
 ### 5.2 Carbon Budget Management ✅
+
 - **Dynamic Budget Allocation**: AI-optimized distribution across business units
 - **Real-time Budget Tracking**: Continuous monitoring with predictive alerts
 - **Budget Optimization**: Automated reallocation recommendations
 - **Variance Analysis**: Planned vs. actual with root cause identification
 
 ### 5.3 Early Warning System ✅
+
 - **Predictive Alerts**: Proactive notifications before threshold breaches
 - **Escalation Protocols**: Automated stakeholder notifications by severity
 - **Action Plan Triggers**: Automatic activation of predefined responses
 - **Multi-Channel Notifications**: Email, SMS, and dashboard alerts
 
 ### 5.4 Scenario Planning Suite ✅
+
 - **Monte Carlo Simulations**: Risk assessment with probabilistic modeling
 - **Sensitivity Analysis**: Key emission driver identification
 - **Stress Testing**: Extreme weather and supply chain disruption scenarios
 - **Enterprise Risk Integration**: Comprehensive risk management
 
 ### 5.5 Enterprise Features ✅
+
 - **Multi-Entity Forecasting**: Consolidated predictions across global operations
 - **Executive Dashboards**: Board-level reporting with forward-looking metrics
 - **ERP Integration Framework**: Ready for operational forecast integration
@@ -279,30 +317,35 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 ## Phase 3 Features
 
 ### 3.1 AI/ML Implementation ✅
+
 - **Anomaly Detection**: Automatically detect statistical outliers in emissions data
 - **Predictive Models**: Train ML models for forecasting and missing data prediction
 - **ML Suggestions**: AI-generated recommendations with confidence scoring
 - **Visual Analytics**: Interactive dashboards with severity indicators
 
 ### 3.2 Advanced Target Management ✅
+
 - **Carbon Targets**: Set and track reduction targets with SBTi validation
 - **Reduction Projects**: Manage emission reduction initiatives with ROI analysis
 - **Carbon Pricing**: Model different pricing scenarios with growth rates
 - **Project Tracking**: Monitor milestones, costs, and actual vs. target reductions
 
 ### 3.3 Supply Chain Features ✅
+
 - **Supplier Engagement**: Track interactions and data requests
 - **Supply Chain Mapping**: Multi-tier supplier hierarchy with emissions tracking
 - **Supplier Assessment**: Score suppliers on emissions, data quality, and engagement
 - **Risk Assessment**: Identify and track supply chain risks
 
 ### 3.4 Global & Multi-Entity Support ✅
+
 - **Entity Hierarchy**: Manage subsidiaries, divisions, and facilities
 - **Localization**: Support for multiple currencies (USD, EUR, GBP, JPY, CNY) and languages
 - **Regional Compliance**: Track regulations by region with automated deadlines
 - **Data Governance**: Define and enforce data policies across entities
 
 ### 3.5 Integration Ecosystem ✅
+
 - **Plugin System**: Install and manage third-party integrations
 - **Custom Calculations**: Create custom formulas with variable definitions
 - **Automation Workflows**: Configure automated processes with triggers and actions
@@ -313,6 +356,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 ## Phase 1 Features (v1.0)
 
 ### 1. Data Collection & Management System
+
 - **Activity Data Management**: Comprehensive framework for collecting and managing emissions-related activity data
   - Manual data entry via user-friendly forms with validation
   - Hierarchical data organization (tree view) by organizational units, time periods, and emission sources
@@ -320,6 +364,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
   - Real-time data quality scoring and validation
 
 ### 2. Emission Factor Libraries
+
 - **Comprehensive Factor Database**: Pre-loaded with emission factors from authoritative sources
   - EPA, IPCC, DEFRA, IEA emission factors
   - Coverage for all major emission sources (fuels, electricity, transportation, etc.)
@@ -328,6 +373,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
   - Version management for historical comparisons
 
 ### 3. Data Quality Assurance
+
 - **Robust Validation**: Ensures accuracy and completeness throughout data collection
   - Real-time validation feedback
   - Range validation and consistency checks
@@ -335,6 +381,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
   - Quality dashboard and tracking
 
 ### 4. Multi-Scope Calculation Engine
+
 - **Comprehensive Emissions Quantification**: Supports all three GHG Protocol scopes
   - Scope 1: Direct emissions (stationary & mobile combustion, process emissions)
   - Scope 2: Indirect emissions (purchased electricity, steam, heating, cooling)
@@ -342,6 +389,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
   - Real-time calculation with preview interfaces
 
 ### 5. Flexible Methodology Support
+
 - **Multiple Calculation Approaches**: Accommodates different data availability scenarios
   - Activity-based calculations using specific consumption data
   - Spend-based calculations using financial data
@@ -349,6 +397,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
   - Configurable calculation profiles
 
 ### 6. Advanced Calculation Features
+
 - **Sophisticated Capabilities**: Handles complex emission scenarios
   - Biogenic carbon accounting
   - Uncertainty quantification and propagation
@@ -358,6 +407,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 ## Technical Architecture
 
 ### Technology Stack
+
 - **Framework**: Electron (desktop application)
 - **Frontend**: React with TypeScript
 - **UI Library**: Material-UI (MUI)
@@ -366,7 +416,7 @@ Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous d
 - **Build Tool**: Webpack
 
 ### Project Structure
-```
+
 GGAS/
 ├── src/
 │   ├── main/              # Electron main process
@@ -387,33 +437,36 @@ GGAS/
 ├── public/                # Static assets
 ├── dist/                  # Compiled output
 └── webpack configs        # Build configuration
-```
 
 ## Installation & Setup
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - npm (v8 or higher)
 
 ### Installation Steps
 
 1. Clone the repository:
-```bash
-git clone https://github.com/J-Ellette/GGAS.git
+
+bash
+git clone <https://github.com/J-Ellette/GGAS.git>
 cd GGAS
-```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Build the application:
+
 ```bash
 npm run build
 ```
 
 4. Start the application:
+
 ```bash
 npm start
 ```
@@ -421,6 +474,7 @@ npm start
 ## Development
 
 ### Build Commands
+
 - `npm run build:main` - Build main process
 - `npm run build:renderer` - Build renderer process  
 - `npm run build` - Build both processes
@@ -428,13 +482,16 @@ npm start
 - `npm run package` - Package for distribution
 
 ### Application Structure
+
 The application is organized into three main sections:
+
 - **Data Management**: Core emissions tracking and calculations
 - **Advanced Features**: Scope 3, integrations, analytics, and compliance
 - **AI & Strategic Planning**: AI/ML analytics, target management, and multi-entity support
 - **Innovation & Optimization**: Advanced analytics and cutting-edge features
 
 ### Development Workflow
+
 1. Make changes to source files in `src/`
 2. Run `npm run build` to compile changes
 3. Run `npm start` to test the application
@@ -482,18 +539,21 @@ The application is organized into three main sections:
 ## Phase 3 Usage
 
 ### AI/ML Analytics
+
 1. Navigate to "AI/ML Analytics" in Phase 3 Features
 2. **Anomaly Detection**: Click "Detect Anomalies" to find outliers
 3. **Predictive Models**: Create and train ML models
 4. **ML Suggestions**: Review and accept/reject AI recommendations
 
 ### Target Management
+
 1. Navigate to "Target Management" in Phase 3 Features
 2. **Carbon Targets**: Set reduction targets and validate against SBTi
 3. **Reduction Projects**: Track emission reduction initiatives
 4. **Carbon Pricing**: Model different pricing scenarios
 
 ### Multi-Entity Management
+
 1. Navigate to "Multi-Entity" in Phase 3 Features
 2. **Entity Hierarchy**: Create and manage organizational structure
 3. **Regional Compliance**: Track regulations by region
@@ -502,6 +562,7 @@ The application is organized into three main sections:
 ## Features by Page
 
 ### Dashboard
+
 - Total emissions summary cards
 - Emissions by scope visualization (pie chart)
 - Emissions trend analysis (bar chart)
@@ -509,6 +570,7 @@ The application is organized into three main sections:
 - Data quality metrics
 
 ### Activity Data Management
+
 - Comprehensive data entry forms
 - Filterable and sortable table view
 - Real-time validation
@@ -517,6 +579,7 @@ The application is organized into three main sections:
 - Support for multiple data sources
 
 ### Emission Factor Library
+
 - Pre-loaded standard emission factors
 - Search and filter functionality
 - Category-based organization
@@ -525,6 +588,7 @@ The application is organized into three main sections:
 - Source attribution
 
 ### Calculations
+
 - Step-by-step calculation wizard
 - Activity data selection
 - Emission factor matching
@@ -535,6 +599,7 @@ The application is organized into three main sections:
 - Calculation history
 
 ### AI/ML Analytics (Phase 3)
+
 - Anomaly detection with severity classification
 - Predictive model creation and training
 - ML suggestions with confidence scoring
@@ -542,6 +607,7 @@ The application is organized into three main sections:
 - Interactive review workflows
 
 ### Target Management (Phase 3)
+
 - Carbon target creation and tracking
 - SBTi validation
 - Reduction project management
@@ -549,6 +615,7 @@ The application is organized into three main sections:
 - Carbon pricing scenario modeling
 
 ### Multi-Entity Management (Phase 3)
+
 - Entity hierarchy visualization
 - Regional compliance tracking
 - Data governance policies
@@ -557,11 +624,13 @@ The application is organized into three main sections:
 ## Data Storage
 
 All data is stored locally in SQLite database at:
+
 - **Windows**: `%APPDATA%/ggas/ggas.db`
 - **macOS**: `~/Library/Application Support/ggas/ggas.db`
 - **Linux**: `~/.config/ggas/ggas.db`
 
 **Database Statistics (Phase 5)**:
+
 - Total Tables: 65
 - Total API Methods: 266
 - Database Size: Scales with data volume
@@ -569,12 +638,14 @@ All data is stored locally in SQLite database at:
 ## Phase 5 Usage
 
 ### Predictive Forecasting
+
 1. Navigate to "Predictive Intelligence" in Phase 5 Features
 2. **Multi-Factor Forecasts**: Run forecasts with weather, economic, and operational factors
 3. **LSTM Models**: Train neural networks for time series predictions
 4. **View Forecasts**: Monitor predictions with confidence intervals
 
 ### Carbon Budget Management
+
 1. Navigate to "Budget Management" tab
 2. **Create Budgets**: Define fiscal year budgets with allocations
 3. **Monitor Consumption**: Track real-time budget utilization
@@ -582,6 +653,7 @@ All data is stored locally in SQLite database at:
 5. **Variance Analysis**: Review planned vs. actual performance
 
 ### Early Warning & Alerts
+
 1. Navigate to "Early Warning" tab
 2. **View Alerts**: Monitor active predictive alerts by severity
 3. **Evaluate Triggers**: Check early warning triggers
@@ -589,12 +661,14 @@ All data is stored locally in SQLite database at:
 5. **Acknowledge/Resolve**: Manage alert lifecycle
 
 ### Scenario Planning
+
 1. Navigate to "Scenario Planning" tab
 2. **Monte Carlo**: Run risk simulations with custom parameters
 3. **Sensitivity Analysis**: Identify critical emission drivers
 4. **Review Results**: Analyze probabilistic outcomes
 
 ### Enterprise Dashboard
+
 1. Navigate to "Enterprise" tab
 2. **Executive Metrics**: View key performance indicators
 3. **Consolidated Forecasts**: Multi-entity predictions
@@ -603,6 +677,7 @@ All data is stored locally in SQLite database at:
 ## Phase 9 Usage
 
 ### Blockchain Carbon Ledger
+
 1. Navigate to "Documentation" in the main menu
 2. Select "Phase 9: Blockchain Carbon Ledger" from the documentation list
 3. **Immutable Records**: Learn about distributed ledger architecture and tamper-proof audit trails
@@ -614,6 +689,7 @@ All data is stored locally in SQLite database at:
 ## Phase 12 Usage
 
 ### Product Carbon Lifecycle Engine
+
 1. Navigate to "Documentation" in the main menu
 2. Select "Phase 12: Product Carbon Lifecycle Engine" from the documentation list
 3. **LCA Calculations**: Learn about automated cradle-to-grave analysis and database integration (ecoinvent, GaBi, IDEMAT)
@@ -626,6 +702,7 @@ All data is stored locally in SQLite database at:
 ## Phase 15 Usage
 
 ### Satellite, Drone & FLIR Integration
+
 1. Navigate to "Documentation" in the main menu
 2. Select "Phase 15: Satellite, Drone & FLIR Integration" from the documentation list
 3. **Satellite Monitoring**: Learn about MethaneSAT, GHGSat, CO2 monitoring, and cross-reference validation
@@ -638,6 +715,7 @@ All data is stored locally in SQLite database at:
 ## Future Enhancements
 
 ### Potential Future Features
+
 - Real-time weather API integration
 - Live ERP data feeds
 - Advanced ML frameworks (TensorFlow, PyTorch)
@@ -673,7 +751,9 @@ All data is stored locally in SQLite database at:
 ## Known Issues
 
 ### DevTools Console Warnings
+
 You may see the following warnings in the developer console:
+
 ```
 "Request Autofill.enable failed" 
 "Request Autofill.setAddresses failed"
@@ -684,13 +764,17 @@ You may see the following warnings in the developer console:
 ## Troubleshooting
 
 ### License Key Issues
+
 If you can't access the application:
+
 1. Use the demo license key: `GCGGAS-2024-DEMO-KEY1`
 2. Click "Admin Panel Access" to bypass license check
 3. Check that localStorage is enabled in your environment
 
 ### Admin Panel Access
+
 If you can't log in to admin panel:
+
 - Username must be exactly: `OKE03955`
 - Password must be exactly: `8675309Jenny!` (case-sensitive)
 

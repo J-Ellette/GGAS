@@ -115,6 +115,20 @@ const SettingsPage: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [saveSuccess, setSaveSuccess] = useState(false);
   
+  // Reusable style for Select components to fix outline overlap issues
+  const selectStyle = {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'rgba(0, 0, 0, 0.23)'
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'rgba(0, 0, 0, 0.87)'
+    },
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'primary.main',
+      borderWidth: '1px'
+    }
+  };
+  
   // Profile Settings
   const [profile, setProfile] = useState<UserProfile>({
     username: 'john.doe',
@@ -495,7 +509,23 @@ const SettingsPage: React.FC = () => {
 
               <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>Email Frequency</Typography>
               <FormControl fullWidth>
-                <Select value={emailFrequency} onChange={(e) => setEmailFrequency(e.target.value)}>
+                <Select 
+                  value={emailFrequency} 
+                  onChange={(e) => setEmailFrequency(e.target.value)}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.23)'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.87)'
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'primary.main',
+                      borderWidth: '1px'
+                    }
+                  }}
+                >
                   <MenuItem value="realtime">Real-time</MenuItem>
                   <MenuItem value="hourly">Hourly Digest</MenuItem>
                   <MenuItem value="daily">Daily Digest</MenuItem>
@@ -572,7 +602,23 @@ const SettingsPage: React.FC = () => {
 
               <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>Default View</Typography>
               <FormControl fullWidth>
-                <Select value={defaultView} onChange={(e) => setDefaultView(e.target.value)}>
+                <Select 
+                  value={defaultView} 
+                  onChange={(e) => setDefaultView(e.target.value)}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.23)'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.87)'
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'primary.main',
+                      borderWidth: '1px'
+                    }
+                  }}
+                >
                   <MenuItem value="dashboard">Dashboard</MenuItem>
                   <MenuItem value="activity-data">Activity Data</MenuItem>
                   <MenuItem value="analytics">Analytics</MenuItem>
@@ -684,7 +730,23 @@ const SettingsPage: React.FC = () => {
             <Grid item xs={12} md={6}>
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Country of Operation</InputLabel>
-                <Select value={countryOfOperation} onChange={(e) => setCountryOfOperation(e.target.value)}>
+                <Select 
+                  value={countryOfOperation} 
+                  onChange={(e) => setCountryOfOperation(e.target.value)}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.23)'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.87)'
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'primary.main',
+                      borderWidth: '1px'
+                    }
+                  }}
+                >
                   <MenuItem value="US">United States</MenuItem>
                   <MenuItem value="CA">Canada</MenuItem>
                   <MenuItem value="NO">Norway</MenuItem>
@@ -712,7 +774,23 @@ const SettingsPage: React.FC = () => {
 
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Accounting Standard</InputLabel>
-                <Select value={accountingStandard} onChange={(e) => setAccountingStandard(e.target.value)}>
+                <Select 
+                  value={accountingStandard} 
+                  onChange={(e) => setAccountingStandard(e.target.value)}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.23)'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.87)'
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'primary.main',
+                      borderWidth: '1px'
+                    }
+                  }}
+                >
                   <MenuItem value="US-GAAP">US GAAP (Generally Accepted Accounting Principles)</MenuItem>
                   <MenuItem value="IFRS">IFRS (International Financial Reporting Standards)</MenuItem>
                   <MenuItem value="IFRS-6">IFRS 6 (Exploration & Evaluation of Mineral Resources)</MenuItem>
@@ -767,7 +845,12 @@ const SettingsPage: React.FC = () => {
             <Grid item xs={12} md={6}>
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Language</InputLabel>
-                <Select value={language} onChange={(e) => setLanguage(e.target.value)}>
+                <Select 
+                  value={language} 
+                  onChange={(e) => setLanguage(e.target.value)}
+                  variant="outlined"
+                  sx={selectStyle}
+                >
                   <MenuItem value="en">English</MenuItem>
                   <MenuItem value="es">Español</MenuItem>
                   <MenuItem value="fr">Français</MenuItem>
@@ -784,7 +867,23 @@ const SettingsPage: React.FC = () => {
 
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Date Format</InputLabel>
-                <Select value={dateFormat} onChange={(e) => setDateFormat(e.target.value)}>
+                <Select 
+                  value={dateFormat} 
+                  onChange={(e) => setDateFormat(e.target.value)}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.23)'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.87)'
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'primary.main',
+                      borderWidth: '1px'
+                    }
+                  }}
+                >
                   <MenuItem value="MM/DD/YYYY">MM/DD/YYYY</MenuItem>
                   <MenuItem value="DD/MM/YYYY">DD/MM/YYYY</MenuItem>
                   <MenuItem value="YYYY-MM-DD">YYYY-MM-DD</MenuItem>
@@ -793,7 +892,23 @@ const SettingsPage: React.FC = () => {
 
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Time Format</InputLabel>
-                <Select value={timeFormat} onChange={(e) => setTimeFormat(e.target.value)}>
+                <Select 
+                  value={timeFormat} 
+                  onChange={(e) => setTimeFormat(e.target.value)}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.23)'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.87)'
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'primary.main',
+                      borderWidth: '1px'
+                    }
+                  }}
+                >
                   <MenuItem value="12h">12-hour (AM/PM)</MenuItem>
                   <MenuItem value="24h">24-hour</MenuItem>
                 </Select>
@@ -803,7 +918,23 @@ const SettingsPage: React.FC = () => {
             <Grid item xs={12} md={6}>
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Timezone</InputLabel>
-                <Select value={timezone} onChange={(e) => setTimezone(e.target.value)}>
+                <Select 
+                  value={timezone} 
+                  onChange={(e) => setTimezone(e.target.value)}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.23)'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.87)'
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'primary.main',
+                      borderWidth: '1px'
+                    }
+                  }}
+                >
                   <MenuItem value="America/New_York">Eastern Time (ET)</MenuItem>
                   <MenuItem value="America/Chicago">Central Time (CT)</MenuItem>
                   <MenuItem value="America/Denver">Mountain Time (MT)</MenuItem>
@@ -824,7 +955,23 @@ const SettingsPage: React.FC = () => {
 
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Currency</InputLabel>
-                <Select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+                <Select 
+                  value={currency} 
+                  onChange={(e) => setCurrency(e.target.value)}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.23)'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.87)'
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'primary.main',
+                      borderWidth: '1px'
+                    }
+                  }}
+                >
                   <MenuItem value="USD">US Dollar (USD)</MenuItem>
                   <MenuItem value="EUR">Euro (EUR)</MenuItem>
                   <MenuItem value="GBP">British Pound (GBP)</MenuItem>
@@ -844,7 +991,23 @@ const SettingsPage: React.FC = () => {
 
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Number Format</InputLabel>
-                <Select value={numberFormat} onChange={(e) => setNumberFormat(e.target.value)}>
+                <Select 
+                  value={numberFormat} 
+                  onChange={(e) => setNumberFormat(e.target.value)}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.23)'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(0, 0, 0, 0.87)'
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'primary.main',
+                      borderWidth: '1px'
+                    }
+                  }}
+                >
                   <MenuItem value="en-US">1,234.56 (US)</MenuItem>
                   <MenuItem value="de-DE">1.234,56 (German)</MenuItem>
                   <MenuItem value="fr-FR">1 234,56 (French)</MenuItem>

@@ -1,3 +1,5 @@
+# GGAS (Greenhouse Gas Accounting Software) - Build Sheet
+
 We are starting from scratch. This will be a standalone software. Electron, or other framework.
 The product is call GGAS (Greenhouse Gas Accounting Software)
 
@@ -25,7 +27,8 @@ Administrative Control Panel - Comprehensive admin interface for system configur
 End-User Interface Suite - Multi-window desktop application with role-based interfaces, reporting wizards, and data entry forms
 
 Detailed Functional Specifications
-1. Data Collection & Management System
+
+1: Data Collection & Management System
 Activity Data Management
 The system provides a comprehensive framework for collecting and managing all types of emissions-related activity data through intuitive desktop interfaces. Users can input data through multiple channels including direct manual entry via user-friendly forms with validation and auto-complete, bulk upload through Excel templates with drag-and-drop functionality and progress indicators, guided import wizards that walk users through connecting to utility providers and operational systems, and automated data synchronization with real-time status monitoring dashboards.
 
@@ -41,7 +44,7 @@ Robust data validation mechanisms ensure accuracy and completeness throughout th
 
 When issues are detected, the system generates contextual alerts with suggested resolutions and provides guided resolution workflows through step-by-step wizards. Data quality scores are calculated and tracked over time through dedicated quality dashboards, helping organizations continuously improve their data collection processes.
 
-2. Emissions Calculation Engine
+2: Emissions Calculation Engine
 Multi-Scope Calculation Framework
 The calculation engine supports comprehensive emissions quantification across all three GHG Protocol scopes through specialized calculation interfaces. Scope 1 calculations cover direct emissions from owned or controlled sources including stationary combustion, mobile combustion, process emissions, and fugitive emissions, all managed through dedicated input forms with calculation previews. Scope 2 calculations handle indirect emissions from purchased electricity, steam, heating, and cooling through guided workflows, supporting both location-based and market-based methodologies with comparison views.
 
@@ -57,7 +60,7 @@ The engine includes sophisticated features accessible through specialized module
 
 Real-time calculation capabilities provide immediate feedback through live updating dashboards on emission impacts, supporting operational decision-making and allowing users to understand the carbon implications of their activities as they occur through instant impact assessments.
 
-3. Reporting & Compliance Management
+3: Reporting & Compliance Management
 Standardized Reporting Framework
 The platform generates reports compliant with major sustainability frameworks and regulatory requirements through a comprehensive report generation interface. This includes CDP Climate Change questionnaires with guided response forms and automated data population, TCFD recommendations with scenario analysis tools and governance reporting templates, GRI Standards with materiality assessment wizards, SASB industry-specific metrics with automated calculations, and jurisdiction-specific regulatory requirements including EU CSRD, SEC Climate Rules, and UK SECR through dedicated compliance modules.
 
@@ -71,7 +74,7 @@ The platform tracks verification status across all data points through verificat
 Regulatory Compliance Monitoring
 Built-in compliance monitoring accessible through the compliance dashboard tracks applicable regulations based on organizational characteristics and jurisdictions. The system provides early warning alerts through notification systems for upcoming deadlines, regulatory change notifications through news feeds, compliance status dashboards with traffic light indicators, and guided report preparation workflows where supported by regulatory requirements.
 
-4. Analytics & Strategic Intelligence
+4: Analytics & Strategic Intelligence
 Advanced Analytics Suite
 The platform includes sophisticated analytics capabilities accessible through interactive dashboards designed to transform emissions data into actionable business intelligence. Trend analysis tools provide multi-dimensional views of emissions performance over time through customizable charts and graphs, with the ability to normalize for business growth, weather variations, and other external factors through advanced filtering options.
 
@@ -87,7 +90,7 @@ Automated analysis identifies the largest emission sources and greatest reductio
 
 Opportunity assessments include financial modeling of reduction initiatives through dedicated financial analysis interfaces, considering implementation costs, operational savings, carbon pricing impacts, and risk mitigation benefits with ROI calculators and payback analysis tools.
 
-5. Target Setting & Progress Management
+5: Target Setting & Progress Management
 Science-Based Target Integration
 The platform fully supports Science-Based Targets initiative (SBTi) methodologies for setting emissions reduction targets aligned with climate science through dedicated target-setting wizards. This includes sector-specific guidance through contextual help systems, target calculation tools for 1.5°C and well-below 2°C pathways with interactive pathway visualization, and validation against SBTi criteria through automated compliance checking.
 
@@ -98,7 +101,7 @@ Comprehensive project management capabilities accessible through the program man
 
 The platform provides portfolio-level views of all carbon management activities through executive dashboards, enabling strategic decision-making about where to focus efforts and resources for maximum impact.
 
-6. Integration & User Interface Framework
+6: Integration & User Interface Framework
 Desktop Application Architecture
 The platform provides extensive local processing capabilities with optional cloud synchronization through the standalone desktop application. Local data processing ensures performance and data control, while selective cloud integration enables collaboration and backup through configurable sync settings accessible via the administrative interface.
 
@@ -114,7 +117,7 @@ Comprehensive user interfaces provide role-based access to all system capabiliti
 
 The interface framework supports multiple user roles including data entry staff, analysts, sustainability managers, and system administrators, each with tailored interfaces optimized for their specific needs and responsibilities.
 
-7. Data Governance & Security
+7: Data Governance & Security
 Enterprise-Grade Security
 The platform implements comprehensive security measures including end-to-end encryption for local data storage and cloud synchronization, multi-factor authentication with enterprise SSO integration options, role-based access controls with fine-grained permissions managed through the administrative interface, and regular security updates with automated patching capabilities.
 
@@ -125,7 +128,7 @@ Robust data governance capabilities accessible through administrative control pa
 
 The governance framework includes data quality monitoring with quality score tracking, access logging with detailed activity reports, and change management with version control and rollback capabilities.
 
-8. Administrative Control Systems
+8: Administrative Control Systems
 System Administration Interface
 Comprehensive administrative controls provide complete system management through dedicated admin panels including user management with role assignment and permission control, system configuration with guided setup wizards, data backup and restore with scheduled backup management, security settings with policy enforcement, and integration management with connection monitoring and troubleshooting tools.
 
@@ -137,7 +140,6 @@ Advanced user management capabilities include role-based access control with cus
 The system supports enterprise directory integration for seamless user authentication and authorization, with options for local user management for smaller deployments.
 
 This implementation plan provides a structured approach to building a comprehensive GHG accounting platform with rich graphical interfaces while managing complexity, risk, and resource constraints. The GUI-first approach ensures immediate usability and user adoption while building toward a complete enterprise solution with both end-user and administrative functionality.
-
 
 Development Implementation Plan
 
@@ -157,7 +159,6 @@ Data: Local database management, calculation engines, analytics capabilities
 DevOps: Build automation, testing, deployment packages, update distribution
 QA: Desktop application testing, UI/UX testing, cross-platform validation
 Product: Requirements, user research, stakeholder management
-
 
 Phase 1: Foundation & MVP (COMPLETED: 1.1 through 1.6)
 Objectives
@@ -253,7 +254,6 @@ Performance benchmarks for local operations
 Security assessment for desktop application
 User documentation and training materials
 
-
 Phase 2: Enhanced Core Features (NEXT PHASE)
 Objectives
 Expand to full Scope 3 calculations, advanced reporting interfaces, and external system integrations. Add analytics dashboards and significantly improve user experience.
@@ -332,7 +332,6 @@ Completely redesigned modern desktop interface
 Role-based dashboard system with customization
 Enhanced search and navigation capabilities
 Interactive user onboarding and training system
-
 
 Phase 3: Advanced Features & Scale
 Objectives
@@ -413,7 +412,6 @@ Plugin marketplace with installation/management interface
 Custom calculation builder with visual formula editor
 Automation framework with drag-and-drop workflow designer
 
-
 Phase 4: Innovation & Optimization
 Objectives
 Advanced AI features, enhanced data verification, IoT connectivity, and next-generation user experiences.
@@ -493,7 +491,6 @@ Distributed computing framework with visual progress monitoring
 Advanced security implementations with administrative control
 Future-ready architecture with upgrade path planning
 
-
 Technical Implementation Considerations
 Development Standards
 Code Quality
@@ -530,7 +527,6 @@ Support for large datasets with efficient local processing
 Reliable offline operation with seamless sync capabilities
 Cross-platform compatibility with native performance
 Memory and resource optimization for various hardware configurations
-
 
 Risk Management & Mitigation
 Technical Risks

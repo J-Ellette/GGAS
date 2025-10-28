@@ -30,5 +30,11 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx']
+  },
+  externals: {
+    'crypto': 'commonjs crypto',
+    'fs': 'commonjs fs',
+    'path': 'commonjs path',
+    'os': 'commonjs os'
   }
 };
