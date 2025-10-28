@@ -6,7 +6,11 @@ import { DatabaseService } from './services/DatabaseService';
 // These occur when DevTools tries to use Chrome DevTools Protocol features not available in Electron
 const originalConsoleError = console.error;
 console.error = (...args: any[]) => {
-  const message = args.join(' ');
+  // Convert all arguments to string for pattern matching
+  const message = args.map(arg => 
+    typeof arg === 'string' ? arg : JSON.stringify(arg)
+  ).join(' ');
+  
   // Filter out Autofill-related DevTools errors
   if (message.includes('Autofill.enable') || message.includes('Autofill.setAddresses')) {
     return; // Suppress these specific errors
