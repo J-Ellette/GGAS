@@ -4,6 +4,7 @@ import { DatabaseService } from './services/DatabaseService';
 
 let mainWindow: BrowserWindow | null = null;
 let databaseService: DatabaseService | null = null;
+let handlersInitialized = false;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -39,8 +40,11 @@ app.on('ready', () => {
   
   createWindow();
   
-  // Set up IPC handlers
-  setupIpcHandlers();
+  // Set up IPC handlers only once
+  if (!handlersInitialized) {
+    setupIpcHandlers();
+    handlersInitialized = true;
+  }
 });
 
 app.on('window-all-closed', () => {
