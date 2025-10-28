@@ -565,6 +565,14 @@ const documentationSections: DocSection[] = [
         content: 'Dynamic Budget Allocation uses AI-optimized distribution of carbon budgets across business units, facilities, and projects. Real-time Budget Tracking provides continuous monitoring with predictive alerts when approaching limits. Budget Optimization recommends budget transfers between units based on performance and opportunities. Variance Analysis delivers detailed analysis of budget vs. actual with root cause identification.',
       },
       {
+        title: 'Multi-Year Budget Planning',
+        content: 'Plan carbon budgets strategically across multiple fiscal years with sophisticated allocation strategies. Create 3-10 year budget horizons with customizable yearly allocations using Linear (equal distribution), Declining (higher in early years to accelerate reduction efforts), or Growing (lower in early years for gradual transition) strategies. Track progress year-over-year with automatic variance analysis and budget utilization monitoring. Generate comprehensive multi-year budget reports showing total allocated, consumed, and remaining budgets across all periods. Support for budget revisions and adjustments as business conditions evolve, with complete audit trails of all changes. Integration with annual budgeting processes enables seamless coordination between long-term strategy and operational execution.',
+      },
+      {
+        title: 'Advanced Correlation Analysis',
+        content: 'Discover meaningful relationships between emissions and operational variables through sophisticated statistical analysis. Run Pearson correlation analysis to identify positive and negative relationships between any two variables such as production volume vs. emissions, weather patterns vs. energy consumption, or supplier performance vs. carbon intensity. Automatic calculation of correlation coefficients, p-values, and statistical significance helps identify which relationships are meaningful and which are coincidental. Visual scatter plots with trend lines make patterns immediately visible to stakeholders. Generate actionable insights like "15% increase in production correlates with only 8% emission increase, suggesting improving efficiency" or "Strong negative correlation (-0.82) between renewable energy usage and Scope 2 emissions confirms clean energy strategy effectiveness". Use correlation insights to identify optimization opportunities, validate reduction initiatives, and prioritize improvement projects based on impact potential.',
+      },
+      {
         title: 'Early Warning System',
         content: 'Predictive Alerts provide advance warning such as "Based on current trends, you will exceed annual target by 8% - recommend immediate action on top 5 initiatives" or "Weather forecast indicates 20% increase in heating needs next month - budget adjustment recommended". Escalation Protocols automatically notify appropriate stakeholders based on severity. Action Plan Triggers automatically activate predefined response plans when thresholds are reached.',
       },
@@ -582,7 +590,15 @@ const documentationSections: DocSection[] = [
     subsections: [
       {
         title: 'Live Monitoring Dashboard',
-        content: 'Real-time data streaming with sub-second updates provides continuous visibility into emissions performance. The dashboard integrates with SCADA systems, IoT sensors, and smart meters to capture live operational data. A real-time calculation engine processes incoming data streams to compute emissions on-the-fly, with automatic aggregation across organizational hierarchies from individual assets up to enterprise level.',
+        content: 'Real-time data streaming with sub-second updates provides continuous visibility into emissions performance. The dashboard integrates with SCADA systems, IoT sensors, and smart meters to capture live operational data. A real-time calculation engine processes incoming data streams to compute emissions on-the-fly, with automatic aggregation across organizational hierarchies from individual assets up to enterprise level. Create custom monitoring streams for different facilities, emission sources, or operational units. Configure refresh intervals from 10 seconds to 5 minutes depending on data source capabilities and monitoring needs. Real-time data quality scoring ensures reliability of live measurements with automatic flagging of anomalous readings.',
+      },
+      {
+        title: 'Real-time Monitoring Streams',
+        content: 'Establish dedicated monitoring streams for continuous emission tracking from any data source. Each stream captures emission values, timestamps, scope assignment, data quality metrics, and optional metadata. Configure threshold-based alerting with automatic notifications when emissions exceed predefined limits. Track multiple streams simultaneously for comprehensive facility-wide monitoring including Scope 1 combustion sources, Scope 2 electricity consumption, fugitive emissions, process emissions, and transportation fleets. Historical data retention enables trend analysis with configurable lookback periods from hours to years. Export stream data for regulatory reporting, audit trails, or integration with third-party analytics platforms.',
+      },
+      {
+        title: 'Automated Real-time Alerts',
+        content: 'Intelligent alerting system monitors all streams continuously and generates automatic alerts when thresholds are exceeded, patterns indicate problems, or data quality issues are detected. Multi-level severity classification (low, medium, high, critical) enables appropriate response prioritization. Alert notifications support multiple channels including in-app dashboard, email, SMS, and mobile push notifications. Track alert lifecycle from creation through acknowledgment to resolution with complete audit trails. Alert analytics identify recurring issues and help optimize threshold settings. Integration with incident management systems enables coordinated response to emission events.',
       },
       {
         title: 'Visual Command Center',
