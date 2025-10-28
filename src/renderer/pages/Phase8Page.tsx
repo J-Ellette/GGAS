@@ -215,7 +215,6 @@ const Phase8Page: React.FC = () => {
         </Typography>
       </Box>
 
-      {/* Summary Cards */}
       <Grid container spacing={3} sx={{ mb: 3 }}>
         <Grid item xs={12} md={3}>
           <Card>
@@ -290,7 +289,6 @@ const Phase8Page: React.FC = () => {
           </Tabs>
         </Box>
 
-        {/* Document Processing Tab */}
         <TabPanel value={tabValue} index={0}>
           <Box sx={{ mb: 3 }}>
             <Typography variant="h6" gutterBottom>
@@ -500,7 +498,6 @@ const Phase8Page: React.FC = () => {
           </Box>
         </TabPanel>
 
-        {/* Email Intelligence Tab */}
         <TabPanel value={tabValue} index={1}>
           <Typography variant="h6" gutterBottom>
             Email Intelligence System
@@ -615,7 +612,6 @@ const Phase8Page: React.FC = () => {
           </Grid>
         </TabPanel>
 
-        {/* Browser Extension Tab */}
         <TabPanel value={tabValue} index={2}>
           <Typography variant="h6" gutterBottom>
             Browser Extension Intelligence
@@ -729,7 +725,6 @@ const Phase8Page: React.FC = () => {
           </Alert>
         </TabPanel>
 
-        {/* Security & Compliance Tab */}
         <TabPanel value={tabValue} index={3}>
           <Typography variant="h6" gutterBottom>
             Enterprise Security & Compliance
@@ -872,7 +867,6 @@ const Phase8Page: React.FC = () => {
           </Grid>
         </TabPanel>
 
-        {/* Third-Party Integrations Tab */}
         <TabPanel value={tabValue} index={4}>
           <Typography variant="h6" gutterBottom>
             Third-Party Integrations
@@ -882,7 +876,6 @@ const Phase8Page: React.FC = () => {
           </Typography>
 
           <Grid container spacing={3}>
-            {/* Maximo Integration */}
             <Grid item xs={12}>
               <Card>
                 <CardContent>
@@ -967,7 +960,6 @@ const Phase8Page: React.FC = () => {
               </Card>
             </Grid>
 
-            {/* Microsoft SSO */}
             <Grid item xs={12}>
               <Card>
                 <CardContent>
@@ -1066,7 +1058,6 @@ const Phase8Page: React.FC = () => {
         </TabPanel>
       </Paper>
 
-      {/* Upload Document Dialog */}
       <Dialog open={uploadDialogOpen} onClose={() => setUploadDialogOpen(false)} maxWidth="sm" fullWidth>
         <DialogTitle>Upload Document</DialogTitle>
         <DialogContent>
@@ -1115,7 +1106,6 @@ const Phase8Page: React.FC = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Add Email Monitor Dialog */}
       <Dialog open={emailDialogOpen} onClose={() => setEmailDialogOpen(false)} maxWidth="sm" fullWidth>
         <DialogTitle>Add Email Monitor</DialogTitle>
         <DialogContent>
@@ -1172,7 +1162,6 @@ const Phase8Page: React.FC = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Snackbar for Notifications */}
       <Snackbar
         open={snackbar.open}
         autoHideDuration={6000}

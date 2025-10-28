@@ -184,7 +184,6 @@ const Phase6Page: React.FC = () => {
 
   return (
     <Box>
-      {/* Header */}
       <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Box>
           <Typography variant="h4" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -209,7 +208,6 @@ const Phase6Page: React.FC = () => {
         </Box>
       </Box>
 
-      {/* Live Status Banner */}
       <Alert 
         severity={liveDataEnabled ? "success" : "info"} 
         sx={{ mb: 3 }}
@@ -230,9 +228,7 @@ const Phase6Page: React.FC = () => {
           <Tab label="Enterprise Operations" icon={<BarChartIcon />} iconPosition="start" />
         </Tabs>
 
-        {/* Tab 1: Live Monitoring Dashboard */}
         <TabPanel value={tabValue} index={0}>
-          {/* Real-time Key Metrics */}
           <Grid container spacing={3} sx={{ mb: 3 }}>
             <Grid item xs={12} md={3}>
               <Card>
@@ -323,7 +319,6 @@ const Phase6Page: React.FC = () => {
             </Grid>
           </Grid>
 
-          {/* Real-time Chart */}
           <Paper sx={{ p: 3, mb: 3 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
               <Typography variant="h6">Live Emissions Stream</Typography>
@@ -351,7 +346,6 @@ const Phase6Page: React.FC = () => {
             </ResponsiveContainer>
           </Paper>
 
-          {/* Active Alerts */}
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" sx={{ mb: 2 }}>
               <Badge badgeContent={alerts.filter(a => a.status === 'active').length} color="error">
@@ -393,7 +387,6 @@ const Phase6Page: React.FC = () => {
           </Paper>
         </TabPanel>
 
-        {/* Tab 2: Visual Command Center */}
         <TabPanel value={tabValue} index={1}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={8}>
@@ -461,7 +454,6 @@ const Phase6Page: React.FC = () => {
           </Grid>
         </TabPanel>
 
-        {/* Tab 3: Carbon Traffic Light System */}
         <TabPanel value={tabValue} index={2}>
           <Typography variant="h6" gutterBottom>
             Emission Performance Status - All Facilities
@@ -576,7 +568,6 @@ const Phase6Page: React.FC = () => {
           </Grid>
         </TabPanel>
 
-        {/* Tab 4: Smart Process Monitoring */}
         <TabPanel value={tabValue} index={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
@@ -696,7 +687,6 @@ const Phase6Page: React.FC = () => {
           </Paper>
         </TabPanel>
 
-        {/* Tab 5: Automated Response Systems */}
         <TabPanel value={tabValue} index={4}>
           <Alert severity="info" sx={{ mb: 3 }}>
             Automated response systems integrate with building management systems, IoT devices, and work order platforms to take immediate action when emission thresholds are exceeded.
@@ -811,7 +801,6 @@ const Phase6Page: React.FC = () => {
           </Grid>
         </TabPanel>
 
-        {/* Tab 6: Enterprise Operations Integration */}
         <TabPanel value={tabValue} index={5}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={4}>

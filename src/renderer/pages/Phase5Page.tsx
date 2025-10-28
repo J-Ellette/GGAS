@@ -64,7 +64,6 @@ const Phase5Page: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  // Phase 5.1: Forecasting State
   const [forecasts, setForecasts] = useState<any[]>([]);
   const [forecastFactors, setForecastFactors] = useState<any[]>([]);
   const [forecastDialog, setForecastDialog] = useState(false);
@@ -77,7 +76,6 @@ const Phase5Page: React.FC = () => {
     operationalFactor: 0
   });
 
-  // Phase 5.2: Budget State
   const [budgets, setBudgets] = useState<any[]>([]);
   const [budgetAllocations, setBudgetAllocations] = useState<any[]>([]);
   const [budgetVariances, setBudgetVariances] = useState<any[]>([]);
@@ -90,7 +88,6 @@ const Phase5Page: React.FC = () => {
   });
   const [selectedBudget, setSelectedBudget] = useState<number | null>(null);
 
-  // Phase 5.3: Alerts State
   const [alerts, setAlerts] = useState<any[]>([]);
   const [warningTriggers, setWarningTriggers] = useState<any[]>([]);
   const [actionPlans, setActionPlans] = useState<any[]>([]);
@@ -98,7 +95,6 @@ const Phase5Page: React.FC = () => {
   const [triggerDialog, setTriggerDialog] = useState(false);
   const [planDialog, setPlanDialog] = useState(false);
 
-  // Phase 5.4: Scenarios State
   const [scenarios, setScenarios] = useState<any[]>([]);
   const [sensitivityAnalyses, setSensitivityAnalyses] = useState<any[]>([]);
   const [scenarioDialog, setScenarioDialog] = useState(false);
@@ -109,7 +105,6 @@ const Phase5Page: React.FC = () => {
     iterations: 1000
   });
 
-  // Phase 5.5: Enterprise State
   const [enterpriseForecasts, setEnterpriseForecasts] = useState<any[]>([]);
   const [executiveDashboard, setExecutiveDashboard] = useState<any>(null);
   const [modelMetrics, setModelMetrics] = useState<any[]>([]);
@@ -342,7 +337,6 @@ const Phase5Page: React.FC = () => {
 
       {loading && <LinearProgress />}
 
-      {/* Phase 5.1: Advanced Forecasting Engine */}
       <TabPanel value={tabValue} index={0}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -458,7 +452,6 @@ const Phase5Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Phase 5.2: Carbon Budget Management */}
       <TabPanel value={tabValue} index={1}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -576,7 +569,6 @@ const Phase5Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Phase 5.3: Early Warning System */}
       <TabPanel value={tabValue} index={2}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
@@ -766,7 +758,6 @@ const Phase5Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Phase 5.4: Scenario Planning Suite */}
       <TabPanel value={tabValue} index={3}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -873,7 +864,6 @@ const Phase5Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Phase 5.5: Enterprise Features */}
       <TabPanel value={tabValue} index={4}>
         <Grid container spacing={3}>
           {executiveDashboard && (
@@ -1012,7 +1002,6 @@ const Phase5Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Dialogs */}
       <Dialog open={forecastDialog} onClose={() => setForecastDialog(false)} maxWidth="sm" fullWidth>
         <DialogTitle>Run Multi-Factor Forecast</DialogTitle>
         <DialogContent>

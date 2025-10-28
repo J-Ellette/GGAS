@@ -59,32 +59,27 @@ const Phase4Page: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  // Phase 4.1: Next-Gen Analytics State
   const [dlModels, setDlModels] = useState<any[]>([]);
   const [recommendations, setRecommendations] = useState<any[]>([]);
   const [digitalTwins, setDigitalTwins] = useState<any[]>([]);
   const [dlModelDialog, setDlModelDialog] = useState(false);
   const [newDlModel, setNewDlModel] = useState({ modelName: '', modelType: '', description: '' });
 
-  // Phase 4.2: Verification State
   const [verificationWorkflows, setVerificationWorkflows] = useState<any[]>([]);
   const [verifiers, setVerifiers] = useState<any[]>([]);
   const [workflowDialog, setWorkflowDialog] = useState(false);
   const [newWorkflow, setNewWorkflow] = useState({ workflowName: '', workflowType: 'internal', totalSteps: 3 });
 
-  // Phase 4.3: IoT State
   const [iotDevices, setIotDevices] = useState<any[]>([]);
   const [monitors, setMonitors] = useState<any[]>([]);
   const [alertRules, setAlertRules] = useState<any[]>([]);
   const [deviceDialog, setDeviceDialog] = useState(false);
   const [newDevice, setNewDevice] = useState({ deviceName: '', deviceType: '', connectionType: 'mqtt' });
 
-  // Phase 4.4: Visualization State
   const [facilityModels, setFacilityModels] = useState<any[]>([]);
   const [trainingModules, setTrainingModules] = useState<any[]>([]);
   const [dataStories, setDataStories] = useState<any[]>([]);
 
-  // Phase 4.5: Optimization State
   const [cacheStats, setCacheStats] = useState<any>({});
   const [distributedJobs, setDistributedJobs] = useState<any[]>([]);
   const [encryptionKeys, setEncryptionKeys] = useState<any[]>([]);
@@ -253,7 +248,6 @@ const Phase4Page: React.FC = () => {
 
       {loading && <LinearProgress />}
 
-      {/* Phase 4.1: Next-Gen Analytics */}
       <TabPanel value={tabValue} index={0}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -344,7 +338,6 @@ const Phase4Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Phase 4.2: Verification & Trust */}
       <TabPanel value={tabValue} index={1}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -408,7 +401,6 @@ const Phase4Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Phase 4.3: IoT & Real-Time Monitoring */}
       <TabPanel value={tabValue} index={2}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
@@ -496,7 +488,6 @@ const Phase4Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Phase 4.4: Advanced Visualization & Immersive Experience */}
       <TabPanel value={tabValue} index={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
@@ -537,7 +528,6 @@ const Phase4Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Phase 4.5: Platform Optimization & Future-Proofing */}
       <TabPanel value={tabValue} index={4}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -632,7 +622,6 @@ const Phase4Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Dialogs */}
       <Dialog open={dlModelDialog} onClose={() => setDlModelDialog(false)} maxWidth="sm" fullWidth>
         <DialogTitle>Create Deep Learning Model</DialogTitle>
         <DialogContent>
