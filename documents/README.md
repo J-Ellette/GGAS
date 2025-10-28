@@ -83,6 +83,25 @@ This documentation suite provides comprehensive information about Green Country'
   - Legal risk assessment (risk scoring, trend analysis, scenario planning, expert network)
   - Enterprise regulatory management (multi-jurisdiction compliance, subsidiary management, board reporting)
 
+### 12. AR/VR Interfaces
+- **[AR/VR Interfaces](./12-AR-VR-Interfaces.md)** - Immersive technologies for carbon management
+  - Virtual Reality facility tours (immersive walkthroughs, carbon flow visualization)
+  - Augmented Reality inspections (smart guidance, equipment recognition, automated data capture)
+  - Remote carbon auditing (virtual site tours, evidence collection, compliance audits)
+  - Mixed Reality training (simulation scenarios, hands-on practice, certification programs)
+  - VR collaboration spaces (virtual meetings, shared data visualization, expert consultation)
+  - AR data overlay (real-time sensor data, equipment information, guided procedures)
+
+### 13. 3D Facility Visualization
+- **[3D Facility Visualization](./13-3D-Facility-Visualization.md)** - Interactive spatial carbon intelligence
+  - Interactive 3D facility models (photorealistic rendering, multi-level detail, equipment database integration)
+  - Real-time carbon flow visualization (animated particle systems, flow paths, volume indicators)
+  - Digital twin integration (real-time synchronization, predictive analytics, optimization applications)
+  - Heat maps and analytics (carbon intensity, efficiency, data quality, cost visualization)
+  - Scenario modeling and simulation (equipment upgrades, process modifications, fuel switching)
+  - Multi-facility dashboards (portfolio summary, benchmarking, enterprise initiatives)
+  - Stakeholder communication (audience-specific views, interactive dashboards, video animations)
+
 ## System Capabilities
 
 The Unified Multi-Agency Reporting System provides:
