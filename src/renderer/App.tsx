@@ -35,6 +35,7 @@ import MessageIcon from '@mui/icons-material/Message';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import TuneIcon from '@mui/icons-material/Tune';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -61,6 +62,7 @@ import CarbonCopilotPage from './pages/CarbonCopilotPage';
 import SettingsPage from './pages/SettingsPage';
 import UsersPage from './pages/UsersPage';
 import CalendarPage from './pages/CalendarPage';
+import AISettingsPage from './pages/AISettingsPage';
 import LicenseKeyDialog from './components/LicenseKeyDialog';
 import SystemNotificationBanner, { SystemNotification } from './components/SystemNotificationBanner';
 
@@ -91,7 +93,8 @@ type PageType =
   | 'documentation'
   | 'carbon-copilot'
   | 'users-messaging'
-  | 'calendar';
+  | 'calendar'
+  | 'ai-settings';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageType>('dashboard');
@@ -121,9 +124,14 @@ const App: React.FC = () => {
     setSystemNotification(null);
   };
 
-  const handleLicenseValid = () => {
+  const handleLicenseValid = (licenseManager?: any) => {
     setLicenseValidated(true);
     setShowLicenseDialog(false);
+    // Store license manager if needed for feature gates
+    if (licenseManager) {
+      // Could store in context or state if needed
+      console.log('License validated with manager:', licenseManager);
+    }
   };
 
   const handleAdminAccess = () => {
@@ -163,6 +171,8 @@ const App: React.FC = () => {
         return <UserManagementPage />;
       case 'ai-ml':
         return <AIMLPage />;
+      case 'ai-settings':
+        return <AISettingsPage />;
       case 'targets':
         return <TargetManagementPage />;
       case 'multi-entity':
@@ -325,6 +335,14 @@ const App: React.FC = () => {
                     <PsychologyIcon />
                   </ListItemIcon>
                   <ListItemText primary="AI/ML Analytics" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton selected={currentPage === 'ai-settings'} onClick={() => setCurrentPage('ai-settings')}>
+                  <ListItemIcon>
+                    <TuneIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="AI Settings" />
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>

@@ -8,11 +8,61 @@ A comprehensive desktop application for measuring, monitoring, managing, and rep
 
 Green Country GGAS (Greenhouse Gas Accounting Software) is an enterprise-grade Electron-based desktop application designed to enable organizations of all sizes to accurately measure, monitor, manage, and report their greenhouse gas emissions. The platform provides a comprehensive suite of tools for carbon accounting, regulatory compliance, sustainability reporting, and strategic carbon management through intuitive user interfaces.
 
+## 🆕 AI-Optional Operation Framework
+
+**New Feature**: Complete control over AI usage with manual alternatives for every feature.
+
+- **5 Operation Modes**: Full AI, Selective AI, Manual Only, Assistant, Background
+- **14 AI Features**: Granular control across Data Processing, Analytics, UI, Integration, and Workflow
+- **Manual Alternatives**: Every AI feature has a fully functional traditional alternative
+- **Enterprise Controls**: Policy management, audit trails, and compliance tools
+- **Graceful Degradation**: Full functionality maintained when AI is disabled
+
+📖 [AI-Optional Framework Documentation](docs/AI_OPTIONAL_FRAMEWORK.md)
+
+### Quick Start: AI Settings
+
+1. Navigate to **AI & Strategic Planning** → **AI Settings**
+2. Choose your operation mode or toggle individual features
+3. Review audit trail for all changes
+4. Set organizational policies for AI usage
+
 ## License Key System
 
-On first launch, the application will prompt for a license key. Use the demo key for testing:
+On first launch, the application will prompt for a license key. The system supports multiple license types with different feature sets.
 
-**Demo License Key:** `GCGGAS-2024-DEMO-KEY1`
+### New License Key Format (Phase 23)
+
+The new license system uses the format: `XXXX-XXXX-XXXX-XXXX-XXXX-XXXX`
+
+**Generate Test License Keys:**
+```bash
+npm run generate-licenses
+```
+
+**Example Keys:**
+- **Development:** `GG01-EN98-FD00-3FFF-FFWH-LR55` (Full features, no expiration)
+- **Trial:** `GG01-TR42-1400-0124-F5B7-TW7C` (Basic features, 30 days)
+- **Standard:** `GG01-ST3A-F100-0F26-44N4-ZMCE` (Standard features, 1 year)
+- **Enterprise:** `GG01-EN55-2300-3F26-44CI-RWFB` (All features, 1 year)
+
+### Legacy Demo Keys (Still Supported)
+
+- **Demo License Key:** `GCGGAS-2024-DEMO-KEY1`
+- **Development Key:** `123456789abcDEF!4321`
+
+### Features by License Type
+
+| Feature | Trial | Standard | Enterprise |
+|---------|-------|----------|------------|
+| Basic Reporting | ✓ | ✓ | ✓ |
+| Advanced Analytics | ✗ | ✓ | ✓ |
+| API Access | ✗ | ✓ | ✓ |
+| Multi-User | ✗ | ✓ | ✓ |
+| Real-time Monitoring | ✗ | ✗ | ✓ |
+| AI Features | ✗ | ✗ | ✓ |
+
+**For detailed information**, see [License System Documentation](docs/LICENSE_SYSTEM.md).
 
 Alternatively, you can click "Admin Panel Access" to bypass the license check and access the admin panel directly.
 
@@ -71,12 +121,64 @@ Immutable emission records, carbon credit & offset management, supply chain tran
 ### Note: Phase 10 & 11
 Phase 10 (Carbon Intelligence Engine) and Phase 11 (Supply Chain Carbon X-Ray) features are documented in the Documentation panel with complete implementation summaries available.
 
-### ✅ Phase 12: Product Carbon Lifecycle Engine (COMPLETE - LATEST)
+### ✅ Phase 12: Product Carbon Lifecycle Engine (COMPLETE)
 Automated LCA calculations, carbon labeling system, design optimization, circular economy integration, and enterprise product carbon management.
+
+### Note: Phase 13 & 14
+Phase 13 (Regulatory Intelligence System) and Phase 14 (ESG Strategy Orchestrator) features are documented in the Documentation panel with complete implementation summaries available.
+
+### ✅ Phase 15: Satellite, Drone & FLIR Integration (COMPLETE - LATEST)
+Satellite emission monitoring (MethaneSAT, GHGSat, CO2 monitoring), autonomous drone surveys, FLIR thermal imaging, integrated monitoring platform with AI-powered analysis, and enterprise fleet management.
 
 ---
 
-## Phase 12 Features (Latest)
+## Phase 15 Features (Latest)
+
+### 15.1 Satellite Emission Monitoring ✅
+- **Methane Detection**: Integration with MethaneSAT, GHGSat, ESA Sentinel-5P/TROPOMI
+- **CO2 Monitoring**: NASA OCO-2/OCO-3, ESA Sentinel, JAXA GOSAT for facility-level verification
+- **Cross-reference Validation**: Compare reported emissions with satellite observations
+- **Global Coverage**: Monitor emissions from facilities worldwide using satellite data
+- **Trend Analysis**: Long-term trend analysis using historical satellite data
+
+### 15.2 Drone-based Monitoring ✅
+- **Autonomous Surveys**: Pre-programmed flight missions with real-time data streaming
+- **Leak Detection**: Drone-mounted methane sensors with ppb-level sensitivity
+- **Infrastructure Monitoring**: Solar panels, wind turbines, carbon capture equipment
+- **Emergency Response**: Rapid deployment for emission incidents
+- **Routine Inspections**: Automated inspection schedules with compliance documentation
+
+### 15.3 FLIR Thermal Imaging ✅
+- **Heat Loss Detection**: Building envelope, HVAC systems, process equipment
+- **Equipment Monitoring**: Boilers, motors, compressors, heat exchangers
+- **Leak Visualization**: Optical gas imaging for methane, refrigerants, SF6
+- **Process Optimization**: Combustion optimization, heat recovery identification
+- **Predictive Maintenance**: Thermal signature analysis for failure prediction
+
+### 15.4 Integrated Monitoring Platform ✅
+- **Multi-source Data Fusion**: Combine satellite, drone, and FLIR data
+- **AI-powered Analysis**: Anomaly detection, leak prediction, emission forecasting
+- **Automated Reporting**: Generate reports combining multiple monitoring sources
+- **Trend Correlation**: Correlate monitoring data with operational activities
+- **Real-time Alerts**: Immediate notifications for significant events
+
+### 15.5 Enterprise Implementation ✅
+- **Fleet Management**: Manage drone fleets across multiple facilities
+- **Regulatory Compliance**: FAA Part 107, airspace authorization, safety protocols
+- **Data Security**: End-to-end encryption, role-based access, audit logging
+- **Integration with Operations**: CMMS/EAM, SCADA, DCS/PLC integration
+- **Scalability**: Support hundreds of facilities and thousands of emission sources
+
+### 15.6 Advanced Analytics ✅
+- **Emission Source Attribution**: Identify specific sources from detected emissions
+- **Performance Benchmarking**: Compare facilities using standardized metrics
+- **Predictive Analytics**: Predict emission events and maintenance needs
+- **Environmental Impact**: Dispersion modeling for environmental assessment
+- **Real-time Alerts**: Multi-channel notifications for anomalies
+
+---
+
+## Phase 12 Features
 
 ### 12.1 Automated LCA Calculations ✅
 - **Cradle-to-Grave Analysis**: Complete lifecycle assessment from raw materials to end-of-life
@@ -521,6 +623,18 @@ All data is stored locally in SQLite database at:
 7. **Enterprise Features**: Manage product portfolios, integrate with R&D, support marketing, and track regulations
 8. **Getting Started**: Follow the comprehensive setup guide for product carbon lifecycle management
 
+## Phase 15 Usage
+
+### Satellite, Drone & FLIR Integration
+1. Navigate to "Documentation" in the main menu
+2. Select "Phase 15: Satellite, Drone & FLIR Integration" from the documentation list
+3. **Satellite Monitoring**: Learn about MethaneSAT, GHGSat, CO2 monitoring, and cross-reference validation
+4. **Drone Surveys**: Understand autonomous flight missions, leak detection, and emergency response
+5. **Thermal Imaging**: Explore heat loss detection, equipment monitoring, and predictive maintenance
+6. **Integrated Platform**: Review multi-source data fusion, AI-powered analysis, and automated reporting
+7. **Enterprise Implementation**: Configure fleet management, regulatory compliance, and system integration
+8. **Getting Started**: Follow the setup guide for satellite connections, drone deployment, and FLIR integration
+
 ## Future Enhancements
 
 ### Potential Future Features
@@ -548,6 +662,9 @@ All data is stored locally in SQLite database at:
 - **PHASE9_COMPLETE.md**: Phase 9 implementation details
 - **PHASE10_COMPLETE.md**: Phase 10 implementation details
 - **PHASE12_COMPLETE.md**: Phase 12 implementation details (latest)
+- **PHASE13_COMPLETE.md**: Phase 13 implementation details
+- **PHASE14_COMPLETE.md**: Phase 14 implementation details
+- **PHASE15_COMPLETE.md**: Phase 15 implementation details (latest)
 - **buildsheet.md**: Complete system specification
 - **docs/USER_GUIDE.md**: Detailed user guide
 - **docs/TECHNICAL.md**: Technical architecture
