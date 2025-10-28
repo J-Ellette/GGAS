@@ -10,6 +10,13 @@ export { default as AdvancedModelingService } from './AdvancedModelingService';
 export { default as UnifiedReportingService } from './UnifiedReportingService';
 export { default as ARVRDigitalTwinService } from './ARVRDigitalTwinService';
 
+// Sector-Specific Carbon Modules
+export { default as AgricultureCarbonService } from './AgricultureCarbonService';
+export { default as ConstructionEmbodiedCarbonService } from './ConstructionEmbodiedCarbonService';
+export { default as ManufacturingProcessOptimizationService } from './ManufacturingProcessOptimizationService';
+export { default as TransportationRouteOptimizationService } from './TransportationRouteOptimizationService';
+export { default as EnterpriseSectorIntegrationService } from './EnterpriseSectorIntegrationService';
+
 // Re-export types
 export type {
   Regulation,
@@ -52,3 +59,46 @@ export type {
   DigitalTwin,
   ARInspection
 } from './ARVRDigitalTwinService';
+
+// Sector-Specific Service Types
+export type {
+  SoilCarbonReading,
+  RegenerativePractice,
+  ForestryProject,
+  LivestockEmission,
+  SupplyChainCarbonImpact
+} from './AgricultureCarbonService';
+
+export type {
+  BuildingMaterial,
+  DesignOptimization,
+  ConstructionProcess,
+  LifecycleAssessment,
+  GreenBuildingCertification
+} from './ConstructionEmbodiedCarbonService';
+
+export type {
+  ProcessMonitoring,
+  ProductionOptimization,
+  EquipmentEfficiency,
+  WasteReduction,
+  SupplyChainIntegration
+} from './ManufacturingProcessOptimizationService';
+
+export type {
+  RouteOptimization,
+  FleetVehicle,
+  FleetManagement,
+  MultimodalPlan,
+  LoadOptimization,
+  AlternativeFuel
+} from './TransportationRouteOptimizationService';
+
+export type {
+  SectorProfile,
+  MultiSectorOperation,
+  SectorBenchmark,
+  RegulatoryCompliance,
+  BestPractice,
+  SectorReport
+} from './EnterpriseSectorIntegrationService';
