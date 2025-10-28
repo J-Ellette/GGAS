@@ -43,7 +43,6 @@ export interface Calculation {
   createdAt?: string;
 }
 
-// Phase 2.1: Scope 3 Categories
 export interface Scope3Category {
   id?: number;
   categoryNumber: number;
@@ -69,7 +68,6 @@ export interface SupplierData {
   updatedAt?: string;
 }
 
-// Phase 2.2: Integration Management
 export interface Integration {
   id?: number;
   name: string;
@@ -82,7 +80,6 @@ export interface Integration {
   updatedAt?: string;
 }
 
-// Phase 2.3: Analytics
 export interface Scenario {
   id?: number;
   name: string;
@@ -95,7 +92,6 @@ export interface Scenario {
   updatedAt?: string;
 }
 
-// Phase 2.4: Compliance Reports
 export interface ComplianceReport {
   id?: number;
   reportType: string; // 'CDP', 'TCFD', 'GRI', 'SASB'
@@ -108,7 +104,6 @@ export interface ComplianceReport {
   updatedAt?: string;
 }
 
-// Phase 2.5: User Roles and Permissions
 export interface UserRole {
   id?: number;
   roleName: string;
@@ -129,7 +124,6 @@ export interface User {
   updatedAt?: string;
 }
 
-// Phase 3.1: AI/ML Features
 export interface AnomalyDetection {
   id?: number;
   dataType: string; // 'activity_data', 'emissions'
@@ -166,7 +160,6 @@ export interface MLSuggestion {
   createdAt?: string;
 }
 
-// Phase 3.2: Target Management
 export interface CarbonTarget {
   id?: number;
   targetName: string;
@@ -211,7 +204,6 @@ export interface CarbonPricingScenario {
   updatedAt?: string;
 }
 
-// Phase 3.3: Supply Chain Features
 export interface SupplierEngagement {
   id?: number;
   supplierId: number;
@@ -254,7 +246,6 @@ export interface SupplierAssessment {
   updatedAt?: string;
 }
 
-// Phase 3.4: Multi-Entity Support
 export interface Entity {
   id?: number;
   entityName: string;
@@ -297,7 +288,6 @@ export interface DataGovernancePolicy {
   updatedAt?: string;
 }
 
-// Phase 3.5: Integration Ecosystem
 export interface IntegrationPlugin {
   id?: number;
   pluginName: string;
@@ -340,7 +330,6 @@ export interface AutomationWorkflow {
   updatedAt?: string;
 }
 
-// Phase 4.1: Next-Gen Analytics
 export interface DeepLearningModel {
   id?: number;
   modelName: string;
@@ -399,7 +388,6 @@ export interface DigitalTwin {
   updatedAt?: string;
 }
 
-// Phase 4.2: Enhanced Verification & Trust
 export interface VerificationWorkflow {
   id?: number;
   workflowName: string;
@@ -460,7 +448,6 @@ export interface DataProvenance {
   createdAt?: string;
 }
 
-// Phase 4.3: IoT & Real-Time Monitoring
 export interface IoTDevice {
   id?: number;
   deviceName: string;
@@ -524,7 +511,6 @@ export interface AlertRule {
   updatedAt?: string;
 }
 
-// Phase 4.4: Advanced Visualization & Immersive Experience
 export interface Facility3DModel {
   id?: number;
   facilityId: number;
@@ -600,7 +586,6 @@ export interface DataStory {
   updatedAt?: string;
 }
 
-// Phase 4.5: Platform Optimization & Future-Proofing
 export interface CacheConfig {
   id?: number;
   cacheKey: string;
@@ -676,7 +661,6 @@ export interface EncryptionKey {
 }
 
 // ===============================================
-// Phase 8: Autonomous Data Collection
 // ===============================================
 
 // Document Processing
@@ -901,7 +885,6 @@ export interface MicrosoftSSOConfig {
 }
 
 // ===============================================
-// Phase 11: Supply Chain Carbon X-Ray
 // ===============================================
 
 // Supplier Carbon Scoring
@@ -1198,7 +1181,6 @@ export interface SupplierComplianceStatus {
 }
 
 export interface ElectronAPI {
-  // Phase 1 APIs
   createActivityData: (data: ActivityData) => Promise<ActivityData>;
   listActivityData: (filters?: any) => Promise<ActivityData[]>;
   updateActivityData: (id: number, data: Partial<ActivityData>) => Promise<ActivityData>;
@@ -1211,7 +1193,6 @@ export interface ElectronAPI {
   calculateEmissions: (data: any) => Promise<Calculation>;
   listCalculations: (filters?: any) => Promise<Calculation[]>;
 
-  // Phase 2.1: Scope 3 APIs
   listScope3Categories: () => Promise<Scope3Category[]>;
   updateScope3Category: (id: number, data: Partial<Scope3Category>) => Promise<Scope3Category>;
   createSupplierData: (data: SupplierData) => Promise<SupplierData>;
@@ -1219,28 +1200,24 @@ export interface ElectronAPI {
   updateSupplierData: (id: number, data: Partial<SupplierData>) => Promise<SupplierData>;
   deleteSupplierData: (id: number) => Promise<boolean>;
 
-  // Phase 2.2: Integration APIs
   createIntegration: (data: Integration) => Promise<Integration>;
   listIntegrations: () => Promise<Integration[]>;
   updateIntegration: (id: number, data: Partial<Integration>) => Promise<Integration>;
   deleteIntegration: (id: number) => Promise<boolean>;
   testIntegrationConnection: (id: number) => Promise<{ success: boolean; message: string }>;
 
-  // Phase 2.3: Analytics APIs
   createScenario: (data: Scenario) => Promise<Scenario>;
   listScenarios: () => Promise<Scenario[]>;
   updateScenario: (id: number, data: Partial<Scenario>) => Promise<Scenario>;
   deleteScenario: (id: number) => Promise<boolean>;
   runScenario: (id: number) => Promise<any>;
 
-  // Phase 2.4: Compliance APIs
   createComplianceReport: (data: ComplianceReport) => Promise<ComplianceReport>;
   listComplianceReports: (filters?: any) => Promise<ComplianceReport[]>;
   updateComplianceReport: (id: number, data: Partial<ComplianceReport>) => Promise<ComplianceReport>;
   deleteComplianceReport: (id: number) => Promise<boolean>;
   exportComplianceReport: (id: number, format: string) => Promise<string>;
 
-  // Phase 2.5: User Management APIs
   createUserRole: (data: UserRole) => Promise<UserRole>;
   listUserRoles: () => Promise<UserRole[]>;
   updateUserRole: (id: number, data: Partial<UserRole>) => Promise<UserRole>;
@@ -1250,7 +1227,6 @@ export interface ElectronAPI {
   updateUser: (id: number, data: Partial<User>) => Promise<User>;
   deleteUser: (id: number) => Promise<boolean>;
 
-  // Phase 3.1: AI/ML APIs
   detectAnomalies: (dataType: string, threshold?: number) => Promise<AnomalyDetection[]>;
   listAnomalies: (filters?: any) => Promise<AnomalyDetection[]>;
   resolveAnomaly: (id: number, resolution: string) => Promise<boolean>;
@@ -1262,7 +1238,6 @@ export interface ElectronAPI {
   acceptSuggestion: (id: number) => Promise<boolean>;
   rejectSuggestion: (id: number) => Promise<boolean>;
 
-  // Phase 3.2: Target Management APIs
   createCarbonTarget: (data: CarbonTarget) => Promise<CarbonTarget>;
   listCarbonTargets: () => Promise<CarbonTarget[]>;
   updateCarbonTarget: (id: number, data: Partial<CarbonTarget>) => Promise<CarbonTarget>;
@@ -1278,7 +1253,6 @@ export interface ElectronAPI {
   updateCarbonPricingScenario: (id: number, data: Partial<CarbonPricingScenario>) => Promise<CarbonPricingScenario>;
   deleteCarbonPricingScenario: (id: number) => Promise<boolean>;
 
-  // Phase 3.3: Supply Chain APIs
   createSupplierEngagement: (data: SupplierEngagement) => Promise<SupplierEngagement>;
   listSupplierEngagements: (filters?: any) => Promise<SupplierEngagement[]>;
   updateSupplierEngagement: (id: number, data: Partial<SupplierEngagement>) => Promise<SupplierEngagement>;
@@ -1293,7 +1267,6 @@ export interface ElectronAPI {
   deleteSupplierAssessment: (id: number) => Promise<boolean>;
   generateSupplierReport: (supplierId: number) => Promise<string>;
 
-  // Phase 3.4: Multi-Entity APIs
   createEntity: (data: Entity) => Promise<Entity>;
   listEntities: (filters?: any) => Promise<Entity[]>;
   updateEntity: (id: number, data: Partial<Entity>) => Promise<Entity>;
@@ -1308,7 +1281,6 @@ export interface ElectronAPI {
   updateDataGovernancePolicy: (id: number, data: Partial<DataGovernancePolicy>) => Promise<DataGovernancePolicy>;
   deleteDataGovernancePolicy: (id: number) => Promise<boolean>;
 
-  // Phase 3.5: Integration Ecosystem APIs
   listIntegrationPlugins: (filters?: any) => Promise<IntegrationPlugin[]>;
   installPlugin: (pluginId: number) => Promise<boolean>;
   uninstallPlugin: (pluginId: number) => Promise<boolean>;
@@ -1324,7 +1296,6 @@ export interface ElectronAPI {
   deleteAutomationWorkflow: (id: number) => Promise<boolean>;
   executeAutomationWorkflow: (id: number) => Promise<{ success: boolean; output: any }>;
 
-  // Phase 4.1: Next-Gen Analytics APIs
   createDeepLearningModel: (data: DeepLearningModel) => Promise<DeepLearningModel>;
   listDeepLearningModels: (filters?: any) => Promise<DeepLearningModel[]>;
   updateDeepLearningModel: (id: number, data: Partial<DeepLearningModel>) => Promise<DeepLearningModel>;
@@ -1344,7 +1315,6 @@ export interface ElectronAPI {
   deleteDigitalTwin: (id: number) => Promise<boolean>;
   syncDigitalTwinData: (id: number) => Promise<{ success: boolean; lastUpdated: string }>;
 
-  // Phase 4.2: Enhanced Verification & Trust APIs
   createVerificationWorkflow: (data: VerificationWorkflow) => Promise<VerificationWorkflow>;
   listVerificationWorkflows: (filters?: any) => Promise<VerificationWorkflow[]>;
   updateVerificationWorkflow: (id: number, data: Partial<VerificationWorkflow>) => Promise<VerificationWorkflow>;
@@ -1361,7 +1331,6 @@ export interface ElectronAPI {
   traceDataLineage: (dataType: string, dataId: number) => Promise<any>;
   validateDataCompliance: (dataType: string, dataId: number) => Promise<{ compliant: boolean; issues: string[] }>;
 
-  // Phase 4.3: IoT & Real-Time Monitoring APIs
   createIoTDevice: (data: IoTDevice) => Promise<IoTDevice>;
   listIoTDevices: (filters?: any) => Promise<IoTDevice[]>;
   updateIoTDevice: (id: number, data: Partial<IoTDevice>) => Promise<IoTDevice>;
@@ -1382,7 +1351,6 @@ export interface ElectronAPI {
   testAlertRule: (id: number) => Promise<{ triggered: boolean; message: string }>;
   getActiveAlerts: (filters?: any) => Promise<any[]>;
 
-  // Phase 4.4: Advanced Visualization & Immersive Experience APIs
   createFacility3DModel: (data: Facility3DModel) => Promise<Facility3DModel>;
   listFacility3DModels: (filters?: any) => Promise<Facility3DModel[]>;
   updateFacility3DModel: (id: number, data: Partial<Facility3DModel>) => Promise<Facility3DModel>;
@@ -1405,7 +1373,6 @@ export interface ElectronAPI {
   deleteDataStory: (id: number) => Promise<boolean>;
   generateDataStoryNarrative: (storyId: number) => Promise<{ narrative: string; visualizations: any[] }>;
 
-  // Phase 4.5: Platform Optimization & Future-Proofing APIs
   getCacheStats: () => Promise<any>;
   clearCache: (cacheType?: string) => Promise<{ success: boolean; clearedItems: number }>;
   optimizeCache: () => Promise<{ success: boolean; message: string }>;
@@ -1424,10 +1391,8 @@ export interface ElectronAPI {
   testQuantumResistance: (keyId: number) => Promise<{ resistant: boolean; algorithm: string; recommendation: string }>;
 
   // ===============================================
-  // Phase 5: Predictive Carbon Intelligence APIs
   // ===============================================
 
-  // Phase 5.1: Advanced Forecasting Engine
   createEmissionForecast: (data: any) => Promise<any>;
   listEmissionForecasts: (filters?: any) => Promise<any[]>;
   getEmissionForecast: (id: number) => Promise<any>;
@@ -1437,7 +1402,6 @@ export interface ElectronAPI {
   runMultiFactorForecast: (params: any) => Promise<any>;
   trainLSTMModel: (params: any) => Promise<any>;
 
-  // Phase 5.2: Carbon Budget Management
   createCarbonBudget: (data: any) => Promise<any>;
   listCarbonBudgets: (filters?: any) => Promise<any[]>;
   getCarbonBudget: (id: number) => Promise<any>;
@@ -1448,7 +1412,6 @@ export interface ElectronAPI {
   createBudgetVariance: (data: any) => Promise<any>;
   listBudgetVariances: (budgetId?: number) => Promise<any[]>;
 
-  // Phase 5.3: Early Warning System
   createPredictiveAlert: (data: any) => Promise<any>;
   listPredictiveAlerts: (filters?: any) => Promise<any[]>;
   acknowledgeAlert: (id: number) => Promise<any>;
@@ -1460,14 +1423,12 @@ export interface ElectronAPI {
   listActionPlans: (filters?: any) => Promise<any[]>;
   activateActionPlan: (id: number) => Promise<any>;
 
-  // Phase 5.4: Scenario Planning Suite
   createScenarioSimulation: (data: any) => Promise<any>;
   listScenarioSimulations: (filters?: any) => Promise<any[]>;
   runMonteCarloSimulation: (params: any) => Promise<any>;
   runSensitivityAnalysis: (params: any) => Promise<any>;
   listSensitivityAnalyses: () => Promise<any[]>;
 
-  // Phase 5.5: Enterprise Features
   createEnterpriseForecast: (data: any) => Promise<any>;
   listEnterpriseForecasts: (filters?: any) => Promise<any[]>;
   publishEnterpriseForecast: (id: number) => Promise<any>;
@@ -1477,7 +1438,6 @@ export interface ElectronAPI {
   getModelPerformanceMetrics: (modelId?: number) => Promise<any[]>;
 
   // ===============================================
-  // Phase 8: Autonomous Data Collection APIs
   // ===============================================
 
   // Document Processing APIs
@@ -1565,7 +1525,6 @@ export interface ElectronAPI {
   enableMicrosoftSSO: (id: number, enabled: boolean) => Promise<boolean>;
 
   // ===============================================
-  // Phase 11: Supply Chain Carbon X-Ray APIs
   // ===============================================
 
   // Supplier Carbon Scoring APIs

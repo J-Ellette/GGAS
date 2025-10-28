@@ -155,7 +155,6 @@ const Phase15Page: React.FC = () => {
         <Tab label="Digital Twins" icon={<CloudIcon />} iconPosition="start" />
       </Tabs>
 
-      {/* Collaborative Workspaces Tab */}
       <TabPanel value={tabValue} index={0}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -290,7 +289,6 @@ const Phase15Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Gamification Engine Tab */}
       <TabPanel value={tabValue} index={1}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
@@ -445,7 +443,6 @@ const Phase15Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Mobile Carbon Management Tab */}
       <TabPanel value={tabValue} index={2}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -575,7 +572,6 @@ const Phase15Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Communication & Coordination Tab */}
       <TabPanel value={tabValue} index={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
@@ -664,7 +660,6 @@ const Phase15Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Enterprise Collaboration Features Tab */}
       <TabPanel value={tabValue} index={4}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -794,7 +789,6 @@ const Phase15Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* 3D Carbon Flow Visualization Tab */}
       <TabPanel value={tabValue} index={5}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -902,7 +896,6 @@ const Phase15Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Remote Carbon Auditing Tab */}
       <TabPanel value={tabValue} index={6}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -1033,7 +1026,6 @@ const Phase15Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Digital Twin Integration Tab */}
       <TabPanel value={tabValue} index={7}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -1161,7 +1153,6 @@ const Phase15Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Create Workspace Dialog */}
       <Dialog open={workspaceDialogOpen} onClose={() => setWorkspaceDialogOpen(false)} maxWidth="sm" fullWidth>
         <DialogTitle>Create New Workspace</DialogTitle>
         <DialogContent>
@@ -1199,7 +1190,6 @@ const Phase15Page: React.FC = () => {
         </DialogActions>
       </Dialog>
 
-      {/* View Achievements Dialog */}
       <Dialog open={achievementDialogOpen} onClose={() => setAchievementDialogOpen(false)} maxWidth="md" fullWidth>
         <DialogTitle>All Achievements</DialogTitle>
         <DialogContent>

@@ -168,10 +168,8 @@ const Phase14Page: React.FC = () => {
         <Tab label="Strategy Integration" icon={<StrategyIcon />} iconPosition="start" />
       </Tabs>
 
-      {/* Tab 1: Integrated ESG Dashboard */}
       <TabPanel value={tabValue} index={0}>
         <Grid container spacing={3}>
-          {/* ESG Score Cards */}
           <Grid item xs={12} md={3}>
             <Card>
               <CardContent>
@@ -263,7 +261,6 @@ const Phase14Page: React.FC = () => {
             </Card>
           </Grid>
 
-          {/* Carbon Performance Integration */}
           <Grid item xs={12} md={6}>
             <Card>
               <CardContent>
@@ -302,7 +299,6 @@ const Phase14Page: React.FC = () => {
             </Card>
           </Grid>
 
-          {/* ESG Correlation Analysis */}
           <Grid item xs={12} md={6}>
             <Card>
               <CardContent>
@@ -343,7 +339,6 @@ const Phase14Page: React.FC = () => {
             </Card>
           </Grid>
 
-          {/* Materiality Matrix */}
           <Grid item xs={12}>
             <Card>
               <CardContent>
@@ -411,7 +406,6 @@ const Phase14Page: React.FC = () => {
             </Card>
           </Grid>
 
-          {/* Stakeholder Value Creation */}
           <Grid item xs={12}>
             <Card>
               <CardContent>
@@ -469,7 +463,6 @@ const Phase14Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Tab 2: Stakeholder Impact Analysis */}
       <TabPanel value={tabValue} index={1}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -821,7 +814,6 @@ const Phase14Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Tab 3: ESG Rating Optimization */}
       <TabPanel value={tabValue} index={2}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -1004,7 +996,6 @@ const Phase14Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Tab 4: Stakeholder Communication */}
       <TabPanel value={tabValue} index={3}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -1255,7 +1246,6 @@ const Phase14Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Tab 5: Enterprise Strategy Integration */}
       <TabPanel value={tabValue} index={4}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
@@ -1555,7 +1545,6 @@ const Phase14Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Report Generation Dialog */}
       <Dialog open={reportDialogOpen} onClose={() => setReportDialogOpen(false)} maxWidth="sm" fullWidth>
         <DialogTitle>Generate ESG Report</DialogTitle>
         <DialogContent>

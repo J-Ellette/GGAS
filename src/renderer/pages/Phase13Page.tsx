@@ -152,7 +152,6 @@ const Phase13Page: React.FC = () => {
         <Tab label="ERP Integration" icon={<BusinessIcon />} iconPosition="start" />
       </Tabs>
 
-      {/* Integrated Accounting Systems */}
       <TabPanel value={tabValue} index={0}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -320,7 +319,6 @@ const Phase13Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Carbon Pricing Integration */}
       <TabPanel value={tabValue} index={1}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -477,7 +475,6 @@ const Phase13Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Green Finance Optimization */}
       <TabPanel value={tabValue} index={2}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -668,7 +665,6 @@ const Phase13Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Carbon Tax Management */}
       <TabPanel value={tabValue} index={3}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -856,7 +852,6 @@ const Phase13Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* ERP Integration */}
       <TabPanel value={tabValue} index={4}>
         <Grid container spacing={3}>
           <Grid item xs={12}>

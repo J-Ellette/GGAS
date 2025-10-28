@@ -83,14 +83,14 @@ type PageType =
   | 'ai-ml'
   | 'targets'
   | 'multi-entity'
-  | 'phase4'
-  | 'phase5'
-  | 'phase6'
-  | 'phase8'
-  | 'phase11'
-  | 'phase13'
-  | 'phase14'
-  | 'phase15'
+  | 'advanced-analytics'
+  | 'predictive-intelligence'
+  | 'operations-center'
+  | 'autonomous-collection'
+  | 'supply-chain'
+  | 'carbon-financial'
+  | 'esg-strategy'
+  | 'collaborative-workspace'
   | 'admin'
   | 'settings'
   | 'documentation'
@@ -180,21 +180,21 @@ const App: React.FC = () => {
         return <TargetManagementPage />;
       case 'multi-entity':
         return <MultiEntityPage />;
-      case 'phase4':
+      case 'advanced-analytics':
         return <Phase4Page />;
-      case 'phase5':
+      case 'predictive-intelligence':
         return <Phase5Page />;
-      case 'phase6':
+      case 'operations-center':
         return <Phase6Page />;
-      case 'phase8':
+      case 'autonomous-collection':
         return <Phase8Page />;
-      case 'phase11':
+      case 'supply-chain':
         return <Phase11Page />;
-      case 'phase13':
+      case 'carbon-financial':
         return <Phase13Page />;
-      case 'phase14':
+      case 'esg-strategy':
         return <Phase14Page />;
-      case 'phase15':
+      case 'collaborative-workspace':
         return <Phase15Page />;
       case 'admin':
         return <AdminPanel />;
@@ -374,7 +374,7 @@ const App: React.FC = () => {
             </Typography>
             <List>
               <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'phase4'} onClick={() => setCurrentPage('phase4')}>
+                <ListItemButton selected={currentPage === 'advanced-analytics'} onClick={() => setCurrentPage('advanced-analytics')}>
                   <ListItemIcon>
                     <RocketLaunchIcon />
                   </ListItemIcon>
@@ -382,7 +382,7 @@ const App: React.FC = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'phase5'} onClick={() => setCurrentPage('phase5')}>
+                <ListItemButton selected={currentPage === 'predictive-intelligence'} onClick={() => setCurrentPage('predictive-intelligence')}>
                   <ListItemIcon>
                     <TrendingUpIcon />
                   </ListItemIcon>
@@ -390,7 +390,7 @@ const App: React.FC = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'phase6'} onClick={() => setCurrentPage('phase6')}>
+                <ListItemButton selected={currentPage === 'operations-center'} onClick={() => setCurrentPage('operations-center')}>
                   <ListItemIcon>
                     <DashboardIcon />
                   </ListItemIcon>
@@ -398,7 +398,7 @@ const App: React.FC = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'phase8'} onClick={() => setCurrentPage('phase8')}>
+                <ListItemButton selected={currentPage === 'autonomous-collection'} onClick={() => setCurrentPage('autonomous-collection')}>
                   <ListItemIcon>
                     <CloudIcon />
                   </ListItemIcon>
@@ -406,7 +406,7 @@ const App: React.FC = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'phase11'} onClick={() => setCurrentPage('phase11')}>
+                <ListItemButton selected={currentPage === 'supply-chain'} onClick={() => setCurrentPage('supply-chain')}>
                   <ListItemIcon>
                     <AccountTreeIcon />
                   </ListItemIcon>
@@ -414,7 +414,7 @@ const App: React.FC = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'phase13'} onClick={() => setCurrentPage('phase13')}>
+                <ListItemButton selected={currentPage === 'carbon-financial'} onClick={() => setCurrentPage('carbon-financial')}>
                   <ListItemIcon>
                     <AttachMoneyIcon />
                   </ListItemIcon>
@@ -422,7 +422,7 @@ const App: React.FC = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'phase14'} onClick={() => setCurrentPage('phase14')}>
+                <ListItemButton selected={currentPage === 'esg-strategy'} onClick={() => setCurrentPage('esg-strategy')}>
                   <ListItemIcon>
                     <BusinessCenterIcon />
                   </ListItemIcon>
@@ -430,7 +430,7 @@ const App: React.FC = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'phase15'} onClick={() => setCurrentPage('phase15')}>
+                <ListItemButton selected={currentPage === 'collaborative-workspace'} onClick={() => setCurrentPage('collaborative-workspace')}>
                   <ListItemIcon>
                     <GroupsIcon />
                   </ListItemIcon>

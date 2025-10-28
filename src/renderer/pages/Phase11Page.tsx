@@ -374,10 +374,8 @@ const Phase11Page: React.FC = () => {
         <Tab label="Enterprise Management" icon={<LanguageIcon />} iconPosition="start" />
       </Tabs>
 
-      {/* Tab 1: Supplier Carbon Scoring */}
       <TabPanel value={tabValue} index={0}>
         <Grid container spacing={3}>
-          {/* Summary Cards */}
           <Grid item xs={12} md={3}>
             <Card>
               <CardContent>
@@ -442,7 +440,6 @@ const Phase11Page: React.FC = () => {
             </Card>
           </Grid>
 
-          {/* Data Integration Section */}
           <Grid item xs={12}>
             <Card>
               <CardContent>
@@ -494,7 +491,6 @@ const Phase11Page: React.FC = () => {
             </Card>
           </Grid>
 
-          {/* Supplier Scores Table */}
           <Grid item xs={12}>
             <Card>
               <CardContent>
@@ -601,7 +597,6 @@ const Phase11Page: React.FC = () => {
         </Grid>
       </TabPanel>
 
-      {/* Tab 2: Carbon Hotspot Mapping - Truncated for brevity, see full implementation */}
       <TabPanel value={tabValue} index={1}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -612,7 +607,6 @@ const Phase11Page: React.FC = () => {
             </Alert>
           </Grid>
 
-          {/* Visualization Placeholder */}
           <Grid item xs={12} md={8}>
             <Card>
               <CardContent>
@@ -643,7 +637,6 @@ const Phase11Page: React.FC = () => {
             </Card>
           </Grid>
 
-          {/* Hotspot Summary */}
           <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
@@ -686,11 +679,9 @@ const Phase11Page: React.FC = () => {
             </Card>
           </Grid>
 
-          {/* Spend-Carbon Correlation - Additional tables truncated for brevity */}
         </Grid>
       </TabPanel>
 
-      {/* Tabs 3-5 - Truncated for brevity */}
       <TabPanel value={tabValue} index={2}>
         <Typography variant="h6">Alternative Supplier Intelligence</Typography>
         <Alert severity="info" sx={{ mt: 2 }}>
@@ -712,7 +703,6 @@ const Phase11Page: React.FC = () => {
         </Alert>
       </TabPanel>
 
-      {/* Supplier Details Dialog */}
       <Dialog
         open={scoreDialogOpen}
         onClose={() => setScoreDialogOpen(false)}
@@ -769,7 +759,6 @@ const Phase11Page: React.FC = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Add Program Dialog */}
       <Dialog
         open={addProgramDialogOpen}
         onClose={() => setAddProgramDialogOpen(false)}
@@ -807,7 +796,6 @@ const Phase11Page: React.FC = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Snackbar for notifications */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={4000}

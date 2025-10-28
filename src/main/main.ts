@@ -115,7 +115,6 @@ function setupIpcHandlers() {
     return databaseService?.listCalculations(filters);
   });
 
-  // Phase 2.1: Scope 3 Categories handlers
   ipcMain.handle('scope3-categories:list', async () => {
     return databaseService?.listScope3Categories();
   });
@@ -124,7 +123,6 @@ function setupIpcHandlers() {
     return databaseService?.updateScope3Category(id, data);
   });
 
-  // Phase 2.1: Supplier Data handlers
   ipcMain.handle('supplier-data:create', async (event, data) => {
     return databaseService?.createSupplierData(data);
   });
@@ -141,7 +139,6 @@ function setupIpcHandlers() {
     return databaseService?.deleteSupplierData(id);
   });
 
-  // Phase 2.2: Integrations handlers
   ipcMain.handle('integrations:create', async (event, data) => {
     return databaseService?.createIntegration(data);
   });
@@ -163,7 +160,6 @@ function setupIpcHandlers() {
     return { success: true, message: 'Connection test successful' };
   });
 
-  // Phase 2.3: Scenarios handlers
   ipcMain.handle('scenarios:create', async (event, data) => {
     return databaseService?.createScenario(data);
   });
@@ -185,7 +181,6 @@ function setupIpcHandlers() {
     return { success: true, results: { emissionsReduction: 15, costSavings: 50000 } };
   });
 
-  // Phase 2.4: Compliance Reports handlers
   ipcMain.handle('compliance-reports:create', async (event, data) => {
     return databaseService?.createComplianceReport(data);
   });
@@ -207,7 +202,6 @@ function setupIpcHandlers() {
     return `Report exported successfully as ${format}`;
   });
 
-  // Phase 2.5: User Roles handlers
   ipcMain.handle('user-roles:create', async (event, data) => {
     return databaseService?.createUserRole(data);
   });
@@ -224,7 +218,6 @@ function setupIpcHandlers() {
     return databaseService?.deleteUserRole(id);
   });
 
-  // Phase 2.5: Users handlers
   ipcMain.handle('users:create', async (event, data) => {
     return databaseService?.createUser(data);
   });
@@ -242,7 +235,6 @@ function setupIpcHandlers() {
   });
 
   // ========================================
-  // Phase 3.1: AI/ML Implementation handlers
   // ========================================
   
   ipcMain.handle('anomalies:detect', async (event, dataType, threshold) => {
@@ -286,7 +278,6 @@ function setupIpcHandlers() {
   });
 
   // ========================================
-  // Phase 3.2: Advanced Target Management handlers
   // ========================================
 
   ipcMain.handle('carbon-targets:create', async (event, data) => {
@@ -346,7 +337,6 @@ function setupIpcHandlers() {
   });
 
   // ========================================
-  // Phase 3.3: Supply Chain Features handlers
   // ========================================
 
   ipcMain.handle('supplier-engagements:create', async (event, data) => {
@@ -402,7 +392,6 @@ function setupIpcHandlers() {
   });
 
   // ========================================
-  // Phase 3.4: Multi-Entity Support handlers
   // ========================================
 
   ipcMain.handle('entities:create', async (event, data) => {
@@ -458,7 +447,6 @@ function setupIpcHandlers() {
   });
 
   // ========================================
-  // Phase 3.5: Integration Ecosystem handlers
   // ========================================
 
   ipcMain.handle('plugins:list', async (event, filters) => {
@@ -517,7 +505,6 @@ function setupIpcHandlers() {
     return databaseService?.executeAutomationWorkflow(id);
   });
 
-  // Phase 4.1: Next-Gen Analytics IPC Handlers
   ipcMain.handle('deep-learning-models:create', async (event, data) => {
     return databaseService?.createDeepLearningModel(data);
   });
@@ -590,7 +577,6 @@ function setupIpcHandlers() {
     return databaseService?.syncDigitalTwinData(id);
   });
 
-  // Phase 4.2: Enhanced Verification & Trust IPC Handlers
   ipcMain.handle('verification-workflows:create', async (event, data) => {
     return databaseService?.createVerificationWorkflow(data);
   });
@@ -651,7 +637,6 @@ function setupIpcHandlers() {
     return databaseService?.validateDataCompliance(dataType, dataId);
   });
 
-  // Phase 4.3: IoT & Real-Time Monitoring IPC Handlers
   ipcMain.handle('iot-devices:create', async (event, data) => {
     return databaseService?.createIoTDevice(data);
   });
@@ -728,7 +713,6 @@ function setupIpcHandlers() {
     return databaseService?.getActiveAlerts(filters);
   });
 
-  // Phase 4.4: Advanced Visualization & Immersive Experience IPC Handlers
   ipcMain.handle('facility-3d-models:create', async (event, data) => {
     return databaseService?.createFacility3DModel(data);
   });
@@ -813,7 +797,6 @@ function setupIpcHandlers() {
     return databaseService?.generateDataStoryNarrative(storyId);
   });
 
-  // Phase 4.5: Platform Optimization & Future-Proofing IPC Handlers
   ipcMain.handle('cache:get-stats', async () => {
     return databaseService?.getCacheStats();
   });
@@ -879,10 +862,8 @@ function setupIpcHandlers() {
   });
 
   // ===============================================
-  // Phase 5: Predictive Carbon Intelligence IPC Handlers
   // ===============================================
 
-  // Phase 5.1: Advanced Forecasting Engine
   ipcMain.handle('forecasts:create', async (event, data) => {
     return databaseService?.createEmissionForecast(data);
   });
@@ -915,7 +896,6 @@ function setupIpcHandlers() {
     return databaseService?.trainLSTMModel(params);
   });
 
-  // Phase 5.2: Carbon Budget Management
   ipcMain.handle('carbon-budgets:create', async (event, data) => {
     return databaseService?.createCarbonBudget(data);
   });
@@ -952,7 +932,6 @@ function setupIpcHandlers() {
     return databaseService?.listBudgetVariances(budgetId);
   });
 
-  // Phase 5.3: Early Warning System
   ipcMain.handle('predictive-alerts:create', async (event, data) => {
     return databaseService?.createPredictiveAlert(data);
   });
@@ -993,7 +972,6 @@ function setupIpcHandlers() {
     return databaseService?.activateActionPlan(id);
   });
 
-  // Phase 5.4: Scenario Planning Suite
   ipcMain.handle('scenario-simulations:create', async (event, data) => {
     return databaseService?.createScenarioSimulation(data);
   });
@@ -1014,7 +992,6 @@ function setupIpcHandlers() {
     return databaseService?.listSensitivityAnalyses();
   });
 
-  // Phase 5.5: Enterprise Features
   ipcMain.handle('enterprise-forecasts:create', async (event, data) => {
     return databaseService?.createEnterpriseForecast(data);
   });
