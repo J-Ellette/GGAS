@@ -25,6 +25,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import LanguageIcon from '@mui/icons-material/Language';
 import ExtensionIcon from '@mui/icons-material/Extension';
+import GroupsIcon from '@mui/icons-material/Groups';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
