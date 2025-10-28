@@ -18,50 +18,42 @@ contextBridge.exposeInMainWorld('electronAPI', {
   calculateEmissions: (data: any) => ipcRenderer.invoke('calculations:calculate', data),
   listCalculations: (filters?: any) => ipcRenderer.invoke('calculations:list', filters),
 
-  // Phase 2.1: Scope 3 Categories API
   listScope3Categories: () => ipcRenderer.invoke('scope3-categories:list'),
   updateScope3Category: (id: number, data: any) => ipcRenderer.invoke('scope3-categories:update', id, data),
 
-  // Phase 2.1: Supplier Data API
   createSupplierData: (data: any) => ipcRenderer.invoke('supplier-data:create', data),
   listSupplierData: (filters?: any) => ipcRenderer.invoke('supplier-data:list', filters),
   updateSupplierData: (id: number, data: any) => ipcRenderer.invoke('supplier-data:update', id, data),
   deleteSupplierData: (id: number) => ipcRenderer.invoke('supplier-data:delete', id),
 
-  // Phase 2.2: Integrations API
   createIntegration: (data: any) => ipcRenderer.invoke('integrations:create', data),
   listIntegrations: () => ipcRenderer.invoke('integrations:list'),
   updateIntegration: (id: number, data: any) => ipcRenderer.invoke('integrations:update', id, data),
   deleteIntegration: (id: number) => ipcRenderer.invoke('integrations:delete', id),
   testIntegrationConnection: (id: number) => ipcRenderer.invoke('integrations:test', id),
 
-  // Phase 2.3: Scenarios API
   createScenario: (data: any) => ipcRenderer.invoke('scenarios:create', data),
   listScenarios: () => ipcRenderer.invoke('scenarios:list'),
   updateScenario: (id: number, data: any) => ipcRenderer.invoke('scenarios:update', id, data),
   deleteScenario: (id: number) => ipcRenderer.invoke('scenarios:delete', id),
   runScenario: (id: number) => ipcRenderer.invoke('scenarios:run', id),
 
-  // Phase 2.4: Compliance Reports API
   createComplianceReport: (data: any) => ipcRenderer.invoke('compliance-reports:create', data),
   listComplianceReports: (filters?: any) => ipcRenderer.invoke('compliance-reports:list', filters),
   updateComplianceReport: (id: number, data: any) => ipcRenderer.invoke('compliance-reports:update', id, data),
   deleteComplianceReport: (id: number) => ipcRenderer.invoke('compliance-reports:delete', id),
   exportComplianceReport: (id: number, format: string) => ipcRenderer.invoke('compliance-reports:export', id, format),
 
-  // Phase 2.5: User Roles API
   createUserRole: (data: any) => ipcRenderer.invoke('user-roles:create', data),
   listUserRoles: () => ipcRenderer.invoke('user-roles:list'),
   updateUserRole: (id: number, data: any) => ipcRenderer.invoke('user-roles:update', id, data),
   deleteUserRole: (id: number) => ipcRenderer.invoke('user-roles:delete', id),
 
-  // Phase 2.5: Users API
   createUser: (data: any) => ipcRenderer.invoke('users:create', data),
   listUsers: () => ipcRenderer.invoke('users:list'),
   updateUser: (id: number, data: any) => ipcRenderer.invoke('users:update', id, data),
   deleteUser: (id: number) => ipcRenderer.invoke('users:delete', id),
 
-  // Phase 3.1: AI/ML Implementation API
   detectAnomalies: (dataType: string, threshold?: number) => ipcRenderer.invoke('anomalies:detect', dataType, threshold),
   listAnomalies: (filters?: any) => ipcRenderer.invoke('anomalies:list', filters),
   resolveAnomaly: (id: number, resolution: string) => ipcRenderer.invoke('anomalies:resolve', id, resolution),
@@ -73,7 +65,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   acceptSuggestion: (id: number) => ipcRenderer.invoke('ml-suggestions:accept', id),
   rejectSuggestion: (id: number) => ipcRenderer.invoke('ml-suggestions:reject', id),
 
-  // Phase 3.2: Advanced Target Management API
   createCarbonTarget: (data: any) => ipcRenderer.invoke('carbon-targets:create', data),
   listCarbonTargets: () => ipcRenderer.invoke('carbon-targets:list'),
   updateCarbonTarget: (id: number, data: any) => ipcRenderer.invoke('carbon-targets:update', id, data),
@@ -89,7 +80,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   updateCarbonPricingScenario: (id: number, data: any) => ipcRenderer.invoke('carbon-pricing:update', id, data),
   deleteCarbonPricingScenario: (id: number) => ipcRenderer.invoke('carbon-pricing:delete', id),
 
-  // Phase 3.3: Supply Chain Features API
   createSupplierEngagement: (data: any) => ipcRenderer.invoke('supplier-engagements:create', data),
   listSupplierEngagements: (filters?: any) => ipcRenderer.invoke('supplier-engagements:list', filters),
   updateSupplierEngagement: (id: number, data: any) => ipcRenderer.invoke('supplier-engagements:update', id, data),
@@ -104,7 +94,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   deleteSupplierAssessment: (id: number) => ipcRenderer.invoke('supplier-assessments:delete', id),
   generateSupplierReport: (supplierId: number) => ipcRenderer.invoke('suppliers:generate-report', supplierId),
 
-  // Phase 3.4: Multi-Entity Support API
   createEntity: (data: any) => ipcRenderer.invoke('entities:create', data),
   listEntities: (filters?: any) => ipcRenderer.invoke('entities:list', filters),
   updateEntity: (id: number, data: any) => ipcRenderer.invoke('entities:update', id, data),
@@ -119,7 +108,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   updateDataGovernancePolicy: (id: number, data: any) => ipcRenderer.invoke('data-governance:update', id, data),
   deleteDataGovernancePolicy: (id: number) => ipcRenderer.invoke('data-governance:delete', id),
 
-  // Phase 3.5: Integration Ecosystem API
   listIntegrationPlugins: (filters?: any) => ipcRenderer.invoke('plugins:list', filters),
   installPlugin: (pluginId: number) => ipcRenderer.invoke('plugins:install', pluginId),
   uninstallPlugin: (pluginId: number) => ipcRenderer.invoke('plugins:uninstall', pluginId),
@@ -135,7 +123,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   deleteAutomationWorkflow: (id: number) => ipcRenderer.invoke('automation-workflows:delete', id),
   executeAutomationWorkflow: (id: number) => ipcRenderer.invoke('automation-workflows:execute', id),
 
-  // Phase 4.1: Next-Gen Analytics API
   createDeepLearningModel: (data: any) => ipcRenderer.invoke('deep-learning-models:create', data),
   listDeepLearningModels: (filters?: any) => ipcRenderer.invoke('deep-learning-models:list', filters),
   updateDeepLearningModel: (id: number, data: any) => ipcRenderer.invoke('deep-learning-models:update', id, data),
@@ -155,7 +142,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   deleteDigitalTwin: (id: number) => ipcRenderer.invoke('digital-twins:delete', id),
   syncDigitalTwinData: (id: number) => ipcRenderer.invoke('digital-twins:sync-data', id),
 
-  // Phase 4.2: Enhanced Verification & Trust API
   createVerificationWorkflow: (data: any) => ipcRenderer.invoke('verification-workflows:create', data),
   listVerificationWorkflows: (filters?: any) => ipcRenderer.invoke('verification-workflows:list', filters),
   updateVerificationWorkflow: (id: number, data: any) => ipcRenderer.invoke('verification-workflows:update', id, data),
@@ -172,7 +158,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   traceDataLineage: (dataType: string, dataId: number) => ipcRenderer.invoke('data-provenance:trace-lineage', dataType, dataId),
   validateDataCompliance: (dataType: string, dataId: number) => ipcRenderer.invoke('data-provenance:validate-compliance', dataType, dataId),
 
-  // Phase 4.3: IoT & Real-Time Monitoring API
   createIoTDevice: (data: any) => ipcRenderer.invoke('iot-devices:create', data),
   listIoTDevices: (filters?: any) => ipcRenderer.invoke('iot-devices:list', filters),
   updateIoTDevice: (id: number, data: any) => ipcRenderer.invoke('iot-devices:update', id, data),
@@ -193,7 +178,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   testAlertRule: (id: number) => ipcRenderer.invoke('alert-rules:test', id),
   getActiveAlerts: (filters?: any) => ipcRenderer.invoke('alerts:get-active', filters),
 
-  // Phase 4.4: Advanced Visualization & Immersive Experience API
   createFacility3DModel: (data: any) => ipcRenderer.invoke('facility-3d-models:create', data),
   listFacility3DModels: (filters?: any) => ipcRenderer.invoke('facility-3d-models:list', filters),
   updateFacility3DModel: (id: number, data: any) => ipcRenderer.invoke('facility-3d-models:update', id, data),
@@ -216,7 +200,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   deleteDataStory: (id: number) => ipcRenderer.invoke('data-stories:delete', id),
   generateDataStoryNarrative: (storyId: number) => ipcRenderer.invoke('data-stories:generate-narrative', storyId),
 
-  // Phase 4.5: Platform Optimization & Future-Proofing API
   getCacheStats: () => ipcRenderer.invoke('cache:get-stats'),
   clearCache: (cacheType?: string) => ipcRenderer.invoke('cache:clear', cacheType),
   optimizeCache: () => ipcRenderer.invoke('cache:optimize'),
@@ -235,10 +218,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   testQuantumResistance: (keyId: number) => ipcRenderer.invoke('encryption-keys:test-quantum-resistance', keyId),
 
   // ===============================================
-  // Phase 5: Predictive Carbon Intelligence API
   // ===============================================
 
-  // Phase 5.1: Advanced Forecasting Engine
   createEmissionForecast: (data: any) => ipcRenderer.invoke('forecasts:create', data),
   listEmissionForecasts: (filters?: any) => ipcRenderer.invoke('forecasts:list', filters),
   getEmissionForecast: (id: number) => ipcRenderer.invoke('forecasts:get', id),
@@ -248,7 +229,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   runMultiFactorForecast: (params: any) => ipcRenderer.invoke('forecasts:run-multi-factor', params),
   trainLSTMModel: (params: any) => ipcRenderer.invoke('ml:train-lstm', params),
 
-  // Phase 5.2: Carbon Budget Management
   createCarbonBudget: (data: any) => ipcRenderer.invoke('carbon-budgets:create', data),
   listCarbonBudgets: (filters?: any) => ipcRenderer.invoke('carbon-budgets:list', filters),
   getCarbonBudget: (id: number) => ipcRenderer.invoke('carbon-budgets:get', id),
@@ -259,7 +239,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   createBudgetVariance: (data: any) => ipcRenderer.invoke('budget-variances:create', data),
   listBudgetVariances: (budgetId?: number) => ipcRenderer.invoke('budget-variances:list', budgetId),
 
-  // Phase 5.3: Early Warning System
   createPredictiveAlert: (data: any) => ipcRenderer.invoke('predictive-alerts:create', data),
   listPredictiveAlerts: (filters?: any) => ipcRenderer.invoke('predictive-alerts:list', filters),
   acknowledgeAlert: (id: number) => ipcRenderer.invoke('predictive-alerts:acknowledge', id),
@@ -271,14 +250,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
   listActionPlans: (filters?: any) => ipcRenderer.invoke('action-plans:list', filters),
   activateActionPlan: (id: number) => ipcRenderer.invoke('action-plans:activate', id),
 
-  // Phase 5.4: Scenario Planning Suite
   createScenarioSimulation: (data: any) => ipcRenderer.invoke('scenario-simulations:create', data),
   listScenarioSimulations: (filters?: any) => ipcRenderer.invoke('scenario-simulations:list', filters),
   runMonteCarloSimulation: (params: any) => ipcRenderer.invoke('scenarios:run-monte-carlo', params),
   runSensitivityAnalysis: (params: any) => ipcRenderer.invoke('sensitivity-analysis:run', params),
   listSensitivityAnalyses: () => ipcRenderer.invoke('sensitivity-analysis:list'),
 
-  // Phase 5.5: Enterprise Features
   createEnterpriseForecast: (data: any) => ipcRenderer.invoke('enterprise-forecasts:create', data),
   listEnterpriseForecasts: (filters?: any) => ipcRenderer.invoke('enterprise-forecasts:list', filters),
   publishEnterpriseForecast: (id: number) => ipcRenderer.invoke('enterprise-forecasts:publish', id),

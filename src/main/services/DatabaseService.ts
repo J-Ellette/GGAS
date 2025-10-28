@@ -124,7 +124,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 2.1: Scope 3 Categories
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS scope3_categories (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -138,7 +137,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 2.1: Supplier Data
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS supplier_data (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -155,7 +153,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 2.2: Integrations
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS integrations (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -170,7 +167,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 2.3: Scenarios
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS scenarios (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -185,7 +181,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 2.4: Compliance Reports
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS compliance_reports (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -200,7 +195,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 2.5: User Roles
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS user_roles (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -212,7 +206,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 2.5: Users
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -227,7 +220,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.1: AI/ML Features - Anomaly Detection
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS anomaly_detections (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -242,7 +234,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.1: Predictive Models
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS predictive_models (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -257,7 +248,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.1: ML Suggestions
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS ml_suggestions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -272,7 +262,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.2: Carbon Targets
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS carbon_targets (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -290,7 +279,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.2: Reduction Projects
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS reduction_projects (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -311,7 +299,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.2: Carbon Pricing Scenarios
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS carbon_pricing_scenarios (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -325,7 +312,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.3: Supplier Engagements
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS supplier_engagements (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -342,7 +328,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.3: Supply Chain Maps
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS supply_chain_maps (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -361,7 +346,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.3: Supplier Assessments
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS supplier_assessments (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -380,7 +364,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.4: Entities (Multi-Entity Support)
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS entities (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -399,7 +382,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.4: Regional Compliance
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS regional_compliance (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -417,7 +399,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.4: Data Governance Policies
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS data_governance_policies (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -433,7 +414,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.5: Integration Plugins
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS integration_plugins (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -451,7 +431,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.5: Custom Calculations
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS custom_calculations (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -467,7 +446,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 3.5: Automation Workflows
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS automation_workflows (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -484,7 +462,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.1: Next-Gen Analytics - Deep Learning Models
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS deep_learning_models (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -502,7 +479,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.1: Strategy Recommendations
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS strategy_recommendations (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -520,7 +496,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.1: Automated Insights
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS automated_insights (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -536,7 +511,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.1: Digital Twins
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS digital_twins (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -554,7 +528,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.2: Verification Workflows
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS verification_workflows (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -573,7 +546,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.2: Audit Trails
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS audit_trails (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -592,7 +564,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.2: Third Party Verifiers
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS third_party_verifiers (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -610,7 +581,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.2: Data Provenance
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS data_provenance (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -626,7 +596,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.3: IoT Devices
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS iot_devices (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -647,7 +616,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.3: Realtime Monitors
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS realtime_monitors (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -666,7 +634,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.3: Sensor Data
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS sensor_data (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -684,7 +651,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.3: Alert Rules
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS alert_rules (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -702,7 +668,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.4: 3D Facility Models
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS facility_3d_models (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -720,7 +685,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.4: AR Data Collections
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS ar_data_collections (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -739,7 +703,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.4: Training Modules
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS training_modules (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -757,7 +720,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.4: Training Progress
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS training_progress (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -776,7 +738,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.4: Data Stories
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS data_stories (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -794,7 +755,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.5: Cache Configurations
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS cache_configs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -809,7 +769,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.5: Distributed Jobs
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS distributed_jobs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -831,7 +790,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.5: Resource Metrics
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS resource_metrics (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -846,7 +804,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.5: Security Configurations
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS security_configs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -863,7 +820,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 4.5: Encryption Keys
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS encryption_keys (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -883,7 +839,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.1: Emission Forecasts
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS emission_forecasts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -905,7 +860,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.1: Forecasting Factors
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS forecasting_factors (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -924,7 +878,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.2: Carbon Budgets
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS carbon_budgets (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -944,7 +897,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.2: Budget Allocations
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS budget_allocations (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -964,7 +916,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.2: Budget Variance Analysis
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS budget_variances (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -985,7 +936,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.3: Predictive Alerts
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS predictive_alerts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -1009,7 +959,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.3: Early Warning Triggers
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS early_warning_triggers (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -1030,7 +979,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.3: Action Plans
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS action_plans (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -1052,7 +1000,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.4: Scenario Simulations
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS scenario_simulations (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -1073,7 +1020,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.4: Sensitivity Analysis
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS sensitivity_analyses (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -1090,7 +1036,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.5: Enterprise Forecasts
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS enterprise_forecasts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -1112,7 +1057,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.5: ML Training Data
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS ml_training_data (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -1131,7 +1075,6 @@ export class DatabaseService {
       )
     `);
 
-    // Phase 5.5: Model Performance Metrics
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS model_performance_metrics (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -2075,7 +2018,6 @@ export class DatabaseService {
     return stmt.all(...params);
   }
 
-  // Phase 2.1: Scope 3 Categories CRUD
   listScope3Categories() {
     if (!this.db) return [];
     const stmt = this.db.prepare('SELECT * FROM scope3_categories ORDER BY categoryNumber');
@@ -2093,7 +2035,6 @@ export class DatabaseService {
     return this.db.prepare('SELECT * FROM scope3_categories WHERE id = ?').get(id);
   }
 
-  // Phase 2.1: Supplier Data CRUD
   createSupplierData(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -2151,7 +2092,6 @@ export class DatabaseService {
     return true;
   }
 
-  // Phase 2.2: Integrations CRUD
   createIntegration(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -2198,7 +2138,6 @@ export class DatabaseService {
     return true;
   }
 
-  // Phase 2.3: Scenarios CRUD
   createScenario(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -2246,7 +2185,6 @@ export class DatabaseService {
     return true;
   }
 
-  // Phase 2.4: Compliance Reports CRUD
   createComplianceReport(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -2300,7 +2238,6 @@ export class DatabaseService {
     return true;
   }
 
-  // Phase 2.5: User Roles CRUD
   createUserRole(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -2345,7 +2282,6 @@ export class DatabaseService {
     return true;
   }
 
-  // Phase 2.5: Users CRUD
   createUser(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -2402,7 +2338,6 @@ export class DatabaseService {
   }
 
   // ========================================
-  // Phase 3.1: AI/ML Implementation
   // ========================================
 
   detectAnomalies(dataType: string, threshold = 0.7) {
@@ -2584,7 +2519,6 @@ export class DatabaseService {
   }
 
   // ========================================
-  // Phase 3.2: Advanced Target Management
   // ========================================
 
   createCarbonTarget(data: any) {
@@ -2802,7 +2736,6 @@ export class DatabaseService {
   }
 
   // ========================================
-  // Phase 3.3: Supply Chain Features
   // ========================================
 
   createSupplierEngagement(data: any) {
@@ -3018,7 +2951,6 @@ export class DatabaseService {
   }
 
   // ========================================
-  // Phase 3.4: Multi-Entity Support
   // ========================================
 
   createEntity(data: any) {
@@ -3250,7 +3182,6 @@ export class DatabaseService {
   }
 
   // ========================================
-  // Phase 3.5: Integration Ecosystem
   // ========================================
 
   listIntegrationPlugins(filters: any = {}) {
@@ -3481,7 +3412,6 @@ export class DatabaseService {
     return { success: true, output: 'Workflow executed successfully' };
   }
 
-  // Phase 4.1: Next-Gen Analytics Methods
   createDeepLearningModel(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -3609,7 +3539,6 @@ export class DatabaseService {
     return { success: true, lastUpdated: now };
   }
 
-  // Phase 4.2: Enhanced Verification & Trust Methods
   createVerificationWorkflow(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -3720,7 +3649,6 @@ export class DatabaseService {
     return { compliant: true, issues: [] };
   }
 
-  // Phase 4.3: IoT & Real-Time Monitoring Methods
   createIoTDevice(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -3856,7 +3784,6 @@ export class DatabaseService {
     return this.db.prepare('SELECT * FROM alert_rules WHERE lastTriggered IS NOT NULL ORDER BY lastTriggered DESC LIMIT 50').all();
   }
 
-  // Phase 4.4: Advanced Visualization & Immersive Experience Methods
   createFacility3DModel(data: any) {
     if (!this.db) return null;
     const stmt = this.db.prepare(`
@@ -4014,7 +3941,6 @@ export class DatabaseService {
     return { narrative, visualizations };
   }
 
-  // Phase 4.5: Platform Optimization & Future-Proofing Methods
   getCacheStats() {
     if (!this.db) return {};
     const total = this.db.prepare('SELECT COUNT(*) as count, SUM(dataSize) as size FROM cache_configs').get() as any;
@@ -4156,10 +4082,8 @@ export class DatabaseService {
   }
 
   // ===============================================
-  // Phase 5: Predictive Carbon Intelligence Methods
   // ===============================================
 
-  // Phase 5.1: Advanced Forecasting Engine
 
   createEmissionForecast(data: any) {
     if (!this.db) return null;
@@ -4359,7 +4283,6 @@ export class DatabaseService {
     };
   }
 
-  // Phase 5.2: Carbon Budget Management
 
   createCarbonBudget(data: any) {
     if (!this.db) return null;
@@ -4565,7 +4488,6 @@ export class DatabaseService {
     return this.db.prepare(query).all();
   }
 
-  // Phase 5.3: Early Warning System
 
   createPredictiveAlert(data: any) {
     if (!this.db) return null;
@@ -4778,7 +4700,6 @@ export class DatabaseService {
     };
   }
 
-  // Phase 5.4: Scenario Planning Suite
 
   createScenarioSimulation(data: any) {
     if (!this.db) return null;
@@ -4961,7 +4882,6 @@ export class DatabaseService {
     return this.db.prepare('SELECT * FROM sensitivity_analyses ORDER BY createdAt DESC').all();
   }
 
-  // Phase 5.5: Enterprise Features
 
   createEnterpriseForecast(data: any) {
     if (!this.db) return null;
