@@ -5,6 +5,7 @@
 This application includes default administrative credentials for demonstration and testing purposes:
 
 **Default Admin Credentials:**
+
 - Username: `OKE03955`
 - Password: `8675309Jenny!`
 
@@ -13,6 +14,7 @@ This application includes default administrative credentials for demonstration a
 ### 1. Never Use Default Credentials in Production
 
 These credentials are:
+
 - Published in public documentation
 - Known to anyone who has access to the codebase
 - Designed only for demo/testing purposes
@@ -36,6 +38,7 @@ Before deploying to production, you MUST:
 ### 3. Secure Credential Management
 
 **Do NOT:**
+
 - ❌ Hard-code credentials in source code
 - ❌ Commit credentials to version control
 - ❌ Share credentials via email or chat
@@ -43,6 +46,7 @@ Before deploying to production, you MUST:
 - ❌ Store passwords in plain text
 
 **Do:**
+
 - ✅ Use environment variables for configuration
 - ✅ Implement a proper credential management system (e.g., HashiCorp Vault)
 - ✅ Use password hashing (bcrypt, Argon2)
@@ -56,6 +60,7 @@ Before deploying to production, you MUST:
 This codebase is currently configured for **DEMO USE ONLY**.
 
 **Demo Configuration:**
+
 - Simple password storage
 - Client-side validation
 - Default credentials in documentation
@@ -64,6 +69,7 @@ This codebase is currently configured for **DEMO USE ONLY**.
 - No MFA
 
 **Production Requirements:**
+
 - Secure backend authentication service
 - Server-side validation
 - Encrypted credential storage
@@ -78,12 +84,14 @@ This codebase is currently configured for **DEMO USE ONLY**.
 The current license key system is also for demonstration:
 
 **Demo Implementation:**
+
 - Client-side validation
 - localStorage storage
 - Simple pattern matching
 - No backend verification
 
 **Production Requirements:**
+
 - Server-side license validation
 - Encrypted license storage
 - Hardware binding
