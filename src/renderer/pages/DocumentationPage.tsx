@@ -1377,6 +1377,142 @@ const documentationSections: DocSection[] = [
       },
     ],
   },
+  {
+    id: 'regulatory-intelligence',
+    title: 'Regulatory Intelligence System',
+    icon: <SecurityIcon />,
+    content: 'The Regulatory Intelligence System provides AI-powered regulation tracking, compliance gap analysis, automated filing systems, and legal risk assessment to help organizations stay ahead of evolving carbon-related regulations across all operating jurisdictions.',
+    subsections: [
+      {
+        title: 'AI-Powered Regulation Tracking',
+        content: 'Global Monitoring: The system continuously monitors carbon-related regulations across all operating jurisdictions including US-EPA, EU, California, Canada, and other regions. Natural Language Processing: AI algorithms analyze regulatory text to assess relevance and impact to your organization, identifying key requirements, deadlines, and compliance obligations. Change Detection: Automatically identifies and alerts on changes to existing regulations, including methodology updates, reporting deadlines, and compliance thresholds. Impact Assessment: Assesses the potential impact of regulatory changes on your operations, estimating costs, affected facilities, and required actions.',
+      },
+      {
+        title: 'Compliance Gap Analysis',
+        content: 'Automated Assessment: Compares current practices against regulatory requirements across all applicable jurisdictions and standards. Gap Identification: Identifies specific areas of non-compliance or compliance risk with detailed findings including missing processes, inadequate documentation, or non-conforming methodologies. Remediation Planning: Generates detailed action plans to address compliance gaps with specific steps, assigned responsibilities, timelines, and resource requirements. Timeline Management: Tracks compliance deadlines and required actions with automated reminders and escalations.',
+      },
+      {
+        title: 'Automated Filing Systems',
+        content: 'Direct Submission: Submits reports directly to regulatory portals and systems including EPA e-GGRT, state portals, and international systems. Form Generation: Automatically populates regulatory forms with organizational data, applying required formats and validation rules. Submission Tracking: Tracks submission status and confirmations with complete audit trail of all submissions. Amendment Management: Handles amendments and corrections to submitted reports with automated resubmission workflows.',
+      },
+      {
+        title: 'Legal Risk Assessment',
+        content: 'Risk Scoring: AI-powered assessment of carbon-related legal and regulatory risks with quantitative risk scores based on exposure, likelihood, and impact. Trend Analysis: Identifies emerging regulatory trends and their potential impact including expansion of Scope 3 requirements, carbon border adjustments, and enhanced assurance mandates. Scenario Planning: Models potential regulatory scenarios and their business impacts with financial estimates and strategic action plans. Expert Network: Provides access to regulatory experts and legal counsel for consultations on complex compliance matters.',
+      },
+      {
+        title: 'Enterprise Regulatory Management',
+        content: 'Multi-jurisdiction Compliance: Handles complex regulatory requirements across multiple jurisdictions with centralized tracking and reporting. Subsidiary Management: Manages compliance for subsidiaries and joint ventures with consolidated reporting and coordinated actions. Board Reporting: Provides regular board-level updates on regulatory compliance status with executive summaries and recommendations. Legal Department Integration: Integrates with corporate legal and compliance functions for seamless information sharing and workflow coordination.',
+      },
+    ],
+  },
+  {
+    id: 'satellite-monitoring',
+    title: 'Satellite, Drone & FLIR Integration',
+    icon: <TrendingUpIcon />,
+    content: 'Advanced emission monitoring using satellite detection, autonomous drone surveys, and FLIR thermal imaging provides comprehensive, real-time visibility into facility emissions and identifies optimization opportunities.',
+    subsections: [
+      {
+        title: 'Satellite Emission Monitoring',
+        content: 'Methane Detection: Integration with MethaneSAT, GHGSat, and other satellite services detects methane emissions from facilities with location, concentration, and confidence scores. CO2 Monitoring: Satellite-based CO2 monitoring provides facility-level emission verification and trend analysis. Cross-reference Validation: Compares reported emissions with satellite observations to validate inventory accuracy and identify discrepancies. Global Coverage: Monitors emissions from facilities worldwide with automatic detection and alerting. Trend Analysis: Long-term trend analysis using historical satellite data identifies emission patterns and seasonal variations.',
+      },
+      {
+        title: 'Drone-based Monitoring',
+        content: 'Facility Surveys: Autonomous drone surveys conduct comprehensive facility inspections identifying emission sources and infrastructure issues. Leak Detection: Drone-mounted sensors detect methane and other gas leaks with precise location mapping and severity assessment. Infrastructure Monitoring: Monitors carbon-related infrastructure including solar panels, wind turbines, and carbon capture equipment. Emergency Response: Rapid deployment for emission incidents provides real-time situational awareness and response coordination. Routine Inspections: Automated routine inspections verify emission source compliance and track maintenance needs.',
+      },
+      {
+        title: 'FLIR Thermal Imaging',
+        content: 'Heat Loss Detection: Thermal imaging identifies energy efficiency opportunities and carbon reduction potential from building envelope improvements. Equipment Monitoring: Monitors equipment performance and efficiency using thermal signatures to detect degradation and predict failures. Leak Visualization: Provides visual identification of gas leaks and emission sources with thermal images and quantification. Process Optimization: Uses thermal data to optimize processes for carbon efficiency with specific recommendations for setpoint adjustments. Maintenance Planning: Predictive maintenance based on thermal signature analysis prevents efficiency degradation and emission increases.',
+      },
+      {
+        title: 'Integrated Monitoring Platform',
+        content: 'Multi-source Data Fusion: Combines satellite, drone, and FLIR data for comprehensive emission monitoring with correlation analysis. AI-powered Analysis: Machine learning algorithms analyze and interpret monitoring data identifying patterns, anomalies, and optimization opportunities. Automated Reporting: Generates reports combining multiple monitoring sources with executive summaries and detailed findings. Trend Correlation: Correlates monitoring data with operational activities and reported emissions to validate inventory accuracy. Anomaly Detection: Identifies unusual emission patterns across all monitoring sources with automated alerting.',
+      },
+      {
+        title: 'Enterprise Implementation',
+        content: 'Fleet Management: Manages drone fleets across multiple facilities with centralized scheduling, maintenance, and coordination. Regulatory Compliance: Ensures drone and monitoring operations comply with aviation (FAA Part 107) and environmental regulations. Data Security: Secure handling and storage of monitoring data with encryption, access controls, and audit trails. Integration with Operations: Seamless integration with facility operations and maintenance systems for automated workflow triggering. Scalability: Scalable monitoring infrastructure supports large multi-site operations with centralized management and reporting.',
+      },
+    ],
+  },
+  {
+    id: 'advanced-modeling',
+    title: 'Advanced Modeling & Simulation',
+    icon: <AccountTreeIcon />,
+    content: 'Sophisticated modeling tools for climate impact assessment, dynamic carbon pricing, tipping point analysis, and portfolio optimization enable strategic decision-making and risk management.',
+    subsections: [
+      {
+        title: 'Climate Impact Modeling',
+        content: 'Local Climate Effects: Models how organizational emissions contribute to local and regional climate impacts with quantified temperature contributions. Attribution Analysis: Quantifies organization\'s contribution to global and local climate change with contextual comparisons. Impact Visualization: Visual representation of climate impacts using maps, timelines, and scenario comparisons. Stakeholder Communication: Prepares communication materials explaining climate impacts to stakeholders and communities. Risk Assessment: Assesses climate-related risks to operations and communities including physical and transition risks.',
+      },
+      {
+        title: 'Dynamic Carbon Pricing',
+        content: 'Market Integration: Real-time integration with carbon markets including EU ETS, California Cap-and-Trade, UK ETS, and RGGI. Price Forecasting: Advanced forecasting of carbon prices using economic modeling, policy analysis, and market indicators. Scenario Analysis: Models different carbon pricing scenarios with probability assessments and financial impacts. Hedging Strategies: Optimizes carbon pricing hedging strategies using forward contracts, options, and allowance banking. Internal Pricing: Recommends dynamic internal carbon pricing based on external market conditions and strategic objectives.',
+      },
+      {
+        title: 'Tipping Point Analysis',
+        content: 'Critical Thresholds: Identifies critical emission reduction thresholds for climate and business impact including 1.5°C limits and regional thresholds. System Dynamics: Models complex interactions between emissions, climate, and business systems with feedback loops and leverage points. Risk Mapping: Maps organizational risks related to climate tipping points including supply chain, operations, and market impacts. Adaptation Planning: Develops adaptation strategies for potential tipping point scenarios with timeline and cost estimates. Investment Planning: Optimizes investment timing based on tipping point analysis and regulatory trajectory forecasts.',
+      },
+      {
+        title: 'Portfolio Carbon Optimization',
+        content: 'Business Unit Optimization: Optimizes carbon performance across diverse business portfolios with unit-specific recommendations. Asset Allocation: Optimizes asset allocation for carbon efficiency and financial performance with trade-off analysis. Divestiture Analysis: Analyzes carbon impact of potential divestitures and acquisitions with strategic implications. Strategy Optimization: Optimizes overall business strategy for carbon and financial performance with risk-return analysis. Risk-Return Analysis: Balances carbon reduction with financial risk and return considerations using efficient frontier modeling.',
+      },
+      {
+        title: 'Enterprise Modeling Capabilities',
+        content: 'Scenario Planning: Comprehensive scenario planning for strategic decision making with multiple climate and policy scenarios. Sensitivity Analysis: Understands sensitivity of results to key assumptions and variables with tornado diagrams and parameter sweeps. Monte Carlo Simulation: Uses probabilistic modeling for risk assessment and planning with confidence intervals and percentile results. Integration with Planning: Seamless integration with enterprise planning and strategy processes including annual budgets and capital allocation. Executive Reporting: Executive-level reporting of modeling results and insights with clear recommendations and next steps.',
+      },
+    ],
+  },
+  {
+    id: 'unified-reporting',
+    title: 'Unified Multi-Agency Reporting',
+    icon: <ArticleIcon />,
+    content: 'Comprehensive reporting system supporting Federal EPA (GHGRP, TRI, RMP, SPCC), State compliance (Texas, Colorado, Pennsylvania), and International systems (Canada, Norway) with automated data collection, calculations, validation, and submission.',
+    subsections: [
+      {
+        title: 'Federal EPA Reporting',
+        content: 'GHGRP: Complete support for 40+ industry-specific calculation methodologies with annual reporting deadline management. TRI: Tracks 650+ reportable chemicals across 400+ industry sectors with waste management hierarchy calculations. RMP: Provides process hazard analysis integration with worst-case and alternative scenario modeling. SPCC: Generates facility diagrams with automated tank and piping system mapping and secondary containment calculations. All programs support verification statement management and third-party verification coordination.',
+      },
+      {
+        title: 'State Compliance Integration',
+        content: 'Texas Railroad Commission: Form P-5 (production), Form W-3 (water disposal), Form H-1 (H2S reporting), drilling reports, and financial assurance tracking. Colorado COGCC: Form 2A (production/injection), Form 4 (spill reporting with 24-hour notification), Form 19 (waste management), LDAR reporting, and water quality monitoring. Pennsylvania DEP: Unconventional well reports, waste management for centralized facilities, water sourcing and management, air emissions quarterly statements, and restoration reports.',
+      },
+      {
+        title: 'International Compliance Systems',
+        content: 'Alberta Energy Regulator (Canada): Petrinex production reporting with royalty calculations, STEERS single well event reporting, Directive 017 measurement requirements, environmental reporting with Aboriginal consultation, and pipeline applications. Norwegian Petroleum Directorate: DISKOS seismic and drilling data submission, Altinn environmental reporting with CO2 tax calculation, resource accounts with reserve reporting, HSE incident reporting, and decommissioning planning.',
+      },
+      {
+        title: 'Data Collection & Integration Engine',
+        content: 'ERP Integration: Automated data collection from SAP, Oracle, and Microsoft Dynamics with transformation pipelines. SCADA/Historian Integration: Real-time data collection from industrial control systems with aggregation and quality assessment. Laboratory Data Integration: Automated collection from LIMS systems with validation of analytical results. Supports automated data collection, transformation, validation, and quality scoring across all source systems.',
+      },
+      {
+        title: 'Calculation Engine & Validation',
+        content: 'Calculation Engine: Implements 100+ regulatory calculation methodologies with tier-specific methods and uncertainty analysis. Validation Engine: Multi-level data quality assurance with completeness, accuracy, consistency, and timeliness checks. Submission System: Direct submission to regulatory portals with confirmation tracking and amendment management. Tracking System: Comprehensive deadline and compliance management with automated reminders and status reporting.',
+      },
+    ],
+  },
+  {
+    id: 'arvr-digital-twin',
+    title: 'AR/VR & Digital Twin Integration',
+    icon: <VerifiedUserIcon />,
+    content: '3D visualization, virtual reality tours, augmented reality inspections, and real-time digital twins provide immersive carbon management capabilities and predictive optimization.',
+    subsections: [
+      {
+        title: '3D Carbon Flow Visualization',
+        content: 'Interactive Facility Models: 3D digital twins show carbon flows throughout facilities with real-time data visualization. Process Optimization: Visual identification of carbon inefficiencies in processes with quantified savings opportunities. Scenario Modeling: Visualizes impact of operational changes on carbon flows before implementation. Virtual Tours: Remote facility carbon assessment through virtual reality tours with interactive waypoints and carbon data overlays.',
+      },
+      {
+        title: 'Remote Carbon Auditing',
+        content: 'Virtual Audits: Conducts carbon audits remotely using AR/VR technology with comprehensive finding documentation. Guided Inspections: AR-guided inspections for non-expert personnel with step-by-step instructions and automated data capture. Documentation: Automatic documentation and evidence collection during virtual audits including photos, videos, and data extracts. Expert Consultation: Remote expert assistance during on-site activities via video conferencing with screen sharing and annotation tools.',
+      },
+      {
+        title: 'Digital Twin Integration',
+        content: 'Real-time Synchronization: Digital twins updated every 5 seconds with operational data from sensors and control systems. Predictive Modeling: Uses digital twins for carbon impact prediction with confidence intervals and scenario analysis. Virtual Testing: Tests carbon reduction strategies in virtual environment before physical implementation with detailed impact analysis. Asset Optimization: Optimizes asset performance for carbon efficiency using digital twin insights with specific setpoint recommendations.',
+      },
+      {
+        title: 'Predictive Capabilities',
+        content: 'Performance Prediction: Predicts asset performance and emissions based on historical patterns, weather, and operational schedules. Maintenance Optimization: Predictive maintenance prevents efficiency degradation and maintains optimal carbon performance. Multi-Asset Coordination: Optimizes multiple assets together for system-wide efficiency improvements. Scenario Simulation: Tests multiple operational scenarios virtually to identify optimal carbon reduction strategies.',
+      },
+    ],
+  },
 ];
 
 const DocumentationPage: React.FC = () => {
