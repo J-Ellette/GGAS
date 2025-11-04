@@ -23,12 +23,15 @@ import {
   Stepper,
   Step,
   StepLabel,
+  InputAdornment,
 } from '@mui/material';
 import CalculateIcon from '@mui/icons-material/Calculate';
+import SearchIcon from '@mui/icons-material/Search';
 import { ActivityData, EmissionFactor } from '../../common/types';
 
 const CalculationsPage: React.FC = () => {
   const [calculations, setCalculations] = useState<any[]>([]);
+  const [filteredCalculations, setFilteredCalculations] = useState<any[]>([]);
   const [activityDataList, setActivityDataList] = useState<ActivityData[]>([]);
   const [emissionFactors, setEmissionFactors] = useState<EmissionFactor[]>([]);
   const [filteredFactors, setFilteredFactors] = useState<EmissionFactor[]>([]);
@@ -36,6 +39,8 @@ const CalculationsPage: React.FC = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [scopeFilter, setScopeFilter] = useState('All');
   
   const [calculationForm, setCalculationForm] = useState({
     activityDataId: 0,
@@ -53,6 +58,31 @@ const CalculationsPage: React.FC = () => {
   useEffect(() => {
     loadData();
   }, []);
+
+  useEffect(() => {
+    filterCalculations();
+  }, [calculations, searchQuery, scopeFilter]);
+
+  const filterCalculations = () => {
+    let filtered = calculations;
+
+    // Apply search filter
+    if (searchQuery) {
+      filtered = filtered.filter(calc =>
+        calc.organizationUnit?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        calc.emissionSource?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        calc.timePeriod?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        calc.methodology?.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Apply scope filter
+    if (scopeFilter !== 'All') {
+      filtered = filtered.filter(calc => calc.scope === parseInt(scopeFilter));
+    }
+
+    setFilteredCalculations(filtered);
+  };
 
   const loadData = async () => {
     try {
@@ -176,6 +206,44 @@ const CalculationsPage: React.FC = () => {
         </Alert>
       )}
 
+      {/* Search and Filter Bar */}
+      <Paper sx={{ p: 2, mb: 2 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={8}>
+            <TextField
+              fullWidth
+              placeholder="Search by organization, source, period, or methodology..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <TextField
+              select
+              fullWidth
+              label="Filter by Scope"
+              value={scopeFilter}
+              onChange={(e) => setScopeFilter(e.target.value)}
+            >
+              <MenuItem value="All">All Scopes</MenuItem>
+              <MenuItem value="1">Scope 1</MenuItem>
+              <MenuItem value="2">Scope 2</MenuItem>
+              <MenuItem value="3">Scope 3</MenuItem>
+            </TextField>
+          </Grid>
+        </Grid>
+        <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
+          Showing {filteredCalculations.length} of {calculations.length} calculations
+        </Typography>
+      </Paper>
+
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -191,16 +259,20 @@ const CalculationsPage: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {calculations.length === 0 ? (
+            {filteredCalculations.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={8} align="center">
                   <Typography color="text.secondary" sx={{ py: 4 }}>
-                    No calculations yet. Click "New Calculation" to get started.
+                    {searchQuery || scopeFilter !== 'All'
+                      ? 'No calculations match your search criteria.'
+                      : calculations.length === 0 
+                        ? 'No calculations yet. Click "New Calculation" to get started.'
+                        : 'No calculations available.'}
                   </Typography>
                 </TableCell>
               </TableRow>
             ) : (
-              calculations.map((calc) => (
+              filteredCalculations.map((calc) => (
                 <TableRow key={calc.id} hover>
                   <TableCell>{new Date(calc.createdAt).toLocaleDateString()}</TableCell>
                   <TableCell>{calc.organizationUnit}</TableCell>

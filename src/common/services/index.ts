@@ -22,6 +22,9 @@ export { default as ManufacturingProcessOptimizationService } from './Manufactur
 export { default as TransportationRouteOptimizationService } from './TransportationRouteOptimizationService';
 export { default as EnterpriseSectorIntegrationService } from './EnterpriseSectorIntegrationService';
 
+// SEO Service
+export { SEOService, seoService } from './SEOService';
+
 // Re-export types
 export type {
   Regulation,
@@ -135,3 +138,8 @@ export type {
   ModelEvaluation,
   FeatureImportance
 } from './MLFrameworkService';
+
+export type {
+  SEOMetadata,
+  SitemapEntry
+} from './SEOService';
