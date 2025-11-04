@@ -8,6 +8,29 @@ A comprehensive desktop application for measuring, monitoring, managing, and rep
 
 Green Country GGAS (Greenhouse Gas Accounting Software) is an enterprise-grade Electron-based desktop application designed to enable organizations of all sizes to accurately measure, monitor, manage, and report their greenhouse gas emissions. The platform provides a comprehensive suite of tools for carbon accounting, regulatory compliance, sustainability reporting, and strategic carbon management through intuitive user interfaces.
 
+## 🎨 USWDS Design System Integration
+
+**New Feature**: Full U.S. Web Design System (USWDS) theming support for accessible, government-standard UI.
+
+- **WCAG 2.1 AA Compliant**: Meets accessibility standards for all users
+- **Responsive Design**: Mobile-first, responsive layouts
+- **Consistent Patterns**: Follows designsystem.digital.gov standards
+- **Component Library**: Complete set of USWDS React components
+- **Hybrid Approach**: Works alongside existing Material-UI components
+
+📖 [USWDS Quick Start Guide](docs/USWDS_QUICK_START.md) | [Full Implementation Docs](docs/USWDS_IMPLEMENTATION.md)
+
+### USWDS Components Available
+
+- Headers & Footers with skip navigation
+- Buttons (primary, secondary, accent variants)
+- Forms with validation and error handling
+- Alerts and notifications
+- Data tables with sorting and responsive features
+- Cards and card groups
+- Search components
+- Sidebar navigation
+
 ## 🆕 AI-Optional Operation Framework
 
 **New Feature**: Complete control over AI usage with manual alternatives for every feature.

@@ -1,0 +1,147 @@
+// Main USWDS stylesheet import
+// This file imports USWDS core styles and custom theme configuration
+
+// Import the theme configuration
+@import 'uswds-theme';
+
+// Import USWDS core styles
+@import 'uswds';
+
+// Custom overrides for GGAS application
+.ggas-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Header customization
+.usa-header {
+  .usa-logo {
+    line-height: 1;
+  }
+}
+
+// Navigation customization
+.usa-nav {
+  .usa-nav__primary {
+    .usa-nav__primary-item {
+      a {
+        &:hover,
+        &:focus {
+          color: #ffffff;
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// Card enhancements
+.usa-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
+  }
+}
+
+// Table enhancements
+.usa-table {
+  &--borderless {
+    thead {
+      border-bottom: 2px solid #dfe1e2;
+    }
+  }
+}
+
+// Form enhancements
+.usa-form {
+  .usa-form-group {
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Button enhancements
+.usa-button {
+  &--primary {
+    background-color: #2e7d32;
+    
+    &:hover {
+      background-color: #1b5e20;
+    }
+  }
+}
+
+// Dashboard-specific styles
+.dashboard-card {
+  @extend .usa-card;
+  height: 100%;
+  
+  .usa-card__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .usa-card__body {
+    flex: 1;
+  }
+}
+
+// Alert customization
+.usa-alert {
+  &--info {
+    border-left-color: #00bde3;
+  }
+  
+  &--success {
+    border-left-color: #2e7d32;
+  }
+  
+  &--warning {
+    border-left-color: #ffbe2e;
+  }
+  
+  &--error {
+    border-left-color: #e52207;
+  }
+}
+
+// Accessibility enhancements
+.usa-skipnav {
+  position: absolute;
+  left: -999px;
+  
+  &:focus {
+    left: 0;
+    z-index: 9999;
+  }
+}
+
+// Responsive utilities
+@media (max-width: 640px) {
+  .usa-header {
+    .usa-nav {
+      .usa-nav__primary {
+        .usa-nav__primary-item {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .usa-header,
+  .usa-nav,
+  .usa-footer {
+    display: none;
+  }
+  
+  .usa-card {
+    box-shadow: none;
+    border: 1px solid #dfe1e2;
+  }
+}
