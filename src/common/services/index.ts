@@ -25,6 +25,10 @@ export { default as EnterpriseSectorIntegrationService } from './EnterpriseSecto
 // SEO Service
 export { SEOService, seoService } from './SEOService';
 
+// Security Services
+export { SecurityAuditLogService, securityAuditLogService, AuditEventType } from './SecurityAuditLogService';
+export { FieldLevelPermissionsService, fieldLevelPermissionsService, UserRole } from './FieldLevelPermissionsService';
+
 // Re-export types
 export type {
   Regulation,
@@ -143,3 +147,14 @@ export type {
   SEOMetadata,
   SitemapEntry
 } from './SEOService';
+
+export type {
+  AuditLogEntry,
+  AuditLogQuery,
+  AuditLogStats
+} from './SecurityAuditLogService';
+
+export type {
+  FieldPermission,
+  ResourcePermissions
+} from './FieldLevelPermissionsService';
