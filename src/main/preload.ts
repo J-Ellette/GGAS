@@ -305,4 +305,18 @@ contextBridge.exposeInMainWorld('electronAPI', {
   listRealtimeAlerts: (filters?: any) => ipcRenderer.invoke('realtime-monitoring:list-alerts', filters),
   acknowledgeRealtimeAlert: (alertId: number, acknowledgedBy: string) => ipcRenderer.invoke('realtime-monitoring:acknowledge-alert', alertId, acknowledgedBy),
   resolveRealtimeAlert: (alertId: number) => ipcRenderer.invoke('realtime-monitoring:resolve-alert', alertId),
+
+  // Authentication API
+  authenticateUser: (username: string, password: string) => ipcRenderer.invoke('auth:authenticate', username, password),
+  verifyMFA: (userId: number, token: string) => ipcRenderer.invoke('auth:verify-mfa', userId, token),
+  setupMFA: (userId: number) => ipcRenderer.invoke('auth:setup-mfa', userId),
+  enableMFA: (userId: number, token: string) => ipcRenderer.invoke('auth:enable-mfa', userId, token),
+  disableMFA: (userId: number, password: string) => ipcRenderer.invoke('auth:disable-mfa', userId, password),
+  verifyBackupCode: (userId: number, code: string) => ipcRenderer.invoke('auth:verify-backup-code', userId, code),
+  changePassword: (userId: number, currentPassword: string, newPassword: string) => ipcRenderer.invoke('auth:change-password', userId, currentPassword, newPassword),
+  createSession: (userId: number, metadata?: any) => ipcRenderer.invoke('auth:create-session', userId, metadata),
+  validateSession: (sessionToken: string) => ipcRenderer.invoke('auth:validate-session', sessionToken),
+  logout: (sessionToken: string) => ipcRenderer.invoke('auth:logout', sessionToken),
+  logoutAll: (userId: number) => ipcRenderer.invoke('auth:logout-all', userId),
+  getAuditLogs: (options?: any) => ipcRenderer.invoke('auth:audit-logs', options),
 });

@@ -1151,4 +1151,352 @@ function setupIpcHandlers() {
   ipcMain.handle('realtime-monitoring:resolve-alert', async (event, alertId) => {
     return databaseService?.resolveRealtimeAlert(alertId);
   });
+
+  // Authentication handlers
+  ipcMain.handle('auth:authenticate', async (event, username, password) => {
+    const { AuthenticationService } = await import('./services/AuthenticationService');
+    
+    try {
+      // Get user from database
+      const user: any = databaseService?.getUserByUsername(username);
+      
+      if (!user) {
+        // Log failed attempt
+        databaseService?.logAuditEvent(null, 'LOGIN_FAILED', 'authentication', 'FAILURE', undefined, undefined, { username, reason: 'User not found' });
+        return { success: false, message: 'Invalid username or password' };
+      }
+
+      // Check if account is locked
+      if (user.failedLoginAttempts && user.lastFailedLogin) {
+        const locked = AuthenticationService.isAccountLocked(
+          user.failedLoginAttempts,
+          new Date(user.lastFailedLogin)
+        );
+        
+        if (locked) {
+          databaseService?.logAuditEvent(user.id, 'LOGIN_FAILED', 'authentication', 'FAILURE', undefined, undefined, { reason: 'Account locked' });
+          return { success: false, message: 'Account is temporarily locked due to multiple failed login attempts' };
+        }
+      }
+
+      // Verify password
+      if (!user.passwordHash) {
+        databaseService?.logAuditEvent(user.id, 'LOGIN_FAILED', 'authentication', 'FAILURE', undefined, undefined, { reason: 'No password set' });
+        return { success: false, message: 'Account not properly configured' };
+      }
+
+      const validPassword = await AuthenticationService.verifyPassword(password, user.passwordHash);
+      
+      if (!validPassword) {
+        // Record failed attempt
+        databaseService?.recordFailedLogin(user.id);
+        databaseService?.logAuditEvent(user.id, 'LOGIN_FAILED', 'authentication', 'FAILURE', undefined, undefined, { reason: 'Invalid password' });
+        return { success: false, message: 'Invalid username or password' };
+      }
+
+      // Password is valid - check if MFA is required
+      if (user.mfaEnabled) {
+        databaseService?.logAuditEvent(user.id, 'LOGIN_PASSWORD_VERIFIED', 'authentication', 'SUCCESS', undefined, undefined, { requiresMFA: true });
+        return {
+          success: true,
+          userId: user.id,
+          username: user.username,
+          requiresMFA: true,
+          message: 'Password verified. Please enter your MFA code.'
+        };
+      }
+
+      // No MFA required - login successful
+      databaseService?.recordSuccessfulLogin(user.id);
+      databaseService?.logAuditEvent(user.id, 'LOGIN_SUCCESS', 'authentication', 'SUCCESS');
+      
+      return {
+        success: true,
+        userId: user.id,
+        username: user.username,
+        requiresMFA: false,
+        message: 'Login successful'
+      };
+    } catch (error: any) {
+      databaseService?.logAuditEvent(null, 'LOGIN_ERROR', 'authentication', 'ERROR', undefined, undefined, { error: error.message });
+      return { success: false, message: 'An error occurred during authentication' };
+    }
+  });
+
+  ipcMain.handle('auth:verify-mfa', async (event, userId, token) => {
+    const { AuthenticationService } = await import('./services/AuthenticationService');
+    
+    try {
+      const user: any = databaseService?.getUserById(userId);
+      
+      if (!user || !user.mfaEnabled || !user.mfaSecret) {
+        return { success: false, message: 'MFA not enabled for this user' };
+      }
+
+      const valid = AuthenticationService.verifyTOTP(token, user.mfaSecret);
+      
+      if (valid) {
+        databaseService?.recordSuccessfulLogin(userId);
+        databaseService?.logAuditEvent(userId, 'MFA_VERIFIED', 'authentication', 'SUCCESS');
+        return { success: true, message: 'MFA verified successfully' };
+      } else {
+        databaseService?.logAuditEvent(userId, 'MFA_FAILED', 'authentication', 'FAILURE');
+        return { success: false, message: 'Invalid MFA code' };
+      }
+    } catch (error: any) {
+      databaseService?.logAuditEvent(userId, 'MFA_ERROR', 'authentication', 'ERROR', undefined, undefined, { error: error.message });
+      return { success: false, message: 'An error occurred during MFA verification' };
+    }
+  });
+
+  ipcMain.handle('auth:setup-mfa', async (event, userId) => {
+    const { AuthenticationService } = await import('./services/AuthenticationService');
+    
+    try {
+      const user: any = databaseService?.getUserById(userId);
+      
+      if (!user) {
+        return { success: false, message: 'User not found' };
+      }
+
+      const mfaSetup = AuthenticationService.generateMFASecret(user.username);
+      
+      databaseService?.logAuditEvent(userId, 'MFA_SETUP_INITIATED', 'authentication', 'SUCCESS');
+      
+      return {
+        success: true,
+        secret: mfaSetup.secret,
+        qrCodeUrl: mfaSetup.otpauthUrl,
+        backupCodes: mfaSetup.backupCodes,
+      };
+    } catch (error: any) {
+      databaseService?.logAuditEvent(userId, 'MFA_SETUP_ERROR', 'authentication', 'ERROR', undefined, undefined, { error: error.message });
+      return { success: false, message: 'An error occurred during MFA setup' };
+    }
+  });
+
+  ipcMain.handle('auth:enable-mfa', async (event, userId, token) => {
+    const { AuthenticationService } = await import('./services/AuthenticationService');
+    
+    try {
+      const user: any = databaseService?.getUserById(userId);
+      
+      if (!user) {
+        return { success: false, message: 'User not found' };
+      }
+
+      // Generate new MFA secret
+      const mfaSetup = AuthenticationService.generateMFASecret(user.username);
+      const secret = mfaSetup.secret;
+      const backupCodes = mfaSetup.backupCodes;
+      
+      // Verify the token before enabling
+      const valid = AuthenticationService.verifyTOTP(token, secret);
+      
+      if (!valid) {
+        databaseService?.logAuditEvent(userId, 'MFA_ENABLE_FAILED', 'authentication', 'FAILURE', undefined, undefined, { reason: 'Invalid token' });
+        return { success: false, message: 'Invalid MFA code. Please try again.' };
+      }
+
+      // Hash backup codes before storing
+      const hashedBackupCodes = await AuthenticationService.hashBackupCodes(backupCodes);
+      const backupCodesJson = JSON.stringify(hashedBackupCodes);
+      
+      // Enable MFA in database
+      databaseService?.enableUserMFA(userId, secret, backupCodesJson);
+      databaseService?.logAuditEvent(userId, 'MFA_ENABLED', 'authentication', 'SUCCESS');
+      
+      return {
+        success: true,
+        message: 'MFA enabled successfully',
+        backupCodes: backupCodes,
+      };
+    } catch (error: any) {
+      databaseService?.logAuditEvent(userId, 'MFA_ENABLE_ERROR', 'authentication', 'ERROR', undefined, undefined, { error: error.message });
+      return { success: false, message: 'An error occurred while enabling MFA' };
+    }
+  });
+
+  ipcMain.handle('auth:disable-mfa', async (event, userId, password) => {
+    const { AuthenticationService } = await import('./services/AuthenticationService');
+    
+    try {
+      const user: any = databaseService?.getUserById(userId);
+      
+      if (!user) {
+        return { success: false, message: 'User not found' };
+      }
+
+      // Verify password before disabling MFA
+      if (user.passwordHash) {
+        const validPassword = await AuthenticationService.verifyPassword(password, user.passwordHash);
+        
+        if (!validPassword) {
+          databaseService?.logAuditEvent(userId, 'MFA_DISABLE_FAILED', 'authentication', 'FAILURE', undefined, undefined, { reason: 'Invalid password' });
+          return { success: false, message: 'Invalid password' };
+        }
+      }
+
+      databaseService?.disableUserMFA(userId);
+      databaseService?.logAuditEvent(userId, 'MFA_DISABLED', 'authentication', 'SUCCESS');
+      
+      return { success: true, message: 'MFA disabled successfully' };
+    } catch (error: any) {
+      databaseService?.logAuditEvent(userId, 'MFA_DISABLE_ERROR', 'authentication', 'ERROR', undefined, undefined, { error: error.message });
+      return { success: false, message: 'An error occurred while disabling MFA' };
+    }
+  });
+
+  ipcMain.handle('auth:verify-backup-code', async (event, userId, code) => {
+    const { AuthenticationService } = await import('./services/AuthenticationService');
+    
+    try {
+      const user: any = databaseService?.getUserById(userId);
+      
+      if (!user || !user.mfaEnabled || !user.backupCodesHash) {
+        return { success: false, message: 'Backup codes not available' };
+      }
+
+      const hashedCodes = JSON.parse(user.backupCodesHash);
+      const result = AuthenticationService.verifyBackupCode(code, hashedCodes);
+      
+      if (result.valid) {
+        // Remove used backup code
+        hashedCodes.splice(result.codeIndex, 1);
+        databaseService?.updateBackupCodes(userId, JSON.stringify(hashedCodes));
+        
+        databaseService?.recordSuccessfulLogin(userId);
+        databaseService?.logAuditEvent(userId, 'BACKUP_CODE_USED', 'authentication', 'SUCCESS');
+        
+        return {
+          success: true,
+          message: 'Backup code verified successfully',
+          remainingCodes: hashedCodes.length,
+        };
+      } else {
+        databaseService?.logAuditEvent(userId, 'BACKUP_CODE_FAILED', 'authentication', 'FAILURE');
+        return { success: false, message: 'Invalid backup code' };
+      }
+    } catch (error: any) {
+      databaseService?.logAuditEvent(userId, 'BACKUP_CODE_ERROR', 'authentication', 'ERROR', undefined, undefined, { error: error.message });
+      return { success: false, message: 'An error occurred verifying backup code' };
+    }
+  });
+
+  ipcMain.handle('auth:change-password', async (event, userId, currentPassword, newPassword) => {
+    const { AuthenticationService } = await import('./services/AuthenticationService');
+    
+    try {
+      const user: any = databaseService?.getUserById(userId);
+      
+      if (!user) {
+        return { success: false, message: 'User not found' };
+      }
+
+      // Verify current password
+      if (user.passwordHash) {
+        const validPassword = await AuthenticationService.verifyPassword(currentPassword, user.passwordHash);
+        
+        if (!validPassword) {
+          databaseService?.logAuditEvent(userId, 'PASSWORD_CHANGE_FAILED', 'authentication', 'FAILURE', undefined, undefined, { reason: 'Invalid current password' });
+          return { success: false, message: 'Current password is incorrect' };
+        }
+      }
+
+      // Validate new password strength
+      const validation = AuthenticationService.validatePasswordStrength(newPassword);
+      if (!validation.valid) {
+        return { success: false, message: validation.message };
+      }
+
+      // Hash and update password
+      const newPasswordHash = await AuthenticationService.hashPassword(newPassword);
+      databaseService?.updateUserPassword(userId, newPasswordHash);
+      databaseService?.logAuditEvent(userId, 'PASSWORD_CHANGED', 'authentication', 'SUCCESS');
+      
+      return { success: true, message: 'Password changed successfully' };
+    } catch (error: any) {
+      databaseService?.logAuditEvent(userId, 'PASSWORD_CHANGE_ERROR', 'authentication', 'ERROR', undefined, undefined, { error: error.message });
+      return { success: false, message: 'An error occurred while changing password' };
+    }
+  });
+
+  ipcMain.handle('auth:create-session', async (event, userId, metadata) => {
+    const { AuthenticationService } = await import('./services/AuthenticationService');
+    
+    try {
+      const sessionToken = AuthenticationService.generateSessionToken();
+      const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+      
+      const session = databaseService?.createSession(
+        userId,
+        sessionToken,
+        expiresAt,
+        metadata?.ipAddress,
+        metadata?.userAgent
+      );
+      
+      databaseService?.logAuditEvent(userId, 'SESSION_CREATED', 'authentication', 'SUCCESS');
+      
+      return { success: true, sessionToken, expiresAt: expiresAt.toISOString(), session };
+    } catch (error: any) {
+      databaseService?.logAuditEvent(userId, 'SESSION_CREATE_ERROR', 'authentication', 'ERROR', undefined, undefined, { error: error.message });
+      return { success: false, message: 'An error occurred creating session' };
+    }
+  });
+
+  ipcMain.handle('auth:validate-session', async (event, sessionToken) => {
+    try {
+      const session: any = databaseService?.getSession(sessionToken);
+      
+      if (!session) {
+        return { valid: false, message: 'Session not found' };
+      }
+
+      if (new Date(session.expiresAt) < new Date()) {
+        databaseService?.deleteSession(sessionToken);
+        return { valid: false, message: 'Session expired' };
+      }
+
+      return { valid: true, userId: session.userId, session };
+    } catch (error: any) {
+      return { valid: false, message: 'Error validating session' };
+    }
+  });
+
+  ipcMain.handle('auth:logout', async (event, sessionToken) => {
+    try {
+      const session: any = databaseService?.getSession(sessionToken);
+      
+      if (session) {
+        databaseService?.deleteSession(sessionToken);
+        databaseService?.logAuditEvent(session.userId, 'LOGOUT', 'authentication', 'SUCCESS');
+      }
+      
+      return { success: true, message: 'Logged out successfully' };
+    } catch (error: any) {
+      return { success: false, message: 'Error during logout' };
+    }
+  });
+
+  ipcMain.handle('auth:logout-all', async (event, userId) => {
+    try {
+      databaseService?.deleteAllUserSessions(userId);
+      databaseService?.logAuditEvent(userId, 'LOGOUT_ALL', 'authentication', 'SUCCESS');
+      
+      return { success: true, message: 'All sessions logged out successfully' };
+    } catch (error: any) {
+      databaseService?.logAuditEvent(userId, 'LOGOUT_ALL_ERROR', 'authentication', 'ERROR', undefined, undefined, { error: error.message });
+      return { success: false, message: 'Error logging out all sessions' };
+    }
+  });
+
+  ipcMain.handle('auth:audit-logs', async (event, options) => {
+    try {
+      const logs = databaseService?.getAuditLogs(options);
+      return { success: true, logs };
+    } catch (error: any) {
+      return { success: false, message: 'Error retrieving audit logs' };
+    }
+  });
 }

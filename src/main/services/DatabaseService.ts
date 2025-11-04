@@ -211,12 +211,48 @@ export class DatabaseService {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT NOT NULL UNIQUE,
         email TEXT NOT NULL UNIQUE,
+        passwordHash TEXT,
         roleId INTEGER NOT NULL,
         isActive INTEGER DEFAULT 1,
+        mfaEnabled INTEGER DEFAULT 0,
+        mfaSecret TEXT,
+        backupCodesHash TEXT,
+        failedLoginAttempts INTEGER DEFAULT 0,
+        lastFailedLogin DATETIME,
         lastLogin DATETIME,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (roleId) REFERENCES user_roles(id)
+      )
+    `);
+
+    // User sessions table for secure session management
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS user_sessions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        userId INTEGER NOT NULL,
+        sessionToken TEXT NOT NULL UNIQUE,
+        expiresAt DATETIME NOT NULL,
+        ipAddress TEXT,
+        userAgent TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (userId) REFERENCES users(id)
+      )
+    `);
+
+    // Audit log table for security events
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS audit_log (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        userId INTEGER,
+        action TEXT NOT NULL,
+        resource TEXT,
+        result TEXT NOT NULL,
+        ipAddress TEXT,
+        userAgent TEXT,
+        metadata TEXT,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (userId) REFERENCES users(id)
       )
     `);
 
@@ -6048,5 +6084,238 @@ export class DatabaseService {
     `).run(alertId);
 
     return this.db.prepare('SELECT * FROM realtime_alerts WHERE id = ?').get(alertId);
+  }
+
+  // ==================== Authentication Methods ====================
+
+  /**
+   * Get user by username
+   */
+  getUserByUsername(username: string) {
+    if (!this.db) return null;
+    return this.db.prepare('SELECT * FROM users WHERE username = ?').get(username);
+  }
+
+  /**
+   * Get user by ID
+   */
+  getUserById(id: number) {
+    if (!this.db) return null;
+    return this.db.prepare('SELECT * FROM users WHERE id = ?').get(id);
+  }
+
+  /**
+   * Update user password hash
+   */
+  updateUserPassword(userId: number, passwordHash: string) {
+    if (!this.db) return null;
+    
+    this.db.prepare(`
+      UPDATE users 
+      SET passwordHash = ?, updatedAt = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(passwordHash, userId);
+
+    return this.getUserById(userId);
+  }
+
+  /**
+   * Enable MFA for user
+   */
+  enableUserMFA(userId: number, mfaSecret: string, backupCodesHash: string) {
+    if (!this.db) return null;
+
+    this.db.prepare(`
+      UPDATE users 
+      SET mfaEnabled = 1, mfaSecret = ?, backupCodesHash = ?, updatedAt = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(mfaSecret, backupCodesHash, userId);
+
+    return this.getUserById(userId);
+  }
+
+  /**
+   * Disable MFA for user
+   */
+  disableUserMFA(userId: number) {
+    if (!this.db) return null;
+
+    this.db.prepare(`
+      UPDATE users 
+      SET mfaEnabled = 0, mfaSecret = NULL, backupCodesHash = NULL, updatedAt = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(userId);
+
+    return this.getUserById(userId);
+  }
+
+  /**
+   * Update failed login attempts
+   */
+  recordFailedLogin(userId: number) {
+    if (!this.db) return null;
+
+    this.db.prepare(`
+      UPDATE users 
+      SET failedLoginAttempts = failedLoginAttempts + 1, 
+          lastFailedLogin = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(userId);
+
+    return this.getUserById(userId);
+  }
+
+  /**
+   * Reset failed login attempts on successful login
+   */
+  recordSuccessfulLogin(userId: number) {
+    if (!this.db) return null;
+
+    this.db.prepare(`
+      UPDATE users 
+      SET failedLoginAttempts = 0, 
+          lastFailedLogin = NULL,
+          lastLogin = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(userId);
+
+    return this.getUserById(userId);
+  }
+
+  /**
+   * Create user session
+   */
+  createSession(userId: number, sessionToken: string, expiresAt: Date, ipAddress?: string, userAgent?: string) {
+    if (!this.db) return null;
+
+    const info = this.db.prepare(`
+      INSERT INTO user_sessions (userId, sessionToken, expiresAt, ipAddress, userAgent)
+      VALUES (?, ?, ?, ?, ?)
+    `).run(userId, sessionToken, expiresAt.toISOString(), ipAddress, userAgent);
+
+    return this.db.prepare('SELECT * FROM user_sessions WHERE id = ?').get(info.lastInsertRowid);
+  }
+
+  /**
+   * Get session by token
+   */
+  getSession(sessionToken: string) {
+    if (!this.db) return null;
+    return this.db.prepare('SELECT * FROM user_sessions WHERE sessionToken = ?').get(sessionToken);
+  }
+
+  /**
+   * Delete session (logout)
+   */
+  deleteSession(sessionToken: string) {
+    if (!this.db) return null;
+    this.db.prepare('DELETE FROM user_sessions WHERE sessionToken = ?').run(sessionToken);
+  }
+
+  /**
+   * Delete all sessions for user
+   */
+  deleteAllUserSessions(userId: number) {
+    if (!this.db) return null;
+    this.db.prepare('DELETE FROM user_sessions WHERE userId = ?').run(userId);
+  }
+
+  /**
+   * Clean up expired sessions
+   */
+  cleanupExpiredSessions() {
+    if (!this.db) return null;
+    const result = this.db.prepare('DELETE FROM user_sessions WHERE expiresAt < CURRENT_TIMESTAMP').run();
+    return result.changes;
+  }
+
+  /**
+   * Log audit event
+   */
+  logAuditEvent(
+    userId: number | null,
+    action: string,
+    resource: string | null,
+    result: string,
+    ipAddress?: string,
+    userAgent?: string,
+    metadata?: any
+  ) {
+    if (!this.db) return null;
+
+    const metadataJson = metadata ? JSON.stringify(metadata) : null;
+
+    const info = this.db.prepare(`
+      INSERT INTO audit_log (userId, action, resource, result, ipAddress, userAgent, metadata)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(userId, action, resource, result, ipAddress, userAgent, metadataJson);
+
+    return this.db.prepare('SELECT * FROM audit_log WHERE id = ?').get(info.lastInsertRowid);
+  }
+
+  /**
+   * Get audit logs with optional filtering
+   */
+  getAuditLogs(options?: {
+    userId?: number;
+    action?: string;
+    startDate?: string;
+    endDate?: string;
+    limit?: number;
+    offset?: number;
+  }) {
+    if (!this.db) return [];
+
+    let query = 'SELECT * FROM audit_log WHERE 1=1';
+    const params: any[] = [];
+
+    if (options?.userId) {
+      query += ' AND userId = ?';
+      params.push(options.userId);
+    }
+
+    if (options?.action) {
+      query += ' AND action = ?';
+      params.push(options.action);
+    }
+
+    if (options?.startDate) {
+      query += ' AND createdAt >= ?';
+      params.push(options.startDate);
+    }
+
+    if (options?.endDate) {
+      query += ' AND createdAt <= ?';
+      params.push(options.endDate);
+    }
+
+    query += ' ORDER BY createdAt DESC';
+
+    if (options?.limit) {
+      query += ' LIMIT ?';
+      params.push(options.limit);
+      
+      if (options?.offset) {
+        query += ' OFFSET ?';
+        params.push(options.offset);
+      }
+    }
+
+    return this.db.prepare(query).all(...params);
+  }
+
+  /**
+   * Update backup codes after one is used
+   */
+  updateBackupCodes(userId: number, backupCodesHash: string) {
+    if (!this.db) return null;
+
+    this.db.prepare(`
+      UPDATE users 
+      SET backupCodesHash = ?, updatedAt = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(backupCodesHash, userId);
+
+    return this.getUserById(userId);
   }
 }
