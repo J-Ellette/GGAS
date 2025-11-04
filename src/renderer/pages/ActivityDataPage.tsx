@@ -19,18 +19,24 @@ import {
   MenuItem,
   Chip,
   Alert,
+  InputAdornment,
+  Grid,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SearchIcon from '@mui/icons-material/Search';
 import { ActivityData } from '../../common/types';
 
 const ActivityDataPage: React.FC = () => {
   const [activityData, setActivityData] = useState<ActivityData[]>([]);
+  const [filteredData, setFilteredData] = useState<ActivityData[]>([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sourceFilter, setSourceFilter] = useState('All');
   
   const [formData, setFormData] = useState<Partial<ActivityData>>({
     organizationUnit: '',
@@ -46,6 +52,31 @@ const ActivityDataPage: React.FC = () => {
   useEffect(() => {
     loadData();
   }, []);
+
+  useEffect(() => {
+    filterData();
+  }, [activityData, searchQuery, sourceFilter]);
+
+  const filterData = () => {
+    let filtered = activityData;
+
+    // Apply search filter
+    if (searchQuery) {
+      filtered = filtered.filter(data =>
+        data.organizationUnit?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        data.emissionSource?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        data.activityType?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        data.timePeriod?.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Apply source filter
+    if (sourceFilter !== 'All') {
+      filtered = filtered.filter(data => data.emissionSource === sourceFilter);
+    }
+
+    setFilteredData(filtered);
+  };
 
   const loadData = async () => {
     try {
@@ -151,6 +182,47 @@ const ActivityDataPage: React.FC = () => {
         </Alert>
       )}
 
+      {/* Search and Filter Bar */}
+      <Paper sx={{ p: 2, mb: 2 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={8}>
+            <TextField
+              fullWidth
+              placeholder="Search by organization, source, type, or period..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <TextField
+              select
+              fullWidth
+              label="Filter by Emission Source"
+              value={sourceFilter}
+              onChange={(e) => setSourceFilter(e.target.value)}
+            >
+              <MenuItem value="All">All Sources</MenuItem>
+              <MenuItem value="Stationary Combustion">Stationary Combustion</MenuItem>
+              <MenuItem value="Mobile Combustion">Mobile Combustion</MenuItem>
+              <MenuItem value="Purchased Electricity">Purchased Electricity</MenuItem>
+              <MenuItem value="Business Travel">Business Travel</MenuItem>
+              <MenuItem value="Employee Commuting">Employee Commuting</MenuItem>
+              <MenuItem value="Other">Other</MenuItem>
+            </TextField>
+          </Grid>
+        </Grid>
+        <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
+          Showing {filteredData.length} of {activityData.length} records
+        </Typography>
+      </Paper>
+
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -167,16 +239,18 @@ const ActivityDataPage: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {activityData.length === 0 ? (
+            {filteredData.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={9} align="center">
                   <Typography color="text.secondary" sx={{ py: 4 }}>
-                    No activity data available. Click "Add Activity Data" to get started.
+                    {searchQuery || sourceFilter !== 'All' 
+                      ? 'No activity data matches your search criteria.'
+                      : 'No activity data available. Click "Add Activity Data" to get started.'}
                   </Typography>
                 </TableCell>
               </TableRow>
             ) : (
-              activityData.map((data) => (
+              filteredData.map((data) => (
                 <TableRow key={data.id}>
                   <TableCell>{data.organizationUnit}</TableCell>
                   <TableCell>{data.timePeriod}</TableCell>

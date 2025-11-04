@@ -22,6 +22,13 @@ export { default as ManufacturingProcessOptimizationService } from './Manufactur
 export { default as TransportationRouteOptimizationService } from './TransportationRouteOptimizationService';
 export { default as EnterpriseSectorIntegrationService } from './EnterpriseSectorIntegrationService';
 
+// SEO Service
+export { SEOService, seoService } from './SEOService';
+
+// Security Services
+export { SecurityAuditLogService, securityAuditLogService, AuditEventType } from './SecurityAuditLogService';
+export { FieldLevelPermissionsService, fieldLevelPermissionsService, UserRole } from './FieldLevelPermissionsService';
+
 // Re-export types
 export type {
   Regulation,
@@ -135,3 +142,19 @@ export type {
   ModelEvaluation,
   FeatureImportance
 } from './MLFrameworkService';
+
+export type {
+  SEOMetadata,
+  SitemapEntry
+} from './SEOService';
+
+export type {
+  AuditLogEntry,
+  AuditLogQuery,
+  AuditLogStats
+} from './SecurityAuditLogService';
+
+export type {
+  FieldPermission,
+  ResourcePermissions
+} from './FieldLevelPermissionsService';
