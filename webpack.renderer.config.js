@@ -16,6 +16,31 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                includePaths: [
+                  path.resolve(__dirname, 'node_modules/@uswds/uswds/packages'),
+                  path.resolve(__dirname, 'node_modules/@uswds')
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name][ext]'
+        }
       }
     ]
   },

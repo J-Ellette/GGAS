@@ -2,6 +2,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { ThemeProvider } from './contexts/ThemeContext';
+// Import USWDS styles - using pre-compiled CSS
+import '@uswds/uswds/css/uswds.min.css';
 
 const container = document.getElementById('root');
 if (container) {
