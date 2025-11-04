@@ -85,9 +85,7 @@ const USWDSTable: React.FC<USWDSTableProps> = ({
             <tr key={rowIndex}>
               {columns.map((column, colIndex) => (
                 <td key={colIndex} data-label={column.header}>
-                  {row[column.accessor] !== undefined && row[column.accessor] !== null 
-                    ? String(row[column.accessor]) 
-                    : '-'}
+                  {String(row[column.accessor] ?? '-')}
                 </td>
               ))}
             </tr>

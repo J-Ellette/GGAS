@@ -18,7 +18,7 @@
 
 /* Ensure USWDS and MUI can coexist */
 .ggas-uswds-wrapper {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
 /* Dashboard specific styles */

@@ -8,6 +8,10 @@ interface USWDSInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   required?: boolean;
 }
 
+// Simple ID generator to ensure uniqueness
+let idCounter = 0;
+const generateId = () => `input-${Date.now()}-${++idCounter}`;
+
 const USWDSInput: React.FC<USWDSInputProps> = ({
   label,
   hint,
@@ -18,7 +22,7 @@ const USWDSInput: React.FC<USWDSInputProps> = ({
   className = '',
   ...props
 }) => {
-  const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+  const inputId = id || generateId();
   const hintId = `${inputId}-hint`;
   const errorId = `${inputId}-error`;
   
