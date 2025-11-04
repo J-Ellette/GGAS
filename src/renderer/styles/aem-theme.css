@@ -1,0 +1,483 @@
+/**
+ * Adobe Experience Manager (AEM) Design Theme
+ * 
+ * This file implements Adobe's premium color scheme, typography, and design patterns
+ * inspired by Adobe Experience Manager's admin interface.
+ * 
+ * Color Palette:
+ * - Primary: Dark blue (#0D66D0) - Adobe's signature blue
+ * - Dark backgrounds: Deep grays (#1D1F21, #2C2E33)
+ * - Light backgrounds: Off-white (#F5F5F5, #FAFAFA)
+ * - Accent: Adobe red (#FF0000), Adobe orange (#FA0F00)
+ * - Success: Green (#268E6C)
+ * - Warning: Orange (#E68619)
+ * - Error: Red (#D7373F)
+ */
+
+:root {
+  /* AEM Primary Colors */
+  --aem-blue-primary: #0D66D0;
+  --aem-blue-dark: #0A52A8;
+  --aem-blue-light: #378EF0;
+  
+  /* AEM Gray Scale (Dark Mode) */
+  --aem-gray-900: #1D1F21;
+  --aem-gray-800: #2C2E33;
+  --aem-gray-700: #3E4145;
+  --aem-gray-600: #50545B;
+  --aem-gray-500: #6E7780;
+  --aem-gray-400: #8C929A;
+  --aem-gray-300: #ADB0B6;
+  --aem-gray-200: #D0D3D7;
+  --aem-gray-100: #E8EAED;
+  --aem-gray-50: #F5F5F5;
+  
+  /* AEM Accent Colors */
+  --aem-red: #D7373F;
+  --aem-orange: #E68619;
+  --aem-green: #268E6C;
+  --aem-purple: #9256D9;
+  
+  /* AEM Semantic Colors */
+  --aem-success: #268E6C;
+  --aem-warning: #E68619;
+  --aem-error: #D7373F;
+  --aem-info: #0D66D0;
+  
+  /* AEM Surface Colors */
+  --aem-surface-dark: #1D1F21;
+  --aem-surface-medium: #2C2E33;
+  --aem-surface-light: #F5F5F5;
+  --aem-surface-white: #FFFFFF;
+  
+  /* AEM Text Colors */
+  --aem-text-primary-dark: #FFFFFF;
+  --aem-text-secondary-dark: #ADB0B6;
+  --aem-text-disabled-dark: #6E7780;
+  --aem-text-primary-light: #2C2E33;
+  --aem-text-secondary-light: #50545B;
+  --aem-text-disabled-light: #8C929A;
+  
+  /* AEM Border Colors */
+  --aem-border-dark: #3E4145;
+  --aem-border-medium: #50545B;
+  --aem-border-light: #D0D3D7;
+  
+  /* AEM Spacing (8px base unit) */
+  --aem-spacing-xs: 4px;
+  --aem-spacing-sm: 8px;
+  --aem-spacing-md: 16px;
+  --aem-spacing-lg: 24px;
+  --aem-spacing-xl: 32px;
+  --aem-spacing-2xl: 48px;
+  
+  /* AEM Border Radius */
+  --aem-radius-sm: 2px;
+  --aem-radius-md: 4px;
+  --aem-radius-lg: 8px;
+  
+  /* AEM Shadows */
+  --aem-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --aem-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.16);
+  --aem-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --aem-shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.24);
+  
+  /* AEM Typography - Adobe Clean Font Family */
+  --aem-font-family: 'adobe-clean', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --aem-font-family-mono: 'Source Code Pro', 'Courier New', monospace;
+  
+  /* AEM Font Sizes */
+  --aem-font-size-xs: 11px;
+  --aem-font-size-sm: 12px;
+  --aem-font-size-base: 14px;
+  --aem-font-size-md: 16px;
+  --aem-font-size-lg: 18px;
+  --aem-font-size-xl: 20px;
+  --aem-font-size-2xl: 24px;
+  --aem-font-size-3xl: 32px;
+  
+  /* AEM Line Heights */
+  --aem-line-height-tight: 1.25;
+  --aem-line-height-normal: 1.5;
+  --aem-line-height-relaxed: 1.75;
+  
+  /* AEM Font Weights */
+  --aem-font-weight-normal: 400;
+  --aem-font-weight-medium: 500;
+  --aem-font-weight-semibold: 600;
+  --aem-font-weight-bold: 700;
+  
+  /* AEM Z-Index Scale */
+  --aem-z-base: 1;
+  --aem-z-dropdown: 1000;
+  --aem-z-sticky: 1020;
+  --aem-z-fixed: 1030;
+  --aem-z-modal-backdrop: 1040;
+  --aem-z-modal: 1050;
+  --aem-z-popover: 1060;
+  --aem-z-tooltip: 1070;
+  
+  /* AEM Transitions */
+  --aem-transition-fast: 150ms ease-in-out;
+  --aem-transition-base: 250ms ease-in-out;
+  --aem-transition-slow: 350ms ease-in-out;
+  
+  /* AEM Navigation Rail Width */
+  --aem-nav-rail-width: 52px;
+  --aem-nav-rail-expanded-width: 240px;
+  --aem-side-panel-width: 320px;
+}
+
+/* AEM Theme Class for Dark Mode */
+.aem-theme-dark {
+  --aem-bg-primary: var(--aem-gray-900);
+  --aem-bg-secondary: var(--aem-gray-800);
+  --aem-bg-tertiary: var(--aem-gray-700);
+  --aem-text-primary: var(--aem-text-primary-dark);
+  --aem-text-secondary: var(--aem-text-secondary-dark);
+  --aem-text-disabled: var(--aem-text-disabled-dark);
+  --aem-border: var(--aem-border-dark);
+}
+
+/* AEM Theme Class for Light Mode */
+.aem-theme-light {
+  --aem-bg-primary: var(--aem-surface-white);
+  --aem-bg-secondary: var(--aem-gray-50);
+  --aem-bg-tertiary: var(--aem-gray-100);
+  --aem-text-primary: var(--aem-text-primary-light);
+  --aem-text-secondary: var(--aem-text-secondary-light);
+  --aem-text-disabled: var(--aem-text-disabled-light);
+  --aem-border: var(--aem-border-light);
+}
+
+/* Apply AEM Font Family */
+body.aem-theme,
+.aem-theme * {
+  font-family: var(--aem-font-family);
+}
+
+/* AEM Typography Classes */
+.aem-text-xs { font-size: var(--aem-font-size-xs); }
+.aem-text-sm { font-size: var(--aem-font-size-sm); }
+.aem-text-base { font-size: var(--aem-font-size-base); }
+.aem-text-md { font-size: var(--aem-font-size-md); }
+.aem-text-lg { font-size: var(--aem-font-size-lg); }
+.aem-text-xl { font-size: var(--aem-font-size-xl); }
+.aem-text-2xl { font-size: var(--aem-font-size-2xl); }
+.aem-text-3xl { font-size: var(--aem-font-size-3xl); }
+
+/* AEM Navigation Rail Styles */
+.aem-nav-rail {
+  width: var(--aem-nav-rail-width);
+  background-color: var(--aem-gray-900);
+  border-right: 1px solid var(--aem-border-dark);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: var(--aem-z-fixed);
+  transition: width var(--aem-transition-base);
+}
+
+.aem-nav-rail.expanded {
+  width: var(--aem-nav-rail-expanded-width);
+}
+
+.aem-nav-rail-item {
+  display: flex;
+  align-items: center;
+  padding: var(--aem-spacing-md);
+  color: var(--aem-text-secondary-dark);
+  cursor: pointer;
+  transition: background-color var(--aem-transition-fast), color var(--aem-transition-fast);
+  border-left: 3px solid transparent;
+}
+
+.aem-nav-rail-item:hover {
+  background-color: var(--aem-gray-800);
+  color: var(--aem-text-primary-dark);
+}
+
+.aem-nav-rail-item.active {
+  background-color: var(--aem-gray-800);
+  color: var(--aem-blue-primary);
+  border-left-color: var(--aem-blue-primary);
+}
+
+.aem-nav-rail-icon {
+  min-width: 20px;
+  margin-right: var(--aem-spacing-sm);
+}
+
+/* AEM Card Styles */
+.aem-card {
+  background-color: var(--aem-bg-secondary);
+  border: 1px solid var(--aem-border);
+  border-radius: var(--aem-radius-md);
+  padding: var(--aem-spacing-md);
+  box-shadow: var(--aem-shadow-sm);
+  transition: box-shadow var(--aem-transition-fast);
+}
+
+.aem-card:hover {
+  box-shadow: var(--aem-shadow-md);
+}
+
+.aem-card-header {
+  font-size: var(--aem-font-size-lg);
+  font-weight: var(--aem-font-weight-semibold);
+  color: var(--aem-text-primary);
+  margin-bottom: var(--aem-spacing-md);
+  padding-bottom: var(--aem-spacing-sm);
+  border-bottom: 1px solid var(--aem-border);
+}
+
+.aem-card-body {
+  color: var(--aem-text-secondary);
+}
+
+/* AEM Button Styles */
+.aem-button {
+  font-family: var(--aem-font-family);
+  font-size: var(--aem-font-size-base);
+  font-weight: var(--aem-font-weight-medium);
+  padding: var(--aem-spacing-sm) var(--aem-spacing-md);
+  border-radius: var(--aem-radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--aem-transition-fast), box-shadow var(--aem-transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--aem-spacing-xs);
+}
+
+.aem-button-primary {
+  background-color: var(--aem-blue-primary);
+  color: white;
+}
+
+.aem-button-primary:hover {
+  background-color: var(--aem-blue-dark);
+}
+
+.aem-button-secondary {
+  background-color: var(--aem-gray-700);
+  color: var(--aem-text-primary-dark);
+}
+
+.aem-button-secondary:hover {
+  background-color: var(--aem-gray-600);
+}
+
+/* AEM Breadcrumb Styles */
+.aem-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--aem-spacing-xs);
+  font-size: var(--aem-font-size-sm);
+  color: var(--aem-text-secondary);
+  padding: var(--aem-spacing-sm) 0;
+}
+
+.aem-breadcrumb-item {
+  color: var(--aem-text-secondary);
+  text-decoration: none;
+  transition: color var(--aem-transition-fast);
+}
+
+.aem-breadcrumb-item:hover {
+  color: var(--aem-blue-primary);
+}
+
+.aem-breadcrumb-separator {
+  color: var(--aem-text-disabled);
+  font-size: var(--aem-font-size-xs);
+}
+
+/* AEM Panel Styles */
+.aem-panel {
+  background-color: var(--aem-bg-secondary);
+  border: 1px solid var(--aem-border);
+  border-radius: var(--aem-radius-md);
+  overflow: hidden;
+}
+
+.aem-panel-header {
+  background-color: var(--aem-bg-tertiary);
+  padding: var(--aem-spacing-md);
+  font-weight: var(--aem-font-weight-semibold);
+  border-bottom: 1px solid var(--aem-border);
+}
+
+.aem-panel-body {
+  padding: var(--aem-spacing-md);
+}
+
+/* AEM Sliding Panel */
+.aem-sliding-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: var(--aem-side-panel-width);
+  height: 100%;
+  background-color: var(--aem-bg-secondary);
+  border-left: 1px solid var(--aem-border);
+  box-shadow: var(--aem-shadow-xl);
+  transition: right var(--aem-transition-base);
+  z-index: var(--aem-z-modal);
+  overflow-y: auto;
+}
+
+.aem-sliding-panel.open {
+  right: 0;
+}
+
+/* AEM Status Indicators */
+.aem-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--aem-spacing-xs);
+  font-size: var(--aem-font-size-sm);
+  font-weight: var(--aem-font-weight-medium);
+  padding: 2px var(--aem-spacing-sm);
+  border-radius: 12px;
+}
+
+.aem-status-success {
+  background-color: rgba(38, 142, 108, 0.2);
+  color: var(--aem-green);
+}
+
+.aem-status-warning {
+  background-color: rgba(230, 134, 25, 0.2);
+  color: var(--aem-orange);
+}
+
+.aem-status-error {
+  background-color: rgba(215, 55, 63, 0.2);
+  color: var(--aem-red);
+}
+
+.aem-status-info {
+  background-color: rgba(13, 102, 208, 0.2);
+  color: var(--aem-blue-primary);
+}
+
+/* AEM Content Tree Styles */
+.aem-content-tree {
+  background-color: var(--aem-bg-secondary);
+  border-right: 1px solid var(--aem-border);
+  overflow-y: auto;
+}
+
+.aem-content-tree-item {
+  padding: var(--aem-spacing-xs) var(--aem-spacing-md);
+  cursor: pointer;
+  transition: background-color var(--aem-transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--aem-spacing-xs);
+}
+
+.aem-content-tree-item:hover {
+  background-color: var(--aem-gray-800);
+}
+
+.aem-content-tree-item.selected {
+  background-color: var(--aem-blue-primary);
+  color: white;
+}
+
+/* AEM Workflow Timeline */
+.aem-workflow-timeline {
+  position: relative;
+  padding-left: var(--aem-spacing-lg);
+}
+
+.aem-workflow-timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--aem-border);
+}
+
+.aem-workflow-step {
+  position: relative;
+  padding-bottom: var(--aem-spacing-lg);
+}
+
+.aem-workflow-step::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--aem-gray-600);
+  border: 2px solid var(--aem-bg-secondary);
+}
+
+.aem-workflow-step.completed::before {
+  background-color: var(--aem-green);
+}
+
+.aem-workflow-step.active::before {
+  background-color: var(--aem-blue-primary);
+  box-shadow: 0 0 0 4px rgba(13, 102, 208, 0.2);
+}
+
+/* AEM Asset Grid */
+.aem-asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--aem-spacing-md);
+  padding: var(--aem-spacing-md);
+}
+
+.aem-asset-item {
+  background-color: var(--aem-bg-secondary);
+  border: 1px solid var(--aem-border);
+  border-radius: var(--aem-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--aem-transition-fast), box-shadow var(--aem-transition-fast);
+}
+
+.aem-asset-item:hover {
+  border-color: var(--aem-blue-primary);
+  box-shadow: var(--aem-shadow-md);
+}
+
+.aem-asset-thumbnail {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: var(--aem-gray-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aem-asset-info {
+  padding: var(--aem-spacing-sm);
+  font-size: var(--aem-font-size-sm);
+}
+
+.aem-asset-name {
+  font-weight: var(--aem-font-weight-medium);
+  color: var(--aem-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.aem-asset-meta {
+  color: var(--aem-text-secondary);
+  font-size: var(--aem-font-size-xs);
+  margin-top: 2px;
+}

@@ -6,6 +6,8 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import '@uswds/uswds/css/uswds.min.css';
 // Import custom GGAS USWDS styles
 import './styles/ggas-uswds.css';
+// Import AEM theme styles
+import './styles/aem-theme.css';
 
 const container = document.getElementById('root');
 if (container) {

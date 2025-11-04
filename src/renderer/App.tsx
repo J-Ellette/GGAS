@@ -1,42 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import DataObjectIcon from '@mui/icons-material/DataObject';
-import CalculateIcon from '@mui/icons-material/Calculate';
-import AssessmentIcon from '@mui/icons-material/Assessment';
-import SettingsIcon from '@mui/icons-material/Settings';
-import CloudIcon from '@mui/icons-material/Cloud';
-import CategoryIcon from '@mui/icons-material/Category';
-import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-import DescriptionIcon from '@mui/icons-material/Description';
-import PeopleIcon from '@mui/icons-material/People';
-import PsychologyIcon from '@mui/icons-material/Psychology';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import LanguageIcon from '@mui/icons-material/Language';
-import ExtensionIcon from '@mui/icons-material/Extension';
-import GroupsIcon from '@mui/icons-material/Groups';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import MessageIcon from '@mui/icons-material/Message';
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import TuneIcon from '@mui/icons-material/Tune';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -67,8 +30,8 @@ import CalendarPage from './pages/CalendarPage';
 import AISettingsPage from './pages/AISettingsPage';
 import LicenseKeyDialog from './components/LicenseKeyDialog';
 import SystemNotificationBanner, { SystemNotification } from './components/SystemNotificationBanner';
-
-const drawerWidth = 280;
+import AEMNavRail from './components/AEMNavRail';
+import AEMHeader from './components/AEMHeader';
 
 type PageType = 
   | 'dashboard' 
@@ -130,9 +93,7 @@ const App: React.FC = () => {
   const handleLicenseValid = (licenseManager?: any) => {
     setLicenseValidated(true);
     setShowLicenseDialog(false);
-    // Store license manager if needed for feature gates
     if (licenseManager) {
-      // Could store in context or state if needed
       console.log('License validated with manager:', licenseManager);
     }
   };
@@ -214,281 +175,40 @@ const App: React.FC = () => {
   };
 
   return (
-      <Box sx={{ display: 'flex' }}>
-        <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-          <SystemNotificationBanner 
-            notification={systemNotification} 
-            onDismiss={handleDismissNotification}
-          />
-          <Toolbar>
-            <CloudIcon sx={{ mr: 2 }} />
-            <Typography variant="h6" noWrap component="div">
-              Green Country: Greenhouse Gas Accounting Software
-            </Typography>
-            <Typography variant="caption" sx={{ ml: 2, opacity: 0.7 }}>
-              v1.0
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+    <Box sx={{ display: 'flex', minHeight: '100vh' }} className="aem-theme aem-theme-dark">
+      {/* AEM Navigation Rail */}
+      <AEMNavRail currentPage={currentPage} onPageChange={setCurrentPage} />
+      
+      {/* Main Content Area */}
+      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        {/* AEM Header */}
+        <AEMHeader title="Green Country GGAS" showSearch={true} />
+        
+        {/* System Notification Banner */}
+        {systemNotification && (
+          <Box sx={{ position: 'fixed', top: '52px', left: 'var(--aem-nav-rail-width)', right: 0, zIndex: 'var(--aem-z-sticky)' }}>
+            <SystemNotificationBanner 
+              notification={systemNotification} 
+              onDismiss={handleDismissNotification}
+            />
+          </Box>
+        )}
+        
+        {/* Page Content */}
+        <Box 
+          component="main" 
+          sx={{ 
+            flexGrow: 1, 
+            marginTop: '52px',
+            padding: 'var(--aem-spacing-lg)',
+            backgroundColor: 'var(--aem-bg-primary)',
+            minHeight: 'calc(100vh - 52px)',
           }}
         >
-          <Toolbar />
-          <Box sx={{ overflow: 'auto' }}>
-            <List>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'dashboard'} onClick={() => setCurrentPage('dashboard')}>
-                  <ListItemIcon>
-                    <DashboardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Dashboard" />
-                </ListItemButton>
-              </ListItem>
-            </List>
-            
-            <Divider />
-            <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
-              Data Management
-            </Typography>
-            <List>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'activity-data'} onClick={() => setCurrentPage('activity-data')}>
-                  <ListItemIcon>
-                    <DataObjectIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Activity Data" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'emission-factors'} onClick={() => setCurrentPage('emission-factors')}>
-                  <ListItemIcon>
-                    <CloudIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Emission Factors" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'calculations'} onClick={() => setCurrentPage('calculations')}>
-                  <ListItemIcon>
-                    <CalculateIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Calculations" />
-                </ListItemButton>
-              </ListItem>
-            </List>
-
-            <Divider />
-            <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
-              Advanced Features
-            </Typography>
-            <List>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'scope3'} onClick={() => setCurrentPage('scope3')}>
-                  <ListItemIcon>
-                    <CategoryIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Scope 3" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'integrations'} onClick={() => setCurrentPage('integrations')}>
-                  <ListItemIcon>
-                    <IntegrationInstructionsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Integrations" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'analytics'} onClick={() => setCurrentPage('analytics')}>
-                  <ListItemIcon>
-                    <AnalyticsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Analytics" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'compliance'} onClick={() => setCurrentPage('compliance')}>
-                  <ListItemIcon>
-                    <DescriptionIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Compliance" />
-                </ListItemButton>
-              </ListItem>
-            </List>
-
-            <Divider />
-            <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
-              AI & Strategic Planning
-            </Typography>
-            <List>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'carbon-copilot'} onClick={() => setCurrentPage('carbon-copilot')}>
-                  <ListItemIcon>
-                    <SmartToyIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Carbon Copilot" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'ai-ml'} onClick={() => setCurrentPage('ai-ml')}>
-                  <ListItemIcon>
-                    <PsychologyIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="AI/ML Analytics" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'ai-settings'} onClick={() => setCurrentPage('ai-settings')}>
-                  <ListItemIcon>
-                    <TuneIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="AI Settings" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'targets'} onClick={() => setCurrentPage('targets')}>
-                  <ListItemIcon>
-                    <EmojiEventsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Target Management" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'multi-entity'} onClick={() => setCurrentPage('multi-entity')}>
-                  <ListItemIcon>
-                    <LanguageIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Multi-Entity" />
-                </ListItemButton>
-              </ListItem>
-            </List>
-
-            <Divider />
-            <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', color: 'text.secondary' }}>
-              Innovation & Optimization
-            </Typography>
-            <List>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'advanced-analytics'} onClick={() => setCurrentPage('advanced-analytics')}>
-                  <ListItemIcon>
-                    <RocketLaunchIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Advanced Analytics" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'predictive-intelligence'} onClick={() => setCurrentPage('predictive-intelligence')}>
-                  <ListItemIcon>
-                    <TrendingUpIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Predictive Intelligence" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'operations-center'} onClick={() => setCurrentPage('operations-center')}>
-                  <ListItemIcon>
-                    <DashboardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Operations Center" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'autonomous-collection'} onClick={() => setCurrentPage('autonomous-collection')}>
-                  <ListItemIcon>
-                    <CloudIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Autonomous Collection" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'supply-chain'} onClick={() => setCurrentPage('supply-chain')}>
-                  <ListItemIcon>
-                    <AccountTreeIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Supply Chain X-Ray" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'carbon-financial'} onClick={() => setCurrentPage('carbon-financial')}>
-                  <ListItemIcon>
-                    <AttachMoneyIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Carbon-Financial Suite" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'esg-strategy'} onClick={() => setCurrentPage('esg-strategy')}>
-                  <ListItemIcon>
-                    <BusinessCenterIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="ESG Strategy Orchestrator" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'collaborative-workspace'} onClick={() => setCurrentPage('collaborative-workspace')}>
-                  <ListItemIcon>
-                    <GroupsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Collaborative Workspace" />
-                </ListItemButton>
-              </ListItem>
-            </List>
-
-            <Divider />
-            <List>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'users-messaging'} onClick={() => setCurrentPage('users-messaging')}>
-                  <ListItemIcon>
-                    <MessageIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Users & Messaging" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'calendar'} onClick={() => setCurrentPage('calendar')}>
-                  <ListItemIcon>
-                    <CalendarMonthIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Calendar" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'documentation'} onClick={() => setCurrentPage('documentation')}>
-                  <ListItemIcon>
-                    <MenuBookIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Documentation" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'admin'} onClick={() => setCurrentPage('admin')}>
-                  <ListItemIcon>
-                    <AdminPanelSettingsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Admin Panel" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton selected={currentPage === 'settings'} onClick={() => setCurrentPage('settings')}>
-                  <ListItemIcon>
-                    <SettingsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Settings" />
-                </ListItemButton>
-              </ListItem>
-            </List>
-          </Box>
-        </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Toolbar />
           {renderPage()}
         </Box>
       </Box>
+    </Box>
   );
 };
 
