@@ -42,7 +42,7 @@ const AEMPanel: React.FC<AEMPanelProps> = ({
                   alignItems: 'center',
                 }}
               >
-                {isCollapsed ? <ChevronRight style={{ fontSize: '18px' }} /> : <ChevronLeft style={{ fontSize: '18px' }} />}
+                {isCollapsed ? <ChevronRight style={{ fontSize: '18px' }} /> : <ChevronLeft style={{ fontSize: '18px', transform: 'rotate(90deg)' }} />}
               </button>
             )}
             <span>{title}</span>

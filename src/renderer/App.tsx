@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
 
 import Dashboard from './pages/Dashboard';
 import ActivityDataPage from './pages/ActivityDataPage';
@@ -175,29 +174,28 @@ const App: React.FC = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }} className="aem-theme aem-theme-dark">
+    <div style={{ display: 'flex', minHeight: '100vh' }} className="aem-theme aem-theme-dark">
       {/* AEM Navigation Rail */}
       <AEMNavRail currentPage={currentPage} onPageChange={setCurrentPage} />
       
       {/* Main Content Area */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         {/* AEM Header */}
         <AEMHeader title="Green Country GGAS" showSearch={true} />
         
         {/* System Notification Banner */}
         {systemNotification && (
-          <Box sx={{ position: 'fixed', top: '52px', left: 'var(--aem-nav-rail-width)', right: 0, zIndex: 'var(--aem-z-sticky)' }}>
+          <div style={{ position: 'fixed', top: '52px', left: 'var(--aem-nav-rail-width)', right: 0, zIndex: 'var(--aem-z-sticky)' }}>
             <SystemNotificationBanner 
               notification={systemNotification} 
               onDismiss={handleDismissNotification}
             />
-          </Box>
+          </div>
         )}
         
         {/* Page Content */}
-        <Box 
-          component="main" 
-          sx={{ 
+        <div 
+          style={{ 
             flexGrow: 1, 
             marginTop: '52px',
             padding: 'var(--aem-spacing-lg)',
@@ -206,9 +204,9 @@ const App: React.FC = () => {
           }}
         >
           {renderPage()}
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 
