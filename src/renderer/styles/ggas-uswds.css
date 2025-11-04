@@ -1,0 +1,178 @@
+/* Custom USWDS styles for GGAS application */
+
+/* Apply USWDS green theme colors */
+:root {
+  --ggas-primary: #2e7d32;
+  --ggas-primary-dark: #1b5e20;
+  --ggas-primary-light: #4caf50;
+}
+
+/* Override USWDS primary color with Green Country green */
+.usa-button--primary {
+  background-color: var(--ggas-primary);
+}
+
+.usa-button--primary:hover {
+  background-color: var(--ggas-primary-dark);
+}
+
+/* Ensure USWDS and MUI can coexist */
+.ggas-uswds-wrapper {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+/* Dashboard specific styles */
+.dashboard-stats-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-stats-card .usa-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Chart containers */
+.chart-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #dfe1e2;
+  margin-top: 1rem;
+}
+
+/* Table responsive wrapper */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Accessibility improvements */
+.usa-sr-only {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #005ea2;
+  outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.usa-skipnav:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  background: #005ea2;
+  color: white;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+/* Green Country branding in header */
+.usa-logo__text a {
+  text-decoration: none;
+}
+
+/* Improve contrast for accessibility */
+.usa-alert--info {
+  background-color: #e7f6f8;
+}
+
+.usa-alert--success {
+  background-color: #ecf3ec;
+}
+
+.usa-alert--warning {
+  background-color: #faf3d1;
+}
+
+.usa-alert--error {
+  background-color: #f4e3db;
+}
+
+/* Card hover effects */
+.usa-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.usa-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Form improvements */
+.usa-form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Loading state */
+.loading-spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.25rem solid #f3f3f3;
+  border-top: 0.25rem solid var(--ggas-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive grid improvements */
+@media (max-width: 640px) {
+  .usa-card-group {
+    display: block;
+  }
+  
+  .usa-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .usa-header,
+  .usa-footer,
+  .usa-button {
+    display: none !important;
+  }
+  
+  .usa-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .usa-button {
+    border: 2px solid currentColor;
+  }
+  
+  .usa-card {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
